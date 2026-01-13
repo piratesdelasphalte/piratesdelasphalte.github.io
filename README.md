@@ -1,15 +1,18 @@
-# Asphalte Québec
+# Pirates de l’Asphalte
 
-Site vitrine officiel pour **Asphalte Québec**  
-Asphaltage résidentiel et commercial, réparations, entretien et déneigement.
+Site officiel de **Pirates de l’Asphalte**  
+Asphaltage résidentiel et commercial, réparations, entretien et déneigement au Québec.
 
 ## Site en ligne
-https://asphaltequebec.github.io/
+https://piratesdelasphalte.github.io/
 
-## Services
-- Asphaltage (entrées de cour, stationnements, surfaces complètes)
-- Réparations / entretien (patchs, fissures, scellant, nivellement)
-- Déneigement (toitures, accès, stationnements, glace)
+## Services offerts
+- Asphaltage résidentiel (entrées de cour)
+- Asphaltage commercial et institutionnel
+- Stationnements (petites et grandes surfaces)
+- Réparations d’asphalte (patchs, fissures, nids-de-poule)
+- Entretien et scellant protecteur
+- Déneigement (toitures, accès, stationnements, gestion de la glace)
 
 ## Contact
 - Téléphone : 514-979-7832
@@ -17,13 +20,13 @@ https://asphaltequebec.github.io/
 - Facebook : https://www.facebook.com/piratesdelsphalte/
 
 ## Structure du projet
-- `index.html` : page principale
-- `assets/` : logos, images, icônes (ex: `logo-asphalte-quebec.svg`)
+- `index.html` : page principale du site
+- `assets/` : logos, images et ressources (SVG, PNG, etc.)
 
-## Mise à jour
+## Mise à jour du site
 1. Modifier `index.html` ou les fichiers dans `assets/`
-2. Commit + push sur `main`
-3. Attendre le déploiement GitHub Pages (Settings → Pages)
+2. Commit les changements sur la branche `main`
+3. GitHub Pages déploie automatiquement le site (Settings → Pages)
 
 ## Licence
-Tous droits réservés.
+Tous droits réservés © Pirates de l’Asphalte
