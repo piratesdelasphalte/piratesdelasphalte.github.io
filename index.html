@@ -11,11 +11,18 @@
   <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
-  <!-- Optionnel: ajoute une vraie image 1200x630 -->
   <!-- <meta property="og:image" content="https://piratesdelasphalte.github.io/og-asphalte.jpg" /> -->
 
   <!-- Twitter (optionnel) -->
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicons (tu dois uploader ces fichiers dans ton repo) -->
+  <!-- Mets les fichiers dans /assets/favicons/ -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#111111">
 
   <!-- Perf: préconnexion -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
@@ -34,8 +41,6 @@
       --muted:#bdbdbd;
       --accent:#f7931e;
       --accent2:#ffae42;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(0,0,0,0.25);
       --stroke: rgba(255,255,255,0.10);
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
       --radius: 14px;
@@ -133,9 +138,7 @@
     }
 
     /* Hero */
-    .hero {
-      padding: 80px 0 40px;
-    }
+    .hero { padding: 80px 0 40px; }
 
     .hero-grid {
       display: grid;
@@ -202,7 +205,7 @@
       border-radius: 12px;
       border: 1px solid var(--stroke);
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease;
       user-select: none;
@@ -221,7 +224,7 @@
     }
     .btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
 
-    /* Contact box / quick info */
+    /* Contact box */
     .contact-box {
       background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(0,0,0,0.20));
       border: 1px solid var(--stroke);
@@ -250,7 +253,7 @@
 
     .contact-box a {
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 900;
       text-decoration: none;
     }
     .contact-box a:hover { color: #ffd580; text-decoration: underline; }
@@ -264,28 +267,14 @@
     section {
       padding: 60px 0;
       border-top: 1px solid rgba(255,255,255,0.08);
+      scroll-margin-top: 90px; /* important pour header sticky */
     }
 
-    .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
+    .section-head { margin-bottom: 22px; }
+    h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
+    .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    h3 {
-      font-size: 1.7rem;
-      color: var(--accent);
-      line-height: 1.2;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 0.98rem;
-      max-width: 60ch;
-    }
-
+    /* Cartes services (pro + hover + pas de carré vide) */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -294,40 +283,68 @@
     }
 
     .card {
+      position: relative;
       background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
-      border: 1px solid var(--stroke);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius);
       padding: 18px 18px 16px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-      min-height: 110px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+      transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+      min-height: 132px;
+      overflow: hidden;
     }
 
-    .card .icon {
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(247,147,30,0.35);
+      background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(0,0,0,0.18));
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      pointer-events:none;
+      border-radius: var(--radius);
+      background: radial-gradient(500px 200px at 0% 0%, rgba(247,147,30,0.12), transparent 55%);
+      opacity: 0.9;
+    }
+
+    .card .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
       background: rgba(247,147,30,0.14);
-      border: 1px solid rgba(247,147,30,0.22);
+      border: 1px solid rgba(247,147,30,0.26);
       color: var(--accent);
       margin-bottom: 10px;
     }
 
-    .card p {
+    /* fallback si FontAwesome est bloqué */
+    .card .icon i:empty::before { content: "•"; }
+
+    .card h4{
+      font-size: 1.05rem;
+      margin: 0;
       color: var(--text);
-      opacity: 0.96;
-      font-size: 1.02rem;
+      line-height: 1.25;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (max-width: 980px) {
-      .grid { grid-template-columns: 1fr 1fr; }
+    .card p{
+      margin-top: 6px;
+      color: rgba(234,234,234,0.85);
+      font-size: 0.98rem;
+      position: relative;
+      z-index: 1;
     }
-    @media (max-width: 620px) {
-      .grid { grid-template-columns: 1fr; }
-      .section-head { flex-direction: column; align-items: flex-start; }
-    }
+
+    @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
     /* Section déneigement: fond plus clair mais cohérent */
     #deneigement {
@@ -336,11 +353,11 @@
     }
     #deneigement .sub { color: rgba(0,0,0,0.65); }
     #deneigement .card {
-      background: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.82);
       border: 1px solid rgba(0,0,0,0.10);
       box-shadow: 0 10px 24px rgba(0,0,0,0.12);
     }
-    #deneigement .card p { color: #111; }
+    #deneigement .card h4, #deneigement .card p { color: #111; }
     #deneigement .card .icon {
       background: rgba(0,0,0,0.06);
       border: 1px solid rgba(0,0,0,0.10);
@@ -348,19 +365,10 @@
     }
 
     /* Form */
-    .form {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 620px) {
-      .row { grid-template-columns: 1fr; }
-    }
+    .form { display: grid; gap: 10px; margin-top: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
+
     input, select, textarea {
       width: 100%;
       padding: 12px 12px;
@@ -374,7 +382,7 @@
     textarea { min-height: 110px; resize: vertical; }
 
     #deneigement input, #deneigement select, #deneigement textarea {
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.9);
       color: #111;
       border-color: rgba(0,0,0,0.12);
     }
@@ -411,7 +419,7 @@
       background: rgba(0,0,0,0.35);
       backdrop-filter: blur(10px);
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 900;
       box-shadow: var(--shadow);
     }
     .quickbar a.primary {
@@ -421,10 +429,9 @@
     }
     @media (max-width: 720px) {
       .quickbar { display: flex; }
-      body { padding-bottom: 76px; } /* place pour la barre */
+      body { padding-bottom: 76px; }
     }
 
-    /* Respect préférence mouvement réduit */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       * { transition: none !important; }
@@ -537,27 +544,33 @@
     <div class="grid">
       <div class="card">
         <div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div>
-        <p>Asphaltage résidentiel (entrées de cour)</p>
+        <h4>Asphaltage résidentiel (entrées de cour)</h4>
+        <p>Finition propre, pente et drainage bien pensés.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
-        <p>Asphaltage commercial et institutionnel</p>
+        <h4>Asphaltage commercial et institutionnel</h4>
+        <p>Travaux planifiés, durables, adaptés au trafic.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div>
-        <p>Stationnements complets (petites et grandes surfaces)</p>
+        <h4>Stationnements complets (petites et grandes surfaces)</h4>
+        <p>Préparation + compaction pour un résultat solide.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div>
-        <p>Reconstruction et récap complet de stationnement</p>
+        <h4>Reconstruction et récap complet</h4>
+        <p>On repart sur une base stable, nivelée, durable.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
-        <p>Pavage en asphalte et pavé uni</p>
+        <h4>Pavage en asphalte et pavé uni</h4>
+        <p>Bordures et transitions propres, pose soignée.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
-        <p>Gestion des pentes et écoulement de l’eau</p>
+        <h4>Gestion des pentes et écoulement</h4>
+        <p>Moins de flaques, moins d’usure, plus durable.</p>
       </div>
     </div>
   </div>
@@ -575,27 +588,33 @@
     <div class="grid">
       <div class="card">
         <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
-        <p>Réparation de patchs et nids-de-poule</p>
+        <h4>Patchs et nids-de-poule</h4>
+        <p>Réparations rapides et solides pour éviter l’aggravation.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div>
-        <p>Correction de vallons et pentes à 45 degrés</p>
+        <h4>Correction de vallons et pentes</h4>
+        <p>Nivelage pour un drainage efficace et sécuritaire.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
-        <p>Application de scellant protecteur</p>
+        <h4>Scellant protecteur</h4>
+        <p>Prolonge la vie de l’asphalte et protège la surface.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div>
-        <p>Traitement des traces d’huile</p>
+        <h4>Traitement des taches d’huile</h4>
+        <p>Nettoyage et traitement pour une surface plus propre.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div>
-        <p>Décoloration de surface</p>
+        <h4>Décoloration de surface</h4>
+        <p>Entretien pour améliorer l’apparence et la protection.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
-        <p>Perte d’agrégats et usure prématurée</p>
+        <h4>Usure et perte d’agrégats</h4>
+        <p>On stabilise la surface avant que ça se dégrade.</p>
       </div>
     </div>
   </div>
@@ -613,27 +632,33 @@
     <div class="grid">
       <div class="card">
         <div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div>
-        <p>Déneigement de toitures</p>
+        <h4>Déneigement de toitures</h4>
+        <p>Réduction du poids et prévention des risques.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div>
-        <p>Déneigement de marches et escaliers en béton</p>
+        <h4>Marches et escaliers</h4>
+        <p>Accès sécuritaires, dégagement propre et précis.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
-        <p>Déneigement de stationnements et accès</p>
+        <h4>Stationnements et entrées</h4>
+        <p>Déneigement efficace pour circulation fluide.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
-        <p>Gestion sécuritaire de la neige et de la glace</p>
+        <h4>Gestion glace et neige</h4>
+        <p>Interventions sécuritaires selon les conditions.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
-        <p>Interventions rapides en cas d’accumulation</p>
+        <h4>Interventions rapides</h4>
+        <p>Présence rapide en cas d’accumulation importante.</p>
       </div>
       <div class="card">
         <div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div>
-        <p>Finition propre des zones piétonnes</p>
+        <h4>Finition des zones piétonnes</h4>
+        <p>Finition propre autour des accès et passages.</p>
       </div>
     </div>
   </div>
@@ -717,7 +742,9 @@
       : '<i class="fa-solid fa-bars"></i> Menu';
   });
 
-  // Quote form -> opens mailto with prefilled subject/body (simple + works anywhere)
+  // Quote form -> mailto
+  const EMAIL_TO = "asphaltequebec@hotmail.ca"; // <-- remplace ici si nécessaire
+
   const form = document.getElementById("quoteForm");
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -744,7 +771,7 @@ ${details || "-"}
 Merci!`
     );
 
-    window.location.href = `mailto:asphaltequebec@hotmail.ca?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${encodeURIComponent(EMAIL_TO)}?subject=${subject}&body=${body}`;
   });
 </script>
 
