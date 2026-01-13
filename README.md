@@ -28,5 +28,15 @@ https://piratesdelasphalte.github.io/
 2. Commit les changements sur la branche `main`
 3. GitHub Pages déploie automatiquement le site (Settings → Pages)
 
+## Crédits / Développement
+Site conçu et développé sur mesure pour **Pirates de l’Asphalte**.
+
+- Design et intégration HTML/CSS
+- Mise en page responsive (mobile, tablette, ordinateur)
+- Optimisation de l’expérience utilisateur
+- Hébergement et déploiement via GitHub Pages
+
+Conception et maintenance assurées par **Pirates de l’Asphalte**.
+
 ## Licence
 Tous droits réservés © Pirates de l’Asphalte
