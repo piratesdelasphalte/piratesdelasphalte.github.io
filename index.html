@@ -11,7 +11,8 @@
   <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
-  <!-- <meta property="og:image" content="https://piratesdelasphalte.github.io/og-asphalte.jpg" /> -->
+  <!-- ✅ Mets une image 1200x630 quand tu l'as (place ce fichier dans /assets/og/) -->
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og/og-asphalte-1200x630.jpg" />
 
   <!-- Twitter (optionnel) -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -31,6 +32,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-hXK6gnI5kPi5W4x+X9+6qYfUVynT70rVZ8j1zJr9qD1Bb+2Ee/+iYgk8xG2Hg/tk+V/KFqZwWcJShS5i+0xw7g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ✅ Schema LocalBusiness (SEO local) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Pirates de l’Asphalte",
+    "url": "https://piratesdelasphalte.github.io/",
+    "telephone": "+1-514-979-7832",
+    "email": "asphaltequebec@hotmail.ca",
+    "areaServed": ["Montréal", "Laval", "Rive-Nord", "Rive-Sud", "Laurentides"],
+    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
+  }
+  </script>
 
   <style>
     :root{
@@ -274,7 +289,7 @@
     h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    /* Cartes services (pro + hover + pas de carré vide) */
+    /* Cartes services */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -321,10 +336,9 @@
       border: 1px solid rgba(247,147,30,0.26);
       color: var(--accent);
       margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
     }
-
-    /* fallback si FontAwesome est bloqué */
-    .card .icon i:empty::before { content: "•"; }
 
     .card h4{
       font-size: 1.05rem;
@@ -346,14 +360,14 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
-    /* Section déneigement: fond plus clair mais cohérent */
+    /* ✅ Déneigement: gris pâle plus foncé */
     #deneigement {
-      background: linear-gradient(135deg, rgba(224,234,252,0.96), rgba(207,222,243,0.92));
+      background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92));
       color: #111;
     }
     #deneigement .sub { color: rgba(0,0,0,0.65); }
     #deneigement .card {
-      background: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.86);
       border: 1px solid rgba(0,0,0,0.10);
       box-shadow: 0 10px 24px rgba(0,0,0,0.12);
     }
@@ -380,12 +394,6 @@
       outline: none;
     }
     textarea { min-height: 110px; resize: vertical; }
-
-    #deneigement input, #deneigement select, #deneigement textarea {
-      background: rgba(255,255,255,0.9);
-      color: #111;
-      border-color: rgba(0,0,0,0.12);
-    }
 
     /* Footer */
     footer {
@@ -459,6 +467,8 @@
           <a href="#asphaltage">Asphaltage</a>
           <a href="#reparation">Réparations</a>
           <a href="#deneigement">Déneigement</a>
+          <a href="#pourquoi">Pourquoi nous</a>
+          <a href="#zones">Zones</a>
           <a href="#soumission">Soumission</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -471,7 +481,7 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-card">
-        <h2>Services complets d’asphaltage, d’entretien et de déneigement</h2>
+        <h2>Asphaltage, réparations et déneigement</h2>
         <p>
           Pirates de l’Asphalte offre des services professionnels et structurés pour les secteurs résidentiel et commercial.
           Notre approche privilégie la durabilité, la conformité et un travail exécuté selon les règles de l’art.
@@ -531,6 +541,71 @@
     </div>
   </div>
 </main>
+
+<!-- ✅ Pourquoi nous choisir -->
+<section id="pourquoi">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
+        <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-check"></i></div>
+        <h4>Travail propre et durable</h4>
+        <p>Préparation, compaction et finition selon les règles de l’art.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-stopwatch"></i></div>
+        <h4>Soumission rapide</h4>
+        <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+        <h4>Équipe fiable</h4>
+        <p>Communication simple, chantier organisé, résultats constants.</p>
+      </div>
+    </div>
+
+    <div class="cta-row" style="margin-top:18px;">
+      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature"></i> Demander une soumission</a>
+      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone"></i> Appeler maintenant</a>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Zones desservies -->
+<section id="zones">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Zones desservies</h3>
+        <p class="sub">On se déplace dans plusieurs secteurs. Si tu es proche, appelle, on te le confirme rapidement.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h4>Montréal</h4>
+        <p>Résidentiel et commercial.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h4>Laval</h4>
+        <p>Entrées de cour, stationnements, réparations.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h4>Rive-Nord / Rive-Sud</h4>
+        <p>Selon le projet et la distance.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="asphaltage">
   <div class="container">
@@ -743,7 +818,7 @@
   });
 
   // Quote form -> mailto
-  const EMAIL_TO = "asphaltequebec@hotmail.ca"; // <-- remplace ici si nécessaire
+  const EMAIL_TO = "asphaltequebec@hotmail.ca"; // <-- change si besoin
 
   const form = document.getElementById("quoteForm");
   form?.addEventListener("submit", (e) => {
