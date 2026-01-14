@@ -1,63 +1,998 @@
-/* ===== Dropdown "Services" plus facile à attraper ===== */
-.dropdown{
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pirates de l’Asphalte | Asphaltage, réparations et déneigement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, entretien et déneigement. Service fiable au Québec. Soumission rapide." />
 
-/* le lien Services */
-.dropbtn{
-  position: relative;
-}
+  <!-- Open Graph (Facebook/partage) -->
+  <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations et déneigement" />
+  <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-/* zone tampon invisible sous "Services" pour éviter la fermeture */
-.dropbtn::after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:100%;
-  width:100%;
-  height:14px;            /* augmente si tu veux encore plus de marge */
-}
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#111111">
 
-/* menu déroulant */
-.dropdown-menu{
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  min-width: 220px;
-  background: rgba(15,15,15,.96);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 12px;
-  box-shadow: 0 18px 45px rgba(0,0,0,.45);
-  padding: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
-  z-index: 999;
-}
+  <!-- Perf -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-/* IMPORTANT: reste ouvert si la souris est sur le bloc dropdown OU le menu */
-.dropdown:hover .dropdown-menu,
-.dropdown:focus-within .dropdown-menu{
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: opacity .18s ease, transform .18s ease;
-}
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
-/* liens du menu */
-.dropdown-menu a{
-  display:block;
-  padding: 10px 10px;
-  border-radius: 10px;
-  text-decoration:none;
-  color: var(--text);
-  opacity: .92;
-}
-.dropdown-menu a:hover{
-  background: rgba(247,147,30,.12);
-  color: var(--accent);
-  opacity: 1;
-}
+  <!-- Schema LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Pirates de l’Asphalte",
+    "url": "https://piratesdelasphalte.github.io/",
+    "telephone": "+1-514-979-7832",
+    "email": "asphaltequebec@hotmail.ca",
+    "areaServed": ["Montréal", "Laval", "Rive-Nord", "Rive-Sud", "Laurentides"],
+    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg0:#121212;
+      --bg1:#1b1b1b;
+      --bg2:#2a2a2a;
+      --text:#eaeaea;
+      --muted:#bdbdbd;
+      --accent:#f7931e;
+      --accent2:#ffae42;
+      --stroke: rgba(255,255,255,0.10);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: radial-gradient(900px 500px at 20% 10%, rgba(247,147,30,0.12), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(255,174,66,0.08), transparent 55%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+    }
+
+    a { color: inherit; }
+    .container { max-width: 1150px; margin: auto; padding: 0 20px; }
+
+    :focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(17,17,17,0.92), rgba(34,34,34,0.92));
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .badge {
+      font-size: 0.85rem;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.25);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .badge i{ color: var(--accent); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* ✅ Menu links: pas d'icônes à gauche */
+    nav a{
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.98rem;
+      opacity: 0.92;
+      transition: opacity 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      user-select: none;
+    }
+    nav a:hover{
+      color: var(--accent);
+      opacity: 1;
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .nav-wrap { display: flex; align-items: center; gap: 12px; }
+
+    @media (max-width: 860px) {
+      nav { display: none; width: 100%; padding: 10px 0 14px; }
+      nav.open { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+      nav a{ width:100%; }
+      .menu-btn { display: inline-flex; align-items: center; gap: 10px; }
+      .topbar { align-items: flex-start; }
+    }
+
+    /* ✅ Dropdown Services (desktop + mobile) */
+    .dropdown{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropbtn{
+      position: relative;
+      user-select: none;
+    }
+
+    /* zone tampon invisible sous "Services" (évite que ça ferme trop vite) */
+    .dropbtn::after{
+      content:"";
+      position:absolute;
+      left:0;
+      top:100%;
+      width:100%;
+      height:14px;
+    }
+
+    .dropdown-menu{
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 240px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(12,12,12,0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.45);
+      z-index: 999;
+
+      /* ✅ au lieu de display none/block */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+    }
+
+    .dropdown-menu a{
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+    }
+    .dropdown-menu a:hover{
+      background: rgba(247,147,30,0.10);
+      transform: none;
+    }
+
+    @media (min-width: 861px){
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition: opacity .18s ease, transform .18s ease;
+      }
+    }
+
+    @media (max-width: 860px){
+      .dropdown{ width:100%; }
+      .dropdown-menu{
+        position: static;
+        margin-top: 6px;
+        width: 100%;
+        background: rgba(0,0,0,0.22);
+        box-shadow: none;
+        padding: 8px;
+
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+
+        display: none;
+      }
+      .dropdown.open .dropdown-menu{ display: block; }
+    }
+
+    /* Hero */
+    .hero { padding: 80px 0 40px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      color: var(--text);
+      opacity: 0.95;
+      font-size: 1.05rem;
+      max-width: 72ch;
+    }
+
+    .hero-points {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,0.25);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill i{ color: var(--accent); }
+
+    /* CTA buttons */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease;
+      user-select: none;
+    }
+    .btn i{ width: 18px; text-align:center; }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #111;
+      border-color: rgba(0,0,0,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+    }
+    .btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
+
+    /* Contact box */
+    .contact-box {
+      background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(0,0,0,0.20));
+      border: 1px solid var(--stroke);
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box strong {
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-item:first-of-type { border-top: none; padding-top: 0; }
+    .contact-item i { color: var(--accent); min-width: 18px; text-align: center; }
+
+    .contact-box a {
+      color: var(--accent);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .contact-box a:hover { color: #ffd580; text-decoration: underline; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 46px; }
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head { margin-bottom: 22px; }
+
+    /* ✅ Titres de sections (h3) : pas d’icônes */
+    h3 {
+      font-size: 1.7rem;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
+
+    /* Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+      transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+      min-height: 132px;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(247,147,30,0.35);
+      background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(0,0,0,0.18));
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      pointer-events:none;
+      border-radius: var(--radius);
+      background: radial-gradient(500px 200px at 0% 0%, rgba(247,147,30,0.12), transparent 55%);
+      opacity: 0.9;
+    }
+
+    .card .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(247,147,30,0.14);
+      border: 1px solid rgba(247,147,30,0.26);
+      color: var(--accent);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card .icon i { font-size: 18px; }
+    .card .icon i:before { display: inline-block; }
+    .card .icon i:not([class*="fa-"])::before { content: "•"; }
+
+    .card h4{
+      font-size: 1.05rem;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.25;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p{
+      margin-top: 6px;
+      color: rgba(234,234,234,0.85);
+      font-size: 0.98rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+
+    /* Déneigement */
+    #deneigement {
+      background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92));
+      color: #111;
+    }
+    #deneigement .sub { color: rgba(0,0,0,0.65); }
+    #deneigement .card {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(0,0,0,0.10);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    #deneigement .card h4, #deneigement .card p { color: #111; }
+    #deneigement .card .icon {
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.10);
+      color: #111;
+    }
+
+    /* Form */
+    .form { display: grid; gap: 10px; margin-top: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+
+    /* Footer */
+    footer {
+      margin-top: 10px;
+      background: linear-gradient(90deg, #111, #222);
+      color: #aaa;
+      font-size: 0.95rem;
+      padding: 34px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    footer a { color: #9ecbff; text-decoration: none; display:inline-flex; align-items:center; gap:8px; }
+    footer a i{ color:#9ecbff; }
+    footer a:hover { color: #66b0ff; text-decoration: underline; }
+
+    /* Quick actions mobile */
+    .quickbar {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+    }
+    .quickbar a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+    .quickbar a.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #111;
+      border-color: rgba(0,0,0,0.25);
+    }
+    @media (max-width: 720px) {
+      .quickbar { display: flex; }
+      body { padding-bottom: 76px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="topbar">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <h1><i class="fa-solid fa-road" aria-hidden="true"></i> Pirates de l’Asphalte</h1>
+        <span class="badge"><i class="fa-solid fa-city" aria-hidden="true"></i> Résidentiel + Commercial</span>
+      </div>
+
+      <div class="nav-wrap">
+        <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
+        </button>
+
+        <nav id="nav">
+          <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
+
+          <div class="dropdown" id="servicesDropdown">
+            <a href="#asphaltage" class="dropbtn" aria-haspopup="true" aria-expanded="false">
+              Services
+              <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:.85em; opacity:.9;"></i>
+            </a>
+
+            <div class="dropdown-menu" role="menu" aria-label="Services">
+              <a role="menuitem" href="#asphaltage"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage</a>
+              <a role="menuitem" href="#reparation"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations</a>
+              <a role="menuitem" href="#deneigement"><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement</a>
+            </div>
+          </div>
+
+          <a href="#pourquoi">Pourquoi nous</a>
+          <a href="#zones">Zones</a>
+          <a href="#soumission">Soumission</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <h2>Asphaltage, réparations et déneigement</h2>
+        <p>
+          Pirates de l’Asphalte offre des services professionnels et structurés pour les secteurs résidentiel et commercial.
+          Notre approche privilégie la durabilité, la conformité et un travail exécuté selon les règles de l’art.
+        </p>
+
+        <div class="hero-points" aria-label="Points forts">
+          <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Travail durable</span>
+          <span class="pill"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i> Équipe pro</span>
+          <span class="pill"><i class="fa-solid fa-clock" aria-hidden="true"></i> Soumission rapide</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+          </a>
+          <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
+            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+          </a>
+          <a class="btn btn-ghost" href="mailto:asphaltequebec@hotmail.ca" aria-label="Envoyer un courriel">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel
+          </a>
+        </div>
+      </div>
+
+      <aside class="contact-box" id="contact" aria-label="Coordonnées">
+        <strong><i class="fa-solid fa-address-card" aria-hidden="true" style="color:var(--accent); margin-right:8px;"></i> Nous joindre</strong>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <div>
+            Téléphone<br />
+            <a href="tel:15149797832">514-979-7832</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <div>
+            Courriel<br />
+            <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          <div>
+            Facebook<br />
+            <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Pirates de l’Asphalte</a>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; color:var(--muted); font-size:0.95rem;">
+          <i class="fa-solid fa-circle-info" style="color:var(--accent);" aria-hidden="true"></i>
+          Réponse rapide. Travaux propres. Service au Québec.
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<section id="pourquoi">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
+        <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+        <h4>Travail propre et durable</h4>
+        <p>Préparation, compaction et finition selon les règles de l’art.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
+        <h4>Soumission rapide</h4>
+        <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+        <h4>Équipe fiable</h4>
+        <p>Communication simple, chantier organisé, résultats constants.</p>
+      </div>
+    </div>
+
+    <div class="cta-row" style="margin-top:18px;">
+      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+    </div>
+  </div>
+</section>
+
+<section id="zones">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Zones desservies</h3>
+        <p class="sub">On se déplace dans plusieurs secteurs. Si tu es proche, appelle, on te le confirme rapidement.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+        <h4>Montréal</h4>
+        <p>Résidentiel et commercial.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+        <h4>Laval</h4>
+        <p>Entrées de cour, stationnements, réparations.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+        <h4>Rive-Nord / Rive-Sud</h4>
+        <p>Selon le projet et la distance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="asphaltage">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Asphaltage – services complets</h3>
+        <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div>
+        <h4>Asphaltage résidentiel (entrées de cour)</h4>
+        <p>Finition propre, pente et drainage bien pensés.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
+        <h4>Asphaltage commercial et institutionnel</h4>
+        <p>Travaux planifiés, durables, adaptés au trafic.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div>
+        <h4>Stationnements complets (petites et grandes surfaces)</h4>
+        <p>Préparation + compaction pour un résultat solide.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div>
+        <h4>Reconstruction et récap complet</h4>
+        <p>On repart sur une base stable, nivelée, durable.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
+        <h4>Pavage en asphalte et pavé uni</h4>
+        <p>Bordures et transitions propres, pose soignée.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
+        <h4>Gestion des pentes et écoulement</h4>
+        <p>Moins de flaques, moins d’usure, plus durable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reparation">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Réparations et entretien de l’asphalte</h3>
+        <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+        <h4>Patchs et nids-de-poule</h4>
+        <p>Réparations rapides et solides pour éviter l’aggravation.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div>
+        <h4>Correction de vallons et pentes</h4>
+        <p>Nivelage pour un drainage efficace et sécuritaire.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+        <h4>Scellant protecteur</h4>
+        <p>Prolonge la vie de l’asphalte et protège la surface.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div>
+        <h4>Traitement des taches d’huile</h4>
+        <p>Nettoyage et traitement pour une surface plus propre.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div>
+        <h4>Décoloration de surface</h4>
+        <p>Entretien pour améliorer l’apparence et la protection.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+        <h4>Usure et perte d’agrégats</h4>
+        <p>On stabilise la surface avant que ça se dégrade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deneigement">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Déneigement – services hivernaux</h3>
+        <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div>
+        <h4>Déneigement de toitures</h4>
+        <p>Réduction du poids et prévention des risques.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div>
+        <h4>Marches et escaliers</h4>
+        <p>Accès sécuritaires, dégagement propre et précis.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
+        <h4>Stationnements et entrées</h4>
+        <p>Déneigement efficace pour circulation fluide.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
+        <h4>Gestion glace et neige</h4>
+        <p>Interventions sécuritaires selon les conditions.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+        <h4>Interventions rapides</h4>
+        <p>Présence rapide en cas d’accumulation importante.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div>
+        <h4>Finition des zones piétonnes</h4>
+        <p>Finition propre autour des accès et passages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="soumission">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Demande de soumission</h3>
+        <p class="sub">Remplis ça et clique “Envoyer”. Ça ouvre ton courriel avec le message déjà prêt.</p>
+      </div>
+    </div>
+
+    <div class="hero-card" style="padding:22px;">
+      <form class="form" id="quoteForm">
+        <div class="row">
+          <input type="text" id="name" name="name" placeholder="Nom" autocomplete="name" />
+          <input type="tel" id="phone" name="phone" placeholder="Téléphone" autocomplete="tel" />
+        </div>
+
+        <div class="row">
+          <select id="service" name="service" aria-label="Choisir un service">
+            <option value="Asphaltage">Asphaltage</option>
+            <option value="Réparations / entretien">Réparations / entretien</option>
+            <option value="Déneigement">Déneigement</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <input type="text" id="city" name="city" placeholder="Ville / secteur (ex: Laval, Montréal…)" autocomplete="address-level2" />
+        </div>
+
+        <textarea id="details" name="details" placeholder="Détails: surface approximative, type de travaux, urgence, etc."></textarea>
+
+        <div class="cta-row" style="margin-top:6px;">
+          <button class="btn btn-primary" type="submit" style="border:none;">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande
+          </button>
+          <a class="btn btn-ghost" href="tel:15149797832">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
+          </a>
+        </div>
+
+        <div style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
+          <i class="fa-solid fa-lock" aria-hidden="true" style="color:var(--accent);"></i>
+          En envoyant, tu partages seulement les infos que tu écris ici (aucune donnée stockée sur le site).
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Pirates de l’Asphalte</p>
+    <p>
+      Asphaltage, réparations et déneigement au Québec |
+      <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
+      </a>
+    </p>
+  </div>
+</footer>
+
+<div class="quickbar" aria-label="Actions rapides">
+  <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
+  <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
+  <a href="mailto:asphaltequebec@hotmail.ca"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel</a>
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const menuBtn = document.getElementById("menuBtn");
+  const nav = document.getElementById("nav");
+
+  menuBtn?.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    const opened = nav.classList.contains("open");
+    menuBtn.setAttribute("aria-label", opened ? "Fermer le menu" : "Ouvrir le menu");
+    menuBtn.innerHTML = opened
+      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
+      : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
+  });
+
+  const servicesDropdown = document.getElementById("servicesDropdown");
+  const servicesBtn = servicesDropdown?.querySelector(".dropbtn");
+
+  servicesBtn?.addEventListener("click", (e) => {
+    if (window.matchMedia("(max-width: 860px)").matches) {
+      e.preventDefault();
+      servicesDropdown.classList.toggle("open");
+      const opened = servicesDropdown.classList.contains("open");
+      servicesBtn.setAttribute("aria-expanded", opened ? "true" : "false");
+    }
+  });
+
+  servicesDropdown?.querySelectorAll(".dropdown-menu a")?.forEach(a => {
+    a.addEventListener("click", () => {
+      if (window.matchMedia("(max-width: 860px)").matches) {
+        servicesDropdown.classList.remove("open");
+        servicesBtn?.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  const EMAIL_TO = "asphaltequebec@hotmail.ca";
+  const form = document.getElementById("quoteForm");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const service = document.getElementById("service").value;
+    const details = document.getElementById("details").value.trim();
+
+    const subject = encodeURIComponent(`Demande de soumission - ${service}`);
+    const body = encodeURIComponent(
+`Bonjour Pirates de l’Asphalte,
+
+Je voudrais une soumission pour: ${service}
+
+Nom: ${name || "-"}
+Téléphone: ${phone || "-"}
+Ville/Secteur: ${city || "-"}
+
+Détails:
+${details || "-"}
+
+Merci!`
+    );
+
+    window.location.href = `mailto:${encodeURIComponent(EMAIL_TO)}?subject=${subject}&body=${body}`;
+  });
+</script>
+
+</body>
+</html>
