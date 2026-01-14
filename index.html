@@ -6,32 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, entretien et déneigement. Service fiable au Québec. Soumission rapide." />
 
-  <!-- Open Graph (partage Facebook) -->
+  <!-- Open Graph (Facebook/partage) -->
   <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations et déneigement" />
   <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
-  <!-- ✅ Mets une image 1200x630 quand tu l'as (place ce fichier dans /assets/og/) -->
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og/og-asphalte-1200x630.jpg" />
+  <!-- ✅ Ton fichier réel (PNG) -->
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-  <!-- Twitter (optionnel) -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicons (tu dois uploader ces fichiers dans ton repo) -->
-  <!-- Mets les fichiers dans /assets/favicons/ -->
+  <!-- Favicons (si tu les ajoutes plus tard) -->
+  <!--
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  -->
   <meta name="theme-color" content="#111111">
 
-  <!-- Perf: préconnexion -->
+  <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-hXK6gnI5kPi5W4x+X9+6qYfUVynT70rVZ8j1zJr9qD1Bb+2Ee/+iYgk8xG2Hg/tk+V/KFqZwWcJShS5i+0xw7g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- ✅ Font Awesome stable -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    referrerpolicy="no-referrer" />
 
   <!-- ✅ Schema LocalBusiness (SEO local) -->
   <script type="application/ld+json">
@@ -282,14 +285,14 @@
     section {
       padding: 60px 0;
       border-top: 1px solid rgba(255,255,255,0.08);
-      scroll-margin-top: 90px; /* important pour header sticky */
+      scroll-margin-top: 90px;
     }
 
     .section-head { margin-bottom: 22px; }
     h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    /* Cartes services */
+    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -340,6 +343,11 @@
       z-index: 1;
     }
 
+    /* ✅ Anti “carré vide” : si l’icône ne charge pas, on affiche un point */
+    .card .icon i { font-size: 18px; }
+    .card .icon i:before { display: inline-block; }
+    .card .icon i:not([class*="fa-"])::before { content: "•"; }
+
     .card h4{
       font-size: 1.05rem;
       margin: 0;
@@ -360,7 +368,7 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
-    /* ✅ Déneigement: gris pâle plus foncé */
+    /* Déneigement */
     #deneigement {
       background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92));
       color: #111;
@@ -408,7 +416,7 @@
     footer a { color: #9ecbff; text-decoration: none; }
     footer a:hover { color: #66b0ff; text-decoration: underline; }
 
-    /* Floating quick actions (mobile) */
+    /* Quick actions mobile */
     .quickbar {
       position: fixed;
       left: 16px;
@@ -510,7 +518,7 @@
         <strong>Nous joindre</strong>
 
         <div class="contact-item">
-          <i class="fas fa-phone" aria-hidden="true"></i>
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
           <div>
             Téléphone<br />
             <a href="tel:15149797832">514-979-7832</a>
@@ -518,7 +526,7 @@
         </div>
 
         <div class="contact-item">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
           <div>
             Courriel<br />
             <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
@@ -526,7 +534,7 @@
         </div>
 
         <div class="contact-item">
-          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
           <div>
             Facebook<br />
             <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Pirates de l’Asphalte</a>
@@ -542,7 +550,6 @@
   </div>
 </main>
 
-<!-- ✅ Pourquoi nous choisir -->
 <section id="pourquoi">
   <div class="container">
     <div class="section-head">
@@ -554,17 +561,17 @@
 
     <div class="grid">
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-check"></i></div>
+        <div class="icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
         <h4>Travail propre et durable</h4>
         <p>Préparation, compaction et finition selon les règles de l’art.</p>
       </div>
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-stopwatch"></i></div>
+        <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
         <h4>Soumission rapide</h4>
         <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
       </div>
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+        <div class="icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
         <h4>Équipe fiable</h4>
         <p>Communication simple, chantier organisé, résultats constants.</p>
       </div>
@@ -577,7 +584,6 @@
   </div>
 </section>
 
-<!-- ✅ Zones desservies -->
 <section id="zones">
   <div class="container">
     <div class="section-head">
@@ -589,17 +595,17 @@
 
     <div class="grid">
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
         <h4>Montréal</h4>
         <p>Résidentiel et commercial.</p>
       </div>
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
         <h4>Laval</h4>
         <p>Entrées de cour, stationnements, réparations.</p>
       </div>
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
         <h4>Rive-Nord / Rive-Sud</h4>
         <p>Selon le projet et la distance.</p>
       </div>
@@ -818,7 +824,7 @@
   });
 
   // Quote form -> mailto
-  const EMAIL_TO = "asphaltequebec@hotmail.ca"; // <-- change si besoin
+  const EMAIL_TO = "asphaltequebec@hotmail.ca";
 
   const form = document.getElementById("quoteForm");
   form?.addEventListener("submit", (e) => {
