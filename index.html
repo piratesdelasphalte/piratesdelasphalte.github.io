@@ -69,10 +69,8 @@
     a { color: inherit; }
     .container { max-width: 1150px; margin: auto; padding: 0 20px; }
 
-    /* Accessibilité */
     :focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
 
-    /* Header + nav */
     header {
       position: sticky;
       top: 0;
@@ -121,6 +119,7 @@
       justify-content: flex-end;
     }
 
+    /* ✅ Menu links: plus d'icônes à gauche */
     nav a{
       color: var(--text);
       text-decoration: none;
@@ -130,14 +129,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 8px;
+      padding: 6px 10px;
       border-radius: 10px;
       user-select: none;
-    }
-    nav a i{
-      color: rgba(247,147,30,0.95);
-      width: 16px;
-      text-align: center;
     }
     nav a:hover{
       color: var(--accent);
@@ -146,7 +140,6 @@
       background: rgba(0,0,0,0.18);
     }
 
-    /* Menu mobile */
     .menu-btn {
       display: none;
       border: 1px solid var(--stroke);
@@ -192,7 +185,7 @@
       border-radius: 12px;
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:10px; /* garde l’espace pour les icônes du dropdown (optionnel) */
       text-decoration:none;
     }
     .dropdown-menu a:hover{
@@ -201,12 +194,10 @@
       transform: none;
     }
 
-    /* Desktop: hover ouvre */
     @media (min-width: 861px){
       .dropdown:hover .dropdown-menu{ display: block; }
     }
 
-    /* Mobile: le dropdown devient inline */
     @media (max-width: 860px){
       .dropdown{ width:100%; }
       .dropdown-menu{
@@ -221,7 +212,6 @@
       .dropdown.open .dropdown-menu{ display: block; }
     }
 
-    /* Hero */
     .hero { padding: 80px 0 40px; }
 
     .hero-grid {
@@ -273,7 +263,6 @@
     }
     .pill i{ color: var(--accent); }
 
-    /* CTA buttons */
     .cta-row {
       display: flex;
       flex-wrap: wrap;
@@ -310,7 +299,6 @@
     }
     .btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
 
-    /* Contact box */
     .contact-box {
       background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(0,0,0,0.20));
       border: 1px solid var(--stroke);
@@ -349,7 +337,6 @@
       .hero { padding-top: 46px; }
     }
 
-    /* Sections */
     section {
       padding: 60px 0;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -358,19 +345,15 @@
 
     .section-head { margin-bottom: 22px; }
 
+    /* ✅ Titres de sections (h3) : plus d’icônes à gauche */
     h3 {
       font-size: 1.7rem;
       color: var(--accent);
       line-height: 1.2;
-      display:flex;
-      align-items:center;
-      gap: 10px;
     }
-    h3 i{ color: var(--accent); opacity: .95; }
 
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -445,7 +428,6 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
-    /* Déneigement */
     #deneigement {
       background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92));
       color: #111;
@@ -463,7 +445,6 @@
       color: #111;
     }
 
-    /* Form */
     .form { display: grid; gap: 10px; margin-top: 14px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
@@ -480,7 +461,6 @@
     }
     textarea { min-height: 110px; resize: vertical; }
 
-    /* Footer */
     footer {
       margin-top: 10px;
       background: linear-gradient(90deg, #111, #222);
@@ -494,7 +474,6 @@
     footer a i{ color:#9ecbff; }
     footer a:hover { color: #66b0ff; text-decoration: underline; }
 
-    /* Quick actions mobile */
     .quickbar {
       position: fixed;
       left: 16px;
@@ -553,12 +532,11 @@
         </button>
 
         <nav id="nav">
-          <a href="#top" aria-label="Aller à l’accueil"><i class="fa-solid fa-house" aria-hidden="true"></i> Accueil</a>
+          <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
 
-          <!-- ✅ Services dropdown -->
           <div class="dropdown" id="servicesDropdown">
             <a href="#asphaltage" class="dropbtn" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-solid fa-toolbox" aria-hidden="true"></i> Services
+              Services
               <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:.85em; opacity:.9; width:auto;"></i>
             </a>
 
@@ -569,10 +547,10 @@
             </div>
           </div>
 
-          <a href="#pourquoi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pourquoi nous</a>
-          <a href="#zones"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Zones</a>
-          <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
-          <a href="#contact"><i class="fa-solid fa-phone" aria-hidden="true"></i> Contact</a>
+          <a href="#pourquoi">Pourquoi nous</a>
+          <a href="#zones">Zones</a>
+          <a href="#soumission">Soumission</a>
+          <a href="#contact">Contact</a>
         </nav>
       </div>
     </div>
@@ -648,7 +626,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pourquoi choisir Pirates de l’Asphalte</h3>
+        <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
         <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
       </div>
     </div>
@@ -682,7 +660,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Zones desservies</h3>
+        <h3>Zones desservies</h3>
         <p class="sub">On se déplace dans plusieurs secteurs. Si tu es proche, appelle, on te le confirme rapidement.</p>
       </div>
     </div>
@@ -711,7 +689,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage – services complets</h3>
+        <h3>Asphaltage – services complets</h3>
         <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
       </div>
     </div>
@@ -755,7 +733,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations et entretien de l’asphalte</h3>
+        <h3>Réparations et entretien de l’asphalte</h3>
         <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
       </div>
     </div>
@@ -799,7 +777,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement – services hivernaux</h3>
+        <h3>Déneigement – services hivernaux</h3>
         <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
       </div>
     </div>
@@ -843,7 +821,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demande de soumission</h3>
+        <h3>Demande de soumission</h3>
         <p class="sub">Remplis ça et clique “Envoyer”. Ça ouvre ton courriel avec le message déjà prêt.</p>
       </div>
     </div>
@@ -889,7 +867,6 @@
   <div class="container">
     <p>© <span id="year"></span> Pirates de l’Asphalte</p>
     <p>
-      <i class="fa-solid fa-road" aria-hidden="true"></i>
       Asphaltage, réparations et déneigement au Québec |
       <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
         <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
@@ -898,7 +875,6 @@
   </div>
 </footer>
 
-<!-- Quick actions (mobile) -->
 <div class="quickbar" aria-label="Actions rapides">
   <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
   <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
@@ -906,10 +882,8 @@
 </div>
 
 <script>
-  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Mobile menu
   const menuBtn = document.getElementById("menuBtn");
   const nav = document.getElementById("nav");
   menuBtn?.addEventListener("click", () => {
@@ -921,7 +895,6 @@
       : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
   });
 
-  // ✅ Dropdown "Services" (mobile)
   const servicesDropdown = document.getElementById("servicesDropdown");
   const servicesBtn = servicesDropdown?.querySelector(".dropbtn");
 
@@ -943,7 +916,6 @@
     });
   });
 
-  // Quote form -> mailto
   const EMAIL_TO = "asphaltequebec@hotmail.ca";
   const form = document.getElementById("quoteForm");
 
