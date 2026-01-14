@@ -11,7 +11,6 @@
   <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
-  <!-- ✅ Ton fichier réel (PNG) -->
   <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -19,24 +18,17 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicons (si tu les ajoutes plus tard) -->
-  <!--
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
-  -->
   <meta name="theme-color" content="#111111">
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-  <!-- ✅ Font Awesome stable -->
+  <!-- Font Awesome -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     referrerpolicy="no-referrer" />
 
-  <!-- ✅ Schema LocalBusiness (SEO local) -->
+  <!-- Schema LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -116,7 +108,11 @@
       padding: 4px 10px;
       border-radius: 999px;
       background: rgba(0,0,0,0.25);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
     }
+    .badge i{ color: var(--accent); }
 
     nav {
       display: flex;
@@ -131,9 +127,24 @@
       text-decoration: none;
       font-size: 0.98rem;
       opacity: 0.92;
-      transition: opacity 0.2s ease, color 0.2s ease;
+      transition: opacity 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 10px;
     }
-    nav a:hover { color: var(--accent); opacity: 1; }
+    nav a i{
+      color: rgba(247,147,30,0.95);
+      width: 16px;
+      text-align: center;
+    }
+    nav a:hover{
+      color: var(--accent);
+      opacity: 1;
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.18);
+    }
 
     /* Menu mobile */
     .menu-btn {
@@ -151,6 +162,7 @@
     @media (max-width: 860px) {
       nav { display: none; width: 100%; padding: 10px 0 14px; }
       nav.open { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+      nav a{ width:100%; }
       .menu-btn { display: inline-flex; align-items: center; gap: 10px; }
       .topbar { align-items: flex-start; }
     }
@@ -205,6 +217,7 @@
       align-items: center;
       gap: 8px;
     }
+    .pill i{ color: var(--accent); }
 
     /* CTA buttons */
     .cta-row {
@@ -228,6 +241,7 @@
       transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease;
       user-select: none;
     }
+    .btn i{ width: 18px; text-align:center; }
 
     .btn-primary {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -289,7 +303,17 @@
     }
 
     .section-head { margin-bottom: 22px; }
-    h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
+
+    h3 {
+      font-size: 1.7rem;
+      color: var(--accent);
+      line-height: 1.2;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    h3 i{ color: var(--accent); opacity: .95; }
+
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
     /* Cards */
@@ -343,7 +367,6 @@
       z-index: 1;
     }
 
-    /* ✅ Anti “carré vide” : si l’icône ne charge pas, on affiche un point */
     .card .icon i { font-size: 18px; }
     .card .icon i:before { display: inline-block; }
     .card .icon i:not([class*="fa-"])::before { content: "•"; }
@@ -413,7 +436,8 @@
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
-    footer a { color: #9ecbff; text-decoration: none; }
+    footer a { color: #9ecbff; text-decoration: none; display:inline-flex; align-items:center; gap:8px; }
+    footer a i{ color:#9ecbff; }
     footer a:hover { color: #66b0ff; text-decoration: underline; }
 
     /* Quick actions mobile */
@@ -437,6 +461,10 @@
       text-decoration: none;
       font-weight: 900;
       box-shadow: var(--shadow);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
     }
     .quickbar a.primary {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -462,23 +490,23 @@
     <div class="topbar">
       <div style="display:flex; align-items:center; gap:10px;">
         <h1><i class="fa-solid fa-road" aria-hidden="true"></i> Pirates de l’Asphalte</h1>
-        <span class="badge">Résidentiel + Commercial</span>
+        <span class="badge"><i class="fa-solid fa-city" aria-hidden="true"></i> Résidentiel + Commercial</span>
       </div>
 
       <div class="nav-wrap">
         <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
-          <i class="fa-solid fa-bars"></i> Menu
+          <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
         </button>
 
         <nav id="nav">
-          <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
-          <a href="#asphaltage">Asphaltage</a>
-          <a href="#reparation">Réparations</a>
-          <a href="#deneigement">Déneigement</a>
-          <a href="#pourquoi">Pourquoi nous</a>
-          <a href="#zones">Zones</a>
-          <a href="#soumission">Soumission</a>
-          <a href="#contact">Contact</a>
+          <a href="#top" aria-label="Aller à l’accueil"><i class="fa-solid fa-house" aria-hidden="true"></i> Accueil</a>
+          <a href="#asphaltage"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage</a>
+          <a href="#reparation"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations</a>
+          <a href="#deneigement"><i class="fa-solid fa-snowplow" aria-hidden="true"></i> Déneigement</a>
+          <a href="#pourquoi"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pourquoi nous</a>
+          <a href="#zones"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Zones</a>
+          <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
+          <a href="#contact"><i class="fa-solid fa-phone" aria-hidden="true"></i> Contact</a>
         </nav>
       </div>
     </div>
@@ -503,19 +531,19 @@
 
         <div class="cta-row">
           <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
-            <i class="fa-solid fa-phone"></i> Appeler
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
           </a>
           <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
-            <i class="fa-solid fa-file-signature"></i> Demander une soumission
+            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
           </a>
           <a class="btn btn-ghost" href="mailto:asphaltequebec@hotmail.ca" aria-label="Envoyer un courriel">
-            <i class="fa-solid fa-envelope"></i> Courriel
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel
           </a>
         </div>
       </div>
 
       <aside class="contact-box" id="contact" aria-label="Coordonnées">
-        <strong>Nous joindre</strong>
+        <strong><i class="fa-solid fa-address-card" aria-hidden="true" style="color:var(--accent); margin-right:8px;"></i> Nous joindre</strong>
 
         <div class="contact-item">
           <i class="fa-solid fa-phone" aria-hidden="true"></i>
@@ -554,7 +582,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
+        <h3><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pourquoi choisir Pirates de l’Asphalte</h3>
         <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
       </div>
     </div>
@@ -578,8 +606,8 @@
     </div>
 
     <div class="cta-row" style="margin-top:18px;">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone"></i> Appeler maintenant</a>
+      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
     </div>
   </div>
 </section>
@@ -588,7 +616,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Zones desservies</h3>
+        <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Zones desservies</h3>
         <p class="sub">On se déplace dans plusieurs secteurs. Si tu es proche, appelle, on te le confirme rapidement.</p>
       </div>
     </div>
@@ -617,7 +645,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Asphaltage – services complets</h3>
+        <h3><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage – services complets</h3>
         <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
       </div>
     </div>
@@ -661,7 +689,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Réparations et entretien de l’asphalte</h3>
+        <h3><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations et entretien de l’asphalte</h3>
         <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
       </div>
     </div>
@@ -705,7 +733,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Déneigement – services hivernaux</h3>
+        <h3><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement – services hivernaux</h3>
         <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
       </div>
     </div>
@@ -749,7 +777,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <h3>Demande de soumission</h3>
+        <h3><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demande de soumission</h3>
         <p class="sub">Remplis ça et clique “Envoyer”. Ça ouvre ton courriel avec le message déjà prêt.</p>
       </div>
     </div>
@@ -775,14 +803,15 @@
 
         <div class="cta-row" style="margin-top:6px;">
           <button class="btn btn-primary" type="submit" style="border:none;">
-            <i class="fa-solid fa-paper-plane"></i> Envoyer la demande
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande
           </button>
           <a class="btn btn-ghost" href="tel:15149797832">
-            <i class="fa-solid fa-phone"></i> Appeler maintenant
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
           </a>
         </div>
 
         <div style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
+          <i class="fa-solid fa-lock" aria-hidden="true" style="color:var(--accent);"></i>
           En envoyant, tu partages seulement les infos que tu écris ici (aucune donnée stockée sur le site).
         </div>
       </form>
@@ -794,8 +823,11 @@
   <div class="container">
     <p>© <span id="year"></span> Pirates de l’Asphalte</p>
     <p>
+      <i class="fa-solid fa-road" aria-hidden="true"></i>
       Asphaltage, réparations et déneigement au Québec |
-      <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
+      </a>
     </p>
   </div>
 </footer>
@@ -819,8 +851,8 @@
     const opened = nav.classList.contains("open");
     menuBtn.setAttribute("aria-label", opened ? "Fermer le menu" : "Ouvrir le menu");
     menuBtn.innerHTML = opened
-      ? '<i class="fa-solid fa-xmark"></i> Fermer'
-      : '<i class="fa-solid fa-bars"></i> Menu';
+      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
+      : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
   });
 
   // Quote form -> mailto
