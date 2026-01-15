@@ -834,7 +834,6 @@
   </div>
 </section>
 
-<!-- ✅ ZONES = PARTOUT AU QUÉBEC -->
 <section id="zones">
   <div class="container">
     <div class="section-head">
@@ -1015,7 +1014,6 @@
     <div class="hero-card" style="padding:22px;">
       <form class="form" id="quoteForm" novalidate>
 
-        <!-- ✅ Bannière erreur -->
         <div class="form-error" id="formError" role="alert" aria-live="polite">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
           <div>
@@ -1052,17 +1050,16 @@
           </div>
         </div>
 
-        <!-- ✅ Vendeur (facultatif) + Coupon (facultatif) -->
         <div class="row">
-          <select id="sellerSelect" name="sellerSelect" aria-label="Vendeur (facultatif)">
-            <option value="Site web" selected>Site web (par défaut) (Facultatif)</option>
-            <option value="Saisir">Saisissez le nom du vendeur… (Facultatif)</option>
+          <select id="sellerSelect" name="sellerSelect" aria-label="Référence">
+            <option value="Site web" selected>Site web (référence)</option>
+            <option value="Saisir">Saisissez le nom du vendeur…</option>
           </select>
 
-          <input type="text" id="coupon" name="coupon" placeholder="Coupon 10% (ex: PIRATE10) (Facultatif)" autocomplete="off" />
+          <input type="text" id="coupon" name="coupon" placeholder="Coupon 10% (ex: PIRATE10)" autocomplete="off" />
         </div>
 
-        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur (Facultatif)" autocomplete="off" style="display:none;" />
+        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none;" />
 
         <div class="coupon-status" id="couponStatus" aria-live="polite">
           <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
@@ -1195,7 +1192,7 @@
   couponInput?.addEventListener("input", renderCouponStatus);
   renderCouponStatus();
 
-  // ✅ Vendeur: dropdown + champ texte (facultatif)
+  // ✅ Référence: dropdown + champ texte
   const sellerSelect = document.getElementById("sellerSelect");
   const sellerName = document.getElementById("sellerName");
 
@@ -1332,8 +1329,8 @@
     if (!data) return;
 
     const { name, phone, service, city, details } = data;
-    const seller = getSellerValue();     // facultatif
-    const couponRes = getCouponResult(); // facultatif
+    const reference = getSellerValue();
+    const couponRes = getCouponResult();
 
     const subject = encodeURIComponent(`Demande de soumission - ${service}`);
     const body = encodeURIComponent(
@@ -1345,9 +1342,9 @@ Nom: ${name}
 Téléphone: ${phone}
 Ville/Secteur: ${city}
 
-Vendeur (facultatif): ${seller || "-"}
+Référence: ${reference || "-"}
 
-Coupon (facultatif): ${couponRes.code || "-"}
+Coupon: ${couponRes.code || "-"}
 Rabais: ${couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-")}
 
 Détails:
