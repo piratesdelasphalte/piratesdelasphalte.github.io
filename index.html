@@ -585,6 +585,22 @@
     }
     textarea { min-height: 110px; resize: vertical; }
 
+    /* ✅ Petite zone statut coupon */
+    .coupon-status{
+      font-size: 0.95rem;
+      color: var(--muted);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+    }
+    .coupon-status strong{ color: var(--text); }
+    .ok{ color: #9be49b; }
+    .bad{ color: #ffb4b4; }
+
     /* Footer */
     footer {
       margin-top: 10px;
@@ -648,7 +664,6 @@
   <div class="container">
     <div class="topbar">
       <div style="display:flex; align-items:center; gap:10px;">
-        <!-- ✅ Logo (fichier à la racine) -->
         <div class="brand" aria-label="Pirates de l’Asphalte">
           <img
             src="/pirates-de-l-asphalte-logo.png"
@@ -725,10 +740,8 @@
       </div>
 
       <aside class="contact-box" id="contact" aria-label="Coordonnées">
-        <!-- ✅ icône “Nous joindre” gardée -->
         <strong><i class="fa-solid fa-address-card" aria-hidden="true" style="color:var(--accent); margin-right:8px;"></i> Nous joindre</strong>
 
-        <!-- ✅ icônes seulement pour Téléphone / Courriel / Facebook -->
         <div class="contact-item">
           <i class="fa-solid fa-phone" aria-hidden="true"></i>
           <div>
@@ -753,7 +766,6 @@
           </div>
         </div>
 
-        <!-- ✅ icône de note gardée -->
         <div style="margin-top:14px; color:var(--muted); font-size:0.95rem;">
           <i class="fa-solid fa-circle-info" style="color:var(--accent);" aria-hidden="true"></i>
           Réponse rapide. Travaux propres. Service au Québec.
@@ -984,6 +996,24 @@
           <input type="text" id="city" name="city" placeholder="Ville / secteur (ex: Laval, Montréal…)" autocomplete="address-level2" />
         </div>
 
+        <!-- ✅ MAJ: Vendeur (dropdown) + Coupon -->
+        <div class="row">
+          <select id="sellerSelect" name="sellerSelect" aria-label="Choisir le vendeur">
+            <option value="Site web" selected>Site web (par défaut)</option>
+            <option value="Saisir">Saisissez le nom du vendeur…</option>
+          </select>
+
+          <input type="text" id="coupon" name="coupon" placeholder="Coupon 10% (ex: PIRATE10)" autocomplete="off" />
+        </div>
+
+        <!-- Champ texte vendeur (s'affiche seulement si "Saisir") -->
+        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none; margin-top:10px;" />
+
+        <div class="coupon-status" id="couponStatus" aria-live="polite">
+          <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
+          <span>Entre un code coupon si applicable. Exemple: <strong>PIRATE10</strong></span>
+        </div>
+
         <textarea id="details" name="details" placeholder="Détails: surface approximative, type de travaux, urgence, etc."></textarea>
 
         <div class="cta-row" style="margin-top:6px;">
@@ -1061,6 +1091,72 @@
   const EMAIL_TO = "asphaltequebec@hotmail.ca";
   const form = document.getElementById("quoteForm");
 
+  // ✅ Vendeur: dropdown + champ texte
+  const sellerSelect = document.getElementById("sellerSelect");
+  const sellerName = document.getElementById("sellerName");
+
+  function toggleSellerInput(){
+    const v = sellerSelect?.value || "Site web";
+    const show = (v === "Saisir");
+    if (sellerName) sellerName.style.display = show ? "block" : "none";
+    if (!show && sellerName) sellerName.value = "";
+  }
+
+  function getSellerValue(){
+    const v = sellerSelect?.value || "Site web";
+    if (v === "Saisir") {
+      const typed = (sellerName?.value || "").trim();
+      return typed ? typed : "— (à saisir)";
+    }
+    return v; // "Site web"
+  }
+
+  sellerSelect?.addEventListener("change", toggleSellerInput);
+  toggleSellerInput();
+
+  // ✅ Coupon config
+  const COUPON_CODE = "PIRATE10";    // <-- change le code ici si tu veux
+  const COUPON_PCT  = 10;           // 10%
+
+  const couponInput = document.getElementById("coupon");
+  const couponStatus = document.getElementById("couponStatus");
+
+  function normalizeCoupon(v){
+    return (v || "").trim().toUpperCase().replace(/\s+/g, "");
+  }
+
+  function getCouponResult(){
+    const entered = normalizeCoupon(couponInput?.value);
+    if (!entered) return { applied:false, code:"" };
+    if (entered === COUPON_CODE) return { applied:true, code:entered };
+    return { applied:false, code:entered, invalid:true };
+  }
+
+  function renderCouponStatus(){
+    const res = getCouponResult();
+    if (!res.code){
+      couponStatus.innerHTML = `
+        <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
+        <span>Entre un code coupon si applicable. Exemple: <strong>${COUPON_CODE}</strong></span>
+      `;
+      return;
+    }
+    if (res.applied){
+      couponStatus.innerHTML = `
+        <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
+        <span><strong>Coupon appliqué:</strong> ${res.code} (${COUPON_PCT}% de rabais)</span>
+      `;
+      return;
+    }
+    couponStatus.innerHTML = `
+      <i class="fa-solid fa-circle-xmark bad" aria-hidden="true"></i>
+      <span><strong>Code invalide:</strong> ${res.code} (essaie: <strong>${COUPON_CODE}</strong>)</span>
+    `;
+  }
+
+  couponInput?.addEventListener("input", renderCouponStatus);
+  renderCouponStatus();
+
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -1069,6 +1165,10 @@
     const city = document.getElementById("city").value.trim();
     const service = document.getElementById("service").value;
     const details = document.getElementById("details").value.trim();
+
+    // ✅ New fields
+    const seller = getSellerValue();
+    const couponRes = getCouponResult();
 
     const subject = encodeURIComponent(`Demande de soumission - ${service}`);
     const body = encodeURIComponent(
@@ -1079,6 +1179,11 @@ Je voudrais une soumission pour: ${service}
 Nom: ${name || "-"}
 Téléphone: ${phone || "-"}
 Ville/Secteur: ${city || "-"}
+
+Vendeur: ${seller || "-"}
+
+Coupon: ${couponRes.code || "-"}
+Rabais: ${couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-")}
 
 Détails:
 ${details || "-"}
