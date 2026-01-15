@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, entretien et déneigement. Service fiable au Québec. Soumission rapide." />
 
+  <!-- ✅ Google tag (gtag.js) - GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZS180NNJS4');
+  </script>
+
   <!-- Open Graph (Facebook/partage) -->
   <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations et déneigement" />
   <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
@@ -443,7 +452,6 @@
     }
     .contact-item:first-of-type { border-top: none; padding-top: 0; }
 
-    /* icônes seulement ici: Téléphone / Courriel / Facebook */
     .contact-item i { color: var(--accent); min-width: 18px; text-align: center; }
 
     .contact-box a {
@@ -585,7 +593,7 @@
     }
     textarea { min-height: 110px; resize: vertical; }
 
-    /* ✅ Petite zone statut coupon */
+    /* Coupon status */
     .coupon-status{
       font-size: 0.95rem;
       color: var(--muted);
@@ -601,7 +609,7 @@
     .ok{ color: #9be49b; }
     .bad{ color: #ffb4b4; }
 
-    /* ✅ Validation premium (erreurs dans le formulaire) */
+    /* Validation premium */
     .form-error{
       display:none;
       margin-top: 8px;
@@ -1149,7 +1157,7 @@
   const EMAIL_TO = "carlleger.dev@gmail.com,asphaltequebec@hotmail.com,asphaltequebec@hotmail.ca";
   const form = document.getElementById("quoteForm");
 
-  // ✅ Coupon config
+  // Coupon config
   const COUPON_CODE = "PIRATE10";
   const COUPON_PCT  = 10;
 
@@ -1214,7 +1222,7 @@
   sellerSelect?.addEventListener("change", toggleSellerInput);
   toggleSellerInput();
 
-  // ✅ Validation premium
+  // Validation premium
   const formError = document.getElementById("formError");
 
   function clearFieldError(el, errId){
