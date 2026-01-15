@@ -36,7 +36,7 @@
     "url": "https://piratesdelasphalte.github.io/",
     "telephone": "+1-514-979-7832",
     "email": "asphaltequebec@hotmail.ca",
-    "areaServed": ["Montréal", "Laval", "Rive-Nord", "Rive-Sud", "Laurentides"],
+    "areaServed": ["Québec", "Province de Québec", "Partout au Québec"],
     "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
   }
   </script>
@@ -809,31 +809,39 @@
   </div>
 </section>
 
+<!-- ✅ ZONES = PARTOUT AU QUÉBEC -->
 <section id="zones">
   <div class="container">
     <div class="section-head">
       <div>
         <h3>Zones desservies</h3>
-        <p class="sub">On se déplace dans plusieurs secteurs. Si tu es proche, appelle, on te le confirme rapidement.</p>
+        <p class="sub">On se déplace partout dans la province. Dis-nous ta ville et on confirme rapidement la disponibilité.</p>
       </div>
     </div>
 
     <div class="grid">
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
-        <h4>Montréal</h4>
-        <p>Résidentiel et commercial.</p>
+        <div class="icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
+        <h4>Partout au Québec</h4>
+        <p>Résidentiel et commercial, selon le type de projet.</p>
       </div>
+
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
-        <h4>Laval</h4>
-        <p>Entrées de cour, stationnements, réparations.</p>
+        <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+        <h4>Déplacements planifiés</h4>
+        <p>On regroupe les secteurs pour offrir un service efficace.</p>
       </div>
+
       <div class="card">
-        <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
-        <h4>Rive-Nord / Rive-Sud</h4>
-        <p>Selon le projet et la distance.</p>
+        <div class="icon"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i></div>
+        <h4>Confirmation rapide</h4>
+        <p>Appelle ou remplis la soumission: on te confirme en peu de temps.</p>
       </div>
+    </div>
+
+    <div class="cta-row" style="margin-top:18px;">
+      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
     </div>
   </div>
 </section>
@@ -996,7 +1004,7 @@
           <input type="text" id="city" name="city" placeholder="Ville / secteur (ex: Laval, Montréal…)" autocomplete="address-level2" />
         </div>
 
-        <!-- ✅ MAJ: Vendeur (dropdown) + Coupon -->
+        <!-- ✅ Vendeur (dropdown) + Coupon -->
         <div class="row">
           <select id="sellerSelect" name="sellerSelect" aria-label="Choisir le vendeur">
             <option value="Site web" selected>Site web (par défaut)</option>
@@ -1006,8 +1014,7 @@
           <input type="text" id="coupon" name="coupon" placeholder="Coupon 10% (ex: PIRATE10)" autocomplete="off" />
         </div>
 
-        <!-- Champ texte vendeur (s'affiche seulement si "Saisir") -->
-        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none; margin-top:10px;" />
+        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none;" />
 
         <div class="coupon-status" id="couponStatus" aria-live="polite">
           <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
@@ -1088,31 +1095,9 @@
     });
   });
 
-  const EMAIL_TO = "asphaltequebec@hotmail.ca";
+  // ✅ Envoi vers 3 emails
+  const EMAIL_TO = "carlleger.dev@gmail.com,asphaltequebec@hotmail.com,asphaltequebec@hotmail.ca";
   const form = document.getElementById("quoteForm");
-
-  // ✅ Vendeur: dropdown + champ texte
-  const sellerSelect = document.getElementById("sellerSelect");
-  const sellerName = document.getElementById("sellerName");
-
-  function toggleSellerInput(){
-    const v = sellerSelect?.value || "Site web";
-    const show = (v === "Saisir");
-    if (sellerName) sellerName.style.display = show ? "block" : "none";
-    if (!show && sellerName) sellerName.value = "";
-  }
-
-  function getSellerValue(){
-    const v = sellerSelect?.value || "Site web";
-    if (v === "Saisir") {
-      const typed = (sellerName?.value || "").trim();
-      return typed ? typed : "— (à saisir)";
-    }
-    return v; // "Site web"
-  }
-
-  sellerSelect?.addEventListener("change", toggleSellerInput);
-  toggleSellerInput();
 
   // ✅ Coupon config
   const COUPON_CODE = "PIRATE10";    // <-- change le code ici si tu veux
@@ -1157,6 +1142,29 @@
   couponInput?.addEventListener("input", renderCouponStatus);
   renderCouponStatus();
 
+  // ✅ Vendeur: dropdown + champ texte
+  const sellerSelect = document.getElementById("sellerSelect");
+  const sellerName = document.getElementById("sellerName");
+
+  function getSellerValue(){
+    const v = sellerSelect?.value || "Site web";
+    if (v === "Saisir") {
+      const typed = (sellerName?.value || "").trim();
+      return typed ? typed : "— (à saisir)";
+    }
+    return v; // "Site web"
+  }
+
+  function toggleSellerInput(){
+    const v = sellerSelect?.value;
+    const show = (v === "Saisir");
+    if (sellerName) sellerName.style.display = show ? "block" : "none";
+    if (!show && sellerName) sellerName.value = "";
+  }
+
+  sellerSelect?.addEventListener("change", toggleSellerInput);
+  toggleSellerInput();
+
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -1166,7 +1174,6 @@
     const service = document.getElementById("service").value;
     const details = document.getElementById("details").value.trim();
 
-    // ✅ New fields
     const seller = getSellerValue();
     const couponRes = getCouponResult();
 
