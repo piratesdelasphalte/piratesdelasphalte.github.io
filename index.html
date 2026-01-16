@@ -109,7 +109,6 @@
       padding: 14px 0;
     }
 
-    /* ===== BRAND ===== */
     .brand{
       display:flex;
       align-items:center;
@@ -132,7 +131,6 @@
       text-shadow: 0 10px 26px rgba(0,0,0,0.45);
     }
 
-    /* ===== BADGE ===== */
     .badge{
       font-size: 0.86rem;
       color: rgba(234,234,234,0.92);
@@ -148,7 +146,6 @@
     }
     .badge i{ color: var(--accent); opacity: .95; }
 
-    /* ===== NAV PRO ===== */
     .nav-wrap{ display:flex; align-items:center; gap: 12px; }
 
     nav{
@@ -190,12 +187,6 @@
       color: #fff;
     }
 
-    nav a:focus-visible{
-      outline: 3px solid rgba(247,147,30,0.65);
-      outline-offset: 3px;
-    }
-
-    /* ===== Dropdown Services (premium) ===== */
     .dropdown{ position: relative; display:inline-flex; align-items:center; }
 
     .dropbtn{ position: relative; }
@@ -269,7 +260,6 @@
 
     .dropdown-menu a + a{ margin-top: 6px; }
 
-    /* petite séparation dans le dropdown */
     .drop-sep{
       height: 1px;
       background: rgba(255,255,255,0.10);
@@ -288,7 +278,6 @@
       }
     }
 
-    /* ===== Menu bouton mobile ===== */
     .menu-btn{
       display:none;
       border: 1px solid rgba(255,255,255,0.12);
@@ -397,7 +386,6 @@
     }
     .pill i{ color: var(--accent); }
 
-    /* CTA buttons */
     .cta-row {
       display: flex;
       flex-wrap: wrap;
@@ -416,10 +404,12 @@
       text-decoration: none;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease;
+      transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease, opacity .18s ease;
       user-select: none;
     }
     .btn i{ width: 18px; text-align:center; }
+
+    .btn[disabled]{ opacity:.75; cursor:not-allowed; }
 
     .btn-primary {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -434,7 +424,6 @@
     }
     .btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
 
-    /* Contact box */
     .contact-box {
       background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(0,0,0,0.20));
       border: 1px solid var(--stroke);
@@ -474,7 +463,6 @@
       .hero { padding-top: 46px; }
     }
 
-    /* Sections */
     section {
       padding: 60px 0;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -491,7 +479,6 @@
 
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -564,7 +551,7 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
-    /* ✅ Paysagement (section claire, pro, sans casser ton thème) */
+    /* ✅ Paysagement */
     #paysagement {
       background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92));
       color: #111;
@@ -617,7 +604,6 @@
     }
     textarea { min-height: 110px; resize: vertical; }
 
-    /* Coupon status */
     .coupon-status{
       font-size: 0.95rem;
       color: var(--muted);
@@ -633,7 +619,6 @@
     .ok{ color: #9be49b; }
     .bad{ color: #ffb4b4; }
 
-    /* Validation premium */
     .form-error{
       display:none;
       margin-top: 8px;
@@ -647,6 +632,19 @@
     .form-error.show{ display:flex; align-items:flex-start; gap: 10px; }
     .form-error i{ color: #ffb4b4; margin-top: 2px; }
 
+    .form-success{
+      display:none;
+      margin-top: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(155, 228, 155, 0.25);
+      background: rgba(70, 180, 70, 0.10);
+      color: rgba(220, 255, 220, 0.95);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.20);
+    }
+    .form-success.show{ display:flex; align-items:flex-start; gap: 10px; }
+    .form-success i{ color: #9be49b; margin-top: 2px; }
+
     .field-error{
       border-color: rgba(255, 180, 180, 0.55) !important;
       box-shadow: 0 0 0 3px rgba(255, 120, 120, 0.18);
@@ -658,7 +656,6 @@
       color: rgba(255, 200, 200, 0.95);
     }
 
-    /* Footer */
     footer {
       margin-top: 10px;
       background: linear-gradient(90deg, #111, #222);
@@ -672,7 +669,6 @@
     footer a i{ color:#9ecbff; }
     footer a:hover { color: #66b0ff; text-decoration: underline; }
 
-    /* Quick actions mobile */
     .quickbar {
       position: fixed;
       left: 16px;
@@ -998,7 +994,6 @@
   </div>
 </section>
 
-<!-- ✅ NOUVELLE SECTION: Paysagement & excavation -->
 <section id="paysagement">
   <div class="container">
     <div class="section-head">
@@ -1107,12 +1102,17 @@
     </div>
 
     <div class="hero-card" style="padding:22px;">
+      <!-- NOTE: on garde le form, mais l'envoi se fait en JS vers Formspree -->
       <form class="form" id="quoteForm" novalidate>
-
         <div class="form-error" id="formError" role="alert" aria-live="polite">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          <div><strong>Oups.</strong> Vérifie les champs obligatoires marqués avec <strong>*</strong>.</div>
+        </div>
+
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
           <div>
-            <strong>Oups.</strong> Vérifie les champs obligatoires marqués avec <strong>*</strong>.
+            <strong>Envoyé!</strong> On a bien reçu ta demande. On te revient rapidement.
           </div>
         </div>
 
@@ -1134,13 +1134,11 @@
               <option value="Asphaltage">Asphaltage</option>
               <option value="Réparations / entretien">Réparations / entretien</option>
               <option value="Déneigement">Déneigement</option>
-
               <option value="Paysagement">Paysagement</option>
               <option value="Excavation">Excavation</option>
               <option value="Tourbe">Tourbe</option>
               <option value="Pavé uni">Pavé uni</option>
               <option value="Taille de haies de cèdre">Taille de haies de cèdre</option>
-
               <option value="Autre">Autre</option>
             </select>
             <div class="help-error" id="err-service" style="display:none;"></div>
@@ -1174,7 +1172,7 @@
         </div>
 
         <div class="cta-row" style="margin-top:6px;">
-          <button class="btn btn-primary" type="submit" style="border:none;">
+          <button class="btn btn-primary" id="submitBtn" type="submit" style="border:none;">
             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande
           </button>
           <a class="btn btn-ghost" href="tel:15149797832">
@@ -1184,7 +1182,7 @@
 
         <div style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
           <i class="fa-solid fa-lock" aria-hidden="true" style="color:var(--accent);"></i>
-          En envoyant, tu partages seulement les infos que tu écris ici (aucune donnée stockée sur le site).
+          En envoyant, tes infos sont transmises via notre service de formulaire (sans ouvrir ton app courriel).
         </div>
       </form>
     </div>
@@ -1247,9 +1245,16 @@
     });
   });
 
-  // ✅ Envoi vers 3 emails
-  const EMAIL_TO = "carlleger.dev@gmail.com,asphaltequebec@hotmail.com,asphaltequebec@hotmail.ca";
+  // ===============================
+  // ✅ FORM PRO: Formspree (sans mailto)
+  // ===============================
+  // 1) Crée ton formulaire sur Formspree
+  // 2) Remplace l'endpoint ci-dessous
+  // 3) Dans Formspree, configure tes 3 destinataires (ça c'est le VRAI envoi multi-emails)
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/XXXXYYYY"; // <-- remplace ça
+
   const form = document.getElementById("quoteForm");
+  const submitBtn = document.getElementById("submitBtn");
 
   // Coupon config
   const COUPON_CODE = "PIRATE10";
@@ -1294,7 +1299,7 @@
   couponInput?.addEventListener("input", renderCouponStatus);
   renderCouponStatus();
 
-  // ✅ Référence: dropdown + champ texte
+  // Référence: dropdown + champ texte
   const sellerSelect = document.getElementById("sellerSelect");
   const sellerName = document.getElementById("sellerName");
 
@@ -1316,8 +1321,12 @@
   sellerSelect?.addEventListener("change", toggleSellerInput);
   toggleSellerInput();
 
-  // Validation premium
+  // Validation + UI
   const formError = document.getElementById("formError");
+  const formSuccess = document.getElementById("formSuccess");
+
+  function show(el){ el?.classList.add("show"); }
+  function hide(el){ el?.classList.remove("show"); }
 
   function clearFieldError(el, errId){
     el?.classList.remove("field-error");
@@ -1331,22 +1340,13 @@
     if (box) { box.style.display = "block"; box.textContent = msg; }
   }
 
-  function showFormError(){
-    if (!formError) return;
-    formError.classList.add("show");
-  }
-
-  function hideFormError(){
-    if (!formError) return;
-    formError.classList.remove("show");
-  }
-
   function focusField(el){
     try { el?.focus(); el?.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
   }
 
   function validateRequired(){
-    hideFormError();
+    hide(formError);
+    hide(formSuccess);
 
     const nameEl = document.getElementById("name");
     const phoneEl = document.getElementById("phone");
@@ -1367,31 +1367,31 @@
     const details = detailsEl.value.trim();
 
     if (!name){
-      showFormError();
+      show(formError);
       setFieldError(nameEl, "err-name", "Nom* est obligatoire.");
       focusField(nameEl);
       return null;
     }
     if (!phone){
-      showFormError();
+      show(formError);
       setFieldError(phoneEl, "err-phone", "Téléphone* est obligatoire.");
       focusField(phoneEl);
       return null;
     }
     if (!service){
-      showFormError();
+      show(formError);
       setFieldError(serviceEl, "err-service", "Service* est obligatoire.");
       focusField(serviceEl);
       return null;
     }
     if (!city){
-      showFormError();
+      show(formError);
       setFieldError(cityEl, "err-city", "Ville / secteur* est obligatoire.");
       focusField(cityEl);
       return null;
     }
     if (!details){
-      showFormError();
+      show(formError);
       setFieldError(detailsEl, "err-details", "Détails* est obligatoire.");
       focusField(detailsEl);
       return null;
@@ -1414,7 +1414,7 @@
     const errId = mapErr[id];
 
     const clear = () => {
-      hideFormError();
+      hide(formError);
       el?.classList.remove("field-error");
       const box = document.getElementById(errId);
       if (box) { box.style.display = "none"; box.textContent = ""; }
@@ -1424,38 +1424,108 @@
     el?.addEventListener("change", clear);
   });
 
-  form?.addEventListener("submit", (e) => {
+  function setSubmitting(isSubmitting){
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.innerHTML = isSubmitting
+      ? '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours...'
+      : '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande';
+  }
+
+  async function postToFormspree(payload){
+    // Formspree accepte très bien du FormData
+    const fd = new FormData();
+    Object.entries(payload).forEach(([k,v]) => fd.append(k, v ?? ""));
+
+    // Tu peux aussi passer un sujet "email" côté Formspree
+    // (utilisé surtout si tu reçois en email)
+    fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
+
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: fd
+    });
+
+    let data = null;
+    try { data = await res.json(); } catch(e) {}
+
+    if (!res.ok) {
+      const msg = (data && data.errors && data.errors[0] && data.errors[0].message)
+        ? data.errors[0].message
+        : "Impossible d’envoyer pour le moment. Réessaie ou appelle-nous.";
+      throw new Error(msg);
+    }
+
+    return data;
+  }
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const data = validateRequired();
     if (!data) return;
 
+    if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("XXXXYYYY")) {
+      show(formError);
+      formError.querySelector("div").innerHTML = "<strong>Config manquante.</strong> Ajoute ton endpoint Formspree (FORMSPREE_ENDPOINT) dans le code.";
+      return;
+    }
+
     const { name, phone, service, city, details } = data;
     const reference = getSellerValue();
     const couponRes = getCouponResult();
 
-    const subject = encodeURIComponent(`Demande de soumission - ${service}`);
-    const body = encodeURIComponent(
-`Bonjour Pirates de l’Asphalte,
+    const payload = {
+      name,
+      phone,
+      service,
+      city,
+      details,
 
-Je voudrais une soumission pour: ${service}
+      reference,
+      coupon: couponRes.code || "-",
+      rabais: couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-"),
 
-Nom: ${name}
-Téléphone: ${phone}
-Ville/Secteur: ${city}
+      // utile pour trier / tracker
+      source: "site_web_piratesdelasphalte",
+      page: window.location.href,
+      userAgent: navigator.userAgent
+    };
 
-Référence: ${reference || "-"}
+    hide(formError);
+    hide(formSuccess);
+    setSubmitting(true);
 
-Coupon: ${couponRes.code || "-"}
-Rabais: ${couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-")}
+    try {
+      await postToFormspree(payload);
 
-Détails:
-${details}
+      // Event GA4 optionnel (si tu veux tracker les leads)
+      try {
+        gtag('event', 'lead_submit', {
+          service: service,
+          city: city,
+          coupon: payload.coupon,
+          reference: reference,
+          transport_type: 'beacon'
+        });
+      } catch(e) {}
 
-Merci!`
-    );
+      show(formSuccess);
+      form.reset();
+      renderCouponStatus();
+      toggleSellerInput();
 
-    window.location.href = `mailto:${encodeURIComponent(EMAIL_TO)}?subject=${subject}&body=${body}`;
+      // option: ramener l'utilisateur sur le message success
+      try { formSuccess.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
+
+    } catch (err) {
+      show(formError);
+      const msg = (err && err.message) ? err.message : "Erreur lors de l’envoi. Réessaie ou appelle-nous.";
+      formError.querySelector("div").innerHTML = `<strong>Oups.</strong> ${msg}`;
+    } finally {
+      setSubmitting(false);
+    }
   });
 </script>
 
