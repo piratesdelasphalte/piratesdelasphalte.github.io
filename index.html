@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Pirates de l’Asphalte | Asphaltage, réparations et déneigement</title>
+  <title>Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, entretien et déneigement. Service fiable au Québec. Soumission rapide." />
+  <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, déneigement, paysagement et excavation. Service fiable au Québec. Soumission rapide." />
 
   <!-- ✅ Google tag (gtag.js) - GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
@@ -16,8 +16,8 @@
   </script>
 
   <!-- Open Graph (Facebook/partage) -->
-  <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations et déneigement" />
-  <meta property="og:description" content="Asphaltage résidentiel et commercial, réparations, entretien et déneigement. Soumission rapide au Québec." />
+  <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
+  <meta property="og:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
   <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
@@ -214,7 +214,7 @@
       position:absolute;
       top: calc(100% + 12px);
       left: 0;
-      min-width: 260px;
+      min-width: 280px;
       padding: 10px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.12);
@@ -268,6 +268,14 @@
     }
 
     .dropdown-menu a + a{ margin-top: 6px; }
+
+    /* petite séparation dans le dropdown */
+    .drop-sep{
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+      margin: 8px 6px;
+      border-radius: 999px;
+    }
 
     @media (min-width: 861px){
       .dropdown:hover .dropdown-menu,
@@ -535,8 +543,6 @@
     }
 
     .card .icon i { font-size: 18px; }
-    .card .icon i:before { display: inline-block; }
-    .card .icon i:not([class*="fa-"])::before { content: "•"; }
 
     .card h4{
       font-size: 1.05rem;
@@ -557,6 +563,24 @@
 
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+
+    /* ✅ Paysagement (section claire, pro, sans casser ton thème) */
+    #paysagement {
+      background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92));
+      color: #111;
+    }
+    #paysagement .sub { color: rgba(0,0,0,0.65); }
+    #paysagement .card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(0,0,0,0.10);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    #paysagement .card h4, #paysagement .card p { color: #111; }
+    #paysagement .card .icon {
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.10);
+      color: #111;
+    }
 
     /* Déneigement */
     #deneigement {
@@ -730,6 +754,14 @@
               <a role="menuitem" href="#asphaltage"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage</a>
               <a role="menuitem" href="#reparation"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations</a>
               <a role="menuitem" href="#deneigement"><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement</a>
+
+              <div class="drop-sep" aria-hidden="true"></div>
+
+              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Paysagement</a>
+              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-person-digging" aria-hidden="true"></i> Excavation</a>
+              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Tourbe</a>
+              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-border-all" aria-hidden="true"></i> Pavé uni</a>
+              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-scissors" aria-hidden="true"></i> Taille haies de cèdre</a>
             </div>
           </div>
 
@@ -747,10 +779,10 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-card">
-        <h2>Asphaltage, réparations et déneigement</h2>
+        <h2>Asphaltage, réparations, déneigement et services extérieurs</h2>
         <p>
-          Pirates de l’Asphalte offre des services professionnels et structurés pour les secteurs résidentiel et commercial.
-          Notre approche privilégie la durabilité, la conformité et un travail exécuté selon les règles de l’art.
+          Pirates de l’Asphalte offre des services professionnels pour le résidentiel et le commercial.
+          Préparation sérieuse, exécution propre et résultat durable.
         </p>
 
         <div class="hero-points" aria-label="Points forts">
@@ -966,6 +998,61 @@
   </div>
 </section>
 
+<!-- ✅ NOUVELLE SECTION: Paysagement & excavation -->
+<section id="paysagement">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h3>Paysagement & excavation</h3>
+        <p class="sub">Préparation du terrain, finition propre et résultat durable.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
+        <h4>Paysagement</h4>
+        <p>Aménagement, remise à niveau et finition.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div>
+        <h4>Excavation</h4>
+        <p>Excavation légère, préparation de base et tranchées.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+        <h4>Tourbe</h4>
+        <p>Pose de tourbe, préparation du sol et nivellement.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div>
+        <h4>Pavé uni</h4>
+        <p>Pose, bordures, compaction et finition.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+        <h4>Taille de haies de cèdre</h4>
+        <p>Taille droite, nettoyage, évacuation des résidus.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
+        <h4>Nivellement & drainage</h4>
+        <p>Pentes, écoulement, prévention des flaques.</p>
+      </div>
+    </div>
+
+    <div class="cta-row" style="margin-top:18px;">
+      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+    </div>
+  </div>
+</section>
+
 <section id="deneigement">
   <div class="container">
     <div class="section-head">
@@ -1047,6 +1134,13 @@
               <option value="Asphaltage">Asphaltage</option>
               <option value="Réparations / entretien">Réparations / entretien</option>
               <option value="Déneigement">Déneigement</option>
+
+              <option value="Paysagement">Paysagement</option>
+              <option value="Excavation">Excavation</option>
+              <option value="Tourbe">Tourbe</option>
+              <option value="Pavé uni">Pavé uni</option>
+              <option value="Taille de haies de cèdre">Taille de haies de cèdre</option>
+
               <option value="Autre">Autre</option>
             </select>
             <div class="help-error" id="err-service" style="display:none;"></div>
@@ -1101,7 +1195,7 @@
   <div class="container">
     <p>© <span id="year"></span> Pirates de l’Asphalte</p>
     <p>
-      Asphaltage, réparations et déneigement au Québec |
+      Asphaltage, réparations, déneigement & paysagement au Québec |
       <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
         <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
       </a>
