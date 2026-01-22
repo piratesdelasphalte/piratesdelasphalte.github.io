@@ -883,9 +883,7 @@
     const form = document.getElementById("quoteForm");
     const submitBtn = document.getElementById("submitBtn");
 
-    // ✅ Coupon: n'importe quel code est valide (sans afficher un code fixe)
-    const COUPON_PCT = 10; // mets 0 si tu veux juste "appliqué" sans %
-
+    // ✅ Coupon: n'importe quel code est valide (sans afficher de %)
     const couponInput = document.getElementById("coupon");
     const couponStatus = document.getElementById("couponStatus");
 
@@ -906,9 +904,10 @@
         return;
       }
 
+      // ✅ Affiche seulement "Code promo appliqué : CODE" (sans (10% rabais))
       couponStatus.innerHTML = `
         <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
-        <span><strong>Code promo appliqué :</strong> ${res.code}${COUPON_PCT ? ` (${COUPON_PCT}% de rabais)` : ""}</span>
+        <span><strong>Code promo appliqué :</strong> ${res.code}</span>
       `;
     }
 
@@ -1055,7 +1054,7 @@
         name, phone, service, city, details,
         reference,
         coupon: couponRes.code || "-",
-        rabais: couponRes.applied ? (COUPON_PCT ? (COUPON_PCT + "% (appliqué)") : "appliqué") : "-",
+        rabais: couponRes.applied ? "appliqué" : "-",
         source: "site_web_piratesdelasphalte",
         page: window.location.href,
         userAgent: navigator.userAgent
