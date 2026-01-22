@@ -122,6 +122,7 @@
       object-fit:contain;
       flex: 0 0 auto;
       filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+      cursor: default;
     }
     .brand .brand-text{
       font-size: 1.75rem;
@@ -603,21 +604,6 @@
       outline: none;
     }
     textarea { min-height: 110px; resize: vertical; }
-
-    .coupon-status{
-      font-size: 0.95rem;
-      color: var(--muted);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px dashed rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-    }
-    .coupon-status strong{ color: var(--text); }
-    .ok{ color: #9be49b; }
-    .bad{ color: #ffb4b4; }
 
     .form-error{
       display:none;
@@ -1156,15 +1142,14 @@
             <option value="Saisir">Saisissez le nom du vendeur…</option>
           </select>
 
-          <input type="text" id="coupon" name="coupon" placeholder="Coupon 10% (ex: PIRATE10)" autocomplete="off" />
+          <!-- ✅ Coupon caché (jamais visible) -->
+          <input type="hidden" id="coupon" name="coupon" value="" />
         </div>
 
         <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none;" />
 
-        <div class="coupon-status" id="couponStatus" aria-live="polite">
-          <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
-          <span>Entre un code coupon si applicable. Exemple: <strong>PIRATE10</strong></span>
-        </div>
+        <!-- ✅ Méthode d’entrée du coupon (caché) -->
+        <input type="hidden" id="couponEntryMethod" name="couponEntryMethod" value="none" />
 
         <div>
           <textarea id="details" name="details" placeholder="Détails: surface approximative, type de travaux, urgence, etc.*" required></textarea>
@@ -1248,56 +1233,67 @@
   // ===============================
   // ✅ FORM PRO: Formspree (sans mailto)
   // ===============================
-  // 1) Crée ton formulaire sur Formspree
-  // 2) Remplace l'endpoint ci-dessous
-  // 3) Dans Formspree, configure tes 3 destinataires (ça c'est le VRAI envoi multi-emails)
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/XXXXYYYY"; // <-- remplace ça
+  // ✅ Ton endpoint actuel (vu sur ta capture)
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeeajpgy";
 
   const form = document.getElementById("quoteForm");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Coupon config
-  const COUPON_CODE = "PIRATE10";
-  const COUPON_PCT  = 10;
+  // ===============================
+  // ✅ Coupon INVISIBLE (accepte n’importe quoi)
+  // - Jamais visible dans le formulaire
+  // - Entrée vendeur via raccourci clavier ou triple tap sur le logo
+  // - Option URL: ?promo=CODE
+  // ===============================
+  const couponInput = document.getElementById("coupon"); // hidden
+  const couponEntryMethod = document.getElementById("couponEntryMethod"); // hidden
 
-  const couponInput = document.getElementById("coupon");
-  const couponStatus = document.getElementById("couponStatus");
-
-  function normalizeCoupon(v){
+  function cleanCode(v){
     return (v || "").trim().toUpperCase().replace(/\s+/g, "");
   }
 
-  function getCouponResult(){
-    const entered = normalizeCoupon(couponInput?.value);
-    if (!entered) return { applied:false, code:"" };
-    if (entered === COUPON_CODE) return { applied:true, code:entered };
-    return { applied:false, code:entered, invalid:true };
+  function setCoupon(code, method){
+    const c = cleanCode(code);
+    if (couponInput) couponInput.value = c;
+    if (couponEntryMethod) couponEntryMethod.value = method || "manual";
   }
 
-  function renderCouponStatus(){
-    const res = getCouponResult();
-    if (!res.code){
-      couponStatus.innerHTML = `
-        <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
-        <span>Entre un code coupon si applicable. Exemple: <strong>${COUPON_CODE}</strong></span>
-      `;
-      return;
-    }
-    if (res.applied){
-      couponStatus.innerHTML = `
-        <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
-        <span><strong>Coupon appliqué:</strong> ${res.code} (${COUPON_PCT}% de rabais)</span>
-      `;
-      return;
-    }
-    couponStatus.innerHTML = `
-      <i class="fa-solid fa-circle-xmark bad" aria-hidden="true"></i>
-      <span><strong>Code invalide:</strong> ${res.code} (essaie: <strong>${COUPON_CODE}</strong>)</span>
-    `;
-  }
+  // Option URL vendeur: ?promo=ABC123
+  (function readPromoFromUrl(){
+    const p = new URLSearchParams(window.location.search);
+    const code = p.get("promo") || p.get("coupon") || p.get("code");
+    if (code) setCoupon(code, "url");
+  })();
 
-  couponInput?.addEventListener("input", renderCouponStatus);
-  renderCouponStatus();
+  // Raccourci vendeur: Ctrl+Shift+P (Windows) / Cmd+Shift+P (Mac)
+  document.addEventListener("keydown", (e) => {
+    const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+    const comboOk = (e.shiftKey && ((isMac && e.metaKey) || (!isMac && e.ctrlKey)) && (e.key.toLowerCase() === "p"));
+    if (!comboOk) return;
+    e.preventDefault();
+    const entered = prompt("Code vendeur (invisible au client):");
+    if (entered !== null) setCoupon(entered, "seller_shortcut");
+  });
+
+  // Secret mobile: triple tap sur le logo
+  (function mobileSecretTap(){
+    const logo = document.querySelector(".brand .logo");
+    if (!logo) return;
+    let taps = 0;
+    let timer = null;
+
+    logo.addEventListener("click", () => {
+      taps++;
+      clearTimeout(timer);
+      timer = setTimeout(() => { taps = 0; }, 900);
+
+      if (taps >= 3) {
+        taps = 0;
+        const entered = prompt("Code vendeur (invisible au client):");
+        if (entered !== null) setCoupon(entered, "seller_triple_tap");
+      }
+    });
+  })();
 
   // Référence: dropdown + champ texte
   const sellerSelect = document.getElementById("sellerSelect");
@@ -1433,12 +1429,9 @@
   }
 
   async function postToFormspree(payload){
-    // Formspree accepte très bien du FormData
     const fd = new FormData();
     Object.entries(payload).forEach(([k,v]) => fd.append(k, v ?? ""));
 
-    // Tu peux aussi passer un sujet "email" côté Formspree
-    // (utilisé surtout si tu reçois en email)
     fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
 
     const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -1466,15 +1459,11 @@
     const data = validateRequired();
     if (!data) return;
 
-    if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("XXXXYYYY")) {
-      show(formError);
-      formError.querySelector("div").innerHTML = "<strong>Config manquante.</strong> Ajoute ton endpoint Formspree (FORMSPREE_ENDPOINT) dans le code.";
-      return;
-    }
-
     const { name, phone, service, city, details } = data;
     const reference = getSellerValue();
-    const couponRes = getCouponResult();
+
+    const couponValue = cleanCode(couponInput?.value || "");
+    const couponMethod = couponEntryMethod?.value || "none";
 
     const payload = {
       name,
@@ -1484,10 +1473,9 @@
       details,
 
       reference,
-      coupon: couponRes.code || "-",
-      rabais: couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-"),
+      coupon: couponValue || "-",
+      couponEntryMethod: couponMethod,
 
-      // utile pour trier / tracker
       source: "site_web_piratesdelasphalte",
       page: window.location.href,
       userAgent: navigator.userAgent
@@ -1500,7 +1488,7 @@
     try {
       await postToFormspree(payload);
 
-      // Event GA4 optionnel (si tu veux tracker les leads)
+      // Event GA4 optionnel (tracker leads)
       try {
         gtag('event', 'lead_submit', {
           service: service,
@@ -1513,10 +1501,9 @@
 
       show(formSuccess);
       form.reset();
-      renderCouponStatus();
       toggleSellerInput();
+      setCoupon("", "none");
 
-      // option: ramener l'utilisateur sur le message success
       try { formSuccess.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
 
     } catch (err) {
