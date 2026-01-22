@@ -384,7 +384,6 @@
     }
     .coupon-status strong{ color: var(--text); }
     .ok{ color: #9be49b; }
-    .bad{ color: #ffb4b4; }
 
     .form-error{
       display:none; margin-top: 8px;
@@ -884,21 +883,16 @@
     const form = document.getElementById("quoteForm");
     const submitBtn = document.getElementById("submitBtn");
 
-    // Coupon config (ne s'affiche PAS sur le site)
-    const COUPON_CODE = "PIRATE10";
-    const COUPON_PCT = 10;
+    // ✅ Coupon: n'importe quel code est valide (sans afficher un code fixe)
+    const COUPON_PCT = 10; // mets 0 si tu veux juste "appliqué" sans %
 
     const couponInput = document.getElementById("coupon");
     const couponStatus = document.getElementById("couponStatus");
 
-    function normalizeCoupon(v){
-      return (v || "").trim().toUpperCase().replace(/\s+/g, "");
-    }
     function getCouponResult(){
-      const entered = normalizeCoupon(couponInput?.value);
+      const entered = (couponInput?.value || "").trim();
       if (!entered) return { applied:false, code:"" };
-      if (entered === COUPON_CODE) return { applied:true, code:entered };
-      return { applied:false, code:entered, invalid:true };
+      return { applied:true, code:entered }; // ✅ tout code = valide
     }
 
     function renderCouponStatus(){
@@ -911,16 +905,10 @@
         `;
         return;
       }
-      if (res.applied){
-        couponStatus.innerHTML = `
-          <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
-          <span><strong>Code promo appliqué</strong> (${COUPON_PCT}% de rabais)</span>
-        `;
-        return;
-      }
+
       couponStatus.innerHTML = `
-        <i class="fa-solid fa-circle-xmark bad" aria-hidden="true"></i>
-        <span><strong>Code promo invalide</strong></span>
+        <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
+        <span><strong>Code promo appliqué :</strong> ${res.code}${COUPON_PCT ? ` (${COUPON_PCT}% de rabais)` : ""}</span>
       `;
     }
 
@@ -1067,7 +1055,7 @@
         name, phone, service, city, details,
         reference,
         coupon: couponRes.code || "-",
-        rabais: couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-"),
+        rabais: couponRes.applied ? (COUPON_PCT ? (COUPON_PCT + "% (appliqué)") : "appliqué") : "-",
         source: "site_web_piratesdelasphalte",
         page: window.location.href,
         userAgent: navigator.userAgent
