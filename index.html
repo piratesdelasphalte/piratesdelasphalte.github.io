@@ -32,9 +32,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
 
   <!-- Schema LocalBusiness -->
   <script type="application/ld+json">
@@ -52,18 +50,13 @@
 
   <style>
     :root{
-      --bg0:#121212;
-      --bg1:#1b1b1b;
-      --bg2:#2a2a2a;
-      --text:#eaeaea;
-      --muted:#bdbdbd;
-      --accent:#f7931e;
-      --accent2:#ffae42;
+      --bg0:#121212; --bg1:#1b1b1b; --bg2:#2a2a2a;
+      --text:#eaeaea; --muted:#bdbdbd;
+      --accent:#f7931e; --accent2:#ffae42;
       --stroke: rgba(255,255,255,0.10);
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
       --radius: 14px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -75,139 +68,81 @@
         radial-gradient(900px 500px at 90% 20%, rgba(255,174,66,0.08), transparent 55%),
         linear-gradient(160deg, var(--bg1), var(--bg2));
     }
-
     a { color: inherit; }
     .container { max-width: 1150px; margin: auto; padding: 0 20px; }
-
     :focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
 
     /* ===== HEADER PRO (glass premium) ===== */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       background: rgba(14,14,14,0.58);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.10);
       box-shadow: 0 18px 44px rgba(0,0,0,0.35);
     }
-
     header::after{
-      content:"";
-      display:block;
-      height: 2px;
+      content:""; display:block; height: 2px;
       background: linear-gradient(90deg, transparent, rgba(247,147,30,0.95), transparent);
       opacity: 0.9;
     }
-
     .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 16px;
-      padding: 14px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 16px; padding: 14px 0;
     }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      white-space:nowrap;
-    }
+    .brand{ display:flex; align-items:center; gap:10px; white-space:nowrap; }
     .brand .logo{
-      height:42px;
-      width:auto;
-      display:block;
-      object-fit:contain;
-      flex: 0 0 auto;
+      height:42px; width:auto; display:block; object-fit:contain; flex: 0 0 auto;
       filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
-      cursor: default;
     }
     .brand .brand-text{
-      font-size: 1.75rem;
-      color: var(--accent);
-      font-weight: 900;
-      letter-spacing: .4px;
-      text-shadow: 0 10px 26px rgba(0,0,0,0.45);
+      font-size: 1.75rem; color: var(--accent); font-weight: 900;
+      letter-spacing: .4px; text-shadow: 0 10px 26px rgba(0,0,0,0.45);
     }
-
     .badge{
-      font-size: 0.86rem;
-      color: rgba(234,234,234,0.92);
+      font-size: 0.86rem; color: rgba(234,234,234,0.92);
       border: 1px solid rgba(255,255,255,0.12);
-      padding: 7px 10px;
-      border-radius: 999px;
+      padding: 7px 10px; border-radius: 999px;
       background: rgba(0,0,0,0.28);
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
+      display:inline-flex; align-items:center; gap: 8px;
       box-shadow: 0 10px 22px rgba(0,0,0,0.25);
       white-space: nowrap;
     }
     .badge i{ color: var(--accent); opacity: .95; }
-
     .nav-wrap{ display:flex; align-items:center; gap: 12px; }
 
-    nav{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-
+    nav{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
     nav a{
       color: rgba(234,234,234,0.92);
       text-decoration:none;
       font-size: 0.98rem;
-      padding: 9px 12px;
-      border-radius: 999px;
+      padding: 9px 12px; border-radius: 999px;
       border: 1px solid transparent;
       background: transparent;
       transition: transform .15s ease, background .18s ease, border-color .18s ease, color .18s ease, opacity .18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      user-select:none;
+      display:inline-flex; align-items:center; gap: 8px; user-select:none;
     }
-
     nav a:hover{
       color: #fff;
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.10);
       transform: translateY(-1px);
     }
-
     nav a:active{ transform: translateY(0); }
-
-    nav a.active,
-    nav a[aria-current="page"]{
+    nav a.active, nav a[aria-current="page"]{
       background: rgba(247,147,30,0.12);
       border-color: rgba(247,147,30,0.30);
       color: #fff;
     }
 
     .dropdown{ position: relative; display:inline-flex; align-items:center; }
-
     .dropbtn{ position: relative; }
     .dropbtn i{ font-size: .85em; opacity: .85; }
-
-    .dropbtn::after{
-      content:"";
-      position:absolute;
-      left:0;
-      top:100%;
-      width:100%;
-      height:14px;
-    }
+    .dropbtn::after{ content:""; position:absolute; left:0; top:100%; width:100%; height:14px; }
 
     .dropdown-menu{
-      position:absolute;
-      top: calc(100% + 12px);
-      left: 0;
-      min-width: 280px;
-      padding: 10px;
+      position:absolute; top: calc(100% + 12px); left: 0;
+      min-width: 280px; padding: 10px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(10,10,10,0.88);
@@ -215,65 +150,40 @@
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 26px 70px rgba(0,0,0,0.55);
       z-index: 999;
-
-      opacity: 0;
-      visibility: hidden;
+      opacity: 0; visibility: hidden;
       transform: translateY(-6px);
       pointer-events: none;
       transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
     }
-
     .dropdown-menu::before{
-      content:"";
-      position:absolute;
-      top:-8px;
-      left: 22px;
-      width: 16px;
-      height: 16px;
+      content:""; position:absolute; top:-8px; left: 22px;
+      width: 16px; height: 16px;
       background: rgba(10,10,10,0.88);
       border-left: 1px solid rgba(255,255,255,0.10);
       border-top: 1px solid rgba(255,255,255,0.10);
       transform: rotate(45deg);
     }
-
     .dropdown-menu a{
       width:100%;
       padding: 11px 12px;
       border-radius: 14px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
+      display:flex; align-items:center; gap: 10px;
       border: 1px solid transparent;
       background: transparent;
     }
-
-    .dropdown-menu a i{
-      width: 18px;
-      text-align:center;
-      color: var(--accent);
-    }
-
+    .dropdown-menu a i{ width: 18px; text-align:center; color: var(--accent); }
     .dropdown-menu a:hover{
       background: rgba(247,147,30,0.10);
       border-color: rgba(247,147,30,0.22);
       transform: none;
     }
-
     .dropdown-menu a + a{ margin-top: 6px; }
-
-    .drop-sep{
-      height: 1px;
-      background: rgba(255,255,255,0.10);
-      margin: 8px 6px;
-      border-radius: 999px;
-    }
+    .drop-sep{ height: 1px; background: rgba(255,255,255,0.10); margin: 8px 6px; border-radius: 999px; }
 
     @media (min-width: 861px){
       .dropdown:hover .dropdown-menu,
       .dropdown:focus-within .dropdown-menu{
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        opacity: 1; visibility: visible; transform: translateY(0);
         pointer-events: auto;
         transition: opacity .18s ease, transform .18s ease;
       }
@@ -298,15 +208,8 @@
 
     @media (max-width: 860px){
       .menu-btn{ display:inline-flex; align-items:center; gap: 10px; }
-
       nav{ display:none; width:100%; padding: 12px 0 14px; }
-      nav.open{
-        display:flex;
-        flex-direction:column;
-        align-items: stretch;
-        gap: 10px;
-      }
-
+      nav.open{ display:flex; flex-direction:column; align-items: stretch; gap: 10px; }
       nav a{
         width:100%;
         border-radius: 14px;
@@ -314,37 +217,22 @@
         background: rgba(255,255,255,0.04);
         border-color: rgba(255,255,255,0.08);
       }
-
       .dropdown{ width:100%; }
       .dropdown-menu{
-        position: static;
-        margin-top: 8px;
-        width: 100%;
-        box-shadow: none;
-        padding: 8px;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        pointer-events: auto;
+        position: static; margin-top: 8px; width: 100%;
+        box-shadow: none; padding: 8px;
+        opacity: 1; visibility: visible; transform: none; pointer-events: auto;
         display: none;
       }
       .dropdown-menu::before{ display:none; }
       .dropdown.open .dropdown-menu{ display:block; }
-
       .brand .logo{ height: 38px; }
       .brand .brand-text{ font-size: 1.35rem; }
     }
 
     /* Hero */
     .hero { padding: 80px 0 40px; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 22px;
-      align-items: start;
-    }
-
+    .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 22px; align-items: start; }
     .hero-card {
       background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
       border: 1px solid var(--stroke);
@@ -352,28 +240,9 @@
       box-shadow: var(--shadow);
       padding: 28px;
     }
-
-    .hero h2 {
-      font-size: 2.2rem;
-      color: var(--accent);
-      margin-bottom: 14px;
-      line-height: 1.15;
-    }
-
-    .hero p {
-      color: var(--text);
-      opacity: 0.95;
-      font-size: 1.05rem;
-      max-width: 72ch;
-    }
-
-    .hero-points {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .hero h2 { font-size: 2.2rem; color: var(--accent); margin-bottom: 14px; line-height: 1.15; }
+    .hero p { color: var(--text); opacity: 0.95; font-size: 1.05rem; max-width: 72ch; }
+    .hero-points { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
     .pill {
       border: 1px solid var(--stroke);
       background: rgba(0,0,0,0.25);
@@ -386,21 +255,10 @@
       gap: 8px;
     }
     .pill i{ color: var(--accent); }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 12px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px 16px; border-radius: 12px;
       border: 1px solid var(--stroke);
       text-decoration: none;
       font-weight: 800;
@@ -409,20 +267,10 @@
       user-select: none;
     }
     .btn i{ width: 18px; text-align:center; }
-
     .btn[disabled]{ opacity:.75; cursor:not-allowed; }
-
-    .btn-primary {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #111;
-      border-color: rgba(0,0,0,0.2);
-    }
+    .btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #111; border-color: rgba(0,0,0,0.2); }
     .btn-primary:hover { transform: translateY(-1px); }
-
-    .btn-ghost {
-      background: rgba(0,0,0,0.22);
-      color: var(--text);
-    }
+    .btn-ghost { background: rgba(0,0,0,0.22); color: var(--text); }
     .btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
 
     .contact-box {
@@ -433,60 +281,23 @@
       padding: 22px;
       box-shadow: var(--shadow);
     }
-
-    .contact-box strong {
-      font-size: 1.1rem;
-      display: block;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
+    .contact-box strong { font-size: 1.1rem; display: block; margin-bottom: 10px; color: var(--text); }
+    .contact-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.08); }
     .contact-item:first-of-type { border-top: none; padding-top: 0; }
-
     .contact-item i { color: var(--accent); min-width: 18px; text-align: center; }
-
-    .contact-box a {
-      color: var(--accent);
-      font-weight: 900;
-      text-decoration: none;
-    }
+    .contact-box a { color: var(--accent); font-weight: 900; text-decoration: none; }
     .contact-box a:hover { color: #ffd580; text-decoration: underline; }
-
     @media (max-width: 860px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 46px; }
     }
 
-    section {
-      padding: 60px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      scroll-margin-top: 90px;
-    }
-
+    section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.08); scroll-margin-top: 90px; }
     .section-head { margin-bottom: 22px; }
-
-    h3 {
-      font-size: 1.7rem;
-      color: var(--accent);
-      line-height: 1.2;
-    }
-
+    h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
     .sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 16px;
-    }
-
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
     .card {
       position: relative;
       background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
@@ -498,101 +309,58 @@
       min-height: 132px;
       overflow: hidden;
     }
-
     .card:hover {
       transform: translateY(-2px);
       border-color: rgba(247,147,30,0.35);
       background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(0,0,0,0.18));
     }
-
     .card::after{
       content:"";
-      position:absolute;
-      inset:-1px;
+      position:absolute; inset:-1px;
       pointer-events:none;
       border-radius: var(--radius);
       background: radial-gradient(500px 200px at 0% 0%, rgba(247,147,30,0.12), transparent 55%);
       opacity: 0.9;
     }
-
     .card .icon{
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      width: 42px; height: 42px; border-radius: 14px;
+      display: inline-flex; align-items: center; justify-content: center;
       background: rgba(247,147,30,0.14);
       border: 1px solid rgba(247,147,30,0.26);
       color: var(--accent);
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
-
     .card .icon i { font-size: 18px; }
-
     .card h4{
-      font-size: 1.05rem;
-      margin: 0;
-      color: var(--text);
-      line-height: 1.25;
-      position: relative;
-      z-index: 1;
+      font-size: 1.05rem; margin: 0; color: var(--text);
+      line-height: 1.25; position: relative; z-index: 1;
     }
-
     .card p{
-      margin-top: 6px;
-      color: rgba(234,234,234,0.85);
-      font-size: 0.98rem;
-      position: relative;
-      z-index: 1;
+      margin-top: 6px; color: rgba(234,234,234,0.85);
+      font-size: 0.98rem; position: relative; z-index: 1;
     }
-
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
     /* ✅ Paysagement */
-    #paysagement {
-      background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92));
-      color: #111;
-    }
+    #paysagement { background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92)); color: #111; }
     #paysagement .sub { color: rgba(0,0,0,0.65); }
-    #paysagement .card {
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(0,0,0,0.10);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-    }
+    #paysagement .card { background: rgba(255,255,255,0.88); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
     #paysagement .card h4, #paysagement .card p { color: #111; }
-    #paysagement .card .icon {
-      background: rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.10);
-      color: #111;
-    }
+    #paysagement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
 
     /* Déneigement */
-    #deneigement {
-      background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92));
-      color: #111;
-    }
+    #deneigement { background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92)); color: #111; }
     #deneigement .sub { color: rgba(0,0,0,0.65); }
-    #deneigement .card {
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(0,0,0,0.10);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-    }
+    #deneigement .card { background: rgba(255,255,255,0.86); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
     #deneigement .card h4, #deneigement .card p { color: #111; }
-    #deneigement .card .icon {
-      background: rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.10);
-      color: #111;
-    }
+    #deneigement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
 
     /* Form */
     .form { display: grid; gap: 10px; margin-top: 14px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
-
     input, select, textarea {
       width: 100%;
       padding: 12px 12px;
@@ -605,11 +373,22 @@
     }
     textarea { min-height: 110px; resize: vertical; }
 
+    .coupon-status{
+      font-size: 0.95rem;
+      color: var(--muted);
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+    }
+    .coupon-status strong{ color: var(--text); }
+    .ok{ color: #9be49b; }
+    .bad{ color: #ffb4b4; }
+
     .form-error{
-      display:none;
-      margin-top: 8px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      display:none; margin-top: 8px;
+      padding: 12px 14px; border-radius: 14px;
       border: 1px solid rgba(255, 180, 180, 0.25);
       background: rgba(255, 90, 90, 0.10);
       color: rgba(255, 220, 220, 0.95);
@@ -619,10 +398,8 @@
     .form-error i{ color: #ffb4b4; margin-top: 2px; }
 
     .form-success{
-      display:none;
-      margin-top: 8px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      display:none; margin-top: 8px;
+      padding: 12px 14px; border-radius: 14px;
       border: 1px solid rgba(155, 228, 155, 0.25);
       background: rgba(70, 180, 70, 0.10);
       color: rgba(220, 255, 220, 0.95);
@@ -635,12 +412,7 @@
       border-color: rgba(255, 180, 180, 0.55) !important;
       box-shadow: 0 0 0 3px rgba(255, 120, 120, 0.18);
     }
-
-    .help-error{
-      margin-top: 6px;
-      font-size: 0.92rem;
-      color: rgba(255, 200, 200, 0.95);
-    }
+    .help-error{ margin-top: 6px; font-size: 0.92rem; color: rgba(255, 200, 200, 0.95); }
 
     footer {
       margin-top: 10px;
@@ -656,10 +428,7 @@
     footer a:hover { color: #66b0ff; text-decoration: underline; }
 
     .quickbar {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 14px;
+      position: fixed; left: 16px; right: 16px; bottom: 14px;
       z-index: 60;
       display: none;
       gap: 10px;
@@ -675,10 +444,7 @@
       text-decoration: none;
       font-weight: 900;
       box-shadow: var(--shadow);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
     }
     .quickbar a.primary {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -689,7 +455,6 @@
       .quickbar { display: flex; }
       body { padding-bottom: 76px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       * { transition: none !important; }
@@ -698,821 +463,647 @@
 </head>
 
 <body>
-
-<header>
-  <div class="container">
-    <div class="topbar">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="brand" aria-label="Pirates de l’Asphalte">
-          <img
-            src="/pirates-de-l-asphalte-logo.png"
-            alt="Pirates de l’Asphalte – logo"
-            class="logo"
-            width="92"
-            height="64"
-            loading="eager"
-          />
-          <span class="brand-text">Pirates de l’Asphalte</span>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="brand" aria-label="Pirates de l’Asphalte">
+            <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte – logo" class="logo" width="92" height="64" loading="eager" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
+          </div>
+          <span class="badge"><i class="fa-solid fa-city" aria-hidden="true"></i> Résidentiel • Commercial</span>
         </div>
 
-        <span class="badge"><i class="fa-solid fa-city" aria-hidden="true"></i> Résidentiel • Commercial</span>
+        <div class="nav-wrap">
+          <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
+          </button>
+
+          <nav id="nav">
+            <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
+
+            <div class="dropdown" id="servicesDropdown">
+              <a href="#asphaltage" class="dropbtn" aria-haspopup="true" aria-expanded="false">
+                Services <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </a>
+
+              <div class="dropdown-menu" role="menu" aria-label="Services">
+                <a role="menuitem" href="#asphaltage"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage</a>
+                <a role="menuitem" href="#reparation"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations</a>
+                <a role="menuitem" href="#deneigement"><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement</a>
+                <div class="drop-sep" aria-hidden="true"></div>
+                <a role="menuitem" href="#paysagement"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Paysagement</a>
+                <a role="menuitem" href="#paysagement"><i class="fa-solid fa-person-digging" aria-hidden="true"></i> Excavation</a>
+                <a role="menuitem" href="#paysagement"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Tourbe</a>
+                <a role="menuitem" href="#paysagement"><i class="fa-solid fa-border-all" aria-hidden="true"></i> Pavé uni</a>
+                <a role="menuitem" href="#paysagement"><i class="fa-solid fa-scissors" aria-hidden="true"></i> Taille haies de cèdre</a>
+              </div>
+            </div>
+
+            <a href="#pourquoi">Pourquoi nous</a>
+            <a href="#zones">Zones</a>
+            <a href="#soumission">Soumission</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
       </div>
+    </div>
+  </header>
 
-      <div class="nav-wrap">
-        <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
-          <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
-        </button>
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h2>Asphaltage, réparations, déneigement et services extérieurs</h2>
+          <p>
+            Pirates de l’Asphalte offre des services professionnels pour le résidentiel et le commercial.
+            Préparation sérieuse, exécution propre et résultat durable.
+          </p>
 
-        <nav id="nav">
-          <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
+          <div class="hero-points" aria-label="Points forts">
+            <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Travail durable</span>
+            <span class="pill"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i> Équipe pro</span>
+            <span class="pill"><i class="fa-solid fa-clock" aria-hidden="true"></i> Soumission rapide</span>
+          </div>
 
-          <div class="dropdown" id="servicesDropdown">
-            <a href="#asphaltage" class="dropbtn" aria-haspopup="true" aria-expanded="false">
-              Services
-              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
             </a>
+            <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+            </a>
+            <a class="btn btn-ghost" href="mailto:asphaltequebec@hotmail.ca" aria-label="Envoyer un courriel">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel
+            </a>
+          </div>
+        </div>
 
-            <div class="dropdown-menu" role="menu" aria-label="Services">
-              <a role="menuitem" href="#asphaltage"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage</a>
-              <a role="menuitem" href="#reparation"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparations</a>
-              <a role="menuitem" href="#deneigement"><i class="fa-solid fa-snowflake" aria-hidden="true"></i> Déneigement</a>
+        <aside class="contact-box" id="contact" aria-label="Coordonnées">
+          <strong><i class="fa-solid fa-address-card" aria-hidden="true" style="color:var(--accent); margin-right:8px;"></i> Nous joindre</strong>
 
-              <div class="drop-sep" aria-hidden="true"></div>
-
-              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Paysagement</a>
-              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-person-digging" aria-hidden="true"></i> Excavation</a>
-              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Tourbe</a>
-              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-border-all" aria-hidden="true"></i> Pavé uni</a>
-              <a role="menuitem" href="#paysagement"><i class="fa-solid fa-scissors" aria-hidden="true"></i> Taille haies de cèdre</a>
+          <div class="contact-item">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <div>
+              Téléphone<br />
+              <a href="tel:15149797832">514-979-7832</a>
             </div>
           </div>
 
-          <a href="#pourquoi">Pourquoi nous</a>
-          <a href="#zones">Zones</a>
-          <a href="#soumission">Soumission</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main id="top" class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-card">
-        <h2>Asphaltage, réparations, déneigement et services extérieurs</h2>
-        <p>
-          Pirates de l’Asphalte offre des services professionnels pour le résidentiel et le commercial.
-          Préparation sérieuse, exécution propre et résultat durable.
-        </p>
-
-        <div class="hero-points" aria-label="Points forts">
-          <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Travail durable</span>
-          <span class="pill"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i> Équipe pro</span>
-          <span class="pill"><i class="fa-solid fa-clock" aria-hidden="true"></i> Soumission rapide</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
-          </a>
-          <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
-          </a>
-          <a class="btn btn-ghost" href="mailto:asphaltequebec@hotmail.ca" aria-label="Envoyer un courriel">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel
-          </a>
-        </div>
-      </div>
-
-      <aside class="contact-box" id="contact" aria-label="Coordonnées">
-        <strong><i class="fa-solid fa-address-card" aria-hidden="true" style="color:var(--accent); margin-right:8px;"></i> Nous joindre</strong>
-
-        <div class="contact-item">
-          <i class="fa-solid fa-phone" aria-hidden="true"></i>
-          <div>
-            Téléphone<br />
-            <a href="tel:15149797832">514-979-7832</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          <div>
-            Courriel<br />
-            <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-          <div>
-            Facebook<br />
-            <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Pirates de l’Asphalte</a>
-          </div>
-        </div>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:0.95rem;">
-          <i class="fa-solid fa-circle-info" style="color:var(--accent);" aria-hidden="true"></i>
-          Réponse rapide. Travaux propres. Service au Québec.
-        </div>
-      </aside>
-    </div>
-  </div>
-</main>
-
-<section id="pourquoi">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
-        <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
-        <h4>Travail propre et durable</h4>
-        <p>Préparation, compaction et finition selon les règles de l’art.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
-        <h4>Soumission rapide</h4>
-        <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
-        <h4>Équipe fiable</h4>
-        <p>Communication simple, chantier organisé, résultats constants.</p>
-      </div>
-    </div>
-
-    <div class="cta-row" style="margin-top:18px;">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
-    </div>
-  </div>
-</section>
-
-<section id="zones">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Zones desservies</h3>
-        <p class="sub">On se déplace partout dans la province. Dis-nous ta ville et on confirme rapidement la disponibilité.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
-        <h4>Partout au Québec</h4>
-        <p>Résidentiel et commercial, selon le type de projet.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
-        <h4>Déplacements planifiés</h4>
-        <p>On regroupe les secteurs pour offrir un service efficace.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i></div>
-        <h4>Confirmation rapide</h4>
-        <p>Appelle ou remplis la soumission: on te confirme en peu de temps.</p>
-      </div>
-    </div>
-
-    <div class="cta-row" style="margin-top:18px;">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
-    </div>
-  </div>
-</section>
-
-<section id="asphaltage">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Asphaltage – services complets</h3>
-        <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div>
-        <h4>Asphaltage résidentiel (entrées de cour)</h4>
-        <p>Finition propre, pente et drainage bien pensés.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
-        <h4>Asphaltage commercial et institutionnel</h4>
-        <p>Travaux planifiés, durables, adaptés au trafic.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div>
-        <h4>Stationnements complets (petites et grandes surfaces)</h4>
-        <p>Préparation + compaction pour un résultat solide.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div>
-        <h4>Reconstruction et récap complet</h4>
-        <p>On repart sur une base stable, nivelée, durable.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
-        <h4>Pavage en asphalte et pavé uni</h4>
-        <p>Bordures et transitions propres, pose soignée.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
-        <h4>Gestion des pentes et écoulement</h4>
-        <p>Moins de flaques, moins d’usure, plus durable.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="reparation">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Réparations et entretien de l’asphalte</h3>
-        <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
-        <h4>Patchs et nids-de-poule</h4>
-        <p>Réparations rapides et solides pour éviter l’aggravation.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div>
-        <h4>Correction de vallons et pentes</h4>
-        <p>Nivelage pour un drainage efficace et sécuritaire.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
-        <h4>Scellant protecteur</h4>
-        <p>Prolonge la vie de l’asphalte et protège la surface.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div>
-        <h4>Traitement des taches d’huile</h4>
-        <p>Nettoyage et traitement pour une surface plus propre.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div>
-        <h4>Décoloration de surface</h4>
-        <p>Entretien pour améliorer l’apparence et la protection.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
-        <h4>Usure et perte d’agrégats</h4>
-        <p>On stabilise la surface avant que ça se dégrade.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="paysagement">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Paysagement & excavation</h3>
-        <p class="sub">Préparation du terrain, finition propre et résultat durable.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
-        <h4>Paysagement</h4>
-        <p>Aménagement, remise à niveau et finition.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div>
-        <h4>Excavation</h4>
-        <p>Excavation légère, préparation de base et tranchées.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-        <h4>Tourbe</h4>
-        <p>Pose de tourbe, préparation du sol et nivellement.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div>
-        <h4>Pavé uni</h4>
-        <p>Pose, bordures, compaction et finition.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
-        <h4>Taille de haies de cèdre</h4>
-        <p>Taille droite, nettoyage, évacuation des résidus.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
-        <h4>Nivellement & drainage</h4>
-        <p>Pentes, écoulement, prévention des flaques.</p>
-      </div>
-    </div>
-
-    <div class="cta-row" style="margin-top:18px;">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
-    </div>
-  </div>
-</section>
-
-<section id="deneigement">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Déneigement – services hivernaux</h3>
-        <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div>
-        <h4>Déneigement de toitures</h4>
-        <p>Réduction du poids et prévention des risques.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div>
-        <h4>Marches et escaliers</h4>
-        <p>Accès sécuritaires, dégagement propre et précis.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
-        <h4>Stationnements et entrées</h4>
-        <p>Déneigement efficace pour circulation fluide.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
-        <h4>Gestion glace et neige</h4>
-        <p>Interventions sécuritaires selon les conditions.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
-        <h4>Interventions rapides</h4>
-        <p>Présence rapide en cas d’accumulation importante.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div>
-        <h4>Finition des zones piétonnes</h4>
-        <p>Finition propre autour des accès et passages.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="soumission">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <h3>Demande de soumission</h3>
-        <p class="sub">Les champs marqués <strong>*</strong> sont obligatoires. Remplis le formulaire et clique “Envoyer”.</p>
-      </div>
-    </div>
-
-    <div class="hero-card" style="padding:22px;">
-      <form class="form" id="quoteForm" novalidate>
-        <div class="form-error" id="formError" role="alert" aria-live="polite">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-          <div><strong>Oups.</strong> Vérifie les champs obligatoires marqués avec <strong>*</strong>.</div>
-        </div>
-
-        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-          <div>
-            <strong>Envoyé!</strong> On a bien reçu ta demande. On te revient rapidement.
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <input type="text" id="name" name="name" placeholder="Nom*" autocomplete="name" required />
-            <div class="help-error" id="err-name" style="display:none;"></div>
-          </div>
-          <div>
-            <input type="tel" id="phone" name="phone" placeholder="Téléphone*" autocomplete="tel" required />
-            <div class="help-error" id="err-phone" style="display:none;"></div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <select id="service" name="service" aria-label="Choisir un service" required>
-              <option value="" selected disabled>Choisir un service*</option>
-              <option value="Asphaltage">Asphaltage</option>
-              <option value="Réparations / entretien">Réparations / entretien</option>
-              <option value="Déneigement">Déneigement</option>
-              <option value="Paysagement">Paysagement</option>
-              <option value="Excavation">Excavation</option>
-              <option value="Tourbe">Tourbe</option>
-              <option value="Pavé uni">Pavé uni</option>
-              <option value="Taille de haies de cèdre">Taille de haies de cèdre</option>
-              <option value="Autre">Autre</option>
-            </select>
-            <div class="help-error" id="err-service" style="display:none;"></div>
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div>
+              Courriel<br />
+              <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
+            </div>
           </div>
 
-          <div>
-            <input type="text" id="city" name="city" placeholder="Ville / secteur (ex: Laval, Montréal…)*" autocomplete="address-level2" required />
-            <div class="help-error" id="err-city" style="display:none;"></div>
+          <div class="contact-item">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            <div>
+              Facebook<br />
+              <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Pirates de l’Asphalte</a>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <select id="sellerSelect" name="sellerSelect" aria-label="Référence">
-            <option value="Site web" selected>Site web (référence)</option>
-            <option value="Saisir">Saisissez le nom du vendeur…</option>
-          </select>
+          <div style="margin-top:14px; color:var(--muted); font-size:0.95rem;">
+            <i class="fa-solid fa-circle-info" style="color:var(--accent);" aria-hidden="true"></i>
+            Réponse rapide. Travaux propres. Service au Québec.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
 
-          <!-- ✅ Coupon caché (jamais visible) -->
-          <input type="hidden" id="coupon" name="coupon" value="" />
-        </div>
-
-        <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none;" />
-
-        <!-- ✅ Méthode d’entrée du coupon (caché) -->
-        <input type="hidden" id="couponEntryMethod" name="couponEntryMethod" value="none" />
-
+  <section id="pourquoi">
+    <div class="container">
+      <div class="section-head">
         <div>
-          <textarea id="details" name="details" placeholder="Détails: surface approximative, type de travaux, urgence, etc.*" required></textarea>
-          <div class="help-error" id="err-details" style="display:none;"></div>
+          <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
+          <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
         </div>
+      </div>
 
-        <div class="cta-row" style="margin-top:6px;">
-          <button class="btn btn-primary" id="submitBtn" type="submit" style="border:none;">
-            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande
-          </button>
-          <a class="btn btn-ghost" href="tel:15149797832">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
-          </a>
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+          <h4>Travail propre et durable</h4>
+          <p>Préparation, compaction et finition selon les règles de l’art.</p>
         </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
+          <h4>Soumission rapide</h4>
+          <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+          <h4>Équipe fiable</h4>
+          <p>Communication simple, chantier organisé, résultats constants.</p>
+        </div>
+      </div>
 
-        <div style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
-          <i class="fa-solid fa-lock" aria-hidden="true" style="color:var(--accent);"></i>
-          En envoyant, tes infos sont transmises via notre service de formulaire (sans ouvrir ton app courriel).
-        </div>
-      </form>
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      </div>
     </div>
+  </section>
+
+  <section id="zones">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Zones desservies</h3>
+          <p class="sub">On se déplace partout dans la province. Dis-nous ta ville et on confirme rapidement la disponibilité.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
+          <h4>Partout au Québec</h4>
+          <p>Résidentiel et commercial, selon le type de projet.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+          <h4>Déplacements planifiés</h4>
+          <p>On regroupe les secteurs pour offrir un service efficace.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i></div>
+          <h4>Confirmation rapide</h4>
+          <p>Appelle ou remplis la soumission: on te confirme en peu de temps.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="asphaltage">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Asphaltage – services complets</h3>
+          <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div><h4>Asphaltage résidentiel (entrées de cour)</h4><p>Finition propre, pente et drainage bien pensés.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div><h4>Asphaltage commercial et institutionnel</h4><p>Travaux planifiés, durables, adaptés au trafic.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div><h4>Stationnements complets (petites et grandes surfaces)</h4><p>Préparation + compaction pour un résultat solide.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div><h4>Reconstruction et récap complet</h4><p>On repart sur une base stable, nivelée, durable.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div><h4>Pavage en asphalte et pavé uni</h4><p>Bordures et transitions propres, pose soignée.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h4>Gestion des pentes et écoulement</h4><p>Moins de flaques, moins d’usure, plus durable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reparation">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Réparations et entretien de l’asphalte</h3>
+          <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div><h4>Patchs et nids-de-poule</h4><p>Réparations rapides et solides pour éviter l’aggravation.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div><h4>Correction de vallons et pentes</h4><p>Nivelage pour un drainage efficace et sécuritaire.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div><h4>Scellant protecteur</h4><p>Prolonge la vie de l’asphalte et protège la surface.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div><h4>Traitement des taches d’huile</h4><p>Nettoyage et traitement pour une surface plus propre.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div><h4>Décoloration de surface</h4><p>Entretien pour améliorer l’apparence et la protection.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h4>Usure et perte d’agrégats</h4><p>On stabilise la surface avant que ça se dégrade.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paysagement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Paysagement & excavation</h3>
+          <p class="sub">Préparation du terrain, finition propre et résultat durable.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div><h4>Paysagement</h4><p>Aménagement, remise à niveau et finition.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div><h4>Excavation</h4><p>Excavation légère, préparation de base et tranchées.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div><h4>Tourbe</h4><p>Pose de tourbe, préparation du sol et nivellement.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div><h4>Pavé uni</h4><p>Pose, bordures, compaction et finition.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div><h4>Taille de haies de cèdre</h4><p>Taille droite, nettoyage, évacuation des résidus.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h4>Nivellement & drainage</h4><p>Pentes, écoulement, prévention des flaques.</p></div>
+      </div>
+
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="deneigement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Déneigement – services hivernaux</h3>
+          <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div><h4>Déneigement de toitures</h4><p>Réduction du poids et prévention des risques.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div><h4>Marches et escaliers</h4><p>Accès sécuritaires, dégagement propre et précis.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div><h4>Stationnements et entrées</h4><p>Déneigement efficace pour circulation fluide.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div><h4>Gestion glace et neige</h4><p>Interventions sécuritaires selon les conditions.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h4>Interventions rapides</h4><p>Présence rapide en cas d’accumulation importante.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div><h4>Finition des zones piétonnes</h4><p>Finition propre autour des accès et passages.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Demande de soumission</h3>
+          <p class="sub">Les champs marqués <strong>*</strong> sont obligatoires. Remplis le formulaire et clique “Envoyer”.</p>
+        </div>
+      </div>
+
+      <div class="hero-card" style="padding:22px;">
+        <form class="form" id="quoteForm" novalidate>
+          <div class="form-error" id="formError" role="alert" aria-live="polite">
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            <div><strong>Oups.</strong> Vérifie les champs obligatoires marqués avec <strong>*</strong>.</div>
+          </div>
+
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><strong>Envoyé!</strong> On a bien reçu ta demande. On te revient rapidement.</div>
+          </div>
+
+          <div class="row">
+            <div>
+              <input type="text" id="name" name="name" placeholder="Nom*" autocomplete="name" required />
+              <div class="help-error" id="err-name" style="display:none;"></div>
+            </div>
+            <div>
+              <input type="tel" id="phone" name="phone" placeholder="Téléphone*" autocomplete="tel" required />
+              <div class="help-error" id="err-phone" style="display:none;"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <select id="service" name="service" aria-label="Choisir un service" required>
+                <option value="" selected disabled>Choisir un service*</option>
+                <option value="Asphaltage">Asphaltage</option>
+                <option value="Réparations / entretien">Réparations / entretien</option>
+                <option value="Déneigement">Déneigement</option>
+                <option value="Paysagement">Paysagement</option>
+                <option value="Excavation">Excavation</option>
+                <option value="Tourbe">Tourbe</option>
+                <option value="Pavé uni">Pavé uni</option>
+                <option value="Taille de haies de cèdre">Taille de haies de cèdre</option>
+                <option value="Autre">Autre</option>
+              </select>
+              <div class="help-error" id="err-service" style="display:none;"></div>
+            </div>
+            <div>
+              <input type="text" id="city" name="city" placeholder="Ville / secteur (ex: Laval, Montréal…)*" autocomplete="address-level2" required />
+              <div class="help-error" id="err-city" style="display:none;"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <select id="sellerSelect" name="sellerSelect" aria-label="Référence">
+              <option value="Site web" selected>Site web (référence)</option>
+              <option value="Saisir">Saisissez le nom du vendeur…</option>
+            </select>
+            <input type="text" id="coupon" name="coupon" placeholder="Code promo (optionnel)" autocomplete="off" />
+          </div>
+
+          <input type="text" id="sellerName" name="sellerName" placeholder="Nom du vendeur" autocomplete="off" style="display:none;" />
+
+          <div class="coupon-status" id="couponStatus" aria-live="polite">
+            <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
+            <span>Ajoute un code promo si applicable.</span>
+          </div>
+
+          <div>
+            <textarea id="details" name="details" placeholder="Détails: surface approximative, type de travaux, urgence, etc.*" required></textarea>
+            <div class="help-error" id="err-details" style="display:none;"></div>
+          </div>
+
+          <div class="cta-row" style="margin-top:6px;">
+            <button class="btn btn-primary" id="submitBtn" type="submit" style="border:none;">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande
+            </button>
+            <a class="btn btn-ghost" href="tel:15149797832">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
+            </a>
+          </div>
+
+          <div style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
+            <i class="fa-solid fa-lock" aria-hidden="true" style="color:var(--accent);"></i>
+            En envoyant, tes infos sont transmises via notre service de formulaire (sans ouvrir ton app courriel).
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte</p>
+      <p>
+        Asphaltage, réparations, déneigement & paysagement au Québec |
+        <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <div class="quickbar" aria-label="Actions rapides">
+    <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
+    <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
+    <a href="mailto:asphaltequebec@hotmail.ca"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel</a>
   </div>
-</section>
 
-<footer>
-  <div class="container">
-    <p>© <span id="year"></span> Pirates de l’Asphalte</p>
-    <p>
-      Asphaltage, réparations, déneigement & paysagement au Québec |
-      <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
-        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
-      </a>
-    </p>
-  </div>
-</footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<div class="quickbar" aria-label="Actions rapides">
-  <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
-  <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
-  <a href="mailto:asphaltequebec@hotmail.ca"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Courriel</a>
-</div>
+    // Menu mobile
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+    menuBtn?.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      const opened = nav.classList.contains("open");
+      menuBtn.setAttribute("aria-label", opened ? "Fermer le menu" : "Ouvrir le menu");
+      menuBtn.innerHTML = opened
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
+    });
 
-  // Menu mobile
-  const menuBtn = document.getElementById("menuBtn");
-  const nav = document.getElementById("nav");
+    // Dropdown Services mobile
+    const servicesDropdown = document.getElementById("servicesDropdown");
+    const servicesBtn = servicesDropdown?.querySelector(".dropbtn");
 
-  menuBtn?.addEventListener("click", () => {
-    nav.classList.toggle("open");
-    const opened = nav.classList.contains("open");
-    menuBtn.setAttribute("aria-label", opened ? "Fermer le menu" : "Ouvrir le menu");
-    menuBtn.innerHTML = opened
-      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
-      : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
-  });
-
-  // Dropdown Services mobile
-  const servicesDropdown = document.getElementById("servicesDropdown");
-  const servicesBtn = servicesDropdown?.querySelector(".dropbtn");
-
-  servicesBtn?.addEventListener("click", (e) => {
-    if (window.matchMedia("(max-width: 860px)").matches) {
-      e.preventDefault();
-      servicesDropdown.classList.toggle("open");
-      const opened = servicesDropdown.classList.contains("open");
-      servicesBtn.setAttribute("aria-expanded", opened ? "true" : "false");
-    }
-  });
-
-  servicesDropdown?.querySelectorAll(".dropdown-menu a")?.forEach(a => {
-    a.addEventListener("click", () => {
+    servicesBtn?.addEventListener("click", (e) => {
       if (window.matchMedia("(max-width: 860px)").matches) {
-        servicesDropdown.classList.remove("open");
-        servicesBtn?.setAttribute("aria-expanded", "false");
+        e.preventDefault();
+        servicesDropdown.classList.toggle("open");
+        const opened = servicesDropdown.classList.contains("open");
+        servicesBtn.setAttribute("aria-expanded", opened ? "true" : "false");
       }
     });
-  });
 
-  // ===============================
-  // ✅ FORM PRO: Formspree (sans mailto)
-  // ===============================
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeeajpgy";
-
-  const form = document.getElementById("quoteForm");
-  const submitBtn = document.getElementById("submitBtn");
-
-  // ===============================
-  // ✅ Coupon INVISIBLE (accepte n’importe quoi)
-  // - Jamais visible dans le formulaire
-  // - Entrée vendeur via raccourci clavier ou triple tap sur le logo
-  // - Option URL: ?promo=CODE
-  // ===============================
-  const couponInput = document.getElementById("coupon"); // hidden
-  const couponEntryMethod = document.getElementById("couponEntryMethod"); // hidden
-
-  function cleanCode(v){
-    return (v || "").trim().toUpperCase().replace(/\s+/g, "");
-  }
-
-  function setCoupon(code, method){
-    const c = cleanCode(code);
-    if (couponInput) couponInput.value = c;
-    if (couponEntryMethod) couponEntryMethod.value = method || "manual";
-  }
-
-  // Option URL vendeur: ?promo=ABC123
-  (function readPromoFromUrl(){
-    const p = new URLSearchParams(window.location.search);
-    const code = p.get("promo") || p.get("coupon") || p.get("code");
-    if (code) setCoupon(code, "url");
-  })();
-
-  // Raccourci vendeur: Ctrl+Shift+P (Windows) / Cmd+Shift+P (Mac)
-  document.addEventListener("keydown", (e) => {
-    const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
-    const comboOk = (e.shiftKey && ((isMac && e.metaKey) || (!isMac && e.ctrlKey)) && (e.key.toLowerCase() === "p"));
-    if (!comboOk) return;
-    e.preventDefault();
-    const entered = prompt("Code vendeur (invisible au client):");
-    if (entered !== null) setCoupon(entered, "seller_shortcut");
-  });
-
-  // Secret mobile: triple tap sur le logo
-  (function mobileSecretTap(){
-    const logo = document.querySelector(".brand .logo");
-    if (!logo) return;
-    let taps = 0;
-    let timer = null;
-
-    logo.addEventListener("click", () => {
-      taps++;
-      clearTimeout(timer);
-      timer = setTimeout(() => { taps = 0; }, 900);
-
-      if (taps >= 3) {
-        taps = 0;
-        const entered = prompt("Code vendeur (invisible au client):");
-        if (entered !== null) setCoupon(entered, "seller_triple_tap");
-      }
+    servicesDropdown?.querySelectorAll(".dropdown-menu a")?.forEach(a => {
+      a.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 860px)").matches) {
+          servicesDropdown.classList.remove("open");
+          servicesBtn?.setAttribute("aria-expanded", "false");
+        }
+      });
     });
-  })();
 
-  // Référence: dropdown + champ texte
-  const sellerSelect = document.getElementById("sellerSelect");
-  const sellerName = document.getElementById("sellerName");
+    // ===============================
+    // ✅ FORM PRO: Formspree
+    // ===============================
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/XXXXYYYY"; // <-- remplace ça
 
-  function toggleSellerInput(){
-    const show = (sellerSelect?.value === "Saisir");
-    if (sellerName) sellerName.style.display = show ? "block" : "none";
-    if (!show && sellerName) sellerName.value = "";
-  }
+    const form = document.getElementById("quoteForm");
+    const submitBtn = document.getElementById("submitBtn");
 
-  function getSellerValue(){
-    const v = sellerSelect?.value || "Site web";
-    if (v === "Saisir") {
-      const typed = (sellerName?.value || "").trim();
-      return typed ? typed : "—";
+    // Coupon config (ne s'affiche PAS sur le site)
+    const COUPON_CODE = "PIRATE10";
+    const COUPON_PCT = 10;
+
+    const couponInput = document.getElementById("coupon");
+    const couponStatus = document.getElementById("couponStatus");
+
+    function normalizeCoupon(v){
+      return (v || "").trim().toUpperCase().replace(/\s+/g, "");
     }
-    return v;
-  }
-
-  sellerSelect?.addEventListener("change", toggleSellerInput);
-  toggleSellerInput();
-
-  // Validation + UI
-  const formError = document.getElementById("formError");
-  const formSuccess = document.getElementById("formSuccess");
-
-  function show(el){ el?.classList.add("show"); }
-  function hide(el){ el?.classList.remove("show"); }
-
-  function clearFieldError(el, errId){
-    el?.classList.remove("field-error");
-    const box = document.getElementById(errId);
-    if (box) { box.style.display = "none"; box.textContent = ""; }
-  }
-
-  function setFieldError(el, errId, msg){
-    el?.classList.add("field-error");
-    const box = document.getElementById(errId);
-    if (box) { box.style.display = "block"; box.textContent = msg; }
-  }
-
-  function focusField(el){
-    try { el?.focus(); el?.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
-  }
-
-  function validateRequired(){
-    hide(formError);
-    hide(formSuccess);
-
-    const nameEl = document.getElementById("name");
-    const phoneEl = document.getElementById("phone");
-    const serviceEl = document.getElementById("service");
-    const cityEl = document.getElementById("city");
-    const detailsEl = document.getElementById("details");
-
-    clearFieldError(nameEl, "err-name");
-    clearFieldError(phoneEl, "err-phone");
-    clearFieldError(serviceEl, "err-service");
-    clearFieldError(cityEl, "err-city");
-    clearFieldError(detailsEl, "err-details");
-
-    const name = nameEl.value.trim();
-    const phone = phoneEl.value.trim();
-    const service = serviceEl.value;
-    const city = cityEl.value.trim();
-    const details = detailsEl.value.trim();
-
-    if (!name){
-      show(formError);
-      setFieldError(nameEl, "err-name", "Nom* est obligatoire.");
-      focusField(nameEl);
-      return null;
-    }
-    if (!phone){
-      show(formError);
-      setFieldError(phoneEl, "err-phone", "Téléphone* est obligatoire.");
-      focusField(phoneEl);
-      return null;
-    }
-    if (!service){
-      show(formError);
-      setFieldError(serviceEl, "err-service", "Service* est obligatoire.");
-      focusField(serviceEl);
-      return null;
-    }
-    if (!city){
-      show(formError);
-      setFieldError(cityEl, "err-city", "Ville / secteur* est obligatoire.");
-      focusField(cityEl);
-      return null;
-    }
-    if (!details){
-      show(formError);
-      setFieldError(detailsEl, "err-details", "Détails* est obligatoire.");
-      focusField(detailsEl);
-      return null;
+    function getCouponResult(){
+      const entered = normalizeCoupon(couponInput?.value);
+      if (!entered) return { applied:false, code:"" };
+      if (entered === COUPON_CODE) return { applied:true, code:entered };
+      return { applied:false, code:entered, invalid:true };
     }
 
-    return { name, phone, service, city, details };
-  }
+    function renderCouponStatus(){
+      const res = getCouponResult();
 
-  // Retire l’erreur quand l’utilisateur corrige
-  const mapErr = {
-    name: "err-name",
-    phone: "err-phone",
-    service: "err-service",
-    city: "err-city",
-    details: "err-details"
-  };
+      if (!res.code){
+        couponStatus.innerHTML = `
+          <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
+          <span>Ajoute un code promo si applicable.</span>
+        `;
+        return;
+      }
+      if (res.applied){
+        couponStatus.innerHTML = `
+          <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
+          <span><strong>Code promo appliqué</strong> (${COUPON_PCT}% de rabais)</span>
+        `;
+        return;
+      }
+      couponStatus.innerHTML = `
+        <i class="fa-solid fa-circle-xmark bad" aria-hidden="true"></i>
+        <span><strong>Code promo invalide</strong></span>
+      `;
+    }
 
-  ["name","phone","service","city","details"].forEach((id) => {
-    const el = document.getElementById(id);
-    const errId = mapErr[id];
+    couponInput?.addEventListener("input", renderCouponStatus);
+    renderCouponStatus();
 
-    const clear = () => {
-      hide(formError);
+    // Référence: dropdown + champ texte
+    const sellerSelect = document.getElementById("sellerSelect");
+    const sellerName = document.getElementById("sellerName");
+
+    function toggleSellerInput(){
+      const show = (sellerSelect?.value === "Saisir");
+      if (sellerName) sellerName.style.display = show ? "block" : "none";
+      if (!show && sellerName) sellerName.value = "";
+    }
+    function getSellerValue(){
+      const v = sellerSelect?.value || "Site web";
+      if (v === "Saisir") {
+        const typed = (sellerName?.value || "").trim();
+        return typed ? typed : "—";
+      }
+      return v;
+    }
+    sellerSelect?.addEventListener("change", toggleSellerInput);
+    toggleSellerInput();
+
+    // Validation + UI
+    const formError = document.getElementById("formError");
+    const formSuccess = document.getElementById("formSuccess");
+
+    function show(el){ el?.classList.add("show"); }
+    function hide(el){ el?.classList.remove("show"); }
+
+    function clearFieldError(el, errId){
       el?.classList.remove("field-error");
       const box = document.getElementById(errId);
       if (box) { box.style.display = "none"; box.textContent = ""; }
-    };
+    }
+    function setFieldError(el, errId, msg){
+      el?.classList.add("field-error");
+      const box = document.getElementById(errId);
+      if (box) { box.style.display = "block"; box.textContent = msg; }
+    }
+    function focusField(el){
+      try { el?.focus(); el?.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
+    }
 
-    el?.addEventListener("input", clear);
-    el?.addEventListener("change", clear);
-  });
+    function validateRequired(){
+      hide(formError); hide(formSuccess);
 
-  function setSubmitting(isSubmitting){
-    if (!submitBtn) return;
-    submitBtn.disabled = isSubmitting;
-    submitBtn.innerHTML = isSubmitting
-      ? '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours...'
-      : '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande';
-  }
+      const nameEl = document.getElementById("name");
+      const phoneEl = document.getElementById("phone");
+      const serviceEl = document.getElementById("service");
+      const cityEl = document.getElementById("city");
+      const detailsEl = document.getElementById("details");
 
-  async function postToFormspree(payload){
-    const fd = new FormData();
-    Object.entries(payload).forEach(([k,v]) => fd.append(k, v ?? ""));
-    fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
+      clearFieldError(nameEl, "err-name");
+      clearFieldError(phoneEl, "err-phone");
+      clearFieldError(serviceEl, "err-service");
+      clearFieldError(cityEl, "err-city");
+      clearFieldError(detailsEl, "err-details");
 
-    const res = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: fd
+      const name = nameEl.value.trim();
+      const phone = phoneEl.value.trim();
+      const service = serviceEl.value;
+      const city = cityEl.value.trim();
+      const details = detailsEl.value.trim();
+
+      if (!name){ show(formError); setFieldError(nameEl, "err-name", "Nom* est obligatoire."); focusField(nameEl); return null; }
+      if (!phone){ show(formError); setFieldError(phoneEl, "err-phone", "Téléphone* est obligatoire."); focusField(phoneEl); return null; }
+      if (!service){ show(formError); setFieldError(serviceEl, "err-service", "Service* est obligatoire."); focusField(serviceEl); return null; }
+      if (!city){ show(formError); setFieldError(cityEl, "err-city", "Ville / secteur* est obligatoire."); focusField(cityEl); return null; }
+      if (!details){ show(formError); setFieldError(detailsEl, "err-details", "Détails* est obligatoire."); focusField(detailsEl); return null; }
+
+      return { name, phone, service, city, details };
+    }
+
+    // Retire l’erreur quand l’utilisateur corrige
+    const mapErr = { name: "err-name", phone: "err-phone", service: "err-service", city: "err-city", details: "err-details" };
+    ["name","phone","service","city","details"].forEach((id) => {
+      const el = document.getElementById(id);
+      const errId = mapErr[id];
+      const clear = () => {
+        hide(formError);
+        el?.classList.remove("field-error");
+        const box = document.getElementById(errId);
+        if (box) { box.style.display = "none"; box.textContent = ""; }
+      };
+      el?.addEventListener("input", clear);
+      el?.addEventListener("change", clear);
     });
 
-    let data = null;
-    try { data = await res.json(); } catch(e) {}
-
-    if (!res.ok) {
-      const msg = (data && data.errors && data.errors[0] && data.errors[0].message)
-        ? data.errors[0].message
-        : "Impossible d’envoyer pour le moment. Réessaie ou appelle-nous.";
-      throw new Error(msg);
+    function setSubmitting(isSubmitting){
+      if (!submitBtn) return;
+      submitBtn.disabled = isSubmitting;
+      submitBtn.innerHTML = isSubmitting
+        ? '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours...'
+        : '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande';
     }
 
-    return data;
-  }
+    async function postToFormspree(payload){
+      const fd = new FormData();
+      Object.entries(payload).forEach(([k,v]) => fd.append(k, v ?? ""));
+
+      fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: fd
+      });
+
+      let data = null;
+      try { data = await res.json(); } catch(e) {}
+
+      if (!res.ok) {
+        const msg =
+          (data && data.errors && data.errors[0] && data.errors[0].message)
+            ? data.errors[0].message
+            : "Impossible d’envoyer pour le moment. Réessaie ou appelle-nous.";
+        throw new Error(msg);
+      }
+      return data;
+    }
 
     form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    const data = validateRequired();
-    if (!data) return;
+      const data = validateRequired();
+      if (!data) return;
 
-    const { name, phone, service, city, details } = data;
-    const reference = getSellerValue();
+      if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("XXXXYYYY")) {
+        show(formError);
+        formError.querySelector("div").innerHTML =
+          "<strong>Config manquante.</strong> Ajoute ton endpoint Formspree (FORMSPREE_ENDPOINT) dans le code.";
+        return;
+      }
 
-    const couponValue = cleanCode(couponInput?.value || "");
-    const couponMethod = couponEntryMethod?.value || "none";
+      const { name, phone, service, city, details } = data;
+      const reference = getSellerValue();
+      const couponRes = getCouponResult();
 
-    const payload = {
-      name,
-      phone,
-      service,
-      city,
-      details,
+      const payload = {
+        name, phone, service, city, details,
+        reference,
+        coupon: couponRes.code || "-",
+        rabais: couponRes.applied ? (COUPON_PCT + "% (appliqué)") : (couponRes.code ? "non appliqué" : "-"),
+        source: "site_web_piratesdelasphalte",
+        page: window.location.href,
+        userAgent: navigator.userAgent
+      };
 
-      reference,
-      coupon: couponValue || "-",
-      couponEntryMethod: couponMethod,
+      hide(formError); hide(formSuccess);
+      setSubmitting(true);
 
-      source: "site_web_piratesdelasphalte",
-      page: window.location.href,
-      userAgent: navigator.userAgent
-    };
-
-    hide(formError);
-    hide(formSuccess);
-    setSubmitting(true);
-
-    try {
-      await postToFormspree(payload);
-
-      // Event GA4 optionnel (tracker leads)
       try {
-        gtag('event', 'lead_submit', {
-          service: service,
-          city: city,
-          coupon: payload.coupon,
-          reference: reference,
-          transport_type: 'beacon'
-        });
-      } catch(e) {}
+        await postToFormspree(payload);
 
-      show(formSuccess);
-      form.reset();
-      toggleSellerInput();
-      setCoupon("", "none");
+        // GA4 lead tracking (optionnel)
+        try {
+          gtag('event', 'lead_submit', {
+            service: service,
+            city: city,
+            coupon: payload.coupon,
+            reference: reference,
+            transport_type: 'beacon'
+          });
+        } catch(e) {}
 
-      try { formSuccess.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
+        show(formSuccess);
+        form.reset();
+        renderCouponStatus();
+        toggleSellerInput();
 
-    } catch (err) {
-      show(formError);
-      const msg = (err && err.message) ? err.message : "Erreur lors de l’envoi. Réessaie ou appelle-nous.";
-      const msgBox = formError.querySelector("div");
-      if (msgBox) msgBox.innerHTML = `<strong>Oups.</strong> ${msg}`;
-    } finally {
-      setSubmitting(false);
-    }
-  });
-</script>
-
+        try { formSuccess.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e) {}
+      } catch (err) {
+        show(formError);
+        const msg = (err && err.message) ? err.message : "Erreur lors de l’envoi. Réessaie ou appelle-nous.";
+        formError.querySelector("div").innerHTML = `<strong>Oups.</strong> ${msg}`;
+      } finally {
+        setSubmitting(false);
+      }
+    });
+  </script>
 </body>
 </html>
