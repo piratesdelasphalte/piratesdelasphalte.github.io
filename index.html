@@ -72,9 +72,6 @@
     .container { max-width: 1150px; margin: auto; padding: 0 20px; }
     :focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
 
-    /* ===============================
-       HEADER / NAV
-    =============================== */
     header{
       position: sticky; top: 0; z-index: 50;
       background: rgba(14,14,14,0.58);
@@ -232,9 +229,6 @@
       .brand .brand-text{ font-size: 1.35rem; }
     }
 
-    /* ===============================
-       HERO
-    =============================== */
     .hero { padding: 80px 0 40px; }
     .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 22px; align-items: start; }
     .hero-card {
@@ -296,9 +290,6 @@
       .hero { padding-top: 46px; }
     }
 
-    /* ===============================
-       SECTIONS + CARDS
-    =============================== */
     section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.08); scroll-margin-top: 90px; }
     .section-head { margin-bottom: 22px; }
     h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
@@ -350,7 +341,6 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
-    /* Section spécifiques (paysagement / déneigement) */
     #paysagement { background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92)); color: #111; }
     #paysagement .sub { color: rgba(0,0,0,0.65); }
     #paysagement .card { background: rgba(255,255,255,0.88); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
@@ -363,9 +353,6 @@
     #deneigement .card h4, #deneigement .card p { color: #111; }
     #deneigement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
 
-    /* ===============================
-       FORM
-    =============================== */
     .form { display: grid; gap: 10px; margin-top: 14px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
@@ -421,9 +408,6 @@
     }
     .help-error{ margin-top: 6px; font-size: 0.92rem; color: rgba(255, 200, 200, 0.95); }
 
-    /* ===============================
-       FOOTER + QUICKBAR
-    =============================== */
     footer {
       margin-top: 10px;
       background: linear-gradient(90deg, #111, #222);
@@ -473,9 +457,6 @@
 </head>
 
 <body>
-  <!-- ===============================
-       HEADER
-  =============================== -->
   <header>
     <div class="container">
       <div class="topbar">
@@ -523,9 +504,6 @@
     </div>
   </header>
 
-  <!-- ===============================
-       HERO
-  =============================== -->
   <main id="top" class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -591,204 +569,170 @@
     </div>
   </main>
 
-  <!-- ===============================
-       SERVICES: ASPHALTAGE
-  =============================== -->
-  <section id="asphaltage">
-    <div class="container">
-      <div class="section-head">
-        <h3>Asphaltage</h3>
-        <p class="sub">Entrées, stationnements, chemins d’accès: préparation solide, nivelage propre, finition durable.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
-          <h4>Entrées & stationnements</h4>
-          <p>Résidentiel ou commercial, surface uniforme et drainage pensé.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
-          <h4>Préparation & fondation</h4>
-          <p>Excavation au besoin, compaction, base stable pour éviter l’affaissement.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></div>
-          <h4>Nivelage précis</h4>
-          <p>Pentes contrôlées pour l’écoulement et une finition propre.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================
-       SERVICES: RÉPARATIONS
-  =============================== -->
-  <section id="reparation">
-    <div class="container">
-      <div class="section-head">
-        <h3>Réparations & entretien</h3>
-        <p class="sub">Fissures, nids-de-poule, affaissements: on remet la surface en état pour prolonger sa durée de vie.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
-          <h4>Patch / réparation localisée</h4>
-          <p>Correction ciblée pour zones endommagées (nids-de-poule, trous, bords).</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-crack" aria-hidden="true"></i></div>
-          <h4>Scellant de fissures</h4>
-          <p>Réduit l’infiltration d’eau et ralentit la détérioration.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
-          <h4>Entretien préventif</h4>
-          <p>Conseils + interventions simples pour garder ton asphalte solide.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================
-       SERVICES: DÉNEIGEMENT
-  =============================== -->
-  <section id="deneigement">
-    <div class="container">
-      <div class="section-head">
-        <h3>Déneigement</h3>
-        <p class="sub">Service hivernal fiable: entrées, stationnements, accès. Rapidité, sécurité, et passages dégagés.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-snowplow" aria-hidden="true"></i></div>
-          <h4>Entrées & stationnements</h4>
-          <p>Déblaiement efficace pour garder l’accès dégagé.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
-          <h4>Accès & chemins</h4>
-          <p>Gestion des accumulations et passage sécuritaire.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
-          <h4>Priorité sécurité</h4>
-          <p>Zones de circulation traitées avec attention (visibilité, dégagement).</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================
-       SERVICES: PAYSAGEMENT / EXCAVATION
-  =============================== -->
-  <section id="paysagement">
-    <div class="container">
-      <div class="section-head">
-        <h3>Paysagement & excavation</h3>
-        <p class="sub">Aménagement extérieur complet: préparation du terrain, tourbe, pavé uni, excavation et finitions.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
-          <h4>Paysagement</h4>
-          <p>Mise en forme du terrain, finition propre, résultats durables.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div>
-          <h4>Excavation</h4>
-          <p>Excavation pour préparation, nivelage, fondations de projets extérieurs.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-          <h4>Tourbe</h4>
-          <p>Préparation du sol + installation de tourbe pour une pelouse propre.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div>
-          <h4>Pavé uni</h4>
-          <p>Allées, terrasses, bordures: base compacte et pose solide.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
-          <h4>Taille haies de cèdre</h4>
-          <p>Taille propre pour garder une ligne nette et une bonne santé des haies.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-tree" aria-hidden="true"></i></div>
-          <h4>Finitions & propreté</h4>
-          <p>On laisse le terrain propre et on s’assure que tout est clair.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================
-       POURQUOI NOUS
-  =============================== -->
+  <!-- ✅ POURQUOI -->
   <section id="pourquoi">
     <div class="container">
       <div class="section-head">
-        <h3>Pourquoi Pirates de l’Asphalte</h3>
-        <p class="sub">Une approche simple: bien préparer, bien exécuter, bien finir.</p>
+        <div>
+          <h3>Pourquoi choisir Pirates de l’Asphalte</h3>
+          <p class="sub">Une approche simple: bien préparer, bien exécuter, et livrer un résultat durable.</p>
+        </div>
       </div>
 
       <div class="grid">
         <div class="card">
-          <div class="icon"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
-          <h4>Qualité d’exécution</h4>
-          <p>On vise le résultat propre et durable, pas le “vite fait”.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
-          <h4>Communication claire</h4>
-          <p>On explique ce qui sera fait, et on respecte ce qui est convenu.</p>
+          <div class="icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+          <h4>Travail propre et durable</h4>
+          <p>Préparation, compaction et finition selon les règles de l’art.</p>
         </div>
         <div class="card">
           <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
           <h4>Soumission rapide</h4>
-          <p>Formulaire simple, réponse rapide, options adaptées.</p>
+          <p>On répond vite et on t’explique clairement ce qui est nécessaire.</p>
         </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+          <h4>Équipe fiable</h4>
+          <p>Communication simple, chantier organisé, résultats constants.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
       </div>
     </div>
   </section>
 
-  <!-- ===============================
-       ZONES DESSERVIES
-  =============================== -->
+  <!-- ✅ ZONES -->
   <section id="zones">
     <div class="container">
       <div class="section-head">
-        <h3>Zones desservies</h3>
-        <p class="sub">On se déplace partout au Québec selon le projet. Écris ton secteur dans la soumission.</p>
+        <div>
+          <h3>Zones desservies</h3>
+          <p class="sub">On se déplace partout dans la province. Dis-nous ta ville et on confirme rapidement la disponibilité.</p>
+        </div>
       </div>
 
       <div class="grid">
         <div class="card">
-          <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
-          <h4>Montréal & alentours</h4>
-          <p>Montréal, Laval, Rive-Nord, Rive-Sud (selon disponibilité).</p>
-        </div>
-        <div class="card">
-          <div class="icon"><i class="fa-solid fa-mountain" aria-hidden="true"></i></div>
-          <h4>Laurentides</h4>
-          <p>Projets résidentiels et commerciaux, selon la taille du mandat.</p>
-        </div>
-        <div class="card">
           <div class="icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
           <h4>Partout au Québec</h4>
-          <p>Dis-nous ta ville et le type de travaux: on te confirme.</p>
+          <p>Résidentiel et commercial, selon le type de projet.</p>
         </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+          <h4>Déplacements planifiés</h4>
+          <p>On regroupe les secteurs pour offrir un service efficace.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i></div>
+          <h4>Confirmation rapide</h4>
+          <p>Appelle ou remplis la soumission: on te confirme en peu de temps.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
       </div>
     </div>
   </section>
 
-  <!-- ===============================
-       SOUMISSION (FORM)
-  =============================== -->
+  <!-- ✅ ASPHALTAGE (6 cases) -->
+  <section id="asphaltage">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Asphaltage – services complets</h3>
+          <p class="sub">Entrées de cour, stationnements et surfaces complètes. On planifie, on nivelle, on draine, on compacte.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div><h4>Asphaltage résidentiel (entrées de cour)</h4><p>Finition propre, pente et drainage bien pensés.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div><h4>Asphaltage commercial et institutionnel</h4><p>Travaux planifiés, durables, adaptés au trafic.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div><h4>Stationnements complets (petites et grandes surfaces)</h4><p>Préparation + compaction pour un résultat solide.</p></div>
+
+        <div class="card"><div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div><h4>Reconstruction et récap complet</h4><p>On repart sur une base stable, nivelée, durable.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div><h4>Pavage en asphalte et pavé uni</h4><p>Bordures et transitions propres, pose soignée.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h4>Gestion des pentes et écoulement</h4><p>Moins de flaques, moins d’usure, plus durable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ RÉPARATIONS (6 cases) -->
+  <section id="reparation">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Réparations et entretien de l’asphalte</h3>
+          <p class="sub">On corrige avant que ça coûte plus cher: fissures, affaissements, nids-de-poule, usure.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div><h4>Patchs et nids-de-poule</h4><p>Réparations rapides et solides pour éviter l’aggravation.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div><h4>Correction de vallons et pentes</h4><p>Nivelage pour un drainage efficace et sécuritaire.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div><h4>Scellant protecteur</h4><p>Prolonge la vie de l’asphalte et protège la surface.</p></div>
+
+        <div class="card"><div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div><h4>Traitement des taches d’huile</h4><p>Nettoyage et traitement pour une surface plus propre.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div><h4>Décoloration de surface</h4><p>Entretien pour améliorer l’apparence et la protection.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h4>Usure et perte d’agrégats</h4><p>On stabilise la surface avant que ça se dégrade.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ PAYSAGEMENT (6 cases) -->
+  <section id="paysagement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Paysagement & excavation</h3>
+          <p class="sub">Préparation du terrain, finition propre et résultat durable.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div><h4>Paysagement</h4><p>Aménagement, remise à niveau et finition.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div><h4>Excavation</h4><p>Excavation légère, préparation de base et tranchées.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div><h4>Tourbe</h4><p>Pose de tourbe, préparation du sol et nivellement.</p></div>
+
+        <div class="card"><div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div><h4>Pavé uni</h4><p>Pose, bordures, compaction et finition.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div><h4>Taille de haies de cèdre</h4><p>Taille droite, nettoyage, évacuation des résidus.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h4>Nivellement & drainage</h4><p>Pentes, écoulement, prévention des flaques.</p></div>
+      </div>
+
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+        <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ DÉNEIGEMENT (6 cases) -->
+  <section id="deneigement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3>Déneigement – services hivernaux</h3>
+          <p class="sub">Priorité sécurité: accès dégagés, gestion de la glace et interventions efficaces.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card"><div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div><h4>Déneigement de toitures</h4><p>Réduction du poids et prévention des risques.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div><h4>Marches et escaliers</h4><p>Accès sécuritaires, dégagement propre et précis.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div><h4>Stationnements et entrées</h4><p>Déneigement efficace pour circulation fluide.</p></div>
+
+        <div class="card"><div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div><h4>Gestion glace et neige</h4><p>Interventions sécuritaires selon les conditions.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h4>Interventions rapides</h4><p>Présence rapide en cas d’accumulation importante.</p></div>
+        <div class="card"><div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div><h4>Finition des zones piétonnes</h4><p>Finition propre autour des accès et passages.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ SOUMISSION -->
   <section id="soumission">
     <div class="container">
       <div class="section-head">
@@ -896,9 +840,6 @@
     </div>
   </section>
 
-  <!-- ===============================
-       FOOTER
-  =============================== -->
   <footer>
     <div class="container">
       <p>© <span id="year"></span> Pirates de l’Asphalte</p>
@@ -911,9 +852,6 @@
     </div>
   </footer>
 
-  <!-- ===============================
-       QUICKBAR (MOBILE)
-  =============================== -->
   <div class="quickbar" aria-label="Actions rapides">
     <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
     <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
@@ -923,9 +861,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ===============================
-    // MENU MOBILE
-    // ===============================
+    // Menu mobile
     const menuBtn = document.getElementById("menuBtn");
     const nav = document.getElementById("nav");
     menuBtn?.addEventListener("click", () => {
@@ -964,7 +900,7 @@
     const form = document.getElementById("quoteForm");
     const submitBtn = document.getElementById("submitBtn");
 
-    // ✅ UTM: capture depuis l'URL (ex: ?utm_source=facebook&utm_campaign=hiver)
+    // ✅ UTM: capture depuis l'URL
     function fillUtmFields(){
       const p = new URLSearchParams(window.location.search);
       const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ""; };
@@ -978,7 +914,7 @@
     }
     fillUtmFields();
 
-    // ✅ Coupon: n'importe quel code est valide (sans afficher de code sur le site)
+    // ✅ Coupon: n'importe quel code est valide (sans afficher le code)
     const couponInput = document.getElementById("coupon");
     const couponStatus = document.getElementById("couponStatus");
 
@@ -1136,7 +1072,7 @@
       const data = validateRequired();
       if (!data) return;
 
-      // ✅ Re-capture UTM au submit (au cas où)
+      // ✅ Re-capture UTM au submit
       fillUtmFields();
 
       const { name, phone, service, city, details } = data;
