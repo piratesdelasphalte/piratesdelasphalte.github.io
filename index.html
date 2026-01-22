@@ -72,6 +72,9 @@
     .container { max-width: 1150px; margin: auto; padding: 0 20px; }
     :focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
 
+    /* ===============================
+       HEADER / NAV
+    =============================== */
     header{
       position: sticky; top: 0; z-index: 50;
       background: rgba(14,14,14,0.58);
@@ -229,6 +232,9 @@
       .brand .brand-text{ font-size: 1.35rem; }
     }
 
+    /* ===============================
+       HERO
+    =============================== */
     .hero { padding: 80px 0 40px; }
     .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 22px; align-items: start; }
     .hero-card {
@@ -290,6 +296,9 @@
       .hero { padding-top: 46px; }
     }
 
+    /* ===============================
+       SECTIONS + CARDS
+    =============================== */
     section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.08); scroll-margin-top: 90px; }
     .section-head { margin-bottom: 22px; }
     h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
@@ -341,6 +350,7 @@
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
 
+    /* Section spécifiques (paysagement / déneigement) */
     #paysagement { background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92)); color: #111; }
     #paysagement .sub { color: rgba(0,0,0,0.65); }
     #paysagement .card { background: rgba(255,255,255,0.88); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
@@ -353,6 +363,9 @@
     #deneigement .card h4, #deneigement .card p { color: #111; }
     #deneigement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
 
+    /* ===============================
+       FORM
+    =============================== */
     .form { display: grid; gap: 10px; margin-top: 14px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
@@ -408,6 +421,9 @@
     }
     .help-error{ margin-top: 6px; font-size: 0.92rem; color: rgba(255, 200, 200, 0.95); }
 
+    /* ===============================
+       FOOTER + QUICKBAR
+    =============================== */
     footer {
       margin-top: 10px;
       background: linear-gradient(90deg, #111, #222);
@@ -457,6 +473,9 @@
 </head>
 
 <body>
+  <!-- ===============================
+       HEADER
+  =============================== -->
   <header>
     <div class="container">
       <div class="topbar">
@@ -504,6 +523,9 @@
     </div>
   </header>
 
+  <!-- ===============================
+       HERO
+  =============================== -->
   <main id="top" class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -569,8 +591,204 @@
     </div>
   </main>
 
-  <!-- ... (sections inchangées) ... -->
+  <!-- ===============================
+       SERVICES: ASPHALTAGE
+  =============================== -->
+  <section id="asphaltage">
+    <div class="container">
+      <div class="section-head">
+        <h3>Asphaltage</h3>
+        <p class="sub">Entrées, stationnements, chemins d’accès: préparation solide, nivelage propre, finition durable.</p>
+      </div>
 
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
+          <h4>Entrées & stationnements</h4>
+          <p>Résidentiel ou commercial, surface uniforme et drainage pensé.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+          <h4>Préparation & fondation</h4>
+          <p>Excavation au besoin, compaction, base stable pour éviter l’affaissement.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></div>
+          <h4>Nivelage précis</h4>
+          <p>Pentes contrôlées pour l’écoulement et une finition propre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       SERVICES: RÉPARATIONS
+  =============================== -->
+  <section id="reparation">
+    <div class="container">
+      <div class="section-head">
+        <h3>Réparations & entretien</h3>
+        <p class="sub">Fissures, nids-de-poule, affaissements: on remet la surface en état pour prolonger sa durée de vie.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+          <h4>Patch / réparation localisée</h4>
+          <p>Correction ciblée pour zones endommagées (nids-de-poule, trous, bords).</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-crack" aria-hidden="true"></i></div>
+          <h4>Scellant de fissures</h4>
+          <p>Réduit l’infiltration d’eau et ralentit la détérioration.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+          <h4>Entretien préventif</h4>
+          <p>Conseils + interventions simples pour garder ton asphalte solide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       SERVICES: DÉNEIGEMENT
+  =============================== -->
+  <section id="deneigement">
+    <div class="container">
+      <div class="section-head">
+        <h3>Déneigement</h3>
+        <p class="sub">Service hivernal fiable: entrées, stationnements, accès. Rapidité, sécurité, et passages dégagés.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-snowplow" aria-hidden="true"></i></div>
+          <h4>Entrées & stationnements</h4>
+          <p>Déblaiement efficace pour garder l’accès dégagé.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+          <h4>Accès & chemins</h4>
+          <p>Gestion des accumulations et passage sécuritaire.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+          <h4>Priorité sécurité</h4>
+          <p>Zones de circulation traitées avec attention (visibilité, dégagement).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       SERVICES: PAYSAGEMENT / EXCAVATION
+  =============================== -->
+  <section id="paysagement">
+    <div class="container">
+      <div class="section-head">
+        <h3>Paysagement & excavation</h3>
+        <p class="sub">Aménagement extérieur complet: préparation du terrain, tourbe, pavé uni, excavation et finitions.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
+          <h4>Paysagement</h4>
+          <p>Mise en forme du terrain, finition propre, résultats durables.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div>
+          <h4>Excavation</h4>
+          <p>Excavation pour préparation, nivelage, fondations de projets extérieurs.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+          <h4>Tourbe</h4>
+          <p>Préparation du sol + installation de tourbe pour une pelouse propre.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div>
+          <h4>Pavé uni</h4>
+          <p>Allées, terrasses, bordures: base compacte et pose solide.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+          <h4>Taille haies de cèdre</h4>
+          <p>Taille propre pour garder une ligne nette et une bonne santé des haies.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-tree" aria-hidden="true"></i></div>
+          <h4>Finitions & propreté</h4>
+          <p>On laisse le terrain propre et on s’assure que tout est clair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       POURQUOI NOUS
+  =============================== -->
+  <section id="pourquoi">
+    <div class="container">
+      <div class="section-head">
+        <h3>Pourquoi Pirates de l’Asphalte</h3>
+        <p class="sub">Une approche simple: bien préparer, bien exécuter, bien finir.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
+          <h4>Qualité d’exécution</h4>
+          <p>On vise le résultat propre et durable, pas le “vite fait”.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
+          <h4>Communication claire</h4>
+          <p>On explique ce qui sera fait, et on respecte ce qui est convenu.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
+          <h4>Soumission rapide</h4>
+          <p>Formulaire simple, réponse rapide, options adaptées.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       ZONES DESSERVIES
+  =============================== -->
+  <section id="zones">
+    <div class="container">
+      <div class="section-head">
+        <h3>Zones desservies</h3>
+        <p class="sub">On se déplace partout au Québec selon le projet. Écris ton secteur dans la soumission.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+          <h4>Montréal & alentours</h4>
+          <p>Montréal, Laval, Rive-Nord, Rive-Sud (selon disponibilité).</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-mountain" aria-hidden="true"></i></div>
+          <h4>Laurentides</h4>
+          <p>Projets résidentiels et commerciaux, selon la taille du mandat.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="fa-solid fa-map" aria-hidden="true"></i></div>
+          <h4>Partout au Québec</h4>
+          <p>Dis-nous ta ville et le type de travaux: on te confirme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       SOUMISSION (FORM)
+  =============================== -->
   <section id="soumission">
     <div class="container">
       <div class="section-head">
@@ -678,6 +896,9 @@
     </div>
   </section>
 
+  <!-- ===============================
+       FOOTER
+  =============================== -->
   <footer>
     <div class="container">
       <p>© <span id="year"></span> Pirates de l’Asphalte</p>
@@ -690,6 +911,9 @@
     </div>
   </footer>
 
+  <!-- ===============================
+       QUICKBAR (MOBILE)
+  =============================== -->
   <div class="quickbar" aria-label="Actions rapides">
     <a class="primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
     <a href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission</a>
@@ -699,7 +923,9 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Menu mobile
+    // ===============================
+    // MENU MOBILE
+    // ===============================
     const menuBtn = document.getElementById("menuBtn");
     const nav = document.getElementById("nav");
     menuBtn?.addEventListener("click", () => {
