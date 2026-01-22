@@ -1088,7 +1088,6 @@
     </div>
 
     <div class="hero-card" style="padding:22px;">
-      <!-- NOTE: on garde le form, mais l'envoi se fait en JS vers Formspree -->
       <form class="form" id="quoteForm" novalidate>
         <div class="form-error" id="formError" role="alert" aria-live="polite">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
@@ -1233,7 +1232,6 @@
   // ===============================
   // ✅ FORM PRO: Formspree (sans mailto)
   // ===============================
-  // ✅ Ton endpoint actuel (vu sur ta capture)
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeeajpgy";
 
   const form = document.getElementById("quoteForm");
@@ -1431,7 +1429,6 @@
   async function postToFormspree(payload){
     const fd = new FormData();
     Object.entries(payload).forEach(([k,v]) => fd.append(k, v ?? ""));
-
     fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
 
     const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -1453,7 +1450,7 @@
     return data;
   }
 
-  form?.addEventListener("submit", async (e) => {
+    form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const data = validateRequired();
@@ -1509,7 +1506,8 @@
     } catch (err) {
       show(formError);
       const msg = (err && err.message) ? err.message : "Erreur lors de l’envoi. Réessaie ou appelle-nous.";
-      formError.querySelector("div").innerHTML = `<strong>Oups.</strong> ${msg}`;
+      const msgBox = formError.querySelector("div");
+      if (msgBox) msgBox.innerHTML = `<strong>Oups.</strong> ${msg}`;
     } finally {
       setSubmitting(false);
     }
