@@ -2,12 +2,50 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement</title>
   <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, déneigement, paysagement et excavation. Service fiable au Québec. Soumission rapide." />
 
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
+  <meta property="og:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="fr_CA" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
+  <meta name="twitter:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+
+  <!-- Favicons (racine du site) -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+
+  <!-- Perf -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preload" href="/assets/css/styles.css" as="style" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- CSS (externe) -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 
   <!-- ✅ Google tag (gtag.js) - GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
@@ -18,28 +56,6 @@
     gtag('config', 'G-ZS180NNJS4');
   </script>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
-  <meta property="og:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
-
-  <!-- Perf -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
-
-  <!-- CSS (externe) -->
-  <link rel="stylesheet" href="/assets/css/styles.css" />
-
   <!-- Schema LocalBusiness -->
   <script type="application/ld+json">
   {
@@ -47,10 +63,19 @@
     "@type": "LocalBusiness",
     "name": "Pirates de l’Asphalte",
     "url": "https://piratesdelasphalte.github.io/",
+    "logo": "https://piratesdelasphalte.github.io/pirates-de-l-asphalte-logo.png",
+    "image": "https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png",
     "telephone": "+1-514-979-7832",
     "email": "asphaltequebec@hotmail.ca",
     "areaServed": ["Québec", "Province de Québec", "Partout au Québec"],
-    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
+    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+1-514-979-7832",
+      "contactType": "customer service",
+      "areaServed": "CA-QC",
+      "availableLanguage": ["fr"]
+    }]
   }
   </script>
 </head>
