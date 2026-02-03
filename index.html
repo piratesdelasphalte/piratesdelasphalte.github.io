@@ -442,26 +442,15 @@
     </div>
   </section>
 
-  <!-- ✅ FOOTER 2 COLONNES + 4 PAGES VILLES -->
-  <footer>
+  <!-- ✅ FOOTER 2 COLONNES + 4 PAGES VILLES (SANS INLINE CSS) -->
+  <footer class="site-footer">
     <div class="container">
-      <div style="
-        display:flex;
-        gap:16px;
-        justify-content:space-between;
-        align-items:flex-start;
-        flex-wrap:wrap;
-        padding:18px 0;
-      ">
+      <div class="footer-grid">
         <!-- Colonne gauche -->
-        <div style="min-width:240px; flex:1;">
-          <p style="margin:0;">© <span id="year"></span> Pirates de l’Asphalte</p>
-
-          <p style="margin:.4rem 0 0;">
-            Asphaltage, réparations, déneigement & paysagement au Québec
-          </p>
-
-          <p style="margin:.4rem 0 0;">
+        <div class="footer-col">
+          <p class="footer-copy">© <span id="year"></span> Pirates de l’Asphalte</p>
+          <p class="footer-desc">Asphaltage, réparations, déneigement & paysagement au Québec.</p>
+          <p class="footer-link">
             <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
               <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
             </a>
@@ -469,23 +458,16 @@
         </div>
 
         <!-- Colonne droite -->
-        <div style="min-width:260px; flex:1;">
-          <p style="margin:0; font-weight:700;">
+        <div class="footer-col">
+          <p class="footer-title">
             <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Villes
           </p>
 
-          <ul style="
-            list-style:none;
-            padding:0;
-            margin:.5rem 0 0;
-            display:grid;
-            grid-template-columns:repeat(2, minmax(0,1fr));
-            gap:.35rem .9rem;
-          ">
-            <li><a href="/asphaltage-laval/">Asphaltage Laval</a></li>
-            <li><a href="/asphaltage-longueuil/">Asphaltage Longueuil</a></li>
-            <li><a href="/asphaltage-montreal/">Asphaltage Montréal</a></li>
-            <li><a href="/asphaltage-terrebonne/">Asphaltage Terrebonne</a></li>
+          <ul class="footer-cities">
+            <li><a href="/asphaltage-laval/"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage Laval</a></li>
+            <li><a href="/asphaltage-longueuil/"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage Longueuil</a></li>
+            <li><a href="/asphaltage-montreal/"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage Montréal</a></li>
+            <li><a href="/asphaltage-terrebonne/"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage Terrebonne</a></li>
           </ul>
         </div>
       </div>
