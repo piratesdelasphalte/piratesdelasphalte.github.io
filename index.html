@@ -442,15 +442,53 @@
     </div>
   </section>
 
+  <!-- ✅ FOOTER 2 COLONNES + 4 PAGES VILLES -->
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> Pirates de l’Asphalte</p>
-      <p>
-        Asphaltage, réparations, déneigement & paysagement au Québec |
-        <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
-          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
-        </a>
-      </p>
+      <div style="
+        display:flex;
+        gap:16px;
+        justify-content:space-between;
+        align-items:flex-start;
+        flex-wrap:wrap;
+        padding:18px 0;
+      ">
+        <!-- Colonne gauche -->
+        <div style="min-width:240px; flex:1;">
+          <p style="margin:0;">© <span id="year"></span> Pirates de l’Asphalte</p>
+
+          <p style="margin:.4rem 0 0;">
+            Asphaltage, réparations, déneigement & paysagement au Québec
+          </p>
+
+          <p style="margin:.4rem 0 0;">
+            <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook
+            </a>
+          </p>
+        </div>
+
+        <!-- Colonne droite -->
+        <div style="min-width:260px; flex:1;">
+          <p style="margin:0; font-weight:700;">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Villes
+          </p>
+
+          <ul style="
+            list-style:none;
+            padding:0;
+            margin:.5rem 0 0;
+            display:grid;
+            grid-template-columns:repeat(2, minmax(0,1fr));
+            gap:.35rem .9rem;
+          ">
+            <li><a href="/asphaltage-laval/">Asphaltage Laval</a></li>
+            <li><a href="/asphaltage-longueuil/">Asphaltage Longueuil</a></li>
+            <li><a href="/asphaltage-montreal/">Asphaltage Montréal</a></li>
+            <li><a href="/asphaltage-terrebonne/">Asphaltage Terrebonne</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </footer>
 
