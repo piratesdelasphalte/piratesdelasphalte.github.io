@@ -386,19 +386,96 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .help-error{ margin-top: 6px; font-size: 0.92rem; color: rgba(255, 200, 200, 0.95); }
 
-/* ===== Footer ===== */
-footer {
+/* =========================================================
+   ===== Footer (UPDATED for 2 columns + cities)
+   Works with: <footer class="site-footer"> ... </footer>
+   Also keeps a safe fallback for plain <footer>.
+   ========================================================= */
+
+/* Base footer look (matches your theme) */
+footer{
   margin-top: 10px;
   background: linear-gradient(90deg, #111, #222);
-  color: #aaa;
+  color: rgba(234,234,234,0.72);
   font-size: 0.95rem;
   padding: 34px 0;
-  text-align: center;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
-footer a { color: #9ecbff; text-decoration: none; display:inline-flex; align-items:center; gap:8px; }
-footer a i{ color:#9ecbff; }
-footer a:hover { color: #66b0ff; text-decoration: underline; }
+footer a{
+  color: rgba(158,203,255,0.95);
+  text-decoration: none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+footer a i{ color: rgba(158,203,255,0.95); }
+footer a:hover{ color: #66b0ff; text-decoration: underline; }
+
+/* If footer is still “old style centered” (no classes), keep it readable */
+footer p{ margin: 0.35rem 0; }
+
+/* New layout classes (recommended) */
+.site-footer .footer-grid{
+  display:flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-align: left; /* important: so columns align cleanly */
+}
+.site-footer .footer-col{
+  min-width: 240px;
+  flex: 1;
+}
+
+/* Left column text rhythm */
+.site-footer .footer-copy{ margin:0; color: rgba(234,234,234,0.78); }
+.site-footer .footer-desc,
+.site-footer .footer-link{ margin: .45rem 0 0; color: rgba(234,234,234,0.68); }
+
+/* Title + icon */
+.site-footer .footer-title{
+  margin:0;
+  font-weight: 900;
+  color: rgba(234,234,234,0.82);
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.site-footer .footer-title i{ color: var(--accent); opacity: .95; }
+
+/* Cities grid */
+.site-footer .footer-cities{
+  list-style:none;
+  padding:0;
+  margin: .6rem 0 0;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: .35rem .9rem;
+}
+.site-footer .footer-cities a{
+  padding: 7px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.20);
+  color: rgba(234,234,234,0.88);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition: transform .15s ease, border-color .18s ease, background .18s ease;
+}
+.site-footer .footer-cities a:hover{
+  border-color: rgba(247,147,30,0.35);
+  background: rgba(247,147,30,0.10);
+  transform: translateY(-1px);
+  text-decoration: none; /* keeps button look */
+}
+
+/* Mobile */
+@media (max-width: 620px){
+  .site-footer .footer-grid{ text-align:left; }
+  .site-footer .footer-cities{ grid-template-columns: 1fr; }
+}
 
 /* ===== Quickbar ===== */
 .quickbar {
