@@ -507,6 +507,22 @@ footer p{ margin: 0.35rem 0; }
   body { padding-bottom: 76px; }
 }
 
+/* Honeypot anti-spam: invisible pour humains, présent dans le DOM */
+.hp{
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+.hp *{
+  width: 1px !important;
+  height: 1px !important;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
