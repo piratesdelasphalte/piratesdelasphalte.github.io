@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CA">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement</title>
-  <meta name="description" content="Pirates de l’Asphalte : asphaltage résidentiel et commercial, réparations, déneigement, paysagement et excavation. Service fiable au Québec. Soumission rapide." />
-
+  <!-- Indexing / language -->
+  <meta http-equiv="content-language" content="fr-CA" />
+  <meta name="language" content="fr-CA" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <link rel="canonical" href="https://piratesdelasphalte.github.io/" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
   <meta name="theme-color" content="#111111" />
+  <link rel="canonical" href="https://piratesdelasphalte.github.io/" />
+
+  <!-- Primary SEO (local intent) -->
+  <title>Asphaltage & réparation d’asphalte (QC) | Pirates de l’Asphalte | Soumission rapide</title>
+  <meta name="description" content="Asphaltage résidentiel et commercial au Québec: entrées de cour, stationnements, réparation d’asphalte (patchs, fissures, nids-de-poule), scellant, déneigement, paysagement et excavation. Soumission rapide: appel, texto ou formulaire." />
 
   <!-- Open Graph -->
-<meta property="og:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
-<meta property="og:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://piratesdelasphalte.github.io/" />
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://piratesdelasphalte.github.io/" />
+  <meta property="og:title" content="Asphaltage & réparation d’asphalte (QC) | Pirates de l’Asphalte" />
+  <meta property="og:description" content="Entrées de cour, stationnements, réparation d’asphalte, scellant, déneigement, paysagement et excavation. Soumission rapide." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
-<meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:type" content="image/png" />
-
-<meta property="og:locale" content="fr_CA" />
-  
   <!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Pirates de l’Asphalte | Asphaltage, réparations, déneigement & paysagement" />
-<meta name="twitter:description" content="Asphaltage, réparations, déneigement, paysagement et excavation. Soumission rapide au Québec." />
-<meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Asphaltage & réparation d’asphalte (QC) | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Entrées de cour, stationnements, réparation d’asphalte, scellant, déneigement, paysagement et excavation. Soumission rapide." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
-  <!-- Favicons (racine du site) -->
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -42,13 +48,23 @@
   <!-- Perf -->
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
+  <!-- ✅ Preload HERO image (LCP boost) -->
+  <link rel="preload"
+        as="image"
+        href="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+        imagesrcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w, /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+        imagesizes="100vw"
+        fetchpriority="high" />
+
+  <!-- CSS -->
   <link rel="preload" href="/assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
-
-  <!-- CSS (externe) -->
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- ✅ Google tag (gtag.js) - GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
@@ -56,10 +72,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-ZS180NNJS4');
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema LocalBusiness -->
+  <!-- Schema LocalBusiness (corrigé + renforcé) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -67,17 +83,40 @@
     "name": "Pirates de l’Asphalte",
     "url": "https://piratesdelasphalte.github.io/",
     "logo": "https://piratesdelasphalte.github.io/pirates-de-l-asphalte-logo.png",
-    "image": "https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png",
+    "image": [
+      "https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png"
+    ],
     "telephone": "+1-514-979-7832",
     "email": "asphaltequebec@hotmail.ca",
-    "areaServed": ["Québec", "Province de Québec", "Partout au Québec"],
-    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"],
+    "priceRange": "$$",
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Montréal" },
+      { "@type": "AdministrativeArea", "name": "Laval" },
+      { "@type": "AdministrativeArea", "name": "Longueuil" },
+      { "@type": "AdministrativeArea", "name": "Terrebonne" },
+      { "@type": "AdministrativeArea", "name": "Rive-Nord" },
+      { "@type": "AdministrativeArea", "name": "Rive-Sud" },
+      { "@type": "AdministrativeArea", "name": "Québec" }
+    ],
+    "serviceType": [
+      "Asphaltage",
+      "Pavage",
+      "Réparation d’asphalte",
+      "Scellant d’asphalte",
+      "Déneigement",
+      "Paysagement",
+      "Excavation",
+      "Pavé uni"
+    ],
+    "sameAs": [
+      "https://www.facebook.com/piratesdelsphalte/"
+    ],
     "contactPoint": [{
       "@type": "ContactPoint",
       "telephone": "+1-514-979-7832",
-      "contactType": "customer service",
+      "contactType": "Soumission",
       "areaServed": "CA-QC",
-      "availableLanguage": ["fr"]
+      "availableLanguage": ["fr-CA","fr"]
     }]
   }
   </script>
@@ -96,7 +135,7 @@
         </div>
 
         <div class="nav-wrap">
-          <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+          <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-controls="nav" aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
           </button>
 
