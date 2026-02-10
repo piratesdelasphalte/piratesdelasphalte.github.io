@@ -173,8 +173,9 @@
   <main id="top" class="hero" aria-label="Asphaltage et réparation d’asphalte au Québec">
   <div class="container">
     <div class="hero-grid">
+
+      <!-- 1) TEXTE -->
       <div class="hero-card">
-        <!-- ✅ H1 UNIQUE (SEO #1) -->
         <h1>Asphaltage & réparation d’asphalte au Québec (résidentiel et commercial)</h1>
 
         <p class="hero-sub">
@@ -199,27 +200,28 @@
             <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
           </a>
         </div>
-
-        <!-- ✅ Image hero (SEO + perf) -->
-        <figure class="hero-media" aria-label="Exemple d’asphaltage résidentiel au Québec">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
-                      /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
-              sizes="(max-width: 900px) 100vw, 52vw" />
-            <img
-              src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
-              width="1600"
-              height="900"
-              alt="Entrée de cour en asphalte neuve au Québec – asphaltage résidentiel professionnel"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high" />
-          </picture>
-        </figure>
       </div>
 
+      <!-- 2) IMAGE -->
+      <figure class="hero-media" aria-label="Exemple d’asphaltage résidentiel au Québec">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
+                    /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+            sizes="(max-width: 979px) 100vw, 40vw" />
+          <img
+            src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+            width="1600"
+            height="900"
+            alt="Entrée de cour en asphalte neuve au Québec – asphaltage résidentiel professionnel"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high" />
+        </picture>
+      </figure>
+
+      <!-- 3) CONTACT -->
       <aside class="contact-box" id="contact" aria-label="Coordonnées">
         <strong><i class="fa-solid fa-address-card" aria-hidden="true"></i> Nous joindre</strong>
 
@@ -260,6 +262,7 @@
           Réponse rapide. Travaux propres. Service au Québec.
         </div>
       </aside>
+
     </div>
   </div>
 </main>
@@ -559,6 +562,7 @@
   <a href="sms:+15149797832"><i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto</a>
 </div>
 
-<!-- JS (externe) -->
 <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
 </html>
