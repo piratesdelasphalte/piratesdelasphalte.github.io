@@ -632,9 +632,10 @@ header{
 }
 
 /* -------------------- Sections -------------------- */
-section{
-  padding: 42px 0 0;
+.section{
+  padding: clamp(44px, 6vw, 84px) 0;
   scroll-margin-top: 90px;
+  position: relative;
 }
 
 .section-head{
@@ -926,3 +927,60 @@ body[data-menu="open"]{
   header, .hero-slider-ui, .hero-progress, .quickbar{ display:none !important; }
   .hero-media{ box-shadow:none !important; }
 }
+
+/* =========================================================
+   SECTION THEMES (vert / bleu) — à coller à la FIN
+   ========================================================= */
+
+/* Base commune (marges + séparation propre) */
+.section{
+  position: relative;
+  padding: clamp(44px, 6vw, 84px) 0;
+  scroll-margin-top: 90px;
+}
+
+/* Un fond “soft” + bordure, sans casser ton design */
+.section::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  pointer-events:none;
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Toujours garder le contenu au-dessus du fond */
+.section > .container{
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- THEME DEFAULT (neutre) ---------- */
+.theme-default::before{
+  background:
+    radial-gradient(900px 260px at 14% 10%, rgba(247,147,30,.10), transparent 60%),
+    radial-gradient(900px 260px at 92% 8%, rgba(255,174,66,.08), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+}
+
+/* ---------- THEME GREEN (Paysagement) ---------- */
+.theme-green::before{
+  background:
+    radial-gradient(900px 320px at 12% 12%, rgba(46, 204, 113, .16), transparent 60%),
+    radial-gradient(900px 320px at 92% 10%, rgba(39, 174, 96, .12), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+}
+
+/* ---------- THEME BLUE (Déneigement) ---------- */
+.theme-snow::before{
+  background:
+    radial-gradient(900px 320px at 12% 12%, rgba(52, 152, 219, .16), transparent 60%),
+    radial-gradient(900px 320px at 92% 10%, rgba(41, 128, 185, .12), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+}
+
+/* (Optionnel) Un petit séparateur visuel entre sections */
+.section + .section{
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
