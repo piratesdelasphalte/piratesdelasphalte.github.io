@@ -530,58 +530,6 @@ footer p{ margin: 0.35rem 0; }
 
 /* ============================
    HERO FIX (3 blocs: texte + image + contact)
-   À coller à la FIN du styles.css
-   ============================ */
-
-/* 1) Hero grid en 3 colonnes sur desktop */
-@media (min-width: 980px){
-  .hero-grid{
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr) minmax(280px, 360px);
-    align-items: stretch;
-  }
-}
-
-/* 2) Image hero propre */
-.hero-media{
-  margin: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.18);
-  box-shadow: var(--shadow);
-}
-
-.hero-media img{
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* 3) Mobile: tout en colonne (texte -> image -> contact) */
-@media (max-width: 979px){
-  .hero-grid{
-    grid-template-columns: 1fr; /* ton CSS avait déjà ça à 860px, ici c’est plus large */
-  }
-  .hero-media{ order: 2; }
-  .contact-box{ order: 3; }
-}
-
-/* 4) Petites améliorations typographiques (ton H1) */
-.hero h1{
-  font-size: clamp(1.8rem, 3.2vw, 2.35rem);
-  color: var(--text);
-  margin-bottom: 12px;
-  line-height: 1.15;
-}
-.hero-sub{
-  color: var(--text);
-  opacity: .95;
-  font-size: 1.05rem;
-  max-width: 72ch;
-}
-
-/* ============================
-   HERO FIX (3 blocs: texte + image + contact)
    Colle à la FIN du styles.css
    ============================ */
 
