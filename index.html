@@ -7,7 +7,7 @@
   <!-- Indexing / language -->
   <meta http-equiv="content-language" content="fr-CA" />
   <meta name="language" content="fr-CA" />
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="robots" content="index,follow,max-image-preview=large,max-snippet=-1,max-video-preview=-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="format-detection" content="telephone=yes" />
   <meta name="theme-color" content="#111111" />
@@ -30,6 +30,10 @@
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
+  <!-- (Optionnel futur) OG WebP fallback si tu le crées -->
+  <!-- <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.webp" />
+  <meta property="og:image:type" content="image/webp" /> -->
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Asphaltage & réparation d’asphalte (QC) | Pirates de l’Asphalte" />
@@ -51,11 +55,11 @@
 
   <!-- ✅ Preload HERO image (LCP boost) -->
   <link rel="preload"
-      as="image"
-      href="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
-      imagesrcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w, /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
-      imagesizes="100vw"
-      fetchpriority="high" />
+        as="image"
+        href="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+        imagesrcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w, /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+        imagesizes="100vw"
+        fetchpriority="high" />
 
   <!-- CSS -->
   <link rel="preload" href="/assets/css/styles.css" as="style" />
@@ -89,6 +93,11 @@
     "telephone": "+1-514-979-7832",
     "email": "asphaltequebec@hotmail.ca",
     "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "QC",
+      "addressCountry": "CA"
+    },
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "Montréal" },
       { "@type": "AdministrativeArea", "name": "Laval" },
@@ -128,22 +137,34 @@
       <div class="topbar">
         <div class="brand-wrap">
           <div class="brand" aria-label="Pirates de l’Asphalte">
-            <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte – logo" class="logo" width="92" height="64" loading="eager" />
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte – logo"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
             <span class="brand-text">Pirates de l’Asphalte</span>
           </div>
           <span class="badge"><i class="fa-solid fa-city" aria-hidden="true"></i> Résidentiel • Commercial</span>
         </div>
 
         <div class="nav-wrap">
-          <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-controls="nav" aria-expanded="false">
+          <button class="menu-btn"
+                  id="menuBtn"
+                  aria-label="Ouvrir le menu"
+                  aria-controls="nav"
+                  aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
           </button>
 
-          <nav id="nav">
+          <nav id="nav" aria-label="Navigation principale">
             <a href="#top" aria-label="Aller à l’accueil">Accueil</a>
 
             <div class="dropdown" id="servicesDropdown">
-              <a href="#asphaltage" class="dropbtn" aria-haspopup="true" aria-expanded="false">
+              <a href="#asphaltage"
+                 class="dropbtn"
+                 aria-haspopup="true"
+                 aria-expanded="false">
                 Services <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </a>
 
@@ -171,211 +192,224 @@
   </header>
 
   <main id="top" class="hero" aria-label="Asphaltage et réparation d’asphalte au Québec">
-  <div class="container">
+    <div class="container">
 
-    <!-- GRID HAUT : TEXTE + CONTACT -->
-    <div class="hero-grid">
+      <!-- GRID HAUT : TEXTE + CONTACT -->
+      <div class="hero-grid">
 
-      <!-- 1) TEXTE -->
-      <div class="hero-card">
-        <h1>Asphaltage & réparation d’asphalte au Québec (résidentiel et commercial)</h1>
+        <!-- 1) TEXTE -->
+        <div class="hero-card">
+          <h1>Asphaltage & réparation d’asphalte au Québec (résidentiel et commercial)</h1>
 
-        <p class="hero-sub">
-          Entrées de cour, stationnements, patchs, fissures, scellant et services extérieurs.
-          Préparation sérieuse, exécution propre, résultat durable. Soumission rapide par téléphone, texto ou formulaire.
-        </p>
+          <p class="hero-sub">
+            Entrées de cour, stationnements, patchs, fissures, scellant et services extérieurs.
+            Préparation sérieuse, exécution propre, résultat durable. Soumission rapide par téléphone, texto ou formulaire.
+          </p>
 
-        <div class="hero-points" aria-label="Points forts">
-          <span class="pill">
-            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-            Travail durable
-          </span>
-          <span class="pill">
-            <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
-            Équipe fiable
-          </span>
-          <span class="pill">
-            <i class="fa-solid fa-clock" aria-hidden="true"></i>
-            Soumission rapide
-          </span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
-          </a>
-          <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
-          </a>
-          <a class="btn btn-ghost" href="sms:+15149797832" aria-label="Envoyer un texto">
-            <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
-          </a>
-        </div>
-      </div>
-
-      <!-- 2) NOUS JOINDRE -->
-      <aside class="contact-box" id="contact" aria-label="Coordonnées">
-        <strong>
-          <i class="fa-solid fa-address-card" aria-hidden="true"></i>
-          Nous joindre
-        </strong>
-
-        <div class="contact-item">
-          <i class="fa-solid fa-phone" aria-hidden="true"></i>
-          <div>
-            Téléphone<br />
-            <a href="tel:15149797832">514-979-7832</a>
+          <div class="hero-points" aria-label="Points forts">
+            <span class="pill">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              Travail durable
+            </span>
+            <span class="pill">
+              <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
+              Équipe fiable
+            </span>
+            <span class="pill">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              Soumission rapide
+            </span>
           </div>
-        </div>
 
-        <div class="contact-item">
-          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i>
-          <div>
-            Texto<br />
-            <a href="sms:+15149797832">Envoyer un texto</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          <div>
-            Courriel<br />
-            <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-          <div>
-            Facebook<br />
-            <a href="https://www.facebook.com/piratesdelsphalte/"
-               target="_blank" rel="noopener">
-              Pirates de l’Asphalte
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler Pirates de l’Asphalte">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+            </a>
+            <a class="btn btn-ghost" href="#soumission" aria-label="Aller au formulaire de soumission">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+            </a>
+            <a class="btn btn-ghost" href="sms:+15149797832" aria-label="Envoyer un texto">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
             </a>
           </div>
         </div>
 
-        <div class="contact-note">
-          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-          Réponse rapide. Travaux propres. Service au Québec.
-        </div>
-      </aside>
+        <!-- 2) NOUS JOINDRE -->
+        <aside class="contact-box" id="contact" aria-label="Coordonnées">
+          <strong>
+            <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+            Nous joindre
+          </strong>
 
-    </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <div>
+              Téléphone<br />
+              <a href="tel:15149797832">514-979-7832</a>
+            </div>
+          </div>
 
-    <!-- 3) SLIDER EN BAS -->
-<section class="hero-media hero-media--bottom"
-         aria-label="Photos de projets d’asphaltage au Québec">
+          <div class="contact-item">
+            <i class="fa-solid fa-comment-sms" aria-hidden="true"></i>
+            <div>
+              Texto<br />
+              <a href="sms:+15149797832">Envoyer un texto</a>
+            </div>
+          </div>
 
-  <div class="hero-slider"
-       data-autoplay="true"
-       data-interval="8000"
-       role="region"
-       aria-roledescription="carrousel"
-       aria-label="Carrousel de photos de projets">
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div>
+              Courriel<br />
+              <a href="mailto:asphaltequebec@hotmail.ca">asphaltequebec@hotmail.ca</a>
+            </div>
+          </div>
 
-    <div class="hero-slides" id="hero-slides" aria-live="polite">
+          <div class="contact-item">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            <div>
+              Facebook<br />
+              <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">
+                Pirates de l’Asphalte
+              </a>
+            </div>
+          </div>
 
-      <!-- Slide 1 (LCP) -->
-      <figure class="hero-slide is-active" data-index="0" aria-hidden="false">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
-                    /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
-            sizes="100vw" />
-          <img
-            src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
-            width="1600"
-            height="900"
-            alt="Asphaltage résidentiel et commercial au Québec – pose d’asphalte pour entrée de cour, travaux professionnels"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high" />
-        </picture>
-      </figure>
+          <div class="contact-note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            Réponse rapide. Travaux propres. Service au Québec.
+          </div>
+        </aside>
 
-      <!-- Slide 2 -->
-      <figure class="hero-slide" data-index="1" aria-hidden="true">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/images/hero/reparation-asphalte-chaude-travaux-quebec-1600x900.webp 1600w,
-                    /assets/images/hero/reparation-asphalte-chaude-travaux-quebec-2400x1350.webp 2400w"
-            sizes="100vw" />
-          <img
-            src="/assets/images/hero/reparation-asphalte-chaude-travaux-quebec-1600x900.webp"
-            width="1600"
-            height="900"
-            alt="Réparation d’asphalte au Québec – asphalte chaude, entretien et remise à neuf d’entrée résidentielle"
-            loading="lazy"
-            decoding="async" />
-        </picture>
-      </figure>
-
-      <!-- Slide 3 -->
-      <figure class="hero-slide" data-index="2" aria-hidden="true">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/images/hero/deneigement-toiture-quebec-1600x900.webp 1600w,
-                    /assets/images/hero/deneigement-toiture-quebec-2400x1350.webp 2400w"
-            sizes="100vw" />
-          <img
-            src="/assets/images/hero/deneigement-toiture-quebec-1600x900.webp"
-            width="1600"
-            height="900"
-            alt="Déneigement de toiture au Québec – service résidentiel, retrait sécuritaire de la neige et de la glace, prévention des infiltrations"
-            loading="lazy"
-            decoding="async" />
-        </picture>
-      </figure>
-
-    </div>
-
-    <!-- CONTROLS -->
-    <div class="hero-slider-ui" aria-label="Contrôles du carrousel">
-      <button class="hero-nav hero-prev"
-              type="button"
-              aria-controls="hero-slides"
-              aria-label="Photo précédente">
-        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-      </button>
-
-      <div class="hero-dots" role="tablist" aria-label="Choisir une photo">
-        <button class="hero-dot is-active"
-                type="button"
-                role="tab"
-                aria-selected="true"
-                aria-controls="hero-slides"
-                data-go="0"></button>
-        <button class="hero-dot"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="hero-slides"
-                data-go="1"></button>
-        <button class="hero-dot"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="hero-slides"
-                data-go="2"></button>
       </div>
 
-      <button class="hero-nav hero-next"
-              type="button"
-              aria-controls="hero-slides"
-              aria-label="Photo suivante">
-        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-      </button>
+      <!-- 3) SLIDER EN BAS -->
+      <section class="hero-media hero-media--bottom"
+               aria-label="Photos de projets d’asphaltage au Québec">
+
+        <div class="hero-slider"
+             data-autoplay="true"
+             data-interval="8000"
+             role="region"
+             aria-roledescription="carrousel"
+             aria-label="Carrousel de photos de projets">
+
+          <!-- (Optionnel) Caption, si tu veux: enlève si tu n’en veux pas -->
+          <div class="hero-caption" aria-hidden="true">
+            <strong>Projets réels au Québec</strong>
+            <span>Asphaltage • Réparation • Déneigement</span>
+          </div>
+
+          <div class="hero-slides" id="hero-slides" aria-live="polite">
+
+            <!-- Slide 1 (LCP) -->
+            <figure class="hero-slide is-active" data-index="0" aria-hidden="false">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
+                          /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+                  sizes="100vw" />
+                <img
+                  src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+                  width="1600"
+                  height="900"
+                  alt="Asphaltage résidentiel et commercial au Québec – pose d’asphalte pour entrée de cour, travaux professionnels"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high" />
+              </picture>
+            </figure>
+
+            <!-- Slide 2 -->
+            <figure class="hero-slide" data-index="1" aria-hidden="true">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="/assets/images/hero/reparation-asphalte-chaude-travaux-quebec-1600x900.webp 1600w,
+                          /assets/images/hero/reparation-asphalte-chaude-travaux-quebec-2400x1350.webp 2400w"
+                  sizes="100vw" />
+                <img
+                  src="/assets/images/hero/reparation-asphalte-chaude-travaux-quebec-1600x900.webp"
+                  width="1600"
+                  height="900"
+                  alt="Réparation d’asphalte au Québec – asphalte chaude, entretien et remise à neuf d’entrée résidentielle"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </figure>
+
+            <!-- Slide 3 -->
+            <figure class="hero-slide" data-index="2" aria-hidden="true">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="/assets/images/hero/deneigement-toiture-quebec-1600x900.webp 1600w,
+                          /assets/images/hero/deneigement-toiture-quebec-2400x1350.webp 2400w"
+                  sizes="100vw" />
+                <img
+                  src="/assets/images/hero/deneigement-toiture-quebec-1600x900.webp"
+                  width="1600"
+                  height="900"
+                  alt="Déneigement de toiture au Québec – service résidentiel, retrait sécuritaire de la neige et de la glace, prévention des infiltrations"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </figure>
+
+          </div>
+
+          <!-- (Optionnel) Progress bar (compatible avec ton CSS PART 2) -->
+          <div class="hero-progress" aria-hidden="true"><span class="bar"></span></div>
+
+          <!-- CONTROLS -->
+          <div class="hero-slider-ui" aria-label="Contrôles du carrousel">
+            <button class="hero-nav hero-prev"
+                    type="button"
+                    aria-controls="hero-slides"
+                    aria-label="Photo précédente">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <div class="hero-dots" role="tablist" aria-label="Choisir une photo">
+              <button class="hero-dot is-active"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="hero-slides"
+                      data-go="0"></button>
+              <button class="hero-dot"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="hero-slides"
+                      data-go="1"></button>
+              <button class="hero-dot"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="hero-slides"
+                      data-go="2"></button>
+            </div>
+
+            <button class="hero-nav hero-next"
+                    type="button"
+                    aria-controls="hero-slides"
+                    aria-label="Photo suivante">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
     </div>
+  </main>
 
-  </div>
-</section>
-
-  </div>
-</main>
+  <!-- =========================
+     INDEX.HTML — PART 2/2
+     Colle DIRECTEMENT sous la PART 1/2
+     ========================= -->
 
 <section id="pourquoi">
   <div class="container">
@@ -403,8 +437,12 @@
     </div>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      <a class="btn btn-primary" href="#soumission">
+        <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+      </a>
+      <a class="btn btn-ghost" href="tel:15149797832">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
+      </a>
     </div>
   </div>
 </section>
@@ -443,8 +481,12 @@
     </div>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      <a class="btn btn-primary" href="#soumission">
+        <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+      </a>
+      <a class="btn btn-ghost" href="tel:15149797832">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
+      </a>
     </div>
   </div>
 </section>
@@ -457,13 +499,41 @@
     </div>
 
     <div class="grid">
-      <div class="card"><div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div><h3>Asphaltage résidentiel (entrées de cour)</h3><p>Finition propre, pente et drainage bien pensés.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div><h3>Asphaltage commercial et institutionnel</h3><p>Travaux planifiés, durables, adaptés au trafic.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div><h3>Stationnements complets (petites et grandes surfaces)</h3><p>Préparation + compaction pour un résultat solide.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div>
+        <h3>Asphaltage résidentiel (entrées de cour)</h3>
+        <p>Finition propre, pente et drainage bien pensés.</p>
+      </div>
 
-      <div class="card"><div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div><h3>Reconstruction et récap complet</h3><p>On repart sur une base stable, nivelée, durable.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div><h3>Pavage en asphalte et pavé uni</h3><p>Bordures et transitions propres, pose soignée.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h3>Gestion des pentes et écoulement</h3><p>Moins de flaques, moins d’usure, plus durable.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
+        <h3>Asphaltage commercial et institutionnel</h3>
+        <p>Travaux planifiés, durables, adaptés au trafic.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div>
+        <h3>Stationnements complets (petites et grandes surfaces)</h3>
+        <p>Préparation + compaction pour un résultat solide.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></div>
+        <h3>Reconstruction et récap complet</h3>
+        <p>On repart sur une base stable, nivelée, durable.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
+        <h3>Pavage en asphalte et pavé uni</h3>
+        <p>Bordures et transitions propres, pose soignée.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
+        <h3>Gestion des pentes et écoulement</h3>
+        <p>Moins de flaques, moins d’usure, plus durable.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -476,13 +546,41 @@
     </div>
 
     <div class="grid">
-      <div class="card"><div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div><h3>Patchs et nids-de-poule</h3><p>Réparations rapides et solides pour éviter l’aggravation.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div><h3>Correction de vallons et pentes</h3><p>Nivelage pour un drainage efficace et sécuritaire.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div><h3>Scellant protecteur</h3><p>Prolonge la vie de l’asphalte et protège la surface.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+        <h3>Patchs et nids-de-poule</h3>
+        <p>Réparations rapides et solides pour éviter l’aggravation.</p>
+      </div>
 
-      <div class="card"><div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div><h3>Traitement des taches d’huile</h3><p>Nettoyage et traitement pour une surface plus propre.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div><h3>Décoloration de surface</h3><p>Entretien pour améliorer l’apparence et la protection.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h3>Usure et perte d’agrégats</h3><p>On stabilise la surface avant que ça se dégrade.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-angle-up" aria-hidden="true"></i></div>
+        <h3>Correction de vallons et pentes</h3>
+        <p>Nivelage pour un drainage efficace et sécuritaire.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+        <h3>Scellant protecteur</h3>
+        <p>Prolonge la vie de l’asphalte et protège la surface.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></div>
+        <h3>Traitement des taches d’huile</h3>
+        <p>Nettoyage et traitement pour une surface plus propre.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div>
+        <h3>Décoloration de surface</h3>
+        <p>Entretien pour améliorer l’apparence et la protection.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+        <h3>Usure et perte d’agrégats</h3>
+        <p>On stabilise la surface avant que ça se dégrade.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -495,18 +593,50 @@
     </div>
 
     <div class="grid">
-      <div class="card"><div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div><h3>Paysagement</h3><p>Aménagement, remise à niveau et finition.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div><h3>Excavation</h3><p>Excavation légère, préparation de base et tranchées.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div><h3>Tourbe</h3><p>Pose de tourbe, préparation du sol et nivellement.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
+        <h3>Paysagement</h3>
+        <p>Aménagement, remise à niveau et finition.</p>
+      </div>
 
-      <div class="card"><div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div><h3>Pavé uni</h3><p>Pose, bordures, compaction et finition.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div><h3>Taille de haies de cèdre</h3><p>Taille droite, nettoyage, évacuation des résidus.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><h3>Nivellement & drainage</h3><p>Pentes, écoulement, prévention des flaques.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-person-digging" aria-hidden="true"></i></div>
+        <h3>Excavation</h3>
+        <p>Excavation légère, préparation de base et tranchées.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+        <h3>Tourbe</h3>
+        <p>Pose de tourbe, préparation du sol et nivellement.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></div>
+        <h3>Pavé uni</h3>
+        <p>Pose, bordures, compaction et finition.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+        <h3>Taille de haies de cèdre</h3>
+        <p>Taille droite, nettoyage, évacuation des résidus.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
+        <h3>Nivellement & drainage</h3>
+        <p>Pentes, écoulement, prévention des flaques.</p>
+      </div>
     </div>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant</a>
+      <a class="btn btn-primary" href="#soumission">
+        <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+      </a>
+      <a class="btn btn-ghost" href="tel:15149797832">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler maintenant
+      </a>
     </div>
   </div>
 </section>
@@ -519,13 +649,41 @@
     </div>
 
     <div class="grid">
-      <div class="card"><div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div><h3>Déneigement de toitures</h3><p>Réduction du poids et prévention des risques.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div><h3>Marches et escaliers</h3><p>Accès sécuritaires, dégagement propre et précis.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div><h3>Stationnements et entrées</h3><p>Déneigement efficace pour circulation fluide.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></div>
+        <h3>Déneigement de toitures</h3>
+        <p>Réduction du poids et prévention des risques.</p>
+      </div>
 
-      <div class="card"><div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div><h3>Gestion glace et neige</h3><p>Interventions sécuritaires selon les conditions.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h3>Interventions rapides</h3><p>Présence rapide en cas d’accumulation importante.</p></div>
-      <div class="card"><div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div><h3>Finition des zones piétonnes</h3><p>Finition propre autour des accès et passages.</p></div>
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-stairs" aria-hidden="true"></i></div>
+        <h3>Marches et escaliers</h3>
+        <p>Accès sécuritaires, dégagement propre et précis.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
+        <h3>Stationnements et entrées</h3>
+        <p>Déneigement efficace pour circulation fluide.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
+        <h3>Gestion glace et neige</h3>
+        <p>Interventions sécuritaires selon les conditions.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+        <h3>Interventions rapides</h3>
+        <p>Présence rapide en cas d’accumulation importante.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></div>
+        <h3>Finition des zones piétonnes</h3>
+        <p>Finition propre autour des accès et passages.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -540,11 +698,11 @@
     <div class="hero-card">
       <form class="form" id="quoteForm" novalidate>
         <!-- honeypot -->
-<div class="hp" aria-hidden="true">
-  <label for="website">Ne pas remplir</label>
-  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-</div>
-        
+        <div class="hp" aria-hidden="true">
+          <label for="website">Ne pas remplir</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <!-- UTM cachés -->
         <input type="hidden" id="utm_source" name="utm_source" />
         <input type="hidden" id="utm_medium" name="utm_medium" />
