@@ -520,15 +520,8 @@
    7) Hero slider (no deps) — MOBILE + SWIPE
    ========================================================= */
 (() => {
-  const sliders = document.querySelectorAll(".hero-slider");
+  const sliders = qsa(".hero-slider");
   if (!sliders.length) return;
-
-  const prefersReducedMotion = () =>
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const qs  = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
 
   sliders.forEach((slider) => {
     const slidesWrap = qs(".hero-slides", slider);
@@ -546,7 +539,7 @@
       slider.getAttribute("data-autoplay") === "true" && !prefersReducedMotion();
 
     const intervalRaw = parseInt(slider.getAttribute("data-interval") || "5200", 10);
-    const interval = Math.min(15000, Math.max(2500, intervalRaw || 5200));
+    const interval = clamp(intervalRaw || 5200, 2500, 15000);
 
     const setActive = (next) => {
       i = (next + slides.length) % slides.length;
@@ -599,12 +592,9 @@
     });
 
     // ✅ Swipe (touch/pointer)
-    let startX = 0;
-    let startY = 0;
-    let dragging = false;
-
-    const SWIPE_MIN = 35;     // px
-    const SWIPE_MAX_Y = 55;   // px (si tu scroll vertical, on ignore)
+    let startX = 0, startY = 0, dragging = false;
+    const SWIPE_MIN = 35;
+    const SWIPE_MAX_Y = 55;
 
     const onDown = (x, y) => { startX = x; startY = y; dragging = true; stop(); };
     const onUp = (x, y) => {
@@ -614,18 +604,15 @@
       const dx = x - startX;
       const dy = y - startY;
 
-      // si c'est surtout un scroll vertical, ignore
       if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
 
-      if (dx <= -SWIPE_MIN) { setActive(i + 1); }
-      else if (dx >= SWIPE_MIN) { setActive(i - 1); }
+      if (dx <= -SWIPE_MIN) setActive(i + 1);
+      else if (dx >= SWIPE_MIN) setActive(i - 1);
 
       start();
     };
 
-    // Pointer events (supporte touch + souris)
     on(slidesWrap, "pointerdown", (e) => {
-      // ne pas capturer si on clique un bouton/dot
       if (e.target && e.target.closest(".hero-slider-ui")) return;
       try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
       onDown(e.clientX, e.clientY);
