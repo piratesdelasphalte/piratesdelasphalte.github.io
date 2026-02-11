@@ -516,10 +516,19 @@
     }
   });
 
-/* =========================================================
-   7) Hero slider (no deps) — MOBILE + SWIPE
+7) Hero slider (no deps) — MOBILE + SWIPE (SINGLE INSTANCE)
+   Expects:
+     .hero-slider
+       .hero-slides
+         .hero-slide (N)
+       .hero-dot   (N) data-go="index"
+       .hero-prev / .hero-next
+   Optional:
+     data-autoplay="true|false"
+     data-interval="5200"
    ========================================================= */
-(() => {
+
+const initHeroSliders = () => {
   const sliders = qsa(".hero-slider");
   if (!sliders.length) return;
 
@@ -591,7 +600,7 @@
       if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
     });
 
-    // ✅ Swipe (touch/pointer)
+    // Swipe (pointer)
     let startX = 0, startY = 0, dragging = false;
     const SWIPE_MIN = 35;
     const SWIPE_MAX_Y = 55;
@@ -604,6 +613,7 @@
       const dx = x - startX;
       const dy = y - startY;
 
+      // If mostly vertical scroll, ignore swipe
       if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
 
       if (dx <= -SWIPE_MIN) setActive(i + 1);
@@ -625,4 +635,6 @@
     setActive(0);
     start();
   });
-})();
+};
+
+initHeroSliders();
