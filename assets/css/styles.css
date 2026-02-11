@@ -701,3 +701,12 @@ footer p{ margin: 0.35rem 0; }
   gap: 22px;
   align-items: start;
 }
+
+.hero-slider-ui{
+  z-index: 10;
+}
+.hero-nav,
+.hero-dots{
+  z-index: 11;
+}
+
