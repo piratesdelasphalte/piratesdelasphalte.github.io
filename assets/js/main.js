@@ -1,787 +1,928 @@
 /* =========================================================
-   Pirates de l’Asphalte — main.js (ULTRA PREMIUM)
-   - No deps, robuste, accessible
-   - Menu + dropdown mobile (avec scroll lock)
-   - Attribution UTM + referrer (persist 30j)
-   - Click tracking GA4 (si gtag présent)
-   - Formspree lead form + validation + anti-spam
-   - Hero slider (dots + prev/next + keyboard + swipe + progress)
+   Pirates de l’Asphalte — styles.css (FULL)
+   - Base tokens + layout
+   - Header/nav + dropdown (desktop + mobile)
+   - Hero grid (texte + contact) + CTAs
+   - Hero slider (FULL + Ultra Premium patch intégré)
+   - Sections/cards
+   - Form (Formspree) + states
+   - Footer + Quickbar
    ========================================================= */
 
-(() => {
-  "use strict";
-
-  /* -------------------- Tiny helpers -------------------- */
-  const qs  = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const on  = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
-
-  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
-
-  const safeJSON = (str, fallback = null) => {
-    try { return JSON.parse(str); } catch { return fallback; }
-  };
-
-  const debounce = (fn, wait = 150) => {
-    let t = null;
-    return (...args) => {
-      window.clearTimeout(t);
-      t = window.setTimeout(() => fn(...args), wait);
-    };
-  };
-
-  const prefersReducedMotion = () =>
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const scrollToEl = (el) => {
-    try {
-      el?.scrollIntoView({
-        behavior: prefersReducedMotion() ? "auto" : "smooth",
-        block: "center"
-      });
-    } catch {}
-  };
-
-  const now = () => Date.now();
-
-  /* -------------------- Simple storage (UTM persistence) -------------------- */
-  const STORE_KEY = "pda_attrib_v1";
-
-  const storage = {
-    get() {
-      const raw = localStorage.getItem(STORE_KEY);
-      return safeJSON(raw, null);
-    },
-    set(obj) {
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(obj)); } catch {}
-    },
-    clear() {
-      try { localStorage.removeItem(STORE_KEY); } catch {}
-    }
-  };
-
-  /* -------------------- GA4 safe wrapper -------------------- */
-  const track = (eventName, params = {}) => {
-    try {
-      if (typeof window.gtag === "function") {
-        window.gtag("event", eventName, { ...params, transport_type: "beacon" });
-      }
-    } catch {}
-  };
-
-  /* =========================================================
-     1) Footer year
-     ========================================================= */
-  const yearEl = qs("#year");
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
-  /* =========================================================
-     2) Mobile menu (accessible + scroll lock)
-     Expects: #menuBtn, #nav
-     CSS used: body[data-menu="open"] { position: fixed; ... }
-     ========================================================= */
-  const menuBtn = qs("#menuBtn");
-  const nav = qs("#nav");
-
-  const getScrollY = () => (
-    window.scrollY || document.documentElement.scrollTop || 0
-  );
-
-  const setBodyLock = (lock) => {
-    const y = getScrollY();
-    if (lock) {
-      document.body.dataset.menu = "open";
-      document.body.style.top = `-${y}px`;
-      document.body.dataset.scrollY = String(y);
-    } else {
-      const prev = parseInt(document.body.dataset.scrollY || "0", 10) || 0;
-      document.body.dataset.menu = "";
-      document.body.style.top = "";
-      document.body.dataset.scrollY = "";
-      window.scrollTo(0, prev);
-    }
-  };
-
-  const servicesDropdown = qs("#servicesDropdown");
-  const servicesBtn = servicesDropdown ? qs(".dropbtn", servicesDropdown) : null;
-
-  const setServicesOpen = (open) => {
-    if (!servicesDropdown || !servicesBtn) return;
-    servicesDropdown.classList.toggle("open", !!open);
-    servicesBtn.setAttribute("aria-expanded", open ? "true" : "false");
-  };
-
-  const setMenuState = (open) => {
-    if (!nav || !menuBtn) return;
-
-    nav.classList.toggle("open", !!open);
-    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    menuBtn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-
-    const isMobile = window.matchMedia("(max-width: 860px)").matches;
-    if (isMobile) setBodyLock(!!open);
-
-    menuBtn.innerHTML = open
-      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
-      : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
-
-    if (!open) setServicesOpen(false);
-  };
-
-  on(menuBtn, "click", () => {
-    const open = !nav?.classList.contains("open");
-    setMenuState(open);
-  });
-
-  on(document, "keydown", (e) => {
-    if (e.key === "Escape") {
-      if (nav?.classList.contains("open")) setMenuState(false);
-      if (servicesDropdown?.classList.contains("open")) setServicesOpen(false);
-    }
-  });
-
-  on(document, "click", (e) => {
-    if (!nav || !menuBtn) return;
-    if (!nav.classList.contains("open")) return;
-
-    const isMobile = window.matchMedia("(max-width: 860px)").matches;
-    if (!isMobile) return;
-
-    const target = e.target;
-    if (!(target instanceof Element)) return;
-
-    const insideNav = nav.contains(target);
-    const insideBtn = menuBtn.contains(target);
-    if (!insideNav && !insideBtn) setMenuState(false);
-  });
-
-  on(window, "resize", debounce(() => {
-    const isMobile = window.matchMedia("(max-width: 860px)").matches;
-    if (!isMobile) {
-      if (document.body.dataset.menu === "open") setBodyLock(false);
-    }
-  }, 120));
-
-  /* =========================================================
-     3) Services dropdown (mobile only)
-     Expects: #servicesDropdown .dropbtn .dropdown-menu a
-     ========================================================= */
-  on(servicesBtn, "click", (e) => {
-    const isMobile = window.matchMedia("(max-width: 860px)").matches;
-    if (!isMobile) return; // desktop uses CSS hover/focus-within
-    e.preventDefault();
-    setServicesOpen(!servicesDropdown.classList.contains("open"));
-  });
-
-  qsa(".dropdown-menu a", servicesDropdown || document).forEach((a) => {
-    on(a, "click", () => {
-      const isMobile = window.matchMedia("(max-width: 860px)").matches;
-      if (isMobile) {
-        setServicesOpen(false);
-        setMenuState(false);
-      }
-    });
-  });
-
-  /* =========================================================
-     4) Attribution (UTM + referrer) + persistence (30 days)
-     - Reads URL params; stores for 30 days
-     - Writes into hidden inputs if present
-     ========================================================= */
-  const ATTR_TTL = 1000 * 60 * 60 * 24 * 30;
-
-  const readAttributionFromUrl = () => {
-    const p = new URLSearchParams(window.location.search);
-    const utm = {
-      utm_source:   p.get("utm_source")   || "",
-      utm_medium:   p.get("utm_medium")   || "",
-      utm_campaign: p.get("utm_campaign") || "",
-      utm_term:     p.get("utm_term")     || "",
-      utm_content:  p.get("utm_content")  || "",
-      referrer:     document.referrer || ""
-    };
-
-    const hasAny =
-      utm.utm_source || utm.utm_medium || utm.utm_campaign || utm.utm_term || utm.utm_content;
-
-    return hasAny ? utm : null;
-  };
-
-  const getAttribution = () => {
-    const fromUrl = readAttributionFromUrl();
-    const stored = storage.get();
-
-    if (fromUrl) {
-      const payload = { ...fromUrl, ts: now() };
-      storage.set(payload);
-      return payload;
-    }
-
-    if (stored && stored.ts && (now() - stored.ts) < ATTR_TTL) return stored;
-
-    return {
-      utm_source: "",
-      utm_medium: "",
-      utm_campaign: "",
-      utm_term: "",
-      utm_content: "",
-      referrer: document.referrer || "",
-      ts: now()
-    };
-  };
-
-  const writeAttributionToFields = () => {
-    const a = getAttribution();
-    const set = (id, val) => { const el = qs(`#${id}`); if (el) el.value = val || ""; };
-
-    set("utm_source",   a.utm_source);
-    set("utm_medium",   a.utm_medium);
-    set("utm_campaign", a.utm_campaign);
-    set("utm_term",     a.utm_term);
-    set("utm_content",  a.utm_content);
-    set("referrer",     a.referrer);
-  };
-
-  writeAttributionToFields();
-
-  /* =========================================================
-     5) Click tracking (GA4)
-     Add in HTML (optional):
-       data-track="phone|sms|email|cta"
-       data-label="hero-cta" (optional)
-     ========================================================= */
-  on(document, "click", (e) => {
-    const t = e.target instanceof Element ? e.target.closest("[data-track]") : null;
-    if (!t) return;
-
-    const kind = t.getAttribute("data-track") || "";
-    const label = t.getAttribute("data-label") || (t instanceof HTMLAnchorElement ? t.href : "");
-
-    if (kind === "phone") track("phone_click", { label });
-    if (kind === "sms")   track("sms_click",   { label });
-    if (kind === "email") track("email_click", { label });
-    if (kind === "cta")   track("cta_click",   { label });
-  });
-
-  /* =========================================================
-     6) Form PRO: Formspree + validation + anti-spam
-     Expects:
-       #quoteForm, #submitBtn, #formError, #formSuccess
-       required: #name #phone #service #city #details
-       optional: #website (honeypot)
-       optional: coupon: #coupon #couponStatus
-       optional: seller: #sellerSelect #sellerName
-     ========================================================= */
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeeajpgy";
-
-  const form = qs("#quoteForm");
-  const submitBtn = qs("#submitBtn");
-  const formError = qs("#formError");
-  const formSuccess = qs("#formSuccess");
-
-  const show = (el) => el?.classList.add("show");
-  const hide = (el) => el?.classList.remove("show");
-
-  const setSubmitting = (isSubmitting) => {
-    if (!submitBtn) return;
-    submitBtn.disabled = !!isSubmitting;
-    submitBtn.innerHTML = isSubmitting
-      ? '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours...'
-      : '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Envoyer la demande';
-  };
-
-  /* ----- Coupon UI ----- */
-  const couponInput = qs("#coupon");
-  const couponStatus = qs("#couponStatus");
-
-  const getCouponResult = () => {
-    const entered = (couponInput?.value || "").trim();
-    if (!entered) return { applied:false, code:"" };
-    return { applied:true, code:entered };
-  };
-
-  const renderCouponStatus = () => {
-    if (!couponStatus) return;
-    const res = getCouponResult();
-    if (!res.code) {
-      couponStatus.innerHTML = `
-        <i class="fa-solid fa-tag" aria-hidden="true" style="color:var(--accent);"></i>
-        <span>Ajoute un code promo si applicable.</span>
-      `;
-      return;
-    }
-    couponStatus.innerHTML = `
-      <i class="fa-solid fa-circle-check ok" aria-hidden="true"></i>
-      <span><strong>Code promo appliqué ✅</strong></span>
-    `;
-  };
-
-  on(couponInput, "input", debounce(renderCouponStatus, 80));
-  renderCouponStatus();
-
-  /* ----- Seller / reference ----- */
-  const sellerSelect = qs("#sellerSelect");
-  const sellerName = qs("#sellerName");
-
-  const toggleSellerInput = () => {
-    const showInput = (sellerSelect?.value === "Saisir");
-    if (sellerName) sellerName.style.display = showInput ? "block" : "none";
-    if (!showInput && sellerName) sellerName.value = "";
-  };
-
-  const getSellerValue = () => {
-    const v = sellerSelect?.value || "Site web";
-    if (v === "Saisir") {
-      const typed = (sellerName?.value || "").trim();
-      return typed ? typed : "—";
-    }
-    return v;
-  };
-
-  on(sellerSelect, "change", toggleSellerInput);
-  toggleSellerInput();
-
-  /* ----- Field errors ----- */
-  const clearFieldError = (el, errId) => {
-    el?.classList.remove("field-error");
-    const box = qs(`#${errId}`);
-    if (box) { box.style.display = "none"; box.textContent = ""; }
-  };
-
-  const setFieldError = (el, errId, msg) => {
-    el?.classList.add("field-error");
-    const box = qs(`#${errId}`);
-    if (box) { box.style.display = "block"; box.textContent = msg; }
-  };
-
-  const normalizePhoneCA = (raw) => {
-    const d = String(raw || "").replace(/[^\d]/g, "");
-    const digits = (d.length === 11 && d.startsWith("1")) ? d.slice(1) : d;
-    return digits;
-  };
-
-  const isValidPhoneCA = (raw) => {
-    const digits = normalizePhoneCA(raw);
-    if (digits.length !== 10) return false;
-    const a = digits[0], b = digits[3];
-    if (a === "0" || a === "1") return false;
-    if (b === "0" || b === "1") return false;
-    return true;
-  };
-
-  const validateRequired = () => {
-    hide(formError); hide(formSuccess);
-
-    const nameEl = qs("#name");
-    const phoneEl = qs("#phone");
-    const serviceEl = qs("#service");
-    const cityEl = qs("#city");
-    const detailsEl = qs("#details");
-
-    clearFieldError(nameEl, "err-name");
-    clearFieldError(phoneEl, "err-phone");
-    clearFieldError(serviceEl, "err-service");
-    clearFieldError(cityEl, "err-city");
-    clearFieldError(detailsEl, "err-details");
-
-    const name = (nameEl?.value || "").trim();
-    const phone = (phoneEl?.value || "").trim();
-    const service = (serviceEl?.value || "").trim();
-    const city = (cityEl?.value || "").trim();
-    const details = (detailsEl?.value || "").trim();
-
-    if (!name)    { show(formError); setFieldError(nameEl, "err-name", "Nom* est obligatoire."); scrollToEl(nameEl); return null; }
-    if (!phone)   { show(formError); setFieldError(phoneEl, "err-phone", "Téléphone* est obligatoire."); scrollToEl(phoneEl); return null; }
-    if (!isValidPhoneCA(phone)) {
-      show(formError);
-      setFieldError(phoneEl, "err-phone", "Téléphone invalide (ex: 514 123 4567).");
-      scrollToEl(phoneEl);
-      return null;
-    }
-    if (!service) { show(formError); setFieldError(serviceEl, "err-service", "Service* est obligatoire."); scrollToEl(serviceEl); return null; }
-    if (!city)    { show(formError); setFieldError(cityEl, "err-city", "Ville / secteur* est obligatoire."); scrollToEl(cityEl); return null; }
-    if (!details) { show(formError); setFieldError(detailsEl, "err-details", "Détails* est obligatoire."); scrollToEl(detailsEl); return null; }
-
-    return { name, phone, service, city, details };
-  };
-
-  const clearMap = {
-    "name": "err-name",
-    "phone": "err-phone",
-    "service": "err-service",
-    "city": "err-city",
-    "details": "err-details"
-  };
-
-  Object.keys(clearMap).forEach((id) => {
-    const el = qs(`#${id}`);
-    const errId = clearMap[id];
-    const clear = () => {
-      hide(formError);
-      el?.classList.remove("field-error");
-      const box = qs(`#${errId}`);
-      if (box) { box.style.display = "none"; box.textContent = ""; }
-    };
-    on(el, "input", clear);
-    on(el, "change", clear);
-  });
-
-  const postToFormspree = async (payload) => {
-    const fd = new FormData();
-    Object.entries(payload).forEach(([k, v]) => fd.append(k, v ?? ""));
-    fd.append("_subject", `Demande de soumission - ${payload.service || "Service"}`);
-
-    const res = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: fd
-    });
-
-    const data = await res.json().catch(() => null);
-
-    if (!res.ok) {
-      const msg =
-        (data && data.errors && data.errors[0] && data.errors[0].message)
-          ? data.errors[0].message
-          : "Impossible d’envoyer pour le moment. Réessaie ou appelle-nous.";
-      throw new Error(msg);
-    }
-    return data;
-  };
-
-  const pageLoadedAt = now();
-  const MIN_TIME_MS = 1800;
-
-  on(form, "submit", async (e) => {
-    e.preventDefault();
-    if (!form) return;
-
-    const trap = qs("#website");
-    if (trap && (trap.value || "").trim() !== "") {
-      show(formSuccess);
-      form.reset();
-      renderCouponStatus();
-      toggleSellerInput();
-      return;
-    }
-
-    if ((now() - pageLoadedAt) < MIN_TIME_MS) {
-      show(formError);
-      const box = formError?.querySelector("div") || formError;
-      if (box) box.innerHTML = "<strong>Oups.</strong> Réessaie dans un instant (validation anti-spam).";
-      return;
-    }
-
-    const data = validateRequired();
-    if (!data) return;
-
-    writeAttributionToFields();
-    const attrib = getAttribution();
-
-    const { name, phone, service, city, details } = data;
-    const reference = getSellerValue();
-    const couponRes = getCouponResult();
-
-    const payload = {
-      name,
-      phone: normalizePhoneCA(phone),
-      phone_raw: phone,
-      service,
-      city,
-      details,
-
-      reference,
-      coupon: couponRes.code || "-",
-      rabais: couponRes.applied ? "appliqué" : "-",
-
-      utm_source: attrib.utm_source || "",
-      utm_medium: attrib.utm_medium || "",
-      utm_campaign: attrib.utm_campaign || "",
-      utm_term: attrib.utm_term || "",
-      utm_content: attrib.utm_content || "",
-      referrer: attrib.referrer || "",
-
-      source: "site_web_piratesdelasphalte",
-      page: window.location.href,
-      userAgent: navigator.userAgent,
-      ts_iso: new Date().toISOString()
-    };
-
-    hide(formError); hide(formSuccess);
-    setSubmitting(true);
-
-    try {
-      await postToFormspree(payload);
-
-      track("lead_submit", {
-        service,
-        city,
-        utm_source: payload.utm_source,
-        utm_campaign: payload.utm_campaign,
-        reference
-      });
-
-      show(formSuccess);
-      form.reset();
-      renderCouponStatus();
-      toggleSellerInput();
-      scrollToEl(formSuccess);
-    } catch (err) {
-      show(formError);
-      const msg = (err && err.message) ? err.message : "Erreur lors de l’envoi. Réessaie ou appelle-nous.";
-      const box = formError?.querySelector("div") || formError;
-      if (box) box.innerHTML = `<strong>Oups.</strong> ${msg}`;
-      scrollToEl(formError);
-    } finally {
-      setSubmitting(false);
-    }
-  });
-
-  /* =========================================================
-     7) Hero slider (no deps) — ULTRA PREMIUM
-     - dots + prev/next + keyboard
-     - pause on hover/focus
-     - swipe (pointer) + is-dragging class for CSS
-     - progress bar support: .hero-progress .bar
-     - loading state: slider.classList.add("is-loading") until first image ready
-     ========================================================= */
-  const initHeroSliders = () => {
-    const sliders = qsa(".hero-slider");
-    if (!sliders.length) return;
-
-    sliders.forEach((slider) => {
-      if (slider.dataset.pdaInit === "1") return;
-      slider.dataset.pdaInit = "1";
-
-      const slidesWrap = qs(".hero-slides", slider);
-      const slides = qsa(".hero-slide", slider);
-      if (!slidesWrap || slides.length <= 1) return;
-
-      const dots = qsa(".hero-dot", slider);
-      const btnPrev = qs(".hero-prev", slider);
-      const btnNext = qs(".hero-next", slider);
-
-      const progress = qs(".hero-progress .bar", slider); // optionnel
-      const caption = qs(".hero-caption", slider);        // optionnel
-
-      let i = 0;
-      let timer = null;
-      let lastInteraction = 0;
-
-      const autoplay =
-        slider.getAttribute("data-autoplay") === "true" && !prefersReducedMotion();
-
-      const intervalRaw = parseInt(slider.getAttribute("data-interval") || "8000", 10);
-      const interval = clamp(Number.isFinite(intervalRaw) ? intervalRaw : 8000, 2500, 15000);
-
-      const setCaption = (idx) => {
-        if (!caption) return;
-        const fig = slides[idx];
-        const text = fig?.getAttribute("data-caption") || "";
-        if (!text) return;
-        const span = caption.querySelector("span");
-        if (span) span.textContent = text;
-      };
-
-      const restartProgress = () => {
-        if (!progress || !autoplay) return;
-        progress.style.transformOrigin = "left center";
-        progress.style.transition = "none";
-        progress.style.transform = "scaleX(0)";
-        void progress.offsetHeight;
-        progress.style.transition = `transform ${interval}ms linear`;
-        progress.style.transform = "scaleX(1)";
-      };
-
-      const pauseProgress = () => {
-        if (!progress || !autoplay) return;
-        const computed = window.getComputedStyle(progress);
-        const matrix = computed.transform;
-        let scaleX = 1;
-        if (matrix && matrix !== "none") {
-          const parts = matrix.match(/matrix\(([^)]+)\)/);
-          if (parts && parts[1]) {
-            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-            if (nums.length) scaleX = nums[0] || 1;
-          }
-        }
-        progress.style.transition = "none";
-        progress.style.transformOrigin = "left center";
-        progress.style.transform = `scaleX(${scaleX})`;
-      };
-
-      const resumeProgress = () => {
-        if (!progress || !autoplay) return;
-        const computed = window.getComputedStyle(progress);
-        const matrix = computed.transform;
-        let scaleX = 0;
-        if (matrix && matrix !== "none") {
-          const parts = matrix.match(/matrix\(([^)]+)\)/);
-          if (parts && parts[1]) {
-            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-            if (nums.length) scaleX = nums[0] || 0;
-          }
-        }
-        const remaining = Math.max(300, Math.round((1 - scaleX) * interval));
-        progress.style.transition = "none";
-        progress.style.transformOrigin = "left center";
-        progress.style.transform = `scaleX(${scaleX})`;
-        void progress.offsetHeight;
-        progress.style.transition = `transform ${remaining}ms linear`;
-        progress.style.transform = "scaleX(1)";
-      };
-
-      const setActive = (next, reason = "auto") => {
-        i = (next + slides.length) % slides.length;
-
-        slides.forEach((s, idx) => {
-          const active = idx === i;
-          s.classList.toggle("is-active", active);
-          s.setAttribute("aria-hidden", active ? "false" : "true");
-        });
-
-        dots.forEach((d, idx) => {
-          const active = idx === i;
-          d.classList.toggle("is-active", active);
-          d.setAttribute("aria-selected", active ? "true" : "false");
-          d.setAttribute("tabindex", active ? "0" : "-1");
-        });
-
-        if (reason !== "auto") lastInteraction = now();
-        setCaption(i);
-        restartProgress();
-      };
-
-      const stop = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-        pauseProgress();
-      };
-
-      const start = () => {
-        if (!autoplay) return;
-        stop();
-        resumeProgress();
-        timer = setInterval(() => {
-          if ((now() - lastInteraction) < 1200) return;
-          setActive(i + 1, "auto");
-        }, interval);
-      };
-
-      on(btnPrev, "click", (e) => {
-        e.preventDefault();
-        setActive(i - 1, "click");
-        start();
-      });
-
-      on(btnNext, "click", (e) => {
-        e.preventDefault();
-        setActive(i + 1, "click");
-        start();
-      });
-
-      dots.forEach((d) => {
-        on(d, "click", (e) => {
-          e.preventDefault();
-          const go = parseInt(d.getAttribute("data-go") || "0", 10);
-          if (Number.isFinite(go)) {
-            setActive(go, "dot");
-            start();
-          }
-        });
-      });
-
-      on(slider, "mouseenter", stop);
-      on(slider, "mouseleave", start);
-      on(slider, "focusin", stop);
-      on(slider, "focusout", start);
-
-      if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
-
-      on(slider, "keydown", (e) => {
-        if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1, "key"); start(); }
-        if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1, "key"); start(); }
-      });
-
-      let startX = 0, startY = 0, dragging = false, moved = false;
-      const SWIPE_MIN = 38;
-      const SWIPE_MAX_Y = 70;
-
-      const pointerDown = (x, y) => {
-        startX = x;
-        startY = y;
-        dragging = true;
-        moved = false;
-        slider.classList.add("is-dragging");
-        stop();
-      };
-
-      const pointerUp = (x, y) => {
-        if (!dragging) return;
-        dragging = false;
-        slider.classList.remove("is-dragging");
-
-        const dx = x - startX;
-        const dy = y - startY;
-
-        if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
-
-        if (dx <= -SWIPE_MIN) setActive(i + 1, "swipe");
-        else if (dx >= SWIPE_MIN) setActive(i - 1, "swipe");
-
-        start();
-      };
-
-      on(slidesWrap, "pointerdown", (e) => {
-        if (e.target instanceof Element && e.target.closest(".hero-slider-ui")) return;
-        if (typeof e.button === "number" && e.button !== 0) return;
-        try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
-        pointerDown(e.clientX, e.clientY);
-      }, { passive: true });
-
-      on(slidesWrap, "pointermove", (e) => {
-        if (!dragging) return;
-        const dx = Math.abs(e.clientX - startX);
-        const dy = Math.abs(e.clientY - startY);
-        if (dx > 6 || dy > 6) moved = true;
-      }, { passive: true });
-
-      on(slidesWrap, "pointerup", (e) => pointerUp(e.clientX, e.clientY), { passive: true });
-      on(slidesWrap, "pointercancel", () => {
-        dragging = false;
-        slider.classList.remove("is-dragging");
-        start();
-      }, { passive: true });
-
-      on(slidesWrap, "click", (e) => {
-        if (moved) {
-          e.preventDefault();
-          e.stopPropagation();
-          moved = false;
-        }
-      }, true);
-
-      slider.classList.add("is-loading");
-      const firstImg = qs(".hero-slide.is-active img", slider) || qs(".hero-slide img", slider);
-
-      const markReady = () => {
-        slider.classList.remove("is-loading");
-        restartProgress();
-      };
-
-      if (firstImg && firstImg.complete) {
-        markReady();
-      } else if (firstImg) {
-        on(firstImg, "load", markReady, { once: true });
-        on(firstImg, "error", markReady, { once: true });
-      } else {
-        markReady();
-      }
-
-      setActive(0, "init");
-      start();
-    });
-  };
-
-  initHeroSliders();
-})();
+/* -------------------- Reset / base -------------------- */
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body{ margin:0; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; }
+:focus-visible{ outline:3px solid rgba(247,147,30,.65); outline-offset:3px; }
+
+/* -------------------- Tokens -------------------- */
+:root{
+  /* palette */
+  --bg0:#0f0f10;
+  --bg1:#151517;
+  --bg2:#1d1d20;
+  --card: rgba(255,255,255,.045);
+  --card2: rgba(255,255,255,.06);
+
+  --text:#f1f1f1;
+  --muted:rgba(241,241,241,.72);
+
+  --accent:#f7931e;
+  --accent2:#ffae42;
+
+  /* strokes/shadows */
+  --stroke: rgba(255,255,255,.12);
+  --stroke2: rgba(255,255,255,.08);
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+  --shadow2: 0 14px 40px rgba(0,0,0,.42);
+
+  /* radius */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-2xl: 28px;
+
+  /* spacing */
+  --container: 1140px;
+  --pad: 20px;
+
+  /* type */
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --lh: 1.55;
+
+  /* motion */
+  --easeOut: cubic-bezier(.2,.9,.2,1);
+
+  /* slider “premium” tokens (safe) */
+  --glass: rgba(12,12,12,.48);
+  --glass2: rgba(12,12,12,.34);
+  --uiStroke: rgba(255,255,255,.18);
+  --uiStroke2: rgba(255,255,255,.10);
+  --uiShadow: 0 18px 60px rgba(0,0,0,.55);
+  --uiShadow2: 0 14px 40px rgba(0,0,0,.42);
+  --uiBlur: 12px;
+}
+
+/* -------------------- Page base -------------------- */
+body{
+  font-family: var(--font);
+  line-height: var(--lh);
+  color: var(--text);
+  background:
+    radial-gradient(1100px 520px at 20% 0%, rgba(247,147,30,.12), transparent 60%),
+    radial-gradient(900px 420px at 86% 8%, rgba(255,174,66,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg0));
+  min-height:100vh;
+}
+
+.container{
+  width: min(100%, var(--container));
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+main{ padding: 26px 0 40px; }
+
+/* -------------------- Header / Topbar -------------------- */
+header{
+  position: sticky;
+  top:0;
+  z-index: 1000;
+  background: rgba(12,12,12,.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.brand-wrap{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 0;
+}
+.brand .logo{
+  width: 56px;
+  height: auto;
+  border-radius: 12px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.35));
+}
+.brand-text{
+  font-weight: 900;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.88);
+  font-size: .92rem;
+}
+
+/* -------------------- Nav + Dropdown -------------------- */
+.nav-wrap{ position: relative; }
+
+.menu-btn{
+  display:none;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.92);
+  cursor:pointer;
+}
+
+#nav{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+#nav > a,
+.dropbtn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: rgba(255,255,255,.9);
+  border: 1px solid transparent;
+  transition: transform .14s ease, background .18s ease, border-color .18s ease;
+}
+#nav > a:hover,
+.dropbtn:hover{
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+
+.dropdown{ position: relative; }
+.dropdown-menu{
+  position:absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  padding: 10px;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(10,10,10,.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow2);
+  display:none;
+}
+.dropdown-menu a{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  color: rgba(255,255,255,.9);
+}
+.dropdown-menu a:hover{
+  background: rgba(255,255,255,.06);
+}
+.drop-sep{
+  height:1px;
+  margin: 8px 4px;
+  background: rgba(255,255,255,.10);
+}
+
+/* Desktop: open on hover/focus */
+@media (min-width: 861px){
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu{ display:block; }
+}
+
+/* Mobile dropdown toggled by JS: .dropdown.open */
+.dropdown.open .dropdown-menu{ display:block; }
+
+/* -------------------- Hero layout -------------------- */
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hero-card,
+.contact-box{
+  border-radius: var(--r-2xl);
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(800px 240px at 18% 0%, rgba(247,147,30,.10), transparent 60%),
+    radial-gradient(700px 220px at 92% 10%, rgba(255,174,66,.08), transparent 60%),
+    rgba(255,255,255,.035);
+  box-shadow: var(--shadow2);
+  padding: 18px;
+  min-width: 0;
+}
+
+.hero-card h1{
+  margin: 0 0 10px;
+  font-size: clamp(1.5rem, 2.3vw, 2.15rem);
+  line-height: 1.18;
+  letter-spacing: .2px;
+}
+.hero-sub{
+  margin: 0 0 14px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.hero-points{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.90);
+  font-size: .95rem;
+}
+
+/* -------------------- Buttons -------------------- */
+.cta-row{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.92);
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  transition: transform .14s ease, border-color .18s ease, background .18s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(247,147,30,.35);
+  background: rgba(255,255,255,.06);
+}
+.btn:active{ transform: translateY(0); }
+
+.btn-primary{
+  border-color: rgba(247,147,30,.45);
+  background: linear-gradient(90deg, rgba(247,147,30,.95), rgba(255,174,66,.95));
+  color: #0b0b0b;
+  font-weight: 900;
+  box-shadow: 0 18px 40px rgba(247,147,30,.18);
+}
+.btn-primary:hover{
+  border-color: rgba(255,174,66,.55);
+  background: linear-gradient(90deg, rgba(247,147,30,1), rgba(255,174,66,1));
+}
+.btn-ghost{
+  background: rgba(255,255,255,.03);
+}
+
+.btn[disabled]{
+  opacity: .7;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* -------------------- Contact box -------------------- */
+.contact-box strong{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.contact-item{
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  margin: 10px 0;
+}
+.contact-item i{ margin-top: 3px; color: rgba(255,255,255,.86); }
+.contact-item a{
+  color: rgba(255,255,255,.95);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.18);
+}
+.contact-note{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.82);
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+
+/* -------------------- Hero media + Slider (base) -------------------- */
+.hero-media{
+  margin-top: 18px;
+  border-radius: var(--r-2xl);
+  border: 1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+  transform: translateZ(0);
+}
+.hero-media::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 380px at 14% 8%, rgba(247,147,30,.14), transparent 60%),
+    radial-gradient(900px 380px at 92% 10%, rgba(255,174,66,.10), transparent 55%);
+  opacity: .9;
+  z-index: 2;
+}
+.hero-media::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  z-index: 4;
+}
+
+.hero-slider{
+  position: relative;
+  border-radius: inherit;
+  isolation: isolate;
+  background: rgba(0,0,0,.10);
+  min-width:0;
+}
+.hero-slides{
+  position: relative;
+  background: rgba(0,0,0,.12);
+  contain: layout paint; /* CLS safety */
+}
+
+/* Overlay vignette + top fade */
+.hero-slider::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index: 5;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 58%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.42) 100%);
+  opacity: .9;
+}
+
+/* Subtle grain */
+.hero-slider::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index: 6;
+  opacity: .08;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.08), rgba(255,255,255,.08) 1px, transparent 1px, transparent 3px);
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-slider::after{ display:none; }
+}
+
+/* Slide mechanics */
+.hero-slide{
+  margin:0;
+  position:absolute;
+  inset:0;
+  opacity: 0;
+  transform: scale(1.015);
+  filter: saturate(1.02) contrast(1.02);
+  transition:
+    opacity .65s var(--easeOut),
+    transform .95s var(--easeOut),
+    filter .85s var(--easeOut);
+  pointer-events: none;
+  display:block;
+}
+.hero-slide.is-active{
+  opacity: 1;
+  transform: scale(1);
+  filter: saturate(1.06) contrast(1.05);
+  pointer-events: auto;
+}
+.hero-slide picture,
+.hero-slide img{
+  width:100%;
+  height:100%;
+}
+.hero-slide img{
+  object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Make height stable */
+.hero-slides{
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow:hidden;
+}
+
+/* Caption */
+.hero-caption{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  top: 14px;
+  z-index: 25;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(16,16,16,.46), rgba(8,8,8,.30));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+  box-shadow: var(--uiShadow2);
+}
+.hero-caption strong{
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.hero-caption span{
+  color: rgba(234,234,234,.74);
+  font-size: .92rem;
+}
+.hero-caption.is-card{ border-radius: 16px; }
+
+/* Loading shimmer */
+.hero-slider.is-loading .hero-slides::after{
+  content:"";
+  position:absolute; inset:0;
+  z-index: 3;
+  pointer-events:none;
+  background:
+    linear-gradient(110deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.06) 22%,
+      rgba(255,255,255,0) 44%);
+  transform: translateX(-40%);
+  animation: sliderShimmer 1.2s linear infinite;
+}
+@keyframes sliderShimmer{
+  to{ transform: translateX(40%); }
+}
+
+/* Slider UI (prev/next + dots) */
+.hero-slider-ui{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 30;
+  padding: 0;
+}
+
+.hero-nav{
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke);
+  color: rgba(255,255,255,.92);
+  background: linear-gradient(180deg, rgba(28,28,28,.60), rgba(10,10,10,.40));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+  transition: transform .14s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
+}
+.hero-nav:hover{
+  transform: translateY(-1px);
+  border-color: rgba(247,147,30,.38);
+  background: linear-gradient(180deg, rgba(40,40,40,.62), rgba(12,12,12,.42));
+}
+.hero-nav:active{ transform: translateY(0); }
+.hero-nav i{ font-size: 18px; line-height:1; pointer-events:none; }
+
+.hero-dots{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke2);
+  background: linear-gradient(180deg, rgba(24,24,24,.52), rgba(10,10,10,.32));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+}
+.hero-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  cursor:pointer;
+  position: relative;
+  background: rgba(255,255,255,.30);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+  transition: transform .14s ease, background .18s ease, box-shadow .18s ease;
+}
+.hero-dot:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.55);
+}
+.hero-dot.is-active{
+  background: rgba(255,255,255,.96);
+  box-shadow:
+    0 0 0 3px rgba(247,147,30,.16),
+    inset 0 0 0 1px rgba(0,0,0,.20);
+}
+
+/* Progress bar */
+.hero-progress{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 66px;
+  height: 6px;
+  border-radius: 999px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  box-shadow: var(--uiShadow2);
+  z-index: 28;
+  pointer-events:none;
+}
+.hero-progress .bar{
+  display:block;
+  height:100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 10px 24px rgba(247,147,30,.22);
+  will-change: transform;
+}
+
+/* drag polish */
+.hero-slider.is-dragging .hero-slide{ transition:none !important; }
+.hero-slider.is-dragging .hero-slider-ui{ opacity: .85; }
+
+/* soft corner mask */
+.hero-media,
+.hero-slider,
+.hero-slides{
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* Focus ring only on keyboard navigation */
+.hero-slider :focus:not(:focus-visible){
+  outline: none !important;
+}
+
+/* -------------------- Sections -------------------- */
+section{
+  padding: 42px 0 0;
+  scroll-margin-top: 90px;
+}
+
+.section-head{
+  margin: 0 0 18px;
+}
+.section-head h2{
+  margin: 0 0 8px;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+.section-head .sub{
+  margin: 0;
+  color: var(--muted);
+  max-width: 80ch;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card{
+  border-radius: var(--r-xl);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  box-shadow: 0 14px 32px rgba(0,0,0,.35);
+  padding: 14px;
+  min-width: 0;
+}
+.card .icon{
+  width: 44px;
+  height: 44px;
+  display:grid;
+  place-items:center;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  margin-bottom: 10px;
+}
+.card h3{ margin: 0 0 6px; font-size: 1.03rem; }
+.card p{ margin: 0; color: var(--muted); }
+
+/* -------------------- Form -------------------- */
+.form{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+input, select, textarea{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.20);
+  color: rgba(255,255,255,.92);
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+textarea{ min-height: 130px; resize: vertical; }
+
+input::placeholder, textarea::placeholder{
+  color: rgba(241,241,241,.55);
+}
+
+.field-error{
+  border-color: rgba(255,90,90,.55) !important;
+  box-shadow: 0 0 0 3px rgba(255,90,90,.18);
+}
+
+.help-error{
+  margin-top: 6px;
+  color: rgba(255,170,170,.95);
+  font-size: .92rem;
+}
+
+.form-error,
+.form-success{
+  display:none;
+  gap: 10px;
+  align-items:flex-start;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+}
+.form-error.show{ display:flex; border-color: rgba(255,90,90,.45); }
+.form-success.show{ display:flex; border-color: rgba(80,220,140,.45); }
+
+.coupon-status{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.82);
+}
+.coupon-status .ok{ color: rgba(80,220,140,.95); }
+
+.privacy-note{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  color: rgba(255,255,255,.72);
+  font-size: .95rem;
+  padding-top: 6px;
+}
+
+.hp{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+/* -------------------- Footer -------------------- */
+.site-footer{
+  padding: 40px 0 86px; /* leave room for quickbar */
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.16);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 16px;
+}
+.footer-title{
+  margin: 0 0 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.9);
+}
+.footer-copy{ margin: 0 0 6px; color: rgba(255,255,255,.85); }
+.footer-desc{ margin: 0 0 10px; color: var(--muted); max-width: 60ch; }
+.footer-link a{ text-decoration: underline; text-decoration-color: rgba(255,255,255,.18); }
+
+.footer-cities{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap: 10px;
+}
+.footer-cities a{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.footer-cities a:hover{
+  border-color: rgba(247,147,30,.30);
+  background: rgba(255,255,255,.05);
+}
+
+/* -------------------- Quickbar -------------------- */
+.quickbar{
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 999;
+  display:flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(10,10,10,.70);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow2);
+}
+.quickbar a{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+}
+.quickbar a.primary{
+  color:#0b0b0b;
+  border-color: rgba(247,147,30,.45);
+  background: linear-gradient(90deg, rgba(247,147,30,.95), rgba(255,174,66,.95));
+}
+
+/* -------------------- Mobile / Responsive -------------------- */
+@media (max-width: 979px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px){
+  /* show menu btn */
+  .menu-btn{ display:inline-flex; }
+
+  /* nav becomes dropdown panel */
+  #nav{
+    display:none;
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    padding: 14px;
+    border-radius: var(--r-xl);
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(10,10,10,.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow2);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  #nav.open{ display:flex; }
+
+  #nav > a,
+  .dropbtn{
+    justify-content: space-between;
+    border-radius: 16px;
+    border-color: rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+  }
+
+  .dropdown-menu{
+    position: static;
+    display:none;
+    margin-top: 8px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.02);
+  }
+  .dropdown.open .dropdown-menu{ display:block; }
+
+  /* progress bar position tweak */
+  .hero-progress{
+    left: 10px; right: 10px;
+    bottom: 70px;
+    height: 7px;
+  }
+}
+
+@media (max-width: 520px){
+  .hero-slider-ui{ bottom: 10px; left: 10px; right: 10px; }
+  .hero-caption{ left: 10px; right: 10px; top: 10px; }
+  .grid{ grid-template-columns: 1fr; }
+  .row{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 380px){
+  .hero-progress{ display:none; }
+  .hero-dots{ padding: 9px 10px; gap: 9px; }
+  .hero-nav{ width: 46px; height: 46px; }
+  .quickbar{ left: 10px; right: 10px; bottom: 10px; }
+}
+
+/* -------------------- Scroll lock for mobile menu (matches JS) -------------------- */
+body[data-menu="open"]{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* -------------------- Accessibility contrast -------------------- */
+@media (prefers-contrast: more){
+  .hero-nav,
+  .hero-dots,
+  .hero-caption{
+    border-color: rgba(255,255,255,.32);
+    background: rgba(0,0,0,.60);
+  }
+  .hero-dot{ background: rgba(255,255,255,.55); }
+  .hero-dot.is-active{ background: #fff; }
+}
+
+/* -------------------- Print safety -------------------- */
+@media print{
+  header, .hero-slider-ui, .hero-progress, .quickbar{ display:none !important; }
+  .hero-media{ box-shadow:none !important; }
+}
