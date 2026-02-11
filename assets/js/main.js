@@ -605,3 +605,76 @@
   })();
 
 })();
+
+/* ============================
+   HERO SLIDER — AUTO 8s
+   ============================ */
+(() => {
+  const slider = document.querySelector(".hero-slider");
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll(".hero-slide");
+  const dots   = slider.querySelectorAll(".hero-dot");
+  const prev   = slider.querySelector(".hero-prev");
+  const next   = slider.querySelector(".hero-next");
+
+  if (slides.length < 2) return;
+
+  let index = 0;
+  let timer = null;
+  const INTERVAL = 8000; // ⬅️ 8 secondes
+
+  function show(i){
+    slides.forEach(s => s.classList.remove("is-active"));
+    dots.forEach(d => d.classList.remove("is-active"));
+
+    slides[i].classList.add("is-active");
+    dots[i]?.classList.add("is-active");
+
+    index = i;
+  }
+
+  function nextSlide(){
+    show((index + 1) % slides.length);
+  }
+
+  function prevSlide(){
+    show((index - 1 + slides.length) % slides.length);
+  }
+
+  function start(){
+    stop();
+    timer = setInterval(nextSlide, INTERVAL);
+  }
+
+  function stop(){
+    if (timer) clearInterval(timer);
+  }
+
+  // Autoplay
+  start();
+
+  // Controls
+  next?.addEventListener("click", () => {
+    nextSlide();
+    start(); // reset timer
+  });
+
+  prev?.addEventListener("click", () => {
+    prevSlide();
+    start();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      show(i);
+      start();
+    });
+  });
+
+  // Accessibilité: pause si onglet caché
+  document.addEventListener("visibilitychange", () => {
+    document.hidden ? stop() : start();
+  });
+})();
+
