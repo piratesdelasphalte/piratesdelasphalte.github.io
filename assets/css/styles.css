@@ -529,46 +529,29 @@ footer p{ margin: 0.35rem 0; }
 }
 
 /* ============================
-   HERO FIX (3 blocs: texte + image + contact)
-   Colle à la FIN du styles.css
+   HERO + SLIDER (VERSION PROPRE, SANS CONFLITS)
+   Remplace TOUT depuis ton ancien "HERO FIX" jusqu’à la fin
    ============================ */
 
-/* Desktop: 3 colonnes (texte | image | contact) */
-@media (min-width: 980px){
-  .hero-grid{
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr) minmax(280px, 360px);
-    gap: 22px;
-    align-items: start;
-  }
+/* Desktop: 2 colonnes (texte | contact) */
+.hero { padding: 80px 0 40px; }
+.hero-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 360px);
+  gap: 22px;
+  align-items: start;
 }
 
-/* Image hero propre */
-.hero-media{
-  margin: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.18);
-  box-shadow: var(--shadow);
-}
-
-.hero-media img{
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Mobile/tablette: tout en colonne (texte -> image -> contact) */
+/* Mobile/tablette: tout en colonne (texte -> slider -> contact) */
 @media (max-width: 979px){
-  .hero-grid{ grid-template-columns: 1fr; }
+  .hero { padding: 46px 0 26px; }
+  .hero-grid{ grid-template-columns: 1fr; gap: 18px; }
   .hero-card{ order: 1; }
   .hero-media{ order: 2; }
   .contact-box{ order: 3; }
 }
 
-/* Typo pour ton H1 (vu que ton CSS cible h2) */
+/* Typo H1 (ton CSS cible h2 plus haut) */
 .hero h1{
   font-size: clamp(1.8rem, 3.2vw, 2.35rem);
   margin-bottom: 12px;
@@ -582,18 +565,38 @@ footer p{ margin: 0.35rem 0; }
   max-width: 72ch;
 }
 
-/* HERO mobile: 1 colonne */
-@media (max-width: 979px){
-  .hero-grid{ grid-template-columns: 1fr; }
+/* ============================
+   HERO MEDIA (card look)
+   ============================ */
+.hero-media{
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: rgba(0,0,0,0.18);
+  box-shadow: var(--shadow);
 }
 
-/* ================= HERO SLIDER (2 images) ================= */
+/* IMPORTANT: ton slider est dans <section> -> annule le style global "section { padding:60px }" */
+.hero-media.hero-media--bottom{
+  padding: 0;
+  border-top: 0;
+  margin-top: 16px;
+}
 
+/* ============================
+   HERO SLIDER (no deps, mobile friendly)
+   ============================ */
 .hero-slider{
   position: relative;
-  border-radius: 18px; /* ajuste selon tes tokens */
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   background: rgba(0,0,0,.08);
+
+  /* mobile gestures */
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero-slides{
@@ -601,6 +604,12 @@ footer p{ margin: 0.35rem 0; }
   width: 100%;
   aspect-ratio: 16 / 9;
   isolation: isolate;
+  background: rgba(0,0,0,.10);
+}
+
+/* Ratio plus “mobile friendly” sur petits écrans */
+@media (max-width: 520px){
+  .hero-slides{ aspect-ratio: 4 / 3; }
 }
 
 .hero-slide{
@@ -628,25 +637,37 @@ footer p{ margin: 0.35rem 0; }
   object-fit: cover;
 }
 
+/* ============================
+   SLIDER UI (prev/next + dots)
+   ============================ */
 .hero-slider-ui{
   position: absolute;
   left: 12px;
   right: 12px;
   bottom: 12px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  pointer-events: none;
+
+  z-index: 20;          /* AU-DESSUS des slides */
+  pointer-events: none; /* l'UI laisse passer sauf sur boutons/dots */
+}
+
+.hero-nav,
+.hero-dots{
+  pointer-events: auto;
 }
 
 .hero-nav{
-  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+
+  width: 44px;
+  height: 44px;
+
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.22);
   background: rgba(15,15,15,.45);
@@ -656,7 +677,6 @@ footer p{ margin: 0.35rem 0; }
 }
 
 .hero-dots{
-  pointer-events: auto;
   display: inline-flex;
   gap: 8px;
   padding: 10px 12px;
@@ -679,53 +699,8 @@ footer p{ margin: 0.35rem 0; }
   background: rgba(255,255,255,.95);
 }
 
-@media (max-width: 979px){
-  .hero-slider-ui{
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-  }
-  .hero-nav{
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .hero-slide{ transition: none; }
-}
-
-.hero-grid{
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 360px);
-  gap: 22px;
-  align-items: start;
-}
-
-.hero-slider-ui{
-  z-index: 10;
-}
-.hero-nav,
-.hero-dots{
-  z-index: 11;
-}
-
-/* ============================
-   HERO SLIDER — MOBILE FRIENDLY PATCH
-   Colle à la FIN
-   ============================ */
-
-/* Empêche les gestes bizarres (scroll horizontal/zoom) */
-.hero-slider{
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Assure que les contrôles passent AU-DESSUS des slides */
-.hero-slider-ui{ z-index: 10; }
-
-/* Boutons + dots plus “tap-friendly” sur mobile */
-@media (max-width: 980px){
+/* Tap targets plus gros sur mobile */
+@media (max-width: 860px){
   .hero-slider-ui{
     left: 10px;
     right: 10px;
@@ -749,7 +724,14 @@ footer p{ margin: 0.35rem 0; }
   }
 }
 
-/* Bonus: si tu veux que l'image garde un ratio clean même si image manquante */
+/* Accessibilité: si reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hero-slide{ transition: none; }
+}
+
+/* Sécurité anti débordement */
+.hero-media,
+.hero-slider,
 .hero-slides{
-  background: rgba(0,0,0,.10);
+  min-width: 0;
 }
