@@ -1,10 +1,63 @@
 /* =========================================================
-   ULTRA PREMIUM PATCH — HERO SLIDER (PART 1/2)
-   Colle à la FIN de styles.css (après ton slider actuel)
+   Pirates de l’Asphalte — styles.css (FULL)
+   - Base tokens + layout
+   - Header/nav + dropdown (desktop + mobile)
+   - Hero grid (texte + contact) + CTAs
+   - Hero slider (FULL + Ultra Premium patch intégré)
+   - Sections/cards
+   - Form (Formspree) + states
+   - Footer + Quickbar
    ========================================================= */
 
-/* ---------- Tokens slider (safe) ---------- */
+/* -------------------- Reset / base -------------------- */
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body{ margin:0; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; }
+:focus-visible{ outline:3px solid rgba(247,147,30,.65); outline-offset:3px; }
+
+/* -------------------- Tokens -------------------- */
 :root{
+  /* palette */
+  --bg0:#0f0f10;
+  --bg1:#151517;
+  --bg2:#1d1d20;
+  --card: rgba(255,255,255,.045);
+  --card2: rgba(255,255,255,.06);
+
+  --text:#f1f1f1;
+  --muted:rgba(241,241,241,.72);
+
+  --accent:#f7931e;
+  --accent2:#ffae42;
+
+  /* strokes/shadows */
+  --stroke: rgba(255,255,255,.12);
+  --stroke2: rgba(255,255,255,.08);
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+  --shadow2: 0 14px 40px rgba(0,0,0,.42);
+
+  /* radius */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-2xl: 28px;
+
+  /* spacing */
+  --container: 1140px;
+  --pad: 20px;
+
+  /* type */
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --lh: 1.55;
+
+  /* motion */
+  --easeOut: cubic-bezier(.2,.9,.2,1);
+
+  /* slider “premium” tokens (safe) */
   --glass: rgba(12,12,12,.48);
   --glass2: rgba(12,12,12,.34);
   --uiStroke: rgba(255,255,255,.18);
@@ -12,11 +65,308 @@
   --uiShadow: 0 18px 60px rgba(0,0,0,.55);
   --uiShadow2: 0 14px 40px rgba(0,0,0,.42);
   --uiBlur: 12px;
-  --easeOut: cubic-bezier(.2,.9,.2,1);
 }
 
-/* ---------- HERO MEDIA polish ---------- */
+/* -------------------- Page base -------------------- */
+body{
+  font-family: var(--font);
+  line-height: var(--lh);
+  color: var(--text);
+  background:
+    radial-gradient(1100px 520px at 20% 0%, rgba(247,147,30,.12), transparent 60%),
+    radial-gradient(900px 420px at 86% 8%, rgba(255,174,66,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg0));
+  min-height:100vh;
+}
+
+.container{
+  width: min(100%, var(--container));
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+main{ padding: 26px 0 40px; }
+
+/* -------------------- Header / Topbar -------------------- */
+header{
+  position: sticky;
+  top:0;
+  z-index: 1000;
+  background: rgba(12,12,12,.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.brand-wrap{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 0;
+}
+.brand .logo{
+  width: 56px;
+  height: auto;
+  border-radius: 12px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.35));
+}
+.brand-text{
+  font-weight: 900;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.88);
+  font-size: .92rem;
+}
+
+/* -------------------- Nav + Dropdown -------------------- */
+.nav-wrap{ position: relative; }
+
+.menu-btn{
+  display:none;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.92);
+  cursor:pointer;
+}
+
+#nav{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+#nav > a,
+.dropbtn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: rgba(255,255,255,.9);
+  border: 1px solid transparent;
+  transition: transform .14s ease, background .18s ease, border-color .18s ease;
+}
+#nav > a:hover,
+.dropbtn:hover{
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+
+.dropdown{ position: relative; }
+.dropdown-menu{
+  position:absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  padding: 10px;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(10,10,10,.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow2);
+  display:none;
+}
+.dropdown-menu a{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  color: rgba(255,255,255,.9);
+}
+.dropdown-menu a:hover{
+  background: rgba(255,255,255,.06);
+}
+.drop-sep{
+  height:1px;
+  margin: 8px 4px;
+  background: rgba(255,255,255,.10);
+}
+
+/* Desktop: open on hover/focus */
+@media (min-width: 861px){
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu{ display:block; }
+}
+
+/* Mobile dropdown toggled by JS: .dropdown.open */
+.dropdown.open .dropdown-menu{ display:block; }
+
+/* -------------------- Hero layout -------------------- */
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hero-card,
+.contact-box{
+  border-radius: var(--r-2xl);
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(800px 240px at 18% 0%, rgba(247,147,30,.10), transparent 60%),
+    radial-gradient(700px 220px at 92% 10%, rgba(255,174,66,.08), transparent 60%),
+    rgba(255,255,255,.035);
+  box-shadow: var(--shadow2);
+  padding: 18px;
+  min-width: 0;
+}
+
+.hero-card h1{
+  margin: 0 0 10px;
+  font-size: clamp(1.5rem, 2.3vw, 2.15rem);
+  line-height: 1.18;
+  letter-spacing: .2px;
+}
+.hero-sub{
+  margin: 0 0 14px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.hero-points{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.90);
+  font-size: .95rem;
+}
+
+/* -------------------- Buttons -------------------- */
+.cta-row{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.92);
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  transition: transform .14s ease, border-color .18s ease, background .18s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(247,147,30,.35);
+  background: rgba(255,255,255,.06);
+}
+.btn:active{ transform: translateY(0); }
+
+.btn-primary{
+  border-color: rgba(247,147,30,.45);
+  background: linear-gradient(90deg, rgba(247,147,30,.95), rgba(255,174,66,.95));
+  color: #0b0b0b;
+  font-weight: 900;
+  box-shadow: 0 18px 40px rgba(247,147,30,.18);
+}
+.btn-primary:hover{
+  border-color: rgba(255,174,66,.55);
+  background: linear-gradient(90deg, rgba(247,147,30,1), rgba(255,174,66,1));
+}
+.btn-ghost{
+  background: rgba(255,255,255,.03);
+}
+
+.btn[disabled]{
+  opacity: .7;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* -------------------- Contact box -------------------- */
+.contact-box strong{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.contact-item{
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  margin: 10px 0;
+}
+.contact-item i{ margin-top: 3px; color: rgba(255,255,255,.86); }
+.contact-item a{
+  color: rgba(255,255,255,.95);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.18);
+}
+.contact-note{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.82);
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+
+/* -------------------- Hero media + Slider (base) -------------------- */
 .hero-media{
+  margin-top: 18px;
+  border-radius: var(--r-2xl);
+  border: 1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+  box-shadow: var(--shadow);
   position: relative;
   transform: translateZ(0);
 }
@@ -39,24 +389,20 @@
   z-index: 4;
 }
 
-/* ---------- Slider base: stability + no flash ---------- */
 .hero-slider{
+  position: relative;
   border-radius: inherit;
   isolation: isolate;
   background: rgba(0,0,0,.10);
+  min-width:0;
 }
 .hero-slides{
+  position: relative;
   background: rgba(0,0,0,.12);
+  contain: layout paint; /* CLS safety */
 }
 
-/* Smooth image rendering */
-.hero-slide img{
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-/* ---------- Premium overlay (vignette + top fade for text) ---------- */
+/* Overlay vignette + top fade */
 .hero-slider::before{
   content:"";
   position:absolute; inset:0;
@@ -68,7 +414,7 @@
   opacity: .9;
 }
 
-/* Light grain (subtle, premium) */
+/* Subtle grain */
 .hero-slider::after{
   content:"";
   position:absolute; inset:0;
@@ -79,14 +425,15 @@
   background-image:
     repeating-linear-gradient(0deg, rgba(255,255,255,.08), rgba(255,255,255,.08) 1px, transparent 1px, transparent 3px);
 }
-
-/* Reduced motion: disable “grain” flicker feeling */
 @media (prefers-reduced-motion: reduce){
   .hero-slider::after{ display:none; }
 }
 
-/* ---------- Slide transition upgrade ---------- */
+/* Slide mechanics */
 .hero-slide{
+  margin:0;
+  position:absolute;
+  inset:0;
   opacity: 0;
   transform: scale(1.015);
   filter: saturate(1.02) contrast(1.02);
@@ -94,88 +441,47 @@
     opacity .65s var(--easeOut),
     transform .95s var(--easeOut),
     filter .85s var(--easeOut);
+  pointer-events: none;
+  display:block;
 }
 .hero-slide.is-active{
   opacity: 1;
   transform: scale(1);
   filter: saturate(1.06) contrast(1.05);
+  pointer-events: auto;
+}
+.hero-slide picture,
+.hero-slide img{
+  width:100%;
+  height:100%;
+}
+.hero-slide img{
+  object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
-/* Prevent accidental click-through on hidden slides */
-.hero-slide{ pointer-events: none; }
-.hero-slide.is-active{ pointer-events: auto; }
-
-/* ---------- Slider UI: upgrade look ---------- */
-.hero-slider-ui{
-  z-index: 30;
-  padding: 0;
+/* Make height stable */
+.hero-slides{
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow:hidden;
 }
 
-/* Prev/Next buttons */
-.hero-nav{
-  box-shadow: var(--uiShadow2);
-  border: 1px solid var(--uiStroke);
-  background: linear-gradient(180deg, rgba(28,28,28,.60), rgba(10,10,10,.40));
-  backdrop-filter: blur(var(--uiBlur));
-  -webkit-backdrop-filter: blur(var(--uiBlur));
-  transition: transform .14s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
-}
-.hero-nav:hover{
-  transform: translateY(-1px);
-  border-color: rgba(247,147,30,.38);
-  background: linear-gradient(180deg, rgba(40,40,40,.62), rgba(12,12,12,.42));
-}
-.hero-nav:active{ transform: translateY(0); }
-
-/* Dots capsule */
-.hero-dots{
-  box-shadow: var(--uiShadow2);
-  border: 1px solid var(--uiStroke2);
-  background: linear-gradient(180deg, rgba(24,24,24,.52), rgba(10,10,10,.32));
-  backdrop-filter: blur(var(--uiBlur));
-  -webkit-backdrop-filter: blur(var(--uiBlur));
-}
-
-/* Dots: nicer, clearer state */
-.hero-dot{
-  position: relative;
-  background: rgba(255,255,255,.30);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
-  transition: transform .14s ease, background .18s ease, box-shadow .18s ease;
-}
-.hero-dot:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.55);
-}
-.hero-dot.is-active{
-  background: rgba(255,255,255,.96);
-  box-shadow:
-    0 0 0 3px rgba(247,147,30,.16),
-    inset 0 0 0 1px rgba(0,0,0,.20);
-}
-
-/* Keyboard focus premium */
-.hero-nav:focus-visible,
-.hero-dot:focus-visible{
-  outline: 3px solid rgba(247,147,30,.65);
-  outline-offset: 3px;
-}
-
-/* ---------- Optional: Caption overlay (si tu ajoutes un .hero-caption dans HTML) ---------- */
+/* Caption */
 .hero-caption{
   position:absolute;
   left: 14px;
   right: 14px;
   top: 14px;
   z-index: 25;
-
   display:flex;
   align-items:center;
   justify-content: space-between;
   gap: 12px;
-
   padding: 10px 12px;
-  border-radius: 14px;
+  border-radius: 999px;
   border: 1px solid rgba(255,255,255,.12);
   background: linear-gradient(180deg, rgba(16,16,16,.46), rgba(8,8,8,.30));
   backdrop-filter: blur(var(--uiBlur));
@@ -191,11 +497,9 @@
   color: rgba(234,234,234,.74);
   font-size: .92rem;
 }
+.hero-caption.is-card{ border-radius: 16px; }
 
-/* ---------- Optional: Loading shimmer (si tu ajoutes .is-loading sur .hero-slider) ---------- */
-.hero-slider.is-loading::before{
-  opacity: 1;
-}
+/* Loading shimmer */
 .hero-slider.is-loading .hero-slides::after{
   content:"";
   position:absolute; inset:0;
@@ -213,32 +517,83 @@
   to{ transform: translateX(40%); }
 }
 
-/* ---------- Mobile tweaks: safer spacing + bigger UI ---------- */
-@media (max-width: 520px){
-  .hero-slider-ui{ bottom: 10px; left: 10px; right: 10px; }
-  .hero-caption{ left: 10px; right: 10px; top: 10px; }
+/* Slider UI (prev/next + dots) */
+.hero-slider-ui{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 30;
+  padding: 0;
 }
 
-/* ---------- Safety: make sure slider never inherits section padding ---------- */
-.hero-media.hero-media--bottom,
-.hero-media.hero-media--bottom *{
-  scroll-margin-top: 90px;
+.hero-nav{
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke);
+  color: rgba(255,255,255,.92);
+  background: linear-gradient(180deg, rgba(28,28,28,.60), rgba(10,10,10,.40));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+  transition: transform .14s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
+}
+.hero-nav:hover{
+  transform: translateY(-1px);
+  border-color: rgba(247,147,30,.38);
+  background: linear-gradient(180deg, rgba(40,40,40,.62), rgba(12,12,12,.42));
+}
+.hero-nav:active{ transform: translateY(0); }
+.hero-nav i{ font-size: 18px; line-height:1; pointer-events:none; }
+
+.hero-dots{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke2);
+  background: linear-gradient(180deg, rgba(24,24,24,.52), rgba(10,10,10,.32));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+}
+.hero-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  cursor:pointer;
+  position: relative;
+  background: rgba(255,255,255,.30);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+  transition: transform .14s ease, background .18s ease, box-shadow .18s ease;
+}
+.hero-dot:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.55);
+}
+.hero-dot.is-active{
+  background: rgba(255,255,255,.96);
+  box-shadow:
+    0 0 0 3px rgba(247,147,30,.16),
+    inset 0 0 0 1px rgba(0,0,0,.20);
 }
 
-/* =========================================================
-   ULTRA PREMIUM PATCH — HERO SLIDER (PART 2/2)
-   Colle DIRECTEMENT sous la PART 1/2
-   ========================================================= */
-
-/* ---------- Progress bar (optionnelle) ----------
-   Ajoute dans ton HTML (dans .hero-slider):
-   <div class="hero-progress" aria-hidden="true"><span class="bar"></span></div>
-*/
+/* Progress bar */
 .hero-progress{
   position:absolute;
   left: 14px;
   right: 14px;
-  bottom: 66px; /* au-dessus des dots */
+  bottom: 66px;
   height: 6px;
   border-radius: 999px;
   overflow:hidden;
@@ -251,15 +606,280 @@
 .hero-progress .bar{
   display:block;
   height:100%;
-  width: 0%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
   box-shadow: 0 10px 24px rgba(247,147,30,.22);
-  will-change: width;
+  will-change: transform;
 }
 
-/* Mobile: replacer la barre */
+/* drag polish */
+.hero-slider.is-dragging .hero-slide{ transition:none !important; }
+.hero-slider.is-dragging .hero-slider-ui{ opacity: .85; }
+
+/* soft corner mask */
+.hero-media,
+.hero-slider,
+.hero-slides{
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* Focus ring only on keyboard navigation */
+.hero-slider :focus:not(:focus-visible){
+  outline: none !important;
+}
+
+/* -------------------- Sections -------------------- */
+section{
+  padding: 42px 0 0;
+  scroll-margin-top: 90px;
+}
+
+.section-head{
+  margin: 0 0 18px;
+}
+.section-head h2{
+  margin: 0 0 8px;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+.section-head .sub{
+  margin: 0;
+  color: var(--muted);
+  max-width: 80ch;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card{
+  border-radius: var(--r-xl);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  box-shadow: 0 14px 32px rgba(0,0,0,.35);
+  padding: 14px;
+  min-width: 0;
+}
+.card .icon{
+  width: 44px;
+  height: 44px;
+  display:grid;
+  place-items:center;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  margin-bottom: 10px;
+}
+.card h3{ margin: 0 0 6px; font-size: 1.03rem; }
+.card p{ margin: 0; color: var(--muted); }
+
+/* -------------------- Form -------------------- */
+.form{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+input, select, textarea{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.20);
+  color: rgba(255,255,255,.92);
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+textarea{ min-height: 130px; resize: vertical; }
+
+input::placeholder, textarea::placeholder{
+  color: rgba(241,241,241,.55);
+}
+
+.field-error{
+  border-color: rgba(255,90,90,.55) !important;
+  box-shadow: 0 0 0 3px rgba(255,90,90,.18);
+}
+
+.help-error{
+  margin-top: 6px;
+  color: rgba(255,170,170,.95);
+  font-size: .92rem;
+}
+
+.form-error,
+.form-success{
+  display:none;
+  gap: 10px;
+  align-items:flex-start;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+}
+.form-error.show{ display:flex; border-color: rgba(255,90,90,.45); }
+.form-success.show{ display:flex; border-color: rgba(80,220,140,.45); }
+
+.coupon-status{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.82);
+}
+.coupon-status .ok{ color: rgba(80,220,140,.95); }
+
+.privacy-note{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  color: rgba(255,255,255,.72);
+  font-size: .95rem;
+  padding-top: 6px;
+}
+
+.hp{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+/* -------------------- Footer -------------------- */
+.site-footer{
+  padding: 40px 0 86px; /* leave room for quickbar */
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.16);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 16px;
+}
+.footer-title{
+  margin: 0 0 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.9);
+}
+.footer-copy{ margin: 0 0 6px; color: rgba(255,255,255,.85); }
+.footer-desc{ margin: 0 0 10px; color: var(--muted); max-width: 60ch; }
+.footer-link a{ text-decoration: underline; text-decoration-color: rgba(255,255,255,.18); }
+
+.footer-cities{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap: 10px;
+}
+.footer-cities a{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.footer-cities a:hover{
+  border-color: rgba(247,147,30,.30);
+  background: rgba(255,255,255,.05);
+}
+
+/* -------------------- Quickbar -------------------- */
+.quickbar{
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 999;
+  display:flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(10,10,10,.70);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow2);
+}
+.quickbar a{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+}
+.quickbar a.primary{
+  color:#0b0b0b;
+  border-color: rgba(247,147,30,.45);
+  background: linear-gradient(90deg, rgba(247,147,30,.95), rgba(255,174,66,.95));
+}
+
+/* -------------------- Mobile / Responsive -------------------- */
+@media (max-width: 979px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: 1fr; }
+}
+
 @media (max-width: 860px){
+  /* show menu btn */
+  .menu-btn{ display:inline-flex; }
+
+  /* nav becomes dropdown panel */
+  #nav{
+    display:none;
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    padding: 14px;
+    border-radius: var(--r-xl);
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(10,10,10,.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow2);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  #nav.open{ display:flex; }
+
+  #nav > a,
+  .dropbtn{
+    justify-content: space-between;
+    border-radius: 16px;
+    border-color: rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+  }
+
+  .dropdown-menu{
+    position: static;
+    display:none;
+    margin-top: 8px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.02);
+  }
+  .dropdown.open .dropdown-menu{ display:block; }
+
+  /* progress bar position tweak */
   .hero-progress{
     left: 10px; right: 10px;
     bottom: 70px;
@@ -267,76 +887,29 @@
   }
 }
 
-/* ---------- Better hit-area + icon size ----------
-   (si tu utilises <i class="..."> dedans)
-*/
-.hero-nav i{
-  font-size: 18px;
-  line-height: 1;
-  pointer-events:none;
+@media (max-width: 520px){
+  .hero-slider-ui{ bottom: 10px; left: 10px; right: 10px; }
+  .hero-caption{ left: 10px; right: 10px; top: 10px; }
+  .grid{ grid-template-columns: 1fr; }
+  .row{ grid-template-columns: 1fr; }
 }
 
-/* ---------- “Floating” UI: soften edges ---------- */
-.hero-nav,
-.hero-dots,
-.hero-caption{
-  border-radius: 999px;
+@media (max-width: 380px){
+  .hero-progress{ display:none; }
+  .hero-dots{ padding: 9px 10px; gap: 9px; }
+  .hero-nav{ width: 46px; height: 46px; }
+  .quickbar{ left: 10px; right: 10px; bottom: 10px; }
 }
 
-/* Caption: si tu veux un look plus “card” au lieu de pill */
-.hero-caption.is-card{
-  border-radius: 16px;
+/* -------------------- Scroll lock for mobile menu (matches JS) -------------------- */
+body[data-menu="open"]{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
 }
 
-/* ---------- Optional: Center dots on small screens ----------
-   (si tu préfères dots au centre, nav aux côtés)
-*/
-.hero-slider-ui.is-centered{
-  justify-content: center;
-}
-.hero-slider-ui.is-centered .hero-dots{
-  margin: 0 auto;
-}
-.hero-slider-ui.is-centered .hero-nav{
-  position:absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hero-slider-ui.is-centered .hero-prev{ left: 12px; }
-.hero-slider-ui.is-centered .hero-next{ right: 12px; }
-.hero-slider-ui.is-centered .hero-nav:hover{ transform: translateY(calc(-50% - 1px)); }
-.hero-slider-ui.is-centered .hero-nav:active{ transform: translateY(-50%); }
-
-/* ---------- Swipe/drag friendly polish ----------
-   (ton JS peut ajouter .is-dragging sur .hero-slider pendant un swipe)
-*/
-.hero-slider.is-dragging .hero-slide{
-  transition: none !important;
-}
-.hero-slider.is-dragging .hero-slider-ui{
-  opacity: .85;
-}
-
-/* ---------- Prevent CLS: force consistent media height ---------- */
-.hero-slides{
-  contain: layout paint;
-}
-
-/* ---------- Optional: “soft” corner mask ----------
-   (évite les pixels durs sur certains navigateurs)
-*/
-.hero-media,
-.hero-slider,
-.hero-slides{
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-}
-
-/* ---------- Focus ring only when keyboard navigation ---------- */
-.hero-slider :focus:not(:focus-visible){
-  outline: none !important;
-}
-
-/* ---------- High contrast tweak for accessibility ---------- */
+/* -------------------- Accessibility contrast -------------------- */
 @media (prefers-contrast: more){
   .hero-nav,
   .hero-dots,
@@ -344,74 +917,12 @@
     border-color: rgba(255,255,255,.32);
     background: rgba(0,0,0,.60);
   }
-  .hero-dot{
-    background: rgba(255,255,255,.55);
-  }
-  .hero-dot.is-active{
-    background: #fff;
-  }
+  .hero-dot{ background: rgba(255,255,255,.55); }
+  .hero-dot.is-active{ background: #fff; }
 }
 
-/* ---------- Ultra small screens: simplify ---------- */
-@media (max-width: 380px){
-  .hero-progress{ display:none; } /* optionnel */
-  .hero-dots{ padding: 9px 10px; gap: 9px; }
-  .hero-nav{ width: 46px; height: 46px; }
-}
-
-/* ---------- Print safety ---------- */
+/* -------------------- Print safety -------------------- */
 @media print{
-  .hero-slider-ui,
-  .hero-progress,
-  .quickbar{ display:none !important; }
+  header, .hero-slider-ui, .hero-progress, .quickbar{ display:none !important; }
   .hero-media{ box-shadow:none !important; }
 }
-
-/* =========================================================
-   QUICK HTML CHECK (important)
-   Ton HTML devrait ressembler à ça:
-
-   <div class="hero-slider" data-autoplay="true" data-interval="5200">
-     <div class="hero-slides" aria-live="polite">
-       <figure class="hero-slide is-active" data-index="0">...</figure>
-       <figure class="hero-slide" data-index="1">...</figure>
-     </div>
-
-     (optionnel)
-     <div class="hero-progress" aria-hidden="true"><span class="bar"></span></div>
-
-     <div class="hero-slider-ui">
-       <button class="hero-nav hero-prev" ...>...</button>
-       <div class="hero-dots">
-         <button class="hero-dot is-active" data-go="0"></button>
-         <button class="hero-dot" data-go="1"></button>
-       </div>
-       <button class="hero-nav hero-next" ...>...</button>
-     </div>
-   </div>
-
-   ========================================================= */
-
-/* --- FIX slider: slides superposées + clipping --- */
-.hero-slider{ position: relative; overflow: hidden; }
-
-.hero-slides{
-  position: relative;
-  overflow: hidden;
-  border-radius: inherit;
-}
-
-/* chaque slide doit se superposer */
-.hero-slide{
-  position: absolute;
-  inset: 0;
-}
-
-/* l’image doit remplir */
-.hero-slide img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
