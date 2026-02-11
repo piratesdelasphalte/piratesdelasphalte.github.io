@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="content-language" content="fr-CA" />
-  <meta name="language" content="fr-CA" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="format-detection" content="telephone=yes" />
@@ -65,20 +64,32 @@
     gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema: AboutPage + LocalBusiness -->
+  <!-- Schema: Organization + LocalBusiness + WebSite + AboutPage -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@graph":[
       {
         "@type":"Organization",
+        "@id":"https://piratesdelasphalte.github.io/#org",
         "name":"Pirates de l’Asphalte",
         "url":"https://piratesdelasphalte.github.io/",
         "logo":"https://piratesdelasphalte.github.io/pirates-de-l-asphalte-logo.png",
-        "sameAs":["https://www.facebook.com/piratesdelsphalte/"]
+        "sameAs":[
+          "https://www.facebook.com/piratesdelsphalte/"
+        ]
+      },
+      {
+        "@type":"WebSite",
+        "@id":"https://piratesdelasphalte.github.io/#website",
+        "name":"Pirates de l’Asphalte",
+        "url":"https://piratesdelasphalte.github.io/",
+        "publisher":{"@id":"https://piratesdelasphalte.github.io/#org"},
+        "inLanguage":"fr-CA"
       },
       {
         "@type":"LocalBusiness",
+        "@id":"https://piratesdelasphalte.github.io/#localbusiness",
         "name":"Pirates de l’Asphalte",
         "url":"https://piratesdelasphalte.github.io/",
         "telephone":"+1-514-979-7832",
@@ -99,20 +110,26 @@
           {"@type":"AdministrativeArea","name":"Québec"}
         ],
         "serviceType":[
-          "Asphaltage","Pavage","Réparation d’asphalte","Scellant d’asphalte",
-          "Déneigement","Paysagement","Excavation","Pavé uni"
+          "Asphaltage",
+          "Pavage",
+          "Réparation d’asphalte",
+          "Scellant d’asphalte",
+          "Déneigement",
+          "Paysagement",
+          "Excavation",
+          "Pavé uni"
         ]
       },
       {
         "@type":"AboutPage",
+        "@id":"https://piratesdelasphalte.github.io/a-propos/#webpage",
         "name":"À propos | Pirates de l’Asphalte",
         "url":"https://piratesdelasphalte.github.io/a-propos/",
         "inLanguage":"fr-CA",
-        "isPartOf":{
-          "@type":"WebSite",
-          "name":"Pirates de l’Asphalte",
-          "url":"https://piratesdelasphalte.github.io/"
-        }
+        "isPartOf":{"@id":"https://piratesdelasphalte.github.io/#website"},
+        "about":{"@id":"https://piratesdelasphalte.github.io/#localbusiness"},
+        "publisher":{"@id":"https://piratesdelasphalte.github.io/#org"},
+        "mainEntityOfPage":{"@id":"https://piratesdelasphalte.github.io/a-propos/#webpage"}
       }
     ]
   }
