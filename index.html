@@ -172,6 +172,8 @@
 
   <main id="top" class="hero" aria-label="Asphaltage et réparation d’asphalte au Québec">
   <div class="container">
+
+    <!-- GRID HAUT : TEXTE + CONTACT -->
     <div class="hero-grid">
 
       <!-- 1) TEXTE -->
@@ -184,9 +186,18 @@
         </p>
 
         <div class="hero-points" aria-label="Points forts">
-          <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Travail durable</span>
-          <span class="pill"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i> Équipe fiable</span>
-          <span class="pill"><i class="fa-solid fa-clock" aria-hidden="true"></i> Soumission rapide</span>
+          <span class="pill">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Travail durable
+          </span>
+          <span class="pill">
+            <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
+            Équipe fiable
+          </span>
+          <span class="pill">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            Soumission rapide
+          </span>
         </div>
 
         <div class="cta-row">
@@ -202,73 +213,12 @@
         </div>
       </div>
 
-      <!-- 2) IMAGE -->
-     <section class="hero-media" aria-label="Photos de projets d’asphaltage au Québec">
-  <div class="hero-slider" data-autoplay="true" data-interval="5200">
-    <!-- Slides -->
-    <div class="hero-slides" aria-live="polite">
-      
-      <!-- Slide 1 (LCP) -->
-      <figure class="hero-slide is-active" data-index="0">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
-                    /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
-            sizes="(max-width: 979px) 100vw, 40vw" />
-          <img
-            src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
-            width="1600"
-            height="900"
-            alt="Entrée de cour en asphalte neuve au Québec – asphaltage résidentiel professionnel"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high" />
-        </picture>
-      </figure>
-
-      <!-- Slide 2 -->
-      <figure class="hero-slide" data-index="1">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/images/hero/asphaltage-residentiel-entree-maison-quebec-1600x900.webp 1600w,
-                    /assets/images/hero/asphaltage-residentiel-entree-maison-quebec-2400x1350.webp 2400w"
-            sizes="(max-width: 979px) 100vw, 40vw" />
-          <img
-            src="/assets/images/hero/asphalt-asphaltage-residentiel-entree-maison-quebec-1600x900.webp"
-            width="1600"
-            height="900"
-            alt="Réparation d’asphalte chaude lors de travaux au Québec"
-            loading="lazy"
-            decoding="async" />
-        </picture>
-      </figure>
-
-    </div>
-
-    <!-- Controls -->
-    <div class="hero-slider-ui" aria-label="Contrôles du carrousel">
-      <button class="hero-nav hero-prev" type="button" aria-label="Photo précédente">
-        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-      </button>
-
-      <div class="hero-dots" role="tablist" aria-label="Choisir une photo">
-        <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Photo 1" data-go="0"></button>
-        <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Photo 2" data-go="1"></button>
-      </div>
-
-      <button class="hero-nav hero-next" type="button" aria-label="Photo suivante">
-        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-      </button>
-    </div>
-
-  </div>
-</section>
-
-      <!-- 3) CONTACT -->
+      <!-- 2) NOUS JOINDRE -->
       <aside class="contact-box" id="contact" aria-label="Coordonnées">
-        <strong><i class="fa-solid fa-address-card" aria-hidden="true"></i> Nous joindre</strong>
+        <strong>
+          <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+          Nous joindre
+        </strong>
 
         <div class="contact-item">
           <i class="fa-solid fa-phone" aria-hidden="true"></i>
@@ -298,7 +248,10 @@
           <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
           <div>
             Facebook<br />
-            <a href="https://www.facebook.com/piratesdelsphalte/" target="_blank" rel="noopener">Pirates de l’Asphalte</a>
+            <a href="https://www.facebook.com/piratesdelsphalte/"
+               target="_blank" rel="noopener">
+              Pirates de l’Asphalte
+            </a>
           </div>
         </div>
 
@@ -309,6 +262,73 @@
       </aside>
 
     </div>
+
+    <!-- 3) SLIDER EN BAS -->
+    <section class="hero-media hero-media--bottom"
+             aria-label="Photos de projets d’asphaltage au Québec">
+
+      <div class="hero-slider" data-autoplay="true" data-interval="5200">
+
+        <div class="hero-slides" aria-live="polite">
+
+          <!-- Slide 1 (LCP) -->
+          <figure class="hero-slide is-active" data-index="0">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w,
+                        /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+                sizes="100vw" />
+              <img
+                src="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+                width="1600"
+                height="900"
+                alt="Asphaltage résidentiel et commercial au Québec – entrée d’asphalte neuve"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high" />
+            </picture>
+          </figure>
+
+          <!-- Slide 2 -->
+          <figure class="hero-slide" data-index="1">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="/assets/images/hero/asphaltage-residentiel-entree-maison-quebec-1600x900.webp 1600w,
+                        /assets/images/hero/asphaltage-residentiel-entree-maison-quebec-2400x1350.webp 2400w"
+                sizes="100vw" />
+              <img
+                src="/assets/images/hero/asphaltage-residentiel-entree-maison-quebec-1600x900.webp"
+                width="1600"
+                height="900"
+                alt="Entrée de maison en asphalte au Québec – asphaltage résidentiel professionnel"
+                loading="lazy"
+                decoding="async" />
+            </picture>
+          </figure>
+
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="hero-slider-ui" aria-label="Contrôles du carrousel">
+          <button class="hero-nav hero-prev" type="button" aria-label="Photo précédente">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <div class="hero-dots" role="tablist" aria-label="Choisir une photo">
+            <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" data-go="0"></button>
+            <button class="hero-dot" type="button" role="tab" aria-selected="false" data-go="1"></button>
+          </div>
+
+          <button class="hero-nav hero-next" type="button" aria-label="Photo suivante">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
   </div>
 </main>
 
