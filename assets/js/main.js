@@ -1,10 +1,11 @@
 /* =========================================================
-   Pirates de l’Asphalte — main.js (ULTRA PREMIUM) — PART 1/2
+   Pirates de l’Asphalte — main.js (ULTRA PREMIUM)
    - No deps, robuste, accessible
    - Menu + dropdown mobile (avec scroll lock)
-   - Formspree lead form + UTM capture + anti-spam
-   - GA4 hooks (gtag si présent)
-   - Hero slider (PART 2/2)
+   - Attribution UTM + referrer (persist 30j)
+   - Click tracking GA4 (si gtag présent)
+   - Formspree lead form + validation + anti-spam
+   - Hero slider (dots + prev/next + keyboard + swipe + progress)
    ========================================================= */
 
 (() => {
@@ -41,11 +42,10 @@
     } catch {}
   };
 
-  const setText = (el, text) => { if (el) el.textContent = text; };
+  const now = () => Date.now();
 
   /* -------------------- Simple storage (UTM persistence) -------------------- */
   const STORE_KEY = "pda_attrib_v1";
-  const now = () => Date.now();
 
   const storage = {
     get() {
@@ -77,18 +77,15 @@
 
   /* =========================================================
      2) Mobile menu (accessible + scroll lock)
-     Expects:
-       #menuBtn, #nav
-     CSS used:
-       body[data-menu="open"] { position: fixed; ... }
+     Expects: #menuBtn, #nav
+     CSS used: body[data-menu="open"] { position: fixed; ... }
      ========================================================= */
   const menuBtn = qs("#menuBtn");
   const nav = qs("#nav");
 
-  const getScrollY = () => {
-    // store scroll position so we can restore after body fixed
-    return window.scrollY || document.documentElement.scrollTop || 0;
-  };
+  const getScrollY = () => (
+    window.scrollY || document.documentElement.scrollTop || 0
+  );
 
   const setBodyLock = (lock) => {
     const y = getScrollY();
@@ -101,7 +98,6 @@
       document.body.dataset.menu = "";
       document.body.style.top = "";
       document.body.dataset.scrollY = "";
-      // restore scroll
       window.scrollTo(0, prev);
     }
   };
@@ -122,16 +118,13 @@
     menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
     menuBtn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
 
-    // Scroll lock only on mobile
     const isMobile = window.matchMedia("(max-width: 860px)").matches;
     if (isMobile) setBodyLock(!!open);
 
-    // Keep icon swap (safe enough for your case)
     menuBtn.innerHTML = open
       ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i> Fermer'
       : '<i class="fa-solid fa-bars" aria-hidden="true"></i> Menu';
 
-    // Close dropdown if menu closes
     if (!open) setServicesOpen(false);
   };
 
@@ -140,7 +133,6 @@
     setMenuState(open);
   });
 
-  // Close on Escape
   on(document, "keydown", (e) => {
     if (e.key === "Escape") {
       if (nav?.classList.contains("open")) setMenuState(false);
@@ -148,7 +140,6 @@
     }
   });
 
-  // Close when clicking outside (mobile only)
   on(document, "click", (e) => {
     if (!nav || !menuBtn) return;
     if (!nav.classList.contains("open")) return;
@@ -164,19 +155,16 @@
     if (!insideNav && !insideBtn) setMenuState(false);
   });
 
-  // If viewport switches to desktop while menu open, remove scroll lock safely
   on(window, "resize", debounce(() => {
     const isMobile = window.matchMedia("(max-width: 860px)").matches;
     if (!isMobile) {
-      // ensure unlock on desktop
       if (document.body.dataset.menu === "open") setBodyLock(false);
     }
   }, 120));
 
   /* =========================================================
      3) Services dropdown (mobile only)
-     Expects:
-       #servicesDropdown .dropbtn .dropdown-menu a
+     Expects: #servicesDropdown .dropbtn .dropdown-menu a
      ========================================================= */
   on(servicesBtn, "click", (e) => {
     const isMobile = window.matchMedia("(max-width: 860px)").matches;
@@ -196,11 +184,11 @@
   });
 
   /* =========================================================
-     4) Attribution (UTM + referrer) + persistence
+     4) Attribution (UTM + referrer) + persistence (30 days)
      - Reads URL params; stores for 30 days
      - Writes into hidden inputs if present
      ========================================================= */
-  const ATTR_TTL = 1000 * 60 * 60 * 24 * 30; // 30 days
+  const ATTR_TTL = 1000 * 60 * 60 * 24 * 30;
 
   const readAttributionFromUrl = () => {
     const p = new URLSearchParams(window.location.search);
@@ -257,10 +245,10 @@
   writeAttributionToFields();
 
   /* =========================================================
-     5) Click tracking (premium)
-     Add in HTML (optionnel):
+     5) Click tracking (GA4)
+     Add in HTML (optional):
        data-track="phone|sms|email|cta"
-       data-label="hero-cta" (optionnel)
+       data-label="hero-cta" (optional)
      ========================================================= */
   on(document, "click", (e) => {
     const t = e.target instanceof Element ? e.target.closest("[data-track]") : null;
@@ -417,7 +405,6 @@
     return { name, phone, service, city, details };
   };
 
-  // Auto-clear errors on input/change
   const clearMap = {
     "name": "err-name",
     "phone": "err-phone",
@@ -462,18 +449,15 @@
     return data;
   };
 
-  // Anti-spam: minimum time spent on page before submit
   const pageLoadedAt = now();
-  const MIN_TIME_MS = 1800; // 1.8s
+  const MIN_TIME_MS = 1800;
 
   on(form, "submit", async (e) => {
     e.preventDefault();
     if (!form) return;
 
-    // Honeypot
     const trap = qs("#website");
     if (trap && (trap.value || "").trim() !== "") {
-      // pretend success to bots
       show(formSuccess);
       form.reset();
       renderCouponStatus();
@@ -481,7 +465,6 @@
       return;
     }
 
-    // Timing gate (bots often submit instantly)
     if ((now() - pageLoadedAt) < MIN_TIME_MS) {
       show(formError);
       const box = formError?.querySelector("div") || formError;
@@ -492,7 +475,6 @@
     const data = validateRequired();
     if (!data) return;
 
-    // refresh attribution fields (UTM stored)
     writeAttributionToFields();
     const attrib = getAttribution();
 
@@ -556,22 +538,18 @@
   });
 
   /* =========================================================
-     7) Hero slider (no deps) — ULTRA PREMIUM (PART 2/2)
+     7) Hero slider (no deps) — ULTRA PREMIUM
      - dots + prev/next + keyboard
      - pause on hover/focus
      - swipe (pointer) + is-dragging class for CSS
      - progress bar support: .hero-progress .bar
      - loading state: slider.classList.add("is-loading") until first image ready
      ========================================================= */
-
-  // PART 2/2 continues below...
-  // PART 2/2 — HERO SLIDER (ultra premium)
   const initHeroSliders = () => {
     const sliders = qsa(".hero-slider");
     if (!sliders.length) return;
 
     sliders.forEach((slider) => {
-      // Anti double-init
       if (slider.dataset.pdaInit === "1") return;
       slider.dataset.pdaInit = "1";
 
@@ -598,11 +576,59 @@
 
       const setCaption = (idx) => {
         if (!caption) return;
-        // Option: if you later add data-caption on <figure>, it will use it.
         const fig = slides[idx];
         const text = fig?.getAttribute("data-caption") || "";
         if (!text) return;
-        caption.querySelector("span")?.replaceChildren(document.createTextNode(text));
+        const span = caption.querySelector("span");
+        if (span) span.textContent = text;
+      };
+
+      const restartProgress = () => {
+        if (!progress || !autoplay) return;
+        progress.style.transformOrigin = "left center";
+        progress.style.transition = "none";
+        progress.style.transform = "scaleX(0)";
+        void progress.offsetHeight;
+        progress.style.transition = `transform ${interval}ms linear`;
+        progress.style.transform = "scaleX(1)";
+      };
+
+      const pauseProgress = () => {
+        if (!progress || !autoplay) return;
+        const computed = window.getComputedStyle(progress);
+        const matrix = computed.transform;
+        let scaleX = 1;
+        if (matrix && matrix !== "none") {
+          const parts = matrix.match(/matrix\(([^)]+)\)/);
+          if (parts && parts[1]) {
+            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
+            if (nums.length) scaleX = nums[0] || 1;
+          }
+        }
+        progress.style.transition = "none";
+        progress.style.transformOrigin = "left center";
+        progress.style.transform = `scaleX(${scaleX})`;
+      };
+
+      const resumeProgress = () => {
+        if (!progress || !autoplay) return;
+        const computed = window.getComputedStyle(progress);
+        const matrix = computed.transform;
+        let scaleX = 0;
+        if (matrix && matrix !== "none") {
+          const parts = matrix.match(/matrix\(([^)]+)\)/);
+          if (parts && parts[1]) {
+            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
+            if (nums.length) scaleX = nums[0] || 0;
+          }
+        }
+        const remaining = Math.max(300, Math.round((1 - scaleX) * interval));
+        progress.style.transition = "none";
+        progress.style.transformOrigin = "left center";
+        progress.style.transform = `scaleX(${scaleX})`;
+        void progress.offsetHeight;
+        progress.style.transition = `transform ${remaining}ms linear`;
+        progress.style.transform = "scaleX(1)";
       };
 
       const setActive = (next, reason = "auto") => {
@@ -637,64 +663,11 @@
         stop();
         resumeProgress();
         timer = setInterval(() => {
-          // small guard: if user interacted very recently, don't fight them
           if ((now() - lastInteraction) < 1200) return;
           setActive(i + 1, "auto");
         }, interval);
       };
 
-      /* ---------------- Progress bar (optional) ---------------- */
-      const restartProgress = () => {
-        if (!progress || !autoplay) return;
-        // reset animation by toggling style
-        progress.style.transition = "none";
-        progress.style.transform = "scaleX(0)";
-        // force reflow
-        void progress.offsetHeight;
-        progress.style.transition = `transform ${interval}ms linear`;
-        progress.style.transform = "scaleX(1)";
-      };
-
-      const pauseProgress = () => {
-        if (!progress || !autoplay) return;
-        // freeze current scale
-        const computed = window.getComputedStyle(progress);
-        const matrix = computed.transform;
-        // matrix(a, b, c, d, tx, ty) where a is scaleX if no skew
-        let scaleX = 1;
-        if (matrix && matrix !== "none") {
-          const parts = matrix.match(/matrix\(([^)]+)\)/);
-          if (parts && parts[1]) {
-            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-            if (nums.length) scaleX = nums[0] || 1;
-          }
-        }
-        progress.style.transition = "none";
-        progress.style.transform = `scaleX(${scaleX})`;
-      };
-
-      const resumeProgress = () => {
-        if (!progress || !autoplay) return;
-        // resume from current scale to 1 over remaining time
-        const computed = window.getComputedStyle(progress);
-        const matrix = computed.transform;
-        let scaleX = 0;
-        if (matrix && matrix !== "none") {
-          const parts = matrix.match(/matrix\(([^)]+)\)/);
-          if (parts && parts[1]) {
-            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-            if (nums.length) scaleX = nums[0] || 0;
-          }
-        }
-        const remaining = Math.max(300, Math.round((1 - scaleX) * interval));
-        progress.style.transition = "none";
-        progress.style.transform = `scaleX(${scaleX})`;
-        void progress.offsetHeight;
-        progress.style.transition = `transform ${remaining}ms linear`;
-        progress.style.transform = "scaleX(1)";
-      };
-
-      /* ---------------- Buttons ---------------- */
       on(btnPrev, "click", (e) => {
         e.preventDefault();
         setActive(i - 1, "click");
@@ -707,7 +680,6 @@
         start();
       });
 
-      /* ---------------- Dots ---------------- */
       dots.forEach((d) => {
         on(d, "click", (e) => {
           e.preventDefault();
@@ -719,14 +691,11 @@
         });
       });
 
-      /* ---------------- Pause on hover/focus ---------------- */
       on(slider, "mouseenter", stop);
       on(slider, "mouseleave", start);
       on(slider, "focusin", stop);
       on(slider, "focusout", start);
 
-      /* ---------------- Keyboard ---------------- */
-      // Focus only when user tabs into it
       if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
 
       on(slider, "keydown", (e) => {
@@ -734,7 +703,6 @@
         if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1, "key"); start(); }
       });
 
-      /* ---------------- Swipe (pointer) ---------------- */
       let startX = 0, startY = 0, dragging = false, moved = false;
       const SWIPE_MIN = 38;
       const SWIPE_MAX_Y = 70;
@@ -756,7 +724,6 @@
         const dx = x - startX;
         const dy = y - startY;
 
-        // Mostly vertical = user scrolling, ignore
         if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
 
         if (dx <= -SWIPE_MIN) setActive(i + 1, "swipe");
@@ -766,12 +733,8 @@
       };
 
       on(slidesWrap, "pointerdown", (e) => {
-        // Don't steal interactions from UI buttons
         if (e.target instanceof Element && e.target.closest(".hero-slider-ui")) return;
-
-        // Only left click / primary touch
         if (typeof e.button === "number" && e.button !== 0) return;
-
         try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
         pointerDown(e.clientX, e.clientY);
       }, { passive: true });
@@ -784,9 +747,12 @@
       }, { passive: true });
 
       on(slidesWrap, "pointerup", (e) => pointerUp(e.clientX, e.clientY), { passive: true });
-      on(slidesWrap, "pointercancel", () => { dragging = false; slider.classList.remove("is-dragging"); start(); }, { passive: true });
+      on(slidesWrap, "pointercancel", () => {
+        dragging = false;
+        slider.classList.remove("is-dragging");
+        start();
+      }, { passive: true });
 
-      // Prevent accidental click after swipe
       on(slidesWrap, "click", (e) => {
         if (moved) {
           e.preventDefault();
@@ -795,13 +761,11 @@
         }
       }, true);
 
-      /* ---------------- Loading state (first image) ---------------- */
       slider.classList.add("is-loading");
       const firstImg = qs(".hero-slide.is-active img", slider) || qs(".hero-slide img", slider);
 
       const markReady = () => {
         slider.classList.remove("is-loading");
-        // progress starts once ready
         restartProgress();
       };
 
@@ -814,12 +778,10 @@
         markReady();
       }
 
-      /* ---------------- Init ---------------- */
       setActive(0, "init");
       start();
     });
   };
 
   initHeroSliders();
-
-})(); // end IIFE
+})();
