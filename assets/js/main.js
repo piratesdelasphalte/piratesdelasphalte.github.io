@@ -516,165 +516,98 @@
     }
   });
 
-  /* =========================================================
-     7) Hero slider (no deps)
-     Expects:
-       .hero-slider
-         .hero-slide (N)
-         .hero-dot   (N) data-go="index"
-         .hero-prev / .hero-next
-     Optional:
-       data-autoplay="true|false"
-       data-interval="5200"
-     ========================================================= */
-  (() => {
-    const slider = qs(".hero-slider");
-    if (!slider) return;
-
-    const slides = qsa(".hero-slide", slider);
-    if (slides.length <= 1) return;
-
-    const dots = qsa(".hero-dot", slider);
-    const btnPrev = qs(".hero-prev", slider);
-    const btnNext = qs(".hero-next", slider);
-
-    let i = 0;
-    let timer = null;
-
-    const autoplay = (slider.getAttribute("data-autoplay") === "true") && !prefersReducedMotion();
-    const interval = clamp(parseInt(slider.getAttribute("data-interval") || "5200", 10), 2500, 15000);
-
-    const setActive = (next) => {
-      i = (next + slides.length) % slides.length;
-      slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
-      dots.forEach((d, idx) => {
-        const active = idx === i;
-        d.classList.toggle("is-active", active);
-        d.setAttribute("aria-selected", active ? "true" : "false");
-        d.setAttribute("tabindex", active ? "0" : "-1");
-      });
-    };
-
-    const stop = () => {
-      if (timer) window.clearInterval(timer);
-      timer = null;
-    };
-
-    const start = () => {
-      if (!autoplay) return;
-      stop();
-      timer = window.setInterval(() => setActive(i + 1), interval);
-    };
-
-    on(btnPrev, "click", () => { setActive(i - 1); start(); });
-    on(btnNext, "click", () => { setActive(i + 1); start(); });
-
-    dots.forEach((d) => {
-      on(d, "click", () => {
-        const go = parseInt(d.getAttribute("data-go") || "0", 10);
-        setActive(go);
-        start();
-      });
-    });
-
-    // Pause on hover/focus
-    on(slider, "mouseenter", stop);
-    on(slider, "mouseleave", start);
-    on(slider, "focusin", stop);
-    on(slider, "focusout", start);
-
-    // Keyboard
-    slider.setAttribute("tabindex", "0");
-    on(slider, "keydown", (e) => {
-      if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1); start(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
-    });
-
-    // Optional warm-up next image (keeps LCP clean)
-    on(window, "load", () => {
-      const warm = slider.getAttribute("data-warm-src");
-      if (!warm) return;
-      const img = new Image();
-      img.decoding = "async";
-      img.loading = "eager";
-      img.src = warm;
-    });
-
-    setActive(0);
-    start();
-  })();
-
-})();
-
-/* ============================
-   HERO SLIDER — AUTO 8s
-   ============================ */
+/* =========================================================
+   7) Hero slider (no deps) — FINAL
+   - Autoplay configurable via data-interval
+   - Pause on hover / focus
+   - Keyboard accessible
+   - respects prefers-reduced-motion
+   ========================================================= */
 (() => {
-  const slider = document.querySelector(".hero-slider");
+  const slider = qs(".hero-slider");
   if (!slider) return;
 
-  const slides = slider.querySelectorAll(".hero-slide");
-  const dots   = slider.querySelectorAll(".hero-dot");
-  const prev   = slider.querySelector(".hero-prev");
-  const next   = slider.querySelector(".hero-next");
+  const slides = qsa(".hero-slide", slider);
+  if (slides.length <= 1) return;
 
-  if (slides.length < 2) return;
+  const dots    = qsa(".hero-dot", slider);
+  const btnPrev = qs(".hero-prev", slider);
+  const btnNext = qs(".hero-next", slider);
 
-  let index = 0;
+  let i = 0;
   let timer = null;
-  const INTERVAL = 8000; // ⬅️ 8 secondes
 
-  function show(i){
-    slides.forEach(s => s.classList.remove("is-active"));
-    dots.forEach(d => d.classList.remove("is-active"));
+  const autoplay =
+    slider.getAttribute("data-autoplay") === "true" &&
+    !prefersReducedMotion();
 
-    slides[i].classList.add("is-active");
-    dots[i]?.classList.add("is-active");
+  const interval = clamp(
+    parseInt(slider.getAttribute("data-interval") || "5200", 10),
+    2500,
+    15000
+  );
 
-    index = i;
-  }
+  const setActive = (next) => {
+    i = (next + slides.length) % slides.length;
 
-  function nextSlide(){
-    show((index + 1) % slides.length);
-  }
+    slides.forEach((s, idx) =>
+      s.classList.toggle("is-active", idx === i)
+    );
 
-  function prevSlide(){
-    show((index - 1 + slides.length) % slides.length);
-  }
+    dots.forEach((d, idx) => {
+      const active = idx === i;
+      d.classList.toggle("is-active", active);
+      d.setAttribute("aria-selected", active ? "true" : "false");
+      d.setAttribute("tabindex", active ? "0" : "-1");
+    });
+  };
 
-  function start(){
-    stop();
-    timer = setInterval(nextSlide, INTERVAL);
-  }
-
-  function stop(){
+  const stop = () => {
     if (timer) clearInterval(timer);
-  }
+    timer = null;
+  };
 
-  // Autoplay
-  start();
+  const start = () => {
+    if (!autoplay) return;
+    stop();
+    timer = setInterval(() => setActive(i + 1), interval);
+  };
 
   // Controls
-  next?.addEventListener("click", () => {
-    nextSlide();
-    start(); // reset timer
-  });
+  on(btnPrev, "click", () => { setActive(i - 1); start(); });
+  on(btnNext, "click", () => { setActive(i + 1); start(); });
 
-  prev?.addEventListener("click", () => {
-    prevSlide();
-    start();
-  });
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      show(i);
+  dots.forEach((d) => {
+    on(d, "click", () => {
+      const go = parseInt(d.getAttribute("data-go") || "0", 10);
+      setActive(go);
       start();
     });
   });
 
-  // Accessibilité: pause si onglet caché
-  document.addEventListener("visibilitychange", () => {
-    document.hidden ? stop() : start();
-  });
-})();
+  // Pause on hover / focus
+  on(slider, "mouseenter", stop);
+  on(slider, "mouseleave", start);
+  on(slider, "focusin", stop);
+  on(slider, "focusout", start);
 
+  // Keyboard navigation
+  slider.setAttribute("tabindex", "0");
+  on(slider, "keydown", (e) => {
+    if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1); start(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
+  });
+
+  // Optional warm-up image (LCP safe)
+  on(window, "load", () => {
+    const warm = slider.getAttribute("data-warm-src");
+    if (!warm) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.loading = "eager";
+    img.src = warm;
+  });
+
+  setActive(0);
+  start();
+})();
