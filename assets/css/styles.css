@@ -392,3 +392,26 @@
 
    ========================================================= */
 
+/* --- FIX slider: slides superposées + clipping --- */
+.hero-slider{ position: relative; overflow: hidden; }
+
+.hero-slides{
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* chaque slide doit se superposer */
+.hero-slide{
+  position: absolute;
+  inset: 0;
+}
+
+/* l’image doit remplir */
+.hero-slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
