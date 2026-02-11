@@ -1,737 +1,393 @@
-:root{
-  --bg0:#121212; --bg1:#1b1b1b; --bg2:#2a2a2a;
-  --text:#eaeaea; --muted:#bdbdbd;
-  --accent:#f7931e; --accent2:#ffae42;
-  --stroke: rgba(255,255,255,0.10);
-  --shadow: 0 10px 30px rgba(0,0,0,0.35);
-  --radius: 14px;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  line-height: 1.7;
-  color: var(--text);
-  background:
-    radial-gradient(900px 500px at 20% 10%, rgba(247,147,30,0.12), transparent 60%),
-    radial-gradient(900px 500px at 90% 20%, rgba(255,174,66,0.08), transparent 55%),
-    linear-gradient(160deg, var(--bg1), var(--bg2));
-}
-
-a { color: inherit; }
-.container { max-width: 1150px; margin: auto; padding: 0 20px; }
-:focus-visible { outline: 3px solid rgba(247,147,30,0.65); outline-offset: 3px; border-radius: 10px; }
-
-/* ===== Header ===== */
-header{
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(14,14,14,0.58);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.35);
-}
-header::after{
-  content:""; display:block; height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(247,147,30,0.95), transparent);
-  opacity: 0.9;
-}
-.topbar{
-  display:flex; align-items:center; justify-content:space-between;
-  gap: 16px; padding: 14px 0;
-}
-
-.brand{ display:flex; align-items:center; gap:10px; white-space:nowrap; }
-.brand .logo{
-  height:42px; width:auto; display:block; object-fit:contain; flex: 0 0 auto;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
-}
-.brand .brand-text{
-  font-size: 1.75rem; color: var(--accent); font-weight: 900;
-  letter-spacing: .4px; text-shadow: 0 10px 26px rgba(0,0,0,0.45);
-}
-
-.badge{
-  font-size: 0.86rem; color: rgba(234,234,234,0.92);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 7px 10px; border-radius: 999px;
-  background: rgba(0,0,0,0.28);
-  display:inline-flex; align-items:center; gap: 8px;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
-  white-space: nowrap;
-}
-.badge i{ color: var(--accent); opacity: .95; }
-
-.nav-wrap{ display:flex; align-items:center; gap: 12px; }
-
-nav{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
-nav a{
-  color: rgba(234,234,234,0.92);
-  text-decoration:none;
-  font-size: 0.98rem;
-  padding: 9px 12px; border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
-  transition: transform .15s ease, background .18s ease, border-color .18s ease, color .18s ease, opacity .18s ease;
-  display:inline-flex; align-items:center; gap: 8px; user-select:none;
-}
-nav a:hover{
-  color: #fff;
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.10);
-  transform: translateY(-1px);
-}
-nav a:active{ transform: translateY(0); }
-nav a.active, nav a[aria-current="page"]{
-  background: rgba(247,147,30,0.12);
-  border-color: rgba(247,147,30,0.30);
-  color: #fff;
-}
-
-/* ===== Dropdown ===== */
-.dropdown{ position: relative; display:inline-flex; align-items:center; }
-.dropbtn{ position: relative; }
-.dropbtn i{ font-size: .85em; opacity: .85; }
-.dropbtn::after{ content:""; position:absolute; left:0; top:100%; width:100%; height:14px; }
-
-.dropdown-menu{
-  position:absolute; top: calc(100% + 12px); left: 0;
-  min-width: 280px; padding: 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(10,10,10,0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 26px 70px rgba(0,0,0,0.55);
-  z-index: 999;
-  opacity: 0; visibility: hidden;
-  transform: translateY(-6px);
-  pointer-events: none;
-  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
-}
-.dropdown-menu::before{
-  content:""; position:absolute; top:-8px; left: 22px;
-  width: 16px; height: 16px;
-  background: rgba(10,10,10,0.88);
-  border-left: 1px solid rgba(255,255,255,0.10);
-  border-top: 1px solid rgba(255,255,255,0.10);
-  transform: rotate(45deg);
-}
-
-.dropdown-menu a{
-  width:100%;
-  padding: 11px 12px;
-  border-radius: 14px;
-  display:flex; align-items:center; gap: 10px;
-  border: 1px solid transparent;
-  background: transparent;
-}
-.dropdown-menu a i{ width: 18px; text-align:center; color: var(--accent); }
-.dropdown-menu a:hover{
-  background: rgba(247,147,30,0.10);
-  border-color: rgba(247,147,30,0.22);
-  transform: none;
-}
-.dropdown-menu a + a{ margin-top: 6px; }
-.drop-sep{ height: 1px; background: rgba(255,255,255,0.10); margin: 8px 6px; border-radius: 999px; }
-
-@media (min-width: 861px){
-  .dropdown:hover .dropdown-menu,
-  .dropdown:focus-within .dropdown-menu{
-    opacity: 1; visibility: visible; transform: translateY(0);
-    pointer-events: auto;
-    transition: opacity .18s ease, transform .18s ease;
-  }
-}
-
-/* ===== Mobile menu ===== */
-.menu-btn{
-  display:none;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(0,0,0,0.30);
-  color: rgba(234,234,234,0.95);
-  padding: 10px 12px;
-  border-radius: 12px;
-  cursor:pointer;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  transition: transform .15s ease, border-color .18s ease, background .18s ease;
-}
-.menu-btn:hover{
-  transform: translateY(-1px);
-  border-color: rgba(247,147,30,0.30);
-  background: rgba(0,0,0,0.38);
-}
-
-@media (max-width: 860px){
-  .menu-btn{ display:inline-flex; align-items:center; gap: 10px; }
-  nav{ display:none; width:100%; padding: 12px 0 14px; }
-  nav.open{ display:flex; flex-direction:column; align-items: stretch; gap: 10px; }
-  nav a{
-    width:100%;
-    border-radius: 14px;
-    justify-content:flex-start;
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.08);
-  }
-  .dropdown{ width:100%; }
-  .dropdown-menu{
-    position: static; margin-top: 8px; width: 100%;
-    box-shadow: none; padding: 8px;
-    opacity: 1; visibility: visible; transform: none; pointer-events: auto;
-    display: none;
-  }
-  .dropdown-menu::before{ display:none; }
-  .dropdown.open .dropdown-menu{ display:block; }
-  .brand .logo{ height: 38px; }
-  .brand .brand-text{ font-size: 1.35rem; }
-}
-
-/* ===== Hero ===== */
-.hero { padding: 80px 0 40px; }
-.hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 22px; align-items: start; }
-
-.hero-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px;
-}
-
-.hero h2 { font-size: 2.2rem; color: var(--accent); margin-bottom: 14px; line-height: 1.15; }
-.hero p { color: var(--text); opacity: 0.95; font-size: 1.05rem; max-width: 72ch; }
-
-.hero-points { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
-.pill {
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.25);
-  color: var(--muted);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.pill i{ color: var(--accent); }
-
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 12px 16px; border-radius: 12px;
-  border: 1px solid var(--stroke);
-  text-decoration: none;
-  font-weight: 800;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease, opacity .18s ease;
-  user-select: none;
-}
-.btn i{ width: 18px; text-align:center; }
-.btn[disabled]{ opacity:.75; cursor:not-allowed; }
-
-.btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #111; border-color: rgba(0,0,0,0.2); }
-.btn-primary:hover { transform: translateY(-1px); }
-
-.btn-ghost { background: rgba(0,0,0,0.22); color: var(--text); }
-.btn-ghost:hover { border-color: rgba(247,147,30,0.45); transform: translateY(-1px); }
-
-/* ===== Contact box ===== */
-.contact-box {
-  background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(0,0,0,0.20));
-  border: 1px solid var(--stroke);
-  border-left: 5px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: var(--shadow);
-}
-.contact-box strong { font-size: 1.1rem; display: block; margin-bottom: 10px; color: var(--text); }
-
-.contact-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.08); }
-.contact-item:first-of-type { border-top: none; padding-top: 0; }
-.contact-item i { color: var(--accent); min-width: 18px; text-align: center; }
-.contact-box a { color: var(--accent); font-weight: 900; text-decoration: none; }
-.contact-box a:hover { color: #ffd580; text-decoration: underline; }
-
-@media (max-width: 860px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero { padding-top: 46px; }
-}
-
-/* ===== Sections/cards ===== */
-section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.08); scroll-margin-top: 90px; }
-
-.section-head { margin-bottom: 22px; }
-h3 { font-size: 1.7rem; color: var(--accent); line-height: 1.2; }
-
-.sub { color: var(--muted); font-size: 0.98rem; max-width: 68ch; margin-top: 6px; }
-
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
-
-.card {
-  position: relative;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22));
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius);
-  padding: 18px 18px 16px;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
-  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
-  min-height: 132px;
-  overflow: hidden;
-}
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(247,147,30,0.35);
-  background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(0,0,0,0.18));
-}
-.card::after{
-  content:"";
-  position:absolute; inset:-1px;
-  pointer-events:none;
-  border-radius: var(--radius);
-  background: radial-gradient(500px 200px at 0% 0%, rgba(247,147,30,0.12), transparent 55%);
-  opacity: 0.9;
-}
-.card .icon{
-  width: 42px; height: 42px; border-radius: 14px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(247,147,30,0.14);
-  border: 1px solid rgba(247,147,30,0.26);
-  color: var(--accent);
-  margin-bottom: 10px;
-  position: relative; z-index: 1;
-}
-.card .icon i { font-size: 18px; }
-.card h4{
-  font-size: 1.05rem; margin: 0; color: var(--text);
-  line-height: 1.25; position: relative; z-index: 1;
-}
-.card p{
-  margin-top: 6px; color: rgba(234,234,234,0.85);
-  font-size: 0.98rem; position: relative; z-index: 1;
-}
-
-@media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
-
-/* ===== Light sections ===== */
-#paysagement { background: linear-gradient(135deg, rgba(222,232,220,0.96), rgba(198,220,200,0.92)); color: #111; }
-#paysagement .sub { color: rgba(0,0,0,0.65); }
-#paysagement .card { background: rgba(255,255,255,0.88); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
-#paysagement .card h4, #paysagement .card p { color: #111; }
-#paysagement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
-
-#deneigement { background: linear-gradient(135deg, rgba(205,214,230,0.96), rgba(186,201,225,0.92)); color: #111; }
-#deneigement .sub { color: rgba(0,0,0,0.65); }
-#deneigement .card { background: rgba(255,255,255,0.86); border: 1px solid rgba(0,0,0,0.10); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
-#deneigement .card h4, #deneigement .card p { color: #111; }
-#deneigement .card .icon { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.10); color: #111; }
-
-/* ===== Form ===== */
-.form { display: grid; gap: 10px; margin-top: 14px; }
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-@media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.22);
-  color: var(--text);
-  font-size: 1rem;
-  outline: none;
-}
-textarea { min-height: 110px; resize: vertical; }
-
-.coupon-status{
-  font-size: 0.95rem;
-  color: var(--muted);
-  display:flex; align-items:center; gap:10px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px dashed rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.18);
-}
-.coupon-status strong{ color: var(--text); }
-.ok{ color: #9be49b; }
-
-.form-error{
-  display:none; margin-top: 8px;
-  padding: 12px 14px; border-radius: 14px;
-  border: 1px solid rgba(255, 180, 180, 0.25);
-  background: rgba(255, 90, 90, 0.10);
-  color: rgba(255, 220, 220, 0.95);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.20);
-}
-.form-error.show{ display:flex; align-items:flex-start; gap: 10px; }
-.form-error i{ color: #ffb4b4; margin-top: 2px; }
-
-.form-success{
-  display:none; margin-top: 8px;
-  padding: 12px 14px; border-radius: 14px;
-  border: 1px solid rgba(155, 228, 155, 0.25);
-  background: rgba(70, 180, 70, 0.10);
-  color: rgba(220, 255, 220, 0.95);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.20);
-}
-.form-success.show{ display:flex; align-items:flex-start; gap: 10px; }
-.form-success i{ color: #9be49b; margin-top: 2px; }
-
-.field-error{
-  border-color: rgba(255, 180, 180, 0.55) !important;
-  box-shadow: 0 0 0 3px rgba(255, 120, 120, 0.18);
-}
-.help-error{ margin-top: 6px; font-size: 0.92rem; color: rgba(255, 200, 200, 0.95); }
-
 /* =========================================================
-   ===== Footer (UPDATED for 2 columns + cities)
-   Works with: <footer class="site-footer"> ... </footer>
-   Also keeps a safe fallback for plain <footer>.
+   ULTRA PREMIUM PATCH — HERO SLIDER (PART 1/2)
+   Colle à la FIN de styles.css (après ton slider actuel)
    ========================================================= */
 
-/* Base footer look (matches your theme) */
-footer{
-  margin-top: 10px;
-  background: linear-gradient(90deg, #111, #222);
-  color: rgba(234,234,234,0.72);
-  font-size: 0.95rem;
-  padding: 34px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-footer a{
-  color: rgba(158,203,255,0.95);
-  text-decoration: none;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-footer a i{ color: rgba(158,203,255,0.95); }
-footer a:hover{ color: #66b0ff; text-decoration: underline; }
-
-/* If footer is still “old style centered” (no classes), keep it readable */
-footer p{ margin: 0.35rem 0; }
-
-/* New layout classes (recommended) */
-.site-footer .footer-grid{
-  display:flex;
-  gap: 18px;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  text-align: left; /* important: so columns align cleanly */
-}
-.site-footer .footer-col{
-  min-width: 240px;
-  flex: 1;
+/* ---------- Tokens slider (safe) ---------- */
+:root{
+  --glass: rgba(12,12,12,.48);
+  --glass2: rgba(12,12,12,.34);
+  --uiStroke: rgba(255,255,255,.18);
+  --uiStroke2: rgba(255,255,255,.10);
+  --uiShadow: 0 18px 60px rgba(0,0,0,.55);
+  --uiShadow2: 0 14px 40px rgba(0,0,0,.42);
+  --uiBlur: 12px;
+  --easeOut: cubic-bezier(.2,.9,.2,1);
 }
 
-/* Left column text rhythm */
-.site-footer .footer-copy{ margin:0; color: rgba(234,234,234,0.78); }
-.site-footer .footer-desc,
-.site-footer .footer-link{ margin: .45rem 0 0; color: rgba(234,234,234,0.68); }
-
-/* Title + icon */
-.site-footer .footer-title{
-  margin:0;
-  font-weight: 900;
-  color: rgba(234,234,234,0.82);
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
-.site-footer .footer-title i{ color: var(--accent); opacity: .95; }
-
-/* Cities grid */
-.site-footer .footer-cities{
-  list-style:none;
-  padding:0;
-  margin: .6rem 0 0;
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: .35rem .9rem;
-}
-.site-footer .footer-cities a{
-  padding: 7px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(0,0,0,0.20);
-  color: rgba(234,234,234,0.88);
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition: transform .15s ease, border-color .18s ease, background .18s ease;
-}
-.site-footer .footer-cities a:hover{
-  border-color: rgba(247,147,30,0.35);
-  background: rgba(247,147,30,0.10);
-  transform: translateY(-1px);
-  text-decoration: none; /* keeps button look */
-}
-
-/* Mobile */
-@media (max-width: 620px){
-  .site-footer .footer-grid{ text-align:left; }
-  .site-footer .footer-cities{ grid-template-columns: 1fr; }
-}
-
-/* ===== Quickbar ===== */
-.quickbar {
-  position: fixed; left: 16px; right: 16px; bottom: 14px;
-  z-index: 60;
-  display: none;
-  gap: 10px;
-}
-.quickbar a {
-  flex: 1;
-  text-align: center;
-  padding: 12px 10px;
-  border-radius: 14px;
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(10px);
-  text-decoration: none;
-  font-weight: 900;
-  box-shadow: var(--shadow);
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-}
-.quickbar a.primary {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  color: #111;
-  border-color: rgba(0,0,0,0.25);
-}
-@media (max-width: 720px) {
-  .quickbar { display: flex; }
-  body { padding-bottom: 76px; }
-}
-
-/* Honeypot anti-spam: invisible pour humains, présent dans le DOM */
-.hp{
-  position: absolute !important;
-  left: -9999px !important;
-  top: auto !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  white-space: nowrap !important;
-}
-.hp *{
-  width: 1px !important;
-  height: 1px !important;
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; }
-}
-
-/* ============================
-   HERO + SLIDER (VERSION PROPRE, SANS CONFLITS)
-   Remplace TOUT depuis ton ancien "HERO FIX" jusqu’à la fin
-   ============================ */
-
-/* Desktop: 2 colonnes (texte | contact) */
-.hero { padding: 80px 0 40px; }
-.hero-grid{
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 360px);
-  gap: 22px;
-  align-items: start;
-}
-
-/* Mobile/tablette: tout en colonne (texte -> slider -> contact) */
-@media (max-width: 979px){
-  .hero { padding: 46px 0 26px; }
-  .hero-grid{ grid-template-columns: 1fr; gap: 18px; }
-  .hero-card{ order: 1; }
-  .hero-media{ order: 2; }
-  .contact-box{ order: 3; }
-}
-
-/* Typo H1 (ton CSS cible h2 plus haut) */
-.hero h1{
-  font-size: clamp(1.8rem, 3.2vw, 2.35rem);
-  margin-bottom: 12px;
-  line-height: 1.15;
-}
-
-.hero-sub{
-  color: var(--text);
-  opacity: .95;
-  font-size: 1.05rem;
-  max-width: 72ch;
-}
-
-/* ============================
-   HERO MEDIA (card look)
-   ============================ */
+/* ---------- HERO MEDIA polish ---------- */
 .hero-media{
-  margin: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-  background: rgba(0,0,0,0.18);
-  box-shadow: var(--shadow);
+  position: relative;
+  transform: translateZ(0);
+}
+.hero-media::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 380px at 14% 8%, rgba(247,147,30,.14), transparent 60%),
+    radial-gradient(900px 380px at 92% 10%, rgba(255,174,66,.10), transparent 55%);
+  opacity: .9;
+  z-index: 2;
+}
+.hero-media::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  z-index: 4;
 }
 
-/* IMPORTANT: ton slider est dans <section> -> annule le style global "section { padding:60px }" */
-.hero-media.hero-media--bottom{
-  padding: 0;
-  border-top: 0;
-  margin-top: 16px;
-}
-
-/* ============================
-   HERO SLIDER (no deps, mobile friendly)
-   ============================ */
+/* ---------- Slider base: stability + no flash ---------- */
 .hero-slider{
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  background: rgba(0,0,0,.08);
-
-  /* mobile gestures */
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hero-slides{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  border-radius: inherit;
   isolation: isolate;
   background: rgba(0,0,0,.10);
 }
-
-/* Ratio plus “mobile friendly” sur petits écrans */
-@media (max-width: 520px){
-  .hero-slides{ aspect-ratio: 4 / 3; }
+.hero-slides{
+  background: rgba(0,0,0,.12);
 }
 
+/* Smooth image rendering */
+.hero-slide img{
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ---------- Premium overlay (vignette + top fade for text) ---------- */
+.hero-slider::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index: 5;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 58%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.42) 100%);
+  opacity: .9;
+}
+
+/* Light grain (subtle, premium) */
+.hero-slider::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index: 6;
+  opacity: .08;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.08), rgba(255,255,255,.08) 1px, transparent 1px, transparent 3px);
+}
+
+/* Reduced motion: disable “grain” flicker feeling */
+@media (prefers-reduced-motion: reduce){
+  .hero-slider::after{ display:none; }
+}
+
+/* ---------- Slide transition upgrade ---------- */
 .hero-slide{
-  position: absolute;
-  inset: 0;
   opacity: 0;
-  transform: scale(1.01);
-  transition: opacity .55s ease, transform .75s ease;
+  transform: scale(1.015);
+  filter: saturate(1.02) contrast(1.02);
+  transition:
+    opacity .65s var(--easeOut),
+    transform .95s var(--easeOut),
+    filter .85s var(--easeOut);
 }
-
 .hero-slide.is-active{
   opacity: 1;
   transform: scale(1);
-  z-index: 1;
+  filter: saturate(1.06) contrast(1.05);
 }
 
-.hero-slide picture,
-.hero-slide img{
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+/* Prevent accidental click-through on hidden slides */
+.hero-slide{ pointer-events: none; }
+.hero-slide.is-active{ pointer-events: auto; }
 
-.hero-slide img{
-  object-fit: cover;
-}
-
-/* ============================
-   SLIDER UI (prev/next + dots)
-   ============================ */
+/* ---------- Slider UI: upgrade look ---------- */
 .hero-slider-ui{
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  z-index: 20;          /* AU-DESSUS des slides */
-  pointer-events: none; /* l'UI laisse passer sauf sur boutons/dots */
+  z-index: 30;
+  padding: 0;
 }
 
-.hero-nav,
-.hero-dots{
-  pointer-events: auto;
-}
-
+/* Prev/Next buttons */
 .hero-nav{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 44px;
-  height: 44px;
-
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.22);
-  background: rgba(15,15,15,.45);
-  color: #fff;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke);
+  background: linear-gradient(180deg, rgba(28,28,28,.60), rgba(10,10,10,.40));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+  transition: transform .14s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
 }
+.hero-nav:hover{
+  transform: translateY(-1px);
+  border-color: rgba(247,147,30,.38);
+  background: linear-gradient(180deg, rgba(40,40,40,.62), rgba(12,12,12,.42));
+}
+.hero-nav:active{ transform: translateY(0); }
 
+/* Dots capsule */
 .hero-dots{
-  display: inline-flex;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(15,15,15,.35);
-  backdrop-filter: blur(10px);
+  box-shadow: var(--uiShadow2);
+  border: 1px solid var(--uiStroke2);
+  background: linear-gradient(180deg, rgba(24,24,24,.52), rgba(10,10,10,.32));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
 }
 
+/* Dots: nicer, clearer state */
 .hero-dot{
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 0;
-  background: rgba(255,255,255,.35);
-  cursor: pointer;
+  position: relative;
+  background: rgba(255,255,255,.30);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+  transition: transform .14s ease, background .18s ease, box-shadow .18s ease;
 }
-
+.hero-dot:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.55);
+}
 .hero-dot.is-active{
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.96);
+  box-shadow:
+    0 0 0 3px rgba(247,147,30,.16),
+    inset 0 0 0 1px rgba(0,0,0,.20);
 }
 
-/* Tap targets plus gros sur mobile */
+/* Keyboard focus premium */
+.hero-nav:focus-visible,
+.hero-dot:focus-visible{
+  outline: 3px solid rgba(247,147,30,.65);
+  outline-offset: 3px;
+}
+
+/* ---------- Optional: Caption overlay (si tu ajoutes un .hero-caption dans HTML) ---------- */
+.hero-caption{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  top: 14px;
+  z-index: 25;
+
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(16,16,16,.46), rgba(8,8,8,.30));
+  backdrop-filter: blur(var(--uiBlur));
+  -webkit-backdrop-filter: blur(var(--uiBlur));
+  box-shadow: var(--uiShadow2);
+}
+.hero-caption strong{
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.hero-caption span{
+  color: rgba(234,234,234,.74);
+  font-size: .92rem;
+}
+
+/* ---------- Optional: Loading shimmer (si tu ajoutes .is-loading sur .hero-slider) ---------- */
+.hero-slider.is-loading::before{
+  opacity: 1;
+}
+.hero-slider.is-loading .hero-slides::after{
+  content:"";
+  position:absolute; inset:0;
+  z-index: 3;
+  pointer-events:none;
+  background:
+    linear-gradient(110deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.06) 22%,
+      rgba(255,255,255,0) 44%);
+  transform: translateX(-40%);
+  animation: sliderShimmer 1.2s linear infinite;
+}
+@keyframes sliderShimmer{
+  to{ transform: translateX(40%); }
+}
+
+/* ---------- Mobile tweaks: safer spacing + bigger UI ---------- */
+@media (max-width: 520px){
+  .hero-slider-ui{ bottom: 10px; left: 10px; right: 10px; }
+  .hero-caption{ left: 10px; right: 10px; top: 10px; }
+}
+
+/* ---------- Safety: make sure slider never inherits section padding ---------- */
+.hero-media.hero-media--bottom,
+.hero-media.hero-media--bottom *{
+  scroll-margin-top: 90px;
+}
+
+/* =========================================================
+   ULTRA PREMIUM PATCH — HERO SLIDER (PART 2/2)
+   Colle DIRECTEMENT sous la PART 1/2
+   ========================================================= */
+
+/* ---------- Progress bar (optionnelle) ----------
+   Ajoute dans ton HTML (dans .hero-slider):
+   <div class="hero-progress" aria-hidden="true"><span class="bar"></span></div>
+*/
+.hero-progress{
+  position:absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 66px; /* au-dessus des dots */
+  height: 6px;
+  border-radius: 999px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  box-shadow: var(--uiShadow2);
+  z-index: 28;
+  pointer-events:none;
+}
+.hero-progress .bar{
+  display:block;
+  height:100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 10px 24px rgba(247,147,30,.22);
+  will-change: width;
+}
+
+/* Mobile: replacer la barre */
 @media (max-width: 860px){
-  .hero-slider-ui{
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    gap: 10px;
-  }
-
-  .hero-nav{
-    width: 48px;
-    height: 48px;
-  }
-
-  .hero-dots{
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .hero-dot{
-    width: 12px;
-    height: 12px;
+  .hero-progress{
+    left: 10px; right: 10px;
+    bottom: 70px;
+    height: 7px;
   }
 }
 
-/* Accessibilité: si reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .hero-slide{ transition: none; }
+/* ---------- Better hit-area + icon size ----------
+   (si tu utilises <i class="..."> dedans)
+*/
+.hero-nav i{
+  font-size: 18px;
+  line-height: 1;
+  pointer-events:none;
 }
 
-/* Sécurité anti débordement */
+/* ---------- “Floating” UI: soften edges ---------- */
+.hero-nav,
+.hero-dots,
+.hero-caption{
+  border-radius: 999px;
+}
+
+/* Caption: si tu veux un look plus “card” au lieu de pill */
+.hero-caption.is-card{
+  border-radius: 16px;
+}
+
+/* ---------- Optional: Center dots on small screens ----------
+   (si tu préfères dots au centre, nav aux côtés)
+*/
+.hero-slider-ui.is-centered{
+  justify-content: center;
+}
+.hero-slider-ui.is-centered .hero-dots{
+  margin: 0 auto;
+}
+.hero-slider-ui.is-centered .hero-nav{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hero-slider-ui.is-centered .hero-prev{ left: 12px; }
+.hero-slider-ui.is-centered .hero-next{ right: 12px; }
+.hero-slider-ui.is-centered .hero-nav:hover{ transform: translateY(calc(-50% - 1px)); }
+.hero-slider-ui.is-centered .hero-nav:active{ transform: translateY(-50%); }
+
+/* ---------- Swipe/drag friendly polish ----------
+   (ton JS peut ajouter .is-dragging sur .hero-slider pendant un swipe)
+*/
+.hero-slider.is-dragging .hero-slide{
+  transition: none !important;
+}
+.hero-slider.is-dragging .hero-slider-ui{
+  opacity: .85;
+}
+
+/* ---------- Prevent CLS: force consistent media height ---------- */
+.hero-slides{
+  contain: layout paint;
+}
+
+/* ---------- Optional: “soft” corner mask ----------
+   (évite les pixels durs sur certains navigateurs)
+*/
 .hero-media,
 .hero-slider,
 .hero-slides{
-  min-width: 0;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
+
+/* ---------- Focus ring only when keyboard navigation ---------- */
+.hero-slider :focus:not(:focus-visible){
+  outline: none !important;
+}
+
+/* ---------- High contrast tweak for accessibility ---------- */
+@media (prefers-contrast: more){
+  .hero-nav,
+  .hero-dots,
+  .hero-caption{
+    border-color: rgba(255,255,255,.32);
+    background: rgba(0,0,0,.60);
+  }
+  .hero-dot{
+    background: rgba(255,255,255,.55);
+  }
+  .hero-dot.is-active{
+    background: #fff;
+  }
+}
+
+/* ---------- Ultra small screens: simplify ---------- */
+@media (max-width: 380px){
+  .hero-progress{ display:none; } /* optionnel */
+  .hero-dots{ padding: 9px 10px; gap: 9px; }
+  .hero-nav{ width: 46px; height: 46px; }
+}
+
+/* ---------- Print safety ---------- */
+@media print{
+  .hero-slider-ui,
+  .hero-progress,
+  .quickbar{ display:none !important; }
+  .hero-media{ box-shadow:none !important; }
+}
+
+/* =========================================================
+   QUICK HTML CHECK (important)
+   Ton HTML devrait ressembler à ça:
+
+   <div class="hero-slider" data-autoplay="true" data-interval="5200">
+     <div class="hero-slides" aria-live="polite">
+       <figure class="hero-slide is-active" data-index="0">...</figure>
+       <figure class="hero-slide" data-index="1">...</figure>
+     </div>
+
+     (optionnel)
+     <div class="hero-progress" aria-hidden="true"><span class="bar"></span></div>
+
+     <div class="hero-slider-ui">
+       <button class="hero-nav hero-prev" ...>...</button>
+       <div class="hero-dots">
+         <button class="hero-dot is-active" data-go="0"></button>
+         <button class="hero-dot" data-go="1"></button>
+       </div>
+       <button class="hero-nav hero-next" ...>...</button>
+     </div>
+   </div>
+
+   ========================================================= */
