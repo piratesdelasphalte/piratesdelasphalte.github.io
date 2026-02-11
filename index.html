@@ -51,11 +51,11 @@
 
   <!-- ✅ Preload HERO image (LCP boost) -->
   <link rel="preload"
-        as="image"
-        href="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
-        imagesrcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w, /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
-        imagesizes="100vw"
-        fetchpriority="high" />
+      as="image"
+      href="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp"
+      imagesrcset="/assets/images/hero/hero-asphaltage-quebec-1600x900.webp 1600w, /assets/images/hero/hero-asphaltage-quebec-2400x1350.webp 2400w"
+      imagesizes="100vw"
+      fetchpriority="high" />
 
   <!-- CSS -->
   <link rel="preload" href="/assets/css/styles.css" as="style" />
@@ -203,7 +203,13 @@
       </div>
 
       <!-- 2) IMAGE -->
-      <figure class="hero-media" aria-label="Exemple d’asphaltage résidentiel au Québec">
+     <section class="hero-media" aria-label="Photos de projets d’asphaltage au Québec">
+  <div class="hero-slider" data-autoplay="true" data-interval="5200">
+    <!-- Slides -->
+    <div class="hero-slides" aria-live="polite">
+      
+      <!-- Slide 1 (LCP) -->
+      <figure class="hero-slide is-active" data-index="0">
         <picture>
           <source
             type="image/webp"
@@ -220,6 +226,45 @@
             fetchpriority="high" />
         </picture>
       </figure>
+
+      <!-- Slide 2 -->
+      <figure class="hero-slide" data-index="1">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/assets/images/hero/asphalt-chaude-1600x900.webp 1600w,
+                    /assets/images/hero/asphalt-chaude-2400x1350.webp 2400w"
+            sizes="(max-width: 979px) 100vw, 40vw" />
+          <img
+            src="/assets/images/hero/asphalt-chaude-1600x900.webp"
+            width="1600"
+            height="900"
+            alt="Réparation d’asphalte chaude lors de travaux au Québec"
+            loading="lazy"
+            decoding="async" />
+        </picture>
+      </figure>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="hero-slider-ui" aria-label="Contrôles du carrousel">
+      <button class="hero-nav hero-prev" type="button" aria-label="Photo précédente">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="hero-dots" role="tablist" aria-label="Choisir une photo">
+        <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Photo 1" data-go="0"></button>
+        <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Photo 2" data-go="1"></button>
+      </div>
+
+      <button class="hero-nav hero-next" type="button" aria-label="Photo suivante">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+  </div>
+</section>
 
       <!-- 3) CONTACT -->
       <aside class="contact-box" id="contact" aria-label="Coordonnées">
@@ -564,5 +609,4 @@
 
 <script src="/assets/js/main.js" defer></script>
 </body>
-</html>
 </html>
