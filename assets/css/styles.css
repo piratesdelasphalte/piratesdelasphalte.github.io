@@ -118,6 +118,9 @@ header{
   align-items:center;
   gap: 10px;
   min-width: 0;
+
+  text-decoration: none; /* ✅ enlève le soulignement du lien */
+  color: inherit;        /* ✅ garde la couleur du texte comme avant */
 }
 .brand .logo{
   width: 56px;
