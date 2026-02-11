@@ -517,97 +517,125 @@
   });
 
 /* =========================================================
-   7) Hero slider (no deps) — FINAL
-   - Autoplay configurable via data-interval
-   - Pause on hover / focus
-   - Keyboard accessible
-   - respects prefers-reduced-motion
+   7) Hero slider (no deps) — MOBILE + SWIPE
    ========================================================= */
 (() => {
-  const slider = qs(".hero-slider");
-  if (!slider) return;
+  const sliders = document.querySelectorAll(".hero-slider");
+  if (!sliders.length) return;
 
-  const slides = qsa(".hero-slide", slider);
-  if (slides.length <= 1) return;
+  const prefersReducedMotion = () =>
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const dots    = qsa(".hero-dot", slider);
-  const btnPrev = qs(".hero-prev", slider);
-  const btnNext = qs(".hero-next", slider);
+  const qs  = (sel, root = document) => root.querySelector(sel);
+  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
 
-  let i = 0;
-  let timer = null;
+  sliders.forEach((slider) => {
+    const slidesWrap = qs(".hero-slides", slider);
+    const slides = qsa(".hero-slide", slider);
+    if (!slidesWrap || slides.length <= 1) return;
 
-  const autoplay =
-    slider.getAttribute("data-autoplay") === "true" &&
-    !prefersReducedMotion();
+    const dots    = qsa(".hero-dot", slider);
+    const btnPrev = qs(".hero-prev", slider);
+    const btnNext = qs(".hero-next", slider);
 
-  const interval = clamp(
-    parseInt(slider.getAttribute("data-interval") || "5200", 10),
-    2500,
-    15000
-  );
+    let i = 0;
+    let timer = null;
 
-  const setActive = (next) => {
-    i = (next + slides.length) % slides.length;
+    const autoplay =
+      slider.getAttribute("data-autoplay") === "true" && !prefersReducedMotion();
 
-    slides.forEach((s, idx) =>
-      s.classList.toggle("is-active", idx === i)
-    );
+    const intervalRaw = parseInt(slider.getAttribute("data-interval") || "5200", 10);
+    const interval = Math.min(15000, Math.max(2500, intervalRaw || 5200));
 
-    dots.forEach((d, idx) => {
-      const active = idx === i;
-      d.classList.toggle("is-active", active);
-      d.setAttribute("aria-selected", active ? "true" : "false");
-      d.setAttribute("tabindex", active ? "0" : "-1");
+    const setActive = (next) => {
+      i = (next + slides.length) % slides.length;
+
+      slides.forEach((s, idx) => {
+        const active = idx === i;
+        s.classList.toggle("is-active", active);
+        s.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+
+      dots.forEach((d, idx) => {
+        const active = idx === i;
+        d.classList.toggle("is-active", active);
+        d.setAttribute("aria-selected", active ? "true" : "false");
+        d.setAttribute("tabindex", active ? "0" : "-1");
+      });
+    };
+
+    const stop = () => { if (timer) clearInterval(timer); timer = null; };
+    const start = () => {
+      if (!autoplay) return;
+      stop();
+      timer = setInterval(() => setActive(i + 1), interval);
+    };
+
+    // Buttons
+    on(btnPrev, "click", (e) => { e.preventDefault(); setActive(i - 1); start(); });
+    on(btnNext, "click", (e) => { e.preventDefault(); setActive(i + 1); start(); });
+
+    // Dots
+    dots.forEach((d) => {
+      on(d, "click", (e) => {
+        e.preventDefault();
+        const go = parseInt(d.getAttribute("data-go") || "0", 10);
+        if (Number.isFinite(go)) { setActive(go); start(); }
+      });
     });
-  };
 
-  const stop = () => {
-    if (timer) clearInterval(timer);
-    timer = null;
-  };
+    // Pause on hover/focus
+    on(slider, "mouseenter", stop);
+    on(slider, "mouseleave", start);
+    on(slider, "focusin", stop);
+    on(slider, "focusout", start);
 
-  const start = () => {
-    if (!autoplay) return;
-    stop();
-    timer = setInterval(() => setActive(i + 1), interval);
-  };
+    // Keyboard
+    slider.setAttribute("tabindex", "0");
+    on(slider, "keydown", (e) => {
+      if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1); start(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
+    });
 
-  // Controls
-  on(btnPrev, "click", () => { setActive(i - 1); start(); });
-  on(btnNext, "click", () => { setActive(i + 1); start(); });
+    // ✅ Swipe (touch/pointer)
+    let startX = 0;
+    let startY = 0;
+    let dragging = false;
 
-  dots.forEach((d) => {
-    on(d, "click", () => {
-      const go = parseInt(d.getAttribute("data-go") || "0", 10);
-      setActive(go);
+    const SWIPE_MIN = 35;     // px
+    const SWIPE_MAX_Y = 55;   // px (si tu scroll vertical, on ignore)
+
+    const onDown = (x, y) => { startX = x; startY = y; dragging = true; stop(); };
+    const onUp = (x, y) => {
+      if (!dragging) return;
+      dragging = false;
+
+      const dx = x - startX;
+      const dy = y - startY;
+
+      // si c'est surtout un scroll vertical, ignore
+      if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
+
+      if (dx <= -SWIPE_MIN) { setActive(i + 1); }
+      else if (dx >= SWIPE_MIN) { setActive(i - 1); }
+
       start();
-    });
+    };
+
+    // Pointer events (supporte touch + souris)
+    on(slidesWrap, "pointerdown", (e) => {
+      // ne pas capturer si on clique un bouton/dot
+      if (e.target && e.target.closest(".hero-slider-ui")) return;
+      try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
+      onDown(e.clientX, e.clientY);
+    }, { passive: true });
+
+    on(slidesWrap, "pointerup", (e) => onUp(e.clientX, e.clientY), { passive: true });
+    on(slidesWrap, "pointercancel", () => { dragging = false; start(); }, { passive: true });
+
+    // Init
+    setActive(0);
+    start();
   });
-
-  // Pause on hover / focus
-  on(slider, "mouseenter", stop);
-  on(slider, "mouseleave", start);
-  on(slider, "focusin", stop);
-  on(slider, "focusout", start);
-
-  // Keyboard navigation
-  slider.setAttribute("tabindex", "0");
-  on(slider, "keydown", (e) => {
-    if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1); start(); }
-    if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
-  });
-
-  // Optional warm-up image (LCP safe)
-  on(window, "load", () => {
-    const warm = slider.getAttribute("data-warm-src");
-    if (!warm) return;
-    const img = new Image();
-    img.decoding = "async";
-    img.loading = "eager";
-    img.src = warm;
-  });
-
-  setActive(0);
-  start();
 })();
