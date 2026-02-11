@@ -1,7 +1,7 @@
 // Pirates de l’Asphalte — main.js
 
-// Year footer
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Menu mobile
 const menuBtn = document.getElementById("menuBtn");
@@ -270,3 +270,75 @@ form?.addEventListener("submit", async (e) => {
     setSubmitting(false);
   }
 });
+
+/* ================= HERO SLIDER (no deps) ================= */
+(() => {
+  const slider = document.querySelector(".hero-slider");
+  if (!slider) return;
+
+  const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+  const dots = Array.from(slider.querySelectorAll(".hero-dot"));
+  const btnPrev = slider.querySelector(".hero-prev");
+  const btnNext = slider.querySelector(".hero-next");
+
+  let i = 0;
+  let timer = null;
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const autoplay = slider.dataset.autoplay === "true" && !prefersReduced;
+  const interval = Math.max(2500, parseInt(slider.dataset.interval || "5200", 10));
+
+  function setActive(next){
+    i = (next + slides.length) % slides.length;
+
+    slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+    dots.forEach((d, idx) => {
+      const active = idx === i;
+      d.classList.toggle("is-active", active);
+      d.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  }
+
+  function start(){
+    if (!autoplay) return;
+    stop();
+    timer = window.setInterval(() => setActive(i + 1), interval);
+  }
+
+  function stop(){
+    if (timer) window.clearInterval(timer);
+    timer = null;
+  }
+
+  btnPrev?.addEventListener("click", () => { setActive(i - 1); start(); });
+  btnNext?.addEventListener("click", () => { setActive(i + 1); start(); });
+
+  dots.forEach(d => {
+    d.addEventListener("click", () => {
+      const go = parseInt(d.dataset.go || "0", 10);
+      setActive(go);
+      start();
+    });
+  });
+
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+  slider.addEventListener("focusin", stop);
+  slider.addEventListener("focusout", start);
+
+  slider.setAttribute("tabindex", "0");
+  slider.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); setActive(i - 1); start(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1); start(); }
+  });
+
+  // Optional: warm up slide 2 after load (keeps LCP clean)
+  window.addEventListener("load", () => {
+    const img = new Image();
+    img.src = "/assets/images/hero/asphalt-chaude-1600x900.webp";
+  });
+
+  setActive(0);
+  start();
+})();
+
