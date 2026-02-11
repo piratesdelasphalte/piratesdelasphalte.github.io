@@ -694,3 +694,10 @@ footer p{ margin: 0.35rem 0; }
 @media (prefers-reduced-motion: reduce){
   .hero-slide{ transition: none; }
 }
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 360px);
+  gap: 22px;
+  align-items: start;
+}
