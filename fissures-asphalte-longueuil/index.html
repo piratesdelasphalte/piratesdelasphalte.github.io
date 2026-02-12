@@ -2,33 +2,47 @@
 <html lang="fr-CA">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <!-- Indexing / UX -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- SEO -->
   <title>Fissures d’asphalte à Longueuil | Scellant & réparation durable | Pirates de l’Asphalte</title>
   <meta name="description" content="Fissures d’asphalte à Longueuil : scellant, réparation de fissures, correction des zones affaissées au besoin. Entrées de cour & stationnements. Soumission rapide." />
-
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Fissures d’asphalte à Longueuil | Scellant & réparation" />
-  <meta property="og:description" content="Réparation de fissures d’asphalte à Longueuil : scellant, joints, patch si nécessaire. Résidentiel et commercial." />
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/" />
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:title" content="Fissures d’asphalte à Longueuil | Scellant & réparation" />
+  <meta property="og:description" content="Réparation de fissures d’asphalte à Longueuil : scellant, joints, patch si nécessaire. Résidentiel et commercial." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="twitter:title" content="Fissures d’asphalte à Longueuil | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Scellant, réparation de fissures, correction des zones affaissées au besoin. Entrées et stationnements à Longueuil. Soumission rapide." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -39,59 +53,75 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-ZS180NNJS4');
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema: LocalBusiness -->
+  <!-- Schema (Business + WebPage + Service + FAQ) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Pirates de l’Asphalte",
-    "url":"https://piratesdelasphalte.github.io/",
-    "telephone":"+1-514-979-7832",
-    "areaServed":["Longueuil","Québec"],
-    "sameAs":["https://www.facebook.com/piratesdelsphalte/"]
-  }
-  </script>
-
-  <!-- Schema: Service -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "serviceType":"Réparation de fissures d’asphalte",
-    "name":"Réparation de fissures d’asphalte à Longueuil",
-    "areaServed":{"@type":"City","name":"Longueuil"},
-    "provider":{
-      "@type":"LocalBusiness",
-      "name":"Pirates de l’Asphalte",
-      "url":"https://piratesdelasphalte.github.io/",
-      "telephone":"+1-514-979-7832"
-    }
-  }
-  </script>
-
-  <!-- Schema: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@graph":[
       {
-        "@type":"Question",
-        "name":"Faites-vous la réparation de fissures d’asphalte à Longueuil ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons les fissures d’asphalte à Longueuil avec un nettoyage adéquat, remplissage/scellant selon le type de fissure, et patch/section au besoin si la base est affectée."}
+        "@type":"WebSite",
+        "@id":"https://piratesdelasphalte.github.io/#website",
+        "url":"https://piratesdelasphalte.github.io/",
+        "name":"Pirates de l’Asphalte",
+        "inLanguage":"fr-CA"
       },
       {
-        "@type":"Question",
-        "name":"Est-ce qu’un scellant suffit pour toutes les fissures ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Non. Certaines fissures superficielles se scellent bien, mais des fissures larges, actives ou associées à un affaissement peuvent exiger une réparation plus structurée (patch, correction de base, drainage)."}
+        "@type":"LocalBusiness",
+        "@id":"https://piratesdelasphalte.github.io/#business",
+        "name":"Pirates de l’Asphalte",
+        "url":"https://piratesdelasphalte.github.io/",
+        "telephone":"+1-514-979-7832",
+        "sameAs":["https://www.facebook.com/piratesdelsphalte/"],
+        "address":{
+          "@type":"PostalAddress",
+          "addressRegion":"QC",
+          "addressCountry":"CA"
+        },
+        "areaServed":[
+          { "@type":"City", "name":"Longueuil" },
+          { "@type":"AdministrativeArea", "name":"Québec" }
+        ]
       },
       {
-        "@type":"Question",
-        "name":"Pourquoi des fissures apparaissent-elles sur une entrée de cour ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Les causes fréquentes : infiltration d’eau, cycles gel/dégel, base affaiblie, drainage insuffisant, ou mouvements du sol. Traiter tôt aide à éviter que ça s’élargisse."}
+        "@type":"WebPage",
+        "@id":"https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/#webpage",
+        "url":"https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/",
+        "name":"Fissures d’asphalte à Longueuil | Scellant & réparation durable | Pirates de l’Asphalte",
+        "inLanguage":"fr-CA",
+        "isPartOf":{ "@id":"https://piratesdelasphalte.github.io/#website" },
+        "about":{ "@id":"https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type":"Service",
+        "@id":"https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/#service",
+        "name":"Réparation de fissures d’asphalte à Longueuil",
+        "serviceType":"Réparation de fissures d’asphalte",
+        "provider":{ "@id":"https://piratesdelasphalte.github.io/#business" },
+        "areaServed":{ "@type":"City", "name":"Longueuil" }
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"https://piratesdelasphalte.github.io/fissures-asphalte-longueuil/#faq",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Faites-vous la réparation de fissures d’asphalte à Longueuil ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons les fissures d’asphalte à Longueuil avec un nettoyage adéquat, remplissage/scellant selon le type de fissure, et patch/section au besoin si la base est affectée."}
+          },
+          {
+            "@type":"Question",
+            "name":"Est-ce qu’un scellant suffit pour toutes les fissures ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Non. Certaines fissures superficielles se scellent bien, mais des fissures larges, actives ou associées à un affaissement peuvent exiger une réparation plus structurée (patch, correction de base, drainage)."}
+          },
+          {
+            "@type":"Question",
+            "name":"Pourquoi des fissures apparaissent-elles sur une entrée de cour ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Les causes fréquentes : infiltration d’eau, cycles gel/dégel, base affaiblie, drainage insuffisant, ou mouvements du sol. Traiter tôt aide à éviter que ça s’élargisse."}
+          }
+        ]
       }
     ]
   }
@@ -99,230 +129,294 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-<header>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand-wrap">
-        <div class="brand">
-          <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte" class="logo" width="92" height="64" />
-          <span class="brand-text">Pirates de l’Asphalte</span>
-        </div>
-        <span class="badge"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Fissures d’asphalte à Longueuil</span>
-      </div>
-
-      <nav>
-        <a href="/">Accueil</a>
-        <a href="/reparation-asphalte-longueuil/">Réparation asphalte</a>
-        <a href="/nids-de-poule-longueuil/">Nids-de-poule</a>
-        <a href="/asphaltage-longueuil/">Asphaltage</a>
-        <a href="/#soumission">Soumission</a>
-        <a href="tel:15149797832">Appeler</a>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<main class="hero" id="top">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-card">
-        <h1>Fissures d’asphalte à Longueuil</h1>
-
-        <p>
-          Des <strong>fissures d’asphalte</strong> sur une entrée de cour ou un stationnement à Longueuil
-          laissent l’eau entrer, puis le gel fait le reste.
-          On intervient avec une <strong>réparation adaptée</strong> : scellant, remplissage,
-          ou patch si la base est touchée, pour une finition plus durable.
-        </p>
-
-        <div class="hero-points" aria-label="Points forts">
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Scellant & joints</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch si nécessaire</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Prévention infiltration</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler fissures asphalte Longueuil">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <a class="brand" href="/" aria-label="Retour à l’accueil">
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
           </a>
-          <a class="btn btn-ghost" href="/#soumission" aria-label="Soumission fissures asphalte Longueuil">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
-          </a>
+          <span class="badge"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Fissures d’asphalte à Longueuil</span>
         </div>
 
-        <p class="sub" style="margin-top:12px;">
-          Autres problèmes : <a href="/nids-de-poule-longueuil/">nids-de-poule Longueuil</a> ·
-          <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a>
-        </p>
+        <nav aria-label="Navigation">
+          <a href="/">Accueil</a>
+          <a href="/reparation-asphalte-longueuil/">Réparation asphalte</a>
+          <a href="/nids-de-poule-longueuil/">Nids-de-poule</a>
+          <a href="/asphaltage-longueuil/">Asphaltage</a>
+          <a href="/#soumission" data-track="cta" data-label="fissures-longueuil-nav-quote">Soumission</a>
+          <a href="tel:15149797832" data-track="phone" data-label="fissures-longueuil-nav-call">Appeler</a>
+        </nav>
       </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<section id="pourquoi">
-  <div class="container">
-    <div class="section-head">
-      <h2>Pourquoi réparer une fissure d’asphalte rapidement</h2>
-      <p class="sub">La fissure est une porte ouverte à l’eau. Plus tôt on la ferme, mieux c’est.</p>
-    </div>
+  <main class="hero" id="main">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Fissures d’asphalte à Longueuil</h1>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Bloquer l’infiltration</h3>
-        <p>Moins d’eau sous l’asphalte, moins de gel/dégel et moins de bris autour de la fissure.</p>
-      </div>
-      <div class="card">
-        <h3>Éviter les nids-de-poule</h3>
-        <p>Les fissures négligées finissent souvent en zones cassées et nids-de-poule.</p>
-      </div>
-      <div class="card">
-        <h3>Prolonger la durée de vie</h3>
-        <p>Une réparation ciblée peut retarder une reconstruction plus coûteuse.</p>
-      </div>
-    </div>
-  </div>
-</section>
+          <p>
+            Des <strong>fissures d’asphalte</strong> sur une entrée de cour ou un stationnement à Longueuil
+            laissent l’eau entrer, puis le gel fait le reste.
+            On intervient avec une <strong>réparation adaptée</strong> : scellant, remplissage,
+            ou patch si la base est touchée, pour une finition plus durable.
+          </p>
 
-<section id="types">
-  <div class="container">
-    <div class="section-head">
-      <h2>Types de fissures : on adapte la réparation</h2>
-      <p class="sub">Toutes les fissures ne se traitent pas pareil.</p>
-    </div>
+          <div class="hero-points" aria-label="Points forts">
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Scellant & joints</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch si nécessaire</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Prévention infiltration</span>
+          </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Fissures fines (superficielles)</h3>
-        <p>Souvent traitées par nettoyage + scellant pour limiter l’infiltration.</p>
-      </div>
-      <div class="card">
-        <h3>Fissures larges / ouvertes</h3>
-        <p>Remplissage plus robuste, joints mieux travaillés pour limiter le retour.</p>
-      </div>
-      <div class="card">
-        <h3>Fissures avec affaissement</h3>
-        <p>Quand ça bouge, on corrige la zone (patch/section) et on stabilise si nécessaire.</p>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="cta-row">
+            <a class="btn btn-primary"
+               href="tel:15149797832"
+               data-track="phone"
+               data-label="fissures-longueuil-hero-call"
+               aria-label="Appeler fissures asphalte Longueuil">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+            </a>
 
-<section id="methode">
-  <div class="container">
-    <div class="section-head">
-      <h2>Notre méthode de réparation de fissures</h2>
-      <p class="sub">Propre, simple, efficace : on prépare avant de sceller.</p>
-    </div>
+            <a class="btn btn-ghost"
+               href="/#soumission"
+               data-track="cta"
+               data-label="fissures-longueuil-hero-quote"
+               aria-label="Soumission fissures asphalte Longueuil">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
+            </a>
 
-    <ol class="process">
-      <li><strong>Inspection</strong> : type de fissure, largeur, zones affaissées, drainage</li>
-      <li><strong>Nettoyage</strong> : enlever débris, poussière, zones friables</li>
-      <li><strong>Traitement</strong> : scellant/remplissage selon la fissure</li>
-      <li><strong>Patch</strong> (si nécessaire) : section stable quand la base est touchée</li>
-      <li><strong>Finition</strong> : joints propres et surface plus uniforme</li>
-    </ol>
+            <a class="btn btn-ghost"
+               href="sms:+15149797832"
+               data-track="sms"
+               data-label="fissures-longueuil-hero-sms"
+               aria-label="Envoyer un texto pour fissures d’asphalte à Longueuil">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+            </a>
+          </div>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
-    </div>
-  </div>
-</section>
-
-<section id="causes">
-  <div class="container">
-    <div class="section-head">
-      <h2>Causes fréquentes des fissures d’asphalte</h2>
-      <p class="sub">On corrige la cause quand possible, pas juste le symptôme.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Gel / dégel</h3>
-        <p>L’eau s’infiltre, gèle, gonfle et agrandit les fissures.</p>
-      </div>
-      <div class="card">
-        <h3>Drainage insuffisant</h3>
-        <p>Flaques et vallons accélèrent la dégradation autour des fissures.</p>
-      </div>
-      <div class="card">
-        <h3>Base affaiblie</h3>
-        <p>Une fondation instable cause des mouvements et fissures qui reviennent.</p>
+          <p class="sub" style="margin-top:12px;">
+            Autres problèmes :
+            <a href="/nids-de-poule-longueuil/">nids-de-poule Longueuil</a> ·
+            <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<section id="secteurs">
-  <div class="container">
-    <div class="section-head">
-      <h2>Secteurs desservis à Longueuil</h2>
-      <p class="sub">On couvre Longueuil et secteurs voisins sur la Rive-Sud.</p>
-    </div>
-
-    <p>
-      Vieux-Longueuil, Saint-Hubert, Greenfield Park et environs.
-      Dites-nous votre secteur et on confirme rapidement.
-    </p>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="container">
-    <div class="section-head">
-      <h2>FAQ – Fissures d’asphalte Longueuil</h2>
-      <p class="sub">Des réponses claires, sans détour.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Scellant ou patch : comment savoir ?</h3>
-        <p>Si la fissure est superficielle, un scellant suffit souvent. Si la zone bouge ou s’affaisse, un patch est souvent nécessaire.</p>
+  <section id="pourquoi" aria-label="Pourquoi réparer">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pourquoi réparer une fissure d’asphalte rapidement</h2>
+        <p class="sub">La fissure est une porte ouverte à l’eau. Plus tôt on la ferme, mieux c’est.</p>
       </div>
-      <div class="card">
-        <h3>Est-ce que ça va revenir ?</h3>
-        <p>Ça dépend de la cause (eau, base, drainage). Une bonne préparation réduit fortement les retours.</p>
-      </div>
-      <div class="card">
-        <h3>Vous faites entrées et stationnements ?</h3>
-        <p>Oui, résidentiel et commercial, selon le projet et l’état de la surface.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Bloquer l’infiltration</h3>
+          <p>Moins d’eau sous l’asphalte, moins de gel/dégel et moins de bris autour de la fissure.</p>
+        </div>
+        <div class="card">
+          <h3>Éviter les nids-de-poule</h3>
+          <p>Les fissures négligées finissent souvent en zones cassées et nids-de-poule.</p>
+        </div>
+        <div class="card">
+          <h3>Prolonger la durée de vie</h3>
+          <p>Une réparation ciblée peut retarder une reconstruction plus coûteuse.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="soumission">
-  <div class="container">
-    <div class="section-head">
-      <h2>Soumission pour fissures d’asphalte à Longueuil</h2>
-      <p class="sub">Appel rapide ou formulaire : on vous répond vite.</p>
+  <section id="types" aria-label="Types de fissures">
+    <div class="container">
+      <div class="section-head">
+        <h2>Types de fissures : on adapte la réparation</h2>
+        <p class="sub">Toutes les fissures ne se traitent pas pareil.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Fissures fines (superficielles)</h3>
+          <p>Souvent traitées par nettoyage + scellant pour limiter l’infiltration.</p>
+        </div>
+        <div class="card">
+          <h3>Fissures larges / ouvertes</h3>
+          <p>Remplissage plus robuste, joints mieux travaillés pour limiter le retour.</p>
+        </div>
+        <div class="card">
+          <h3>Fissures avec affaissement</h3>
+          <p>Quand ça bouge, on corrige la zone (patch/section) et on stabilise si nécessaire.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832</a>
-      <a class="btn btn-ghost" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+  <section id="methode" aria-label="Méthode">
+    <div class="container">
+      <div class="section-head">
+        <h2>Notre méthode de réparation de fissures</h2>
+        <p class="sub">Propre, simple, efficace : on prépare avant de sceller.</p>
+      </div>
+
+      <ol class="process">
+        <li><strong>Inspection</strong> : type de fissure, largeur, zones affaissées, drainage</li>
+        <li><strong>Nettoyage</strong> : enlever débris, poussière, zones friables</li>
+        <li><strong>Traitement</strong> : scellant/remplissage selon la fissure</li>
+        <li><strong>Patch</strong> (si nécessaire) : section stable quand la base est touchée</li>
+        <li><strong>Finition</strong> : joints propres et surface plus uniforme</li>
+      </ol>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="fissures-longueuil-methode-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="fissures-longueuil-methode-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
     </div>
+  </section>
 
-    <p class="sub" style="margin-top:12px;">
-      Liens utiles : <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a> ·
-      <a href="/nids-de-poule-longueuil/">nids-de-poule Longueuil</a> ·
-      <a href="/asphaltage-longueuil/">asphaltage Longueuil</a>
-    </p>
-  </div>
-</section>
+  <section id="causes" aria-label="Causes">
+    <div class="container">
+      <div class="section-head">
+        <h2>Causes fréquentes des fissures d’asphalte</h2>
+        <p class="sub">On corrige la cause quand possible, pas juste le symptôme.</p>
+      </div>
 
-<footer>
-  <div class="container">
-    <p>© <span id="year"></span> Pirates de l’Asphalte – Fissures d’asphalte à Longueuil</p>
-  </div>
-</footer>
+      <div class="grid">
+        <div class="card">
+          <h3>Gel / dégel</h3>
+          <p>L’eau s’infiltre, gèle, gonfle et agrandit les fissures.</p>
+        </div>
+        <div class="card">
+          <h3>Drainage insuffisant</h3>
+          <p>Flaques et vallons accélèrent la dégradation autour des fissures.</p>
+        </div>
+        <div class="card">
+          <h3>Base affaiblie</h3>
+          <p>Une fondation instable cause des mouvements et fissures qui reviennent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <section id="secteurs" aria-label="Secteurs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Secteurs desservis à Longueuil</h2>
+        <p class="sub">On couvre Longueuil et secteurs voisins sur la Rive-Sud.</p>
+      </div>
 
-<!-- JS global -->
-<script src="/assets/js/main.js" defer></script>
+      <p>
+        Vieux-Longueuil, Saint-Hubert, Greenfield Park et environs.
+        Dites-nous votre secteur et on confirme rapidement.
+      </p>
+    </div>
+  </section>
+
+  <section id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ – Fissures d’asphalte Longueuil</h2>
+        <p class="sub">Des réponses claires, sans détour.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Scellant ou patch : comment savoir ?</h3>
+          <p>Si la fissure est superficielle, un scellant suffit souvent. Si la zone bouge ou s’affaisse, un patch est souvent nécessaire.</p>
+        </div>
+        <div class="card">
+          <h3>Est-ce que ça va revenir ?</h3>
+          <p>Ça dépend de la cause (eau, base, drainage). Une bonne préparation réduit fortement les retours.</p>
+        </div>
+        <div class="card">
+          <h3>Vous faites entrées et stationnements ?</h3>
+          <p>Oui, résidentiel et commercial, selon le projet et l’état de la surface.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="fissures-longueuil-faq-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="fissures-longueuil-faq-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission" aria-label="Soumission">
+    <div class="container">
+      <div class="section-head">
+        <h2>Soumission pour fissures d’asphalte à Longueuil</h2>
+        <p class="sub">Appel rapide, texto ou formulaire : on vous répond vite.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="fissures-longueuil-bottom-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832
+        </a>
+
+        <a class="btn btn-ghost"
+           href="/#soumission"
+           data-track="cta"
+           data-label="fissures-longueuil-bottom-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+
+        <a class="btn btn-ghost"
+           href="sms:+15149797832"
+           data-track="sms"
+           data-label="fissures-longueuil-bottom-sms">
+          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+        </a>
+      </div>
+
+      <p class="sub" style="margin-top:12px;">
+        Liens utiles :
+        <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a> ·
+        <a href="/nids-de-poule-longueuil/">nids-de-poule Longueuil</a> ·
+        <a href="/asphaltage-longueuil/">asphaltage Longueuil</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte – Fissures d’asphalte à Longueuil</p>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
