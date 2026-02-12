@@ -811,3 +811,28 @@
     else if (href.includes("#soumission")) track("cta_click", { label, href });
   });
 
+  /* =========================================================
+     3b) Smooth scroll (safe)
+     - Only for same-page anchors (#id)
+     - Respects reduced motion
+     ========================================================= */
+  on(document, "click", (e) => {
+    const a = e.target instanceof Element ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+
+    const id = (a.getAttribute("href") || "").slice(1);
+    if (!id) return;
+
+    const target = qs(`#${CSS.escape(id)}`);
+    if (!target) return;
+
+    e.preventDefault();
+    try {
+      target.scrollIntoView({
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+        block: "start"
+      });
+      history.pushState(null, "", `#${id}`);
+    } catch {}
+  });
+
