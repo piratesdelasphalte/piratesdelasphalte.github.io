@@ -538,317 +538,250 @@
   });
 
   /* =========================================================
-   7) Hero slider (no deps) — ULTRA PREMIUM + VIDEO SUPPORT
-   - dots + prev/next + keyboard
-   - pause on hover/focus
-   - swipe (pointer) + is-dragging class for CSS
-   - progress bar support: .hero-progress .bar
-   - loading state works for img OR video
-   - video: autoplay/mute/loop + pause when not active
-   ========================================================= */
-const initHeroSliders = () => {
-  const sliders = qsa(".hero-slider");
-  if (!sliders.length) return;
+     7) Hero slider (no deps) — ULTRA PREMIUM
+     - dots + prev/next + keyboard
+     - pause on hover/focus
+     - swipe (pointer) + is-dragging class for CSS
+     - progress bar support: .hero-progress .bar
+     - loading state: slider.classList.add("is-loading") until first image ready
+     ========================================================= */
+  const initHeroSliders = () => {
+    const sliders = qsa(".hero-slider");
+    if (!sliders.length) return;
 
-  // Helpers video
-  const isVideoSlide = (fig) => !!qs("video", fig);
-  const getVideo = (fig) => qs("video", fig);
+    sliders.forEach((slider) => {
+      if (slider.dataset.pdaInit === "1") return;
+      slider.dataset.pdaInit = "1";
 
-  const prepareVideo = (v) => {
-    if (!v) return;
-    // Autoplay requirements
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    v.setAttribute("muted", "");
-    v.setAttribute("playsinline", "");
-    v.setAttribute("preload", v.getAttribute("preload") || "metadata");
-  };
+      const slidesWrap = qs(".hero-slides", slider);
+      const slides = qsa(".hero-slide", slider);
+      if (!slidesWrap || slides.length <= 1) return;
 
-  const playVideoSafe = async (v) => {
-    if (!v) return;
-    try {
-      // certains navigateurs exigent autoplay explicit
-      v.autoplay = true;
-      const p = v.play();
-      if (p && typeof p.then === "function") await p;
-    } catch {
-      // si autoplay est bloqué, on laisse la slide visible (pas de crash)
-    }
-  };
+      const dots = qsa(".hero-dot", slider);
+      const btnPrev = qs(".hero-prev", slider);
+      const btnNext = qs(".hero-next", slider);
 
-  const pauseVideoSafe = (v) => {
-    if (!v) return;
-    try { v.pause(); } catch {}
-    // on remet au début pour éviter “frame noire” quand on revient
-    try { v.currentTime = 0; } catch {}
-  };
+      const progress = qs(".hero-progress .bar", slider); // optionnel
+      const caption = qs(".hero-caption", slider);        // optionnel
 
-  sliders.forEach((slider) => {
-    if (slider.dataset.pdaInit === "1") return;
-    slider.dataset.pdaInit = "1";
+      let i = 0;
+      let timer = null;
+      let lastInteraction = 0;
 
-    const slidesWrap = qs(".hero-slides", slider);
-    const slides = qsa(".hero-slide", slider);
-    if (!slidesWrap || slides.length <= 1) return;
+      const autoplay =
+        slider.getAttribute("data-autoplay") === "true" && !prefersReducedMotion();
 
-    const dots = qsa(".hero-dot", slider);
-    const btnPrev = qs(".hero-prev", slider);
-    const btnNext = qs(".hero-next", slider);
+      const intervalRaw = parseInt(slider.getAttribute("data-interval") || "8000", 10);
+      const interval = clamp(Number.isFinite(intervalRaw) ? intervalRaw : 8000, 2500, 15000);
 
-    const progress = qs(".hero-progress .bar", slider); // optionnel
-    const caption = qs(".hero-caption", slider);        // optionnel
+      const setCaption = (idx) => {
+        if (!caption) return;
+        const fig = slides[idx];
+        const text = fig?.getAttribute("data-caption") || "";
+        if (!text) return;
+        const span = caption.querySelector("span");
+        if (span) span.textContent = text;
+      };
 
-    // Prépare toutes les vidéos une fois
-    slides.forEach((fig) => prepareVideo(getVideo(fig)));
+      const restartProgress = () => {
+        if (!progress || !autoplay) return;
+        progress.style.transformOrigin = "left center";
+        progress.style.transition = "none";
+        progress.style.transform = "scaleX(0)";
+        void progress.offsetHeight;
+        progress.style.transition = `transform ${interval}ms linear`;
+        progress.style.transform = "scaleX(1)";
+      };
 
-    let i = 0;
-    let timer = null;
-    let lastInteraction = 0;
-
-    const autoplay =
-      slider.getAttribute("data-autoplay") === "true" && !prefersReducedMotion();
-
-    const intervalRaw = parseInt(slider.getAttribute("data-interval") || "8000", 10);
-    const interval = clamp(Number.isFinite(intervalRaw) ? intervalRaw : 8000, 2500, 15000);
-
-    const setCaption = (idx) => {
-      if (!caption) return;
-      const fig = slides[idx];
-      const text = fig?.getAttribute("data-caption") || "";
-      if (!text) return;
-      const span = caption.querySelector("span");
-      if (span) span.textContent = text;
-    };
-
-    const restartProgress = () => {
-      if (!progress || !autoplay) return;
-      progress.style.transformOrigin = "left center";
-      progress.style.transition = "none";
-      progress.style.transform = "scaleX(0)";
-      void progress.offsetHeight;
-      progress.style.transition = `transform ${interval}ms linear`;
-      progress.style.transform = "scaleX(1)";
-    };
-
-    const pauseProgress = () => {
-      if (!progress || !autoplay) return;
-      const computed = window.getComputedStyle(progress);
-      const matrix = computed.transform;
-      let scaleX = 1;
-      if (matrix && matrix !== "none") {
-        const parts = matrix.match(/matrix\(([^)]+)\)/);
-        if (parts && parts[1]) {
-          const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-          if (nums.length) scaleX = nums[0] || 1;
+      const pauseProgress = () => {
+        if (!progress || !autoplay) return;
+        const computed = window.getComputedStyle(progress);
+        const matrix = computed.transform;
+        let scaleX = 1;
+        if (matrix && matrix !== "none") {
+          const parts = matrix.match(/matrix\(([^)]+)\)/);
+          if (parts && parts[1]) {
+            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
+            if (nums.length) scaleX = nums[0] || 1;
+          }
         }
-      }
-      progress.style.transition = "none";
-      progress.style.transformOrigin = "left center";
-      progress.style.transform = `scaleX(${scaleX})`;
-    };
+        progress.style.transition = "none";
+        progress.style.transformOrigin = "left center";
+        progress.style.transform = `scaleX(${scaleX})`;
+      };
 
-    const resumeProgress = () => {
-      if (!progress || !autoplay) return;
-      const computed = window.getComputedStyle(progress);
-      const matrix = computed.transform;
-      let scaleX = 0;
-      if (matrix && matrix !== "none") {
-        const parts = matrix.match(/matrix\(([^)]+)\)/);
-        if (parts && parts[1]) {
-          const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
-          if (nums.length) scaleX = nums[0] || 0;
+      const resumeProgress = () => {
+        if (!progress || !autoplay) return;
+        const computed = window.getComputedStyle(progress);
+        const matrix = computed.transform;
+        let scaleX = 0;
+        if (matrix && matrix !== "none") {
+          const parts = matrix.match(/matrix\(([^)]+)\)/);
+          if (parts && parts[1]) {
+            const nums = parts[1].split(",").map((n) => parseFloat(n.trim()));
+            if (nums.length) scaleX = nums[0] || 0;
+          }
         }
-      }
-      const remaining = Math.max(300, Math.round((1 - scaleX) * interval));
-      progress.style.transition = "none";
-      progress.style.transformOrigin = "left center";
-      progress.style.transform = `scaleX(${scaleX})`;
-      void progress.offsetHeight;
-      progress.style.transition = `transform ${remaining}ms linear`;
-      progress.style.transform = "scaleX(1)";
-    };
+        const remaining = Math.max(300, Math.round((1 - scaleX) * interval));
+        progress.style.transition = "none";
+        progress.style.transformOrigin = "left center";
+        progress.style.transform = `scaleX(${scaleX})`;
+        void progress.offsetHeight;
+        progress.style.transition = `transform ${remaining}ms linear`;
+        progress.style.transform = "scaleX(1)";
+      };
 
-    // VIDEO: quand la slide change
-    const syncVideos = async () => {
-      slides.forEach((fig, idx) => {
-        const v = getVideo(fig);
-        if (!v) return;
-        if (idx === i) playVideoSafe(v);
-        else pauseVideoSafe(v);
-      });
-    };
+      const setActive = (next, reason = "auto") => {
+        i = (next + slides.length) % slides.length;
 
-    const setActive = (next, reason = "auto") => {
-      i = (next + slides.length) % slides.length;
+        slides.forEach((s, idx) => {
+          const active = idx === i;
+          s.classList.toggle("is-active", active);
+          s.setAttribute("aria-hidden", active ? "false" : "true");
+        });
 
-      slides.forEach((s, idx) => {
-        const active = idx === i;
-        s.classList.toggle("is-active", active);
-        s.setAttribute("aria-hidden", active ? "false" : "true");
-      });
+        dots.forEach((d, idx) => {
+          const active = idx === i;
+          d.classList.toggle("is-active", active);
+          d.setAttribute("aria-selected", active ? "true" : "false");
+          d.setAttribute("tabindex", active ? "0" : "-1");
+        });
 
-      dots.forEach((d, idx) => {
-        const active = idx === i;
-        d.classList.toggle("is-active", active);
-        d.setAttribute("aria-selected", active ? "true" : "false");
-        d.setAttribute("tabindex", active ? "0" : "-1");
-      });
+        if (reason !== "auto") lastInteraction = now();
+        setCaption(i);
+        restartProgress();
+      };
 
-      if (reason !== "auto") lastInteraction = now();
-      setCaption(i);
-      restartProgress();
-      syncVideos(); // ✅ important
-    };
+      const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+        pauseProgress();
+      };
 
-    const stop = () => {
-      if (timer) clearInterval(timer);
-      timer = null;
-      pauseProgress();
+      const start = () => {
+        if (!autoplay) return;
+        stop();
+        resumeProgress();
+        timer = setInterval(() => {
+          if ((now() - lastInteraction) < 1200) return;
+          setActive(i + 1, "auto");
+        }, interval);
+      };
 
-      // si on veut “pause” la vidéo quand on hover/focus
-      const activeV = getVideo(slides[i]);
-      pauseVideoSafe(activeV);
-    };
-
-    const start = () => {
-      if (!autoplay) return;
-      // on repart la vidéo active
-      const activeV = getVideo(slides[i]);
-      playVideoSafe(activeV);
-
-      if (timer) clearInterval(timer);
-      resumeProgress();
-      timer = setInterval(() => {
-        if ((now() - lastInteraction) < 1200) return;
-        setActive(i + 1, "auto");
-      }, interval);
-    };
-
-    on(btnPrev, "click", (e) => {
-      e.preventDefault();
-      setActive(i - 1, "click");
-      start();
-    });
-
-    on(btnNext, "click", (e) => {
-      e.preventDefault();
-      setActive(i + 1, "click");
-      start();
-    });
-
-    dots.forEach((d) => {
-      on(d, "click", (e) => {
+      on(btnPrev, "click", (e) => {
         e.preventDefault();
-        const go = parseInt(d.getAttribute("data-go") || "0", 10);
-        if (Number.isFinite(go)) {
-          setActive(go, "dot");
-          start();
-        }
+        setActive(i - 1, "click");
+        start();
       });
-    });
 
-    on(slider, "mouseenter", stop);
-    on(slider, "mouseleave", start);
-    on(slider, "focusin", stop);
-    on(slider, "focusout", start);
-
-    if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
-
-    on(slider, "keydown", (e) => {
-      if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1, "key"); start(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1, "key"); start(); }
-    });
-
-    let startX = 0, startY = 0, dragging = false, moved = false;
-    const SWIPE_MIN = 38;
-    const SWIPE_MAX_Y = 70;
-
-    const pointerDown = (x, y) => {
-      startX = x;
-      startY = y;
-      dragging = true;
-      moved = false;
-      slider.classList.add("is-dragging");
-      stop();
-    };
-
-    const pointerUp = (x, y) => {
-      if (!dragging) return;
-      dragging = false;
-      slider.classList.remove("is-dragging");
-
-      const dx = x - startX;
-      const dy = y - startY;
-
-      if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
-
-      if (dx <= -SWIPE_MIN) setActive(i + 1, "swipe");
-      else if (dx >= SWIPE_MIN) setActive(i - 1, "swipe");
-
-      start();
-    };
-
-    on(slidesWrap, "pointerdown", (e) => {
-      if (e.target instanceof Element && e.target.closest(".hero-slider-ui")) return;
-      if (typeof e.button === "number" && e.button !== 0) return;
-      try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
-      pointerDown(e.clientX, e.clientY);
-    }, { passive: true });
-
-    on(slidesWrap, "pointermove", (e) => {
-      if (!dragging) return;
-      const dx = Math.abs(e.clientX - startX);
-      const dy = Math.abs(e.clientY - startY);
-      if (dx > 6 || dy > 6) moved = true;
-    }, { passive: true });
-
-    on(slidesWrap, "pointerup", (e) => pointerUp(e.clientX, e.clientY), { passive: true });
-    on(slidesWrap, "pointercancel", () => {
-      dragging = false;
-      slider.classList.remove("is-dragging");
-      start();
-    }, { passive: true });
-
-    on(slidesWrap, "click", (e) => {
-      if (moved) {
+      on(btnNext, "click", (e) => {
         e.preventDefault();
-        e.stopPropagation();
+        setActive(i + 1, "click");
+        start();
+      });
+
+      dots.forEach((d) => {
+        on(d, "click", (e) => {
+          e.preventDefault();
+          const go = parseInt(d.getAttribute("data-go") || "0", 10);
+          if (Number.isFinite(go)) {
+            setActive(go, "dot");
+            start();
+          }
+        });
+      });
+
+      on(slider, "mouseenter", stop);
+      on(slider, "mouseleave", start);
+      on(slider, "focusin", stop);
+      on(slider, "focusout", start);
+
+      if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
+
+      on(slider, "keydown", (e) => {
+        if (e.key === "ArrowLeft")  { e.preventDefault(); setActive(i - 1, "key"); start(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); setActive(i + 1, "key"); start(); }
+      });
+
+      let startX = 0, startY = 0, dragging = false, moved = false;
+      const SWIPE_MIN = 38;
+      const SWIPE_MAX_Y = 70;
+
+      const pointerDown = (x, y) => {
+        startX = x;
+        startY = y;
+        dragging = true;
         moved = false;
-      }
-    }, true);
+        slider.classList.add("is-dragging");
+        stop();
+      };
 
-    // ✅ Loading state: marche img OU video
-    slider.classList.add("is-loading");
+      const pointerUp = (x, y) => {
+        if (!dragging) return;
+        dragging = false;
+        slider.classList.remove("is-dragging");
 
-    const markReady = () => {
-      slider.classList.remove("is-loading");
-      restartProgress();
-    };
+        const dx = x - startX;
+        const dy = y - startY;
 
-    const firstActive = slides[0];
-    const firstImg = qs("img", firstActive);
-    const firstVid = qs("video", firstActive);
+        if (Math.abs(dy) > SWIPE_MAX_Y) { start(); return; }
 
-    if (firstImg) {
-      if (firstImg.complete) markReady();
-      else {
+        if (dx <= -SWIPE_MIN) setActive(i + 1, "swipe");
+        else if (dx >= SWIPE_MIN) setActive(i - 1, "swipe");
+
+        start();
+      };
+
+      on(slidesWrap, "pointerdown", (e) => {
+        if (e.target instanceof Element && e.target.closest(".hero-slider-ui")) return;
+        if (typeof e.button === "number" && e.button !== 0) return;
+        try { slidesWrap.setPointerCapture(e.pointerId); } catch {}
+        pointerDown(e.clientX, e.clientY);
+      }, { passive: true });
+
+      on(slidesWrap, "pointermove", (e) => {
+        if (!dragging) return;
+        const dx = Math.abs(e.clientX - startX);
+        const dy = Math.abs(e.clientY - startY);
+        if (dx > 6 || dy > 6) moved = true;
+      }, { passive: true });
+
+      on(slidesWrap, "pointerup", (e) => pointerUp(e.clientX, e.clientY), { passive: true });
+      on(slidesWrap, "pointercancel", () => {
+        dragging = false;
+        slider.classList.remove("is-dragging");
+        start();
+      }, { passive: true });
+
+      on(slidesWrap, "click", (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+
+      slider.classList.add("is-loading");
+      const firstImg = qs(".hero-slide.is-active img", slider) || qs(".hero-slide img", slider);
+
+      const markReady = () => {
+        slider.classList.remove("is-loading");
+        restartProgress();
+      };
+
+      if (firstImg && firstImg.complete) {
+        markReady();
+      } else if (firstImg) {
         on(firstImg, "load", markReady, { once: true });
         on(firstImg, "error", markReady, { once: true });
+      } else {
+        markReady();
       }
-    } else if (firstVid) {
-      // metadata loaded = assez pour afficher une frame et lire
-      on(firstVid, "loadedmetadata", markReady, { once: true });
-      on(firstVid, "error", markReady, { once: true });
-      // si déjà prêt
-      if (firstVid.readyState >= 1) markReady();
-    } else {
-      markReady();
-    }
 
-    setActive(0, "init");
-    start();
-  });
-};
+      setActive(0, "init");
+      start();
+    });
+  };
 
-initHeroSliders();
+  initHeroSliders();
+})();
