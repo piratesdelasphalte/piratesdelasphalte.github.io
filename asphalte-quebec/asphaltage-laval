@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Indexing / UX -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- SEO -->
+  <title>Asphaltage à Laval | Entrée de cour & Stationnement | Pirates de l’Asphalte</title>
+  <meta name="description" content="Asphaltage à Laval : entrée de cour et stationnement résidentiel/commercial. Excavation, fondation, compaction, drainage et finition durable. Soumission rapide." />
+  <link rel="canonical" href="https://piratesdelasphalte.github.io/asphaltage-laval/" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://piratesdelasphalte.github.io/asphaltage-laval/" />
+  <meta property="og:title" content="Asphaltage à Laval | Entrées de cour & stationnements" />
+  <meta property="og:description" content="Service d’asphaltage à Laval : préparation complète, compaction et finition durable. Résidentiel et commercial. Soumission rapide." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Asphaltage à Laval | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Entrées de cour et stationnements à Laval. Fondation, compaction, drainage et finition durable. Soumission rapide." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
+
+  <!-- Perf -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
+  </script>
+
+  <!-- Schema (Business + WebPage + Service + FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebSite",
+        "@id":"https://piratesdelasphalte.github.io/#website",
+        "url":"https://piratesdelasphalte.github.io/",
+        "name":"Pirates de l’Asphalte",
+        "inLanguage":"fr-CA"
+      },
+      {
+        "@type":"LocalBusiness",
+        "@id":"https://piratesdelasphalte.github.io/#business",
+        "name":"Pirates de l’Asphalte",
+        "url":"https://piratesdelasphalte.github.io/",
+        "telephone":"+1-514-979-7832",
+        "sameAs":["https://www.facebook.com/piratesdelsphalte/"],
+        "address":{
+          "@type":"PostalAddress",
+          "addressRegion":"QC",
+          "addressCountry":"CA"
+        },
+        "areaServed":[
+          { "@type":"City", "name":"Laval" },
+          { "@type":"AdministrativeArea", "name":"Québec" }
+        ]
+      },
+      {
+        "@type":"WebPage",
+        "@id":"https://piratesdelasphalte.github.io/asphaltage-laval/#webpage",
+        "url":"https://piratesdelasphalte.github.io/asphaltage-laval/",
+        "name":"Asphaltage à Laval | Entrée de cour & Stationnement | Pirates de l’Asphalte",
+        "inLanguage":"fr-CA",
+        "isPartOf":{ "@id":"https://piratesdelasphalte.github.io/#website" },
+        "about":{ "@id":"https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type":"Service",
+        "@id":"https://piratesdelasphalte.github.io/asphaltage-laval/#service",
+        "name":"Asphaltage à Laval",
+        "serviceType":"Asphaltage",
+        "provider":{ "@id":"https://piratesdelasphalte.github.io/#business" },
+        "areaServed":{ "@type":"City", "name":"Laval" }
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"https://piratesdelasphalte.github.io/asphaltage-laval/#faq",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Quel est le meilleur moment pour faire un asphaltage à Laval ?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"En général, la pose d’asphalte se fait lorsque les conditions sont stables (température adéquate et surface sèche). On confirme toujours selon la météo, l’accès au chantier et le type de projet."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Faites-vous l’excavation et la fondation avant l’asphalte ?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Oui. Une base solide, nivelée et bien compactée est essentielle. Sans bonne fondation, l’asphalte s’use plus vite (vallons, fissures, affaissements)."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Faites-vous entrée de cour et stationnement commercial à Laval ?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Oui. Nous réalisons des entrées de cour résidentielles et des stationnements commerciaux, avec pentes, drainage et finition adaptés à l’usage."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <a class="brand" href="/" aria-label="Retour à l’accueil">
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
+          </a>
+          <span class="badge"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage à Laval</span>
+        </div>
+
+        <nav aria-label="Navigation">
+          <a href="/">Accueil</a>
+          <a href="/reparation-asphalte-laval/">Réparation à Laval</a>
+          <a href="/#soumission" data-track="cta" data-label="laval-nav-quote">Soumission</a>
+          <a href="tel:15149797832" data-track="phone" data-label="laval-nav-call">Appeler</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="hero" id="main">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Asphaltage à Laval</h1>
+
+          <p>
+            Vous cherchez un <strong>asphaltage à Laval</strong> qui dure vraiment ?
+            La différence se fait sous la surface : <strong>excavation</strong> (au besoin),
+            <strong>fondation</strong>, <strong>compaction</strong> et <strong>pentes</strong> bien pensées.
+            Nous faisons entrées de cour et stationnements, résidentiels et commerciaux,
+            avec une finition propre et durable.
+          </p>
+
+          <div class="hero-points" aria-label="Services d’asphaltage à Laval">
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Entrée de cour</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Stationnement</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Réasphaltage / reconstruction</span>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary"
+               href="tel:15149797832"
+               data-track="phone"
+               data-label="laval-hero-call"
+               aria-label="Appeler pour asphaltage à Laval">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+            </a>
+
+            <a class="btn btn-ghost"
+               href="/#soumission"
+               data-track="cta"
+               data-label="laval-hero-quote"
+               aria-label="Demander une soumission asphaltage">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
+            </a>
+
+            <a class="btn btn-ghost"
+               href="sms:+15149797832"
+               data-track="sms"
+               data-label="laval-hero-sms"
+               aria-label="Envoyer un texto pour asphaltage à Laval">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+            </a>
+          </div>
+
+          <p class="sub" style="margin-top:12px;">
+            Vous avez déjà des fissures, des affaissements ou des nids-de-poule ?
+            Voir aussi : <a href="/reparation-asphalte-laval/">réparation d’asphalte à Laval</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="services" aria-label="Services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services d’asphaltage à Laval</h2>
+        <p class="sub">Résidentiel et commercial. On adapte la préparation selon le terrain et l’usage.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Asphaltage d’entrée de cour à Laval</h3>
+          <p>
+            Entrées de cour bien nivelées, pentes maîtrisées et finition propre.
+            Conçu pour réduire l’eau stagnante et mieux traverser les cycles gel/dégel.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Stationnements résidentiels et commerciaux</h3>
+          <p>
+            Petites et grandes surfaces : circulation fluide, joints solides et bordures propres.
+            On planifie le chantier pour minimiser la gêne.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Réasphaltage & reconstruction complète</h3>
+          <p>
+            Si la base est instable : excavation locale, fondation, compaction, puis pose d’asphalte neuf.
+            Objectif : une solution durable, pas un “cache-misère”.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="laval-services-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="laval-services-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="methode" aria-label="Méthode">
+    <div class="container">
+      <div class="section-head">
+        <h2>Notre méthode d’asphaltage</h2>
+        <p class="sub">Un asphalte solide commence par la fondation et le drainage.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>1) Analyse du terrain</h3>
+          <p>Pentes, écoulement, zones molles, circulation prévue (auto, camion, livraison, etc.).</p>
+        </div>
+        <div class="card">
+          <h3>2) Excavation (au besoin)</h3>
+          <p>On retire les sections instables pour repartir sur une base saine.</p>
+        </div>
+        <div class="card">
+          <h3>3) Fondation & nivellement</h3>
+          <p>Base stable, pentes cohérentes, préparation propre avant l’asphalte.</p>
+        </div>
+        <div class="card">
+          <h3>4) Compaction mécanique</h3>
+          <p>Étape clé pour éviter les affaissements et prolonger la durée de vie.</p>
+        </div>
+        <div class="card">
+          <h3>5) Pose d’asphalte chaud</h3>
+          <p>Pose uniforme, contrôle des joints et finition nette.</p>
+        </div>
+        <div class="card">
+          <h3>6) Finition & recommandations</h3>
+          <p>Conseils simples pour protéger votre nouvel asphalte et éviter l’usure prématurée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pourquoi-nous" aria-label="Pourquoi nous">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pourquoi choisir Pirates de l’Asphalte à Laval</h2>
+        <p class="sub">Clair, propre, durable. On priorise la préparation pour éviter les retours rapides.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Préparation rigoureuse</h3>
+          <p>Base, compaction et drainage : la fondation d’un asphaltage qui dure.</p>
+        </div>
+        <div class="card">
+          <h3>Soumission rapide</h3>
+          <p>Réponse claire, sans flou, avec explication de ce qui est nécessaire.</p>
+        </div>
+        <div class="card">
+          <h3>Résidentiel & commercial</h3>
+          <p>Entrées de cour et stationnements, selon le type de trafic et vos besoins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secteurs" aria-label="Secteurs desservis">
+    <div class="container">
+      <div class="section-head">
+        <h2>Secteurs desservis à Laval</h2>
+        <p class="sub">Nous couvrons toute la ville et les environs.</p>
+      </div>
+
+      <p>
+        Chomedey, Duvernay, Fabreville, Sainte-Dorothée, Vimont,
+        Auteuil, Laval-des-Rapides, Pont-Viau, Saint-François, et secteurs voisins.
+      </p>
+    </div>
+  </section>
+
+  <section id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ – Asphaltage à Laval</h2>
+        <p class="sub">Réponses rapides aux questions fréquentes.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Entrée de cour : fissures après un an, normal ?</h3>
+          <p>
+            Ça dépend. Les fissures proviennent souvent d’une base insuffisante, d’eau qui s’infiltre
+            ou de mouvements du sol. Si vous voyez des vallons ou de l’eau stagnante, on recommande une inspection.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Faites-vous aussi les réparations à Laval ?</h3>
+          <p>
+            Oui. Si le problème est localisé, la réparation est souvent suffisante.
+            Voir : <a href="/reparation-asphalte-laval/">réparation d’asphalte à Laval</a>.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Combien de temps dure un asphaltage bien fait ?</h3>
+          <p>
+            La durabilité dépend surtout de la base, du drainage et de l’usage (trafic, camions, etc.).
+            On vous conseille selon votre situation et votre budget.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="laval-faq-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Obtenir une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="laval-faq-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission" aria-label="Soumission">
+    <div class="container">
+      <div class="section-head">
+        <h2>Soumission pour asphaltage à Laval</h2>
+        <p class="sub">Dites-nous le secteur, la surface approximative et le type de projet.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="laval-bottom-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832
+        </a>
+        <a class="btn btn-ghost"
+           href="/#soumission"
+           data-track="cta"
+           data-label="laval-bottom-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="sms:+15149797832"
+           data-track="sms"
+           data-label="laval-bottom-sms">
+          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte – Asphaltage à Laval</p>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
