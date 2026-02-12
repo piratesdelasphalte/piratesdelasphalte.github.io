@@ -2,33 +2,47 @@
 <html lang="fr-CA">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <!-- Indexing / UX -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- SEO -->
   <title>Asphaltage à Longueuil | Entrée de cour & Stationnement | Pirates de l’Asphalte</title>
   <meta name="description" content="Asphaltage à Longueuil : entrée de cour et stationnement résidentiel/commercial. Excavation, fondation, compaction, drainage et finition durable. Soumission rapide." />
-
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/asphaltage-longueuil/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Asphaltage à Longueuil | Entrées de cour & stationnements" />
-  <meta property="og:description" content="Service d’asphaltage à Longueuil : préparation complète, compaction et finition durable. Résidentiel et commercial. Soumission rapide." />
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/asphaltage-longueuil/" />
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:title" content="Asphaltage à Longueuil | Entrées de cour & stationnements" />
+  <meta property="og:description" content="Service d’asphaltage à Longueuil : préparation complète, compaction et finition durable. Résidentiel et commercial. Soumission rapide." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="twitter:title" content="Asphaltage à Longueuil | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Entrées de cour et stationnements à Longueuil. Fondation, compaction, drainage et finition durable. Soumission rapide." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -39,59 +53,80 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-ZS180NNJS4');
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema: LocalBusiness -->
+  <!-- Schema (Business + WebPage + Service + FAQ) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Pirates de l’Asphalte",
-    "url": "https://piratesdelasphalte.github.io/",
-    "telephone": "+1-514-979-7832",
-    "areaServed": ["Longueuil", "Québec"],
-    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
-  }
-  </script>
-
-  <!-- Schema: Service -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "serviceType":"Asphaltage",
-    "name":"Asphaltage à Longueuil",
-    "areaServed":{"@type":"City","name":"Longueuil"},
-    "provider":{
-      "@type":"LocalBusiness",
-      "name":"Pirates de l’Asphalte",
-      "url":"https://piratesdelasphalte.github.io/",
-      "telephone":"+1-514-979-7832"
-    }
-  }
-  </script>
-
-  <!-- Schema: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@graph": [
       {
-        "@type":"Question",
-        "name":"Faites-vous l’asphaltage résidentiel et commercial à Longueuil ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réalisons des entrées de cour et des stationnements résidentiels/commerciaux à Longueuil, selon le type de trafic et la préparation nécessaire."}
+        "@type": "WebSite",
+        "@id": "https://piratesdelasphalte.github.io/#website",
+        "url": "https://piratesdelasphalte.github.io/",
+        "name": "Pirates de l’Asphalte",
+        "inLanguage": "fr-CA"
       },
       {
-        "@type":"Question",
-        "name":"Pourquoi la compaction est si importante ?",
-        "acceptedAnswer":{"@type":"Answer","text":"La compaction stabilise la fondation. Une base mal compactée augmente les risques d’affaissement, de vallons, d’eau stagnante et de fissures."}
+        "@type": "LocalBusiness",
+        "@id": "https://piratesdelasphalte.github.io/#business",
+        "name": "Pirates de l’Asphalte",
+        "url": "https://piratesdelasphalte.github.io/",
+        "telephone": "+1-514-979-7832",
+        "sameAs": ["https://www.facebook.com/piratesdelsphalte/"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "QC",
+          "addressCountry": "CA"
+        }
       },
       {
-        "@type":"Question",
-        "name":"Faites-vous aussi la réparation d’asphalte à Longueuil ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Si le problème est localisé (fissures, nids-de-poule, affaissements), une réparation peut suffire. On recommande une inspection selon l’état de la base."}
+        "@type": "WebPage",
+        "@id": "https://piratesdelasphalte.github.io/asphaltage-longueuil/#webpage",
+        "url": "https://piratesdelasphalte.github.io/asphaltage-longueuil/",
+        "name": "Asphaltage à Longueuil | Entrée de cour & Stationnement | Pirates de l’Asphalte",
+        "inLanguage": "fr-CA",
+        "isPartOf": { "@id": "https://piratesdelasphalte.github.io/#website" },
+        "about": { "@id": "https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://piratesdelasphalte.github.io/asphaltage-longueuil/#service",
+        "name": "Asphaltage à Longueuil",
+        "serviceType": "Asphaltage",
+        "provider": { "@id": "https://piratesdelasphalte.github.io/#business" },
+        "areaServed": { "@type": "City", "name": "Longueuil" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://piratesdelasphalte.github.io/asphaltage-longueuil/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Faites-vous l’asphaltage résidentiel et commercial à Longueuil ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Nous réalisons des entrées de cour et des stationnements résidentiels/commerciaux à Longueuil, selon le type de trafic et la préparation nécessaire."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pourquoi la compaction est si importante ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La compaction stabilise la fondation. Une base mal compactée augmente les risques d’affaissement, de vallons, d’eau stagnante et de fissures."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faites-vous aussi la réparation d’asphalte à Longueuil ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Si le problème est localisé (fissures, nids-de-poule, affaissements), une réparation peut suffire. On recommande une inspection selon l’état de la base."
+            }
+          }
+        ]
       }
     ]
   }
@@ -99,235 +134,274 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-<header>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand-wrap">
-        <div class="brand">
-          <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte" class="logo" width="92" height="64" />
-          <span class="brand-text">Pirates de l’Asphalte</span>
-        </div>
-        <span class="badge"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage à Longueuil</span>
-      </div>
-
-      <nav>
-        <a href="/">Accueil</a>
-        <a href="/#soumission">Soumission</a>
-        <a href="tel:15149797832">Appeler</a>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<main class="hero" id="top">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-card">
-        <h1>Asphaltage à Longueuil</h1>
-
-        <p>
-          Vous cherchez une équipe sérieuse pour un <strong>asphaltage à Longueuil</strong> ?
-          Chez Pirates de l’Asphalte, on mise sur une chose : <strong>la préparation</strong>.
-          Une fondation stable, une compaction solide et des pentes bien pensées,
-          c’est ce qui donne un asphalte durable, propre et fonctionnel.
-        </p>
-
-        <div class="hero-points" aria-label="Travaux d’asphaltage à Longueuil">
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Entrée de cour</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Stationnement</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Réasphaltage / reconstruction</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler pour asphaltage à Longueuil">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <a class="brand" href="/" aria-label="Retour à l’accueil">
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
           </a>
-          <a class="btn btn-ghost" href="/#soumission" aria-label="Soumission asphaltage Longueuil">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
-          </a>
+          <span class="badge"><i class="fa-solid fa-road" aria-hidden="true"></i> Asphaltage à Longueuil</span>
         </div>
 
-        <p class="sub" style="margin-top:12px;">
-          Déjà des fissures ou des nids-de-poule ? On peut aussi faire la réparation (page dédiée recommandée).
-        </p>
+        <nav aria-label="Navigation">
+          <a href="/">Accueil</a>
+          <a href="/#soumission" data-track="cta" data-label="longueuil-nav-quote">Soumission</a>
+          <a href="tel:15149797832" data-track="phone" data-label="longueuil-nav-call">Appeler</a>
+        </nav>
       </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<section id="services">
-  <div class="container">
-    <div class="section-head">
-      <h2>Services d’asphaltage à Longueuil</h2>
-      <p class="sub">Résidentiel et commercial, selon votre projet et le type d’usage.</p>
-    </div>
+  <main class="hero" id="main">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Asphaltage à Longueuil</h1>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Asphaltage d’entrée de cour à Longueuil</h3>
-        <p>
-          Pentes cohérentes, drainage et finition propre pour réduire l’eau stagnante.
-          Une entrée stable, durable et agréable au quotidien.
-        </p>
-      </div>
+          <p>
+            Vous cherchez une équipe sérieuse pour un <strong>asphaltage à Longueuil</strong> ?
+            Chez Pirates de l’Asphalte, on mise sur une chose : <strong>la préparation</strong>.
+            Une fondation stable, une compaction solide et des pentes bien pensées,
+            c’est ce qui donne un asphalte durable, propre et fonctionnel.
+          </p>
 
-      <div class="card">
-        <h3>Stationnements résidentiels & commerciaux</h3>
-        <p>
-          Petites et grandes surfaces, circulation fluide, joints solides et bordures propres.
-          Idéal pour immeubles, commerces et accès partagés.
-        </p>
-      </div>
+          <div class="hero-points" aria-label="Travaux d’asphaltage à Longueuil">
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Entrée de cour</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Stationnement</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Réasphaltage / reconstruction</span>
+          </div>
 
-      <div class="card">
-        <h3>Réasphaltage & reconstruction</h3>
-        <p>
-          Si la base est instable : excavation au besoin, fondation, compaction,
-          puis pose d’asphalte chaud pour repartir solide.
-        </p>
-      </div>
-    </div>
+          <div class="cta-row">
+            <a class="btn btn-primary"
+               href="tel:15149797832"
+               data-track="phone"
+               data-label="longueuil-hero-call"
+               aria-label="Appeler pour asphaltage à Longueuil">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+            </a>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
-    </div>
-  </div>
-</section>
+            <a class="btn btn-ghost"
+               href="/#soumission"
+               data-track="cta"
+               data-label="longueuil-hero-quote"
+               aria-label="Soumission asphaltage Longueuil">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
+            </a>
 
-<section id="methode">
-  <div class="container">
-    <div class="section-head">
-      <h2>Notre méthode d’asphaltage</h2>
-      <p class="sub">Objectif : une base stable + un écoulement efficace = un asphalte qui dure.</p>
-    </div>
+            <a class="btn btn-ghost"
+               href="sms:+15149797832"
+               data-track="sms"
+               data-label="longueuil-hero-sms"
+               aria-label="Envoyer un texto pour asphaltage à Longueuil">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+            </a>
+          </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>1) Analyse du terrain</h3>
-        <p>Pentes, zones molles, accès au chantier, usage (auto, camion, livraison), écoulement.</p>
-      </div>
-      <div class="card">
-        <h3>2) Excavation (si nécessaire)</h3>
-        <p>On retire les sections instables pour repartir sur une fondation saine.</p>
-      </div>
-      <div class="card">
-        <h3>3) Fondation & nivellement</h3>
-        <p>Base solide, bien nivelée, pentes cohérentes pour guider l’eau.</p>
-      </div>
-      <div class="card">
-        <h3>4) Compaction mécanique</h3>
-        <p>Étape clé pour limiter les affaissements et les vallons.</p>
-      </div>
-      <div class="card">
-        <h3>5) Pose d’asphalte chaud</h3>
-        <p>Pose uniforme, joints soignés, finition nette.</p>
-      </div>
-      <div class="card">
-        <h3>6) Finition & conseils</h3>
-        <p>Recommandations simples pour protéger votre asphalte et limiter l’usure.</p>
+          <p class="sub" style="margin-top:12px;">
+            Déjà des fissures ou des nids-de-poule ? On peut aussi faire la réparation (page dédiée recommandée).
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<section id="pourquoi-nous">
-  <div class="container">
-    <div class="section-head">
-      <h2>Pourquoi choisir Pirates de l’Asphalte à Longueuil</h2>
-      <p class="sub">On fait simple : préparation sérieuse, exécution propre, résultat durable.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Préparation rigoureuse</h3>
-        <p>La durabilité vient de la base, de la compaction et du drainage.</p>
+  <section id="services" aria-label="Services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services d’asphaltage à Longueuil</h2>
+        <p class="sub">Résidentiel et commercial, selon votre projet et le type d’usage.</p>
       </div>
-      <div class="card">
-        <h3>Soumission rapide</h3>
-        <p>Réponse claire, sans détour, avec explications si requis.</p>
-      </div>
-      <div class="card">
-        <h3>Résidentiel & commercial</h3>
-        <p>Entrées et stationnements selon votre usage, votre budget et vos contraintes.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="secteurs">
-  <div class="container">
-    <div class="section-head">
-      <h2>Secteurs desservis à Longueuil</h2>
-      <p class="sub">Nous couvrons Longueuil et les environs immédiats.</p>
-    </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Asphaltage d’entrée de cour à Longueuil</h3>
+          <p>
+            Pentes cohérentes, drainage et finition propre pour réduire l’eau stagnante.
+            Une entrée stable, durable et agréable au quotidien.
+          </p>
+        </div>
 
-    <p>
-      Vieux-Longueuil, Saint-Hubert, Greenfield Park, Parc Michel-Chartrand, secteur Université de Sherbrooke,
-      et secteurs voisins sur la Rive-Sud.
-    </p>
-  </div>
-</section>
+        <div class="card">
+          <h3>Stationnements résidentiels & commerciaux</h3>
+          <p>
+            Petites et grandes surfaces, circulation fluide, joints solides et bordures propres.
+            Idéal pour immeubles, commerces et accès partagés.
+          </p>
+        </div>
 
-<section id="faq">
-  <div class="container">
-    <div class="section-head">
-      <h2>FAQ – Asphaltage à Longueuil</h2>
-      <p class="sub">Questions fréquentes avant de commencer un projet.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Est-ce que vous pouvez corriger l’eau stagnante ?</h3>
-        <p>
-          Oui. Ça se joue sur les pentes, la fondation et parfois une correction locale.
-          On évalue sur place selon la surface et l’écoulement.
-        </p>
+        <div class="card">
+          <h3>Réasphaltage & reconstruction</h3>
+          <p>
+            Si la base est instable : excavation au besoin, fondation, compaction,
+            puis pose d’asphalte chaud pour repartir solide.
+          </p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Une réparation suffit ou il faut refaire au complet ?</h3>
-        <p>
-          Si le problème est localisé, une réparation peut être la meilleure option.
-          Si la base est instable partout, on recommande une reconstruction.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Faites-vous aussi l’entretien (scellant) ?</h3>
-        <p>
-          Oui selon le projet. L’entretien et la protection peuvent prolonger la durée de vie,
-          surtout si la base et le drainage sont déjà bons.
-        </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="longueuil-services-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="longueuil-services-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="soumission">
-  <div class="container">
-    <div class="section-head">
-      <h2>Soumission pour asphaltage à Longueuil</h2>
-      <p class="sub">Appelez-nous ou envoyez votre demande via le formulaire.</p>
+  <section id="methode" aria-label="Méthode">
+    <div class="container">
+      <div class="section-head">
+        <h2>Notre méthode d’asphaltage</h2>
+        <p class="sub">Objectif : une base stable + un écoulement efficace = un asphalte qui dure.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>1) Analyse du terrain</h3>
+          <p>Pentes, zones molles, accès au chantier, usage (auto, camion, livraison), écoulement.</p>
+        </div>
+        <div class="card">
+          <h3>2) Excavation (si nécessaire)</h3>
+          <p>On retire les sections instables pour repartir sur une fondation saine.</p>
+        </div>
+        <div class="card">
+          <h3>3) Fondation & nivellement</h3>
+          <p>Base solide, bien nivelée, pentes cohérentes pour guider l’eau.</p>
+        </div>
+        <div class="card">
+          <h3>4) Compaction mécanique</h3>
+          <p>Étape clé pour limiter les affaissements et les vallons.</p>
+        </div>
+        <div class="card">
+          <h3>5) Pose d’asphalte chaud</h3>
+          <p>Pose uniforme, joints soignés, finition nette.</p>
+        </div>
+        <div class="card">
+          <h3>6) Finition & conseils</h3>
+          <p>Recommandations simples pour protéger votre asphalte et limiter l’usure.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832</a>
-      <a class="btn btn-ghost" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+  <section id="pourquoi-nous" aria-label="Pourquoi nous">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pourquoi choisir Pirates de l’Asphalte à Longueuil</h2>
+        <p class="sub">On fait simple : préparation sérieuse, exécution propre, résultat durable.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Préparation rigoureuse</h3>
+          <p>La durabilité vient de la base, de la compaction et du drainage.</p>
+        </div>
+        <div class="card">
+          <h3>Soumission rapide</h3>
+          <p>Réponse claire, sans détour, avec explications si requis.</p>
+        </div>
+        <div class="card">
+          <h3>Résidentiel & commercial</h3>
+          <p>Entrées et stationnements selon votre usage, votre budget et vos contraintes.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="container">
-    <p>© <span id="year"></span> Pirates de l’Asphalte – Asphaltage à Longueuil</p>
-  </div>
-</footer>
+  <section id="secteurs" aria-label="Secteurs desservis">
+    <div class="container">
+      <div class="section-head">
+        <h2>Secteurs desservis à Longueuil</h2>
+        <p class="sub">Nous couvrons Longueuil et les environs immédiats.</p>
+      </div>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+      <p>
+        Vieux-Longueuil, Saint-Hubert, Greenfield Park, Parc Michel-Chartrand, secteur Université de Sherbrooke,
+        et secteurs voisins sur la Rive-Sud.
+      </p>
+    </div>
+  </section>
 
-<!-- JS global -->
-<script src="/assets/js/main.js" defer></script>
+  <section id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ – Asphaltage à Longueuil</h2>
+        <p class="sub">Questions fréquentes avant de commencer un projet.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Est-ce que vous pouvez corriger l’eau stagnante ?</h3>
+          <p>Oui. Ça se joue sur les pentes, la fondation et parfois une correction locale. On évalue sur place selon la surface et l’écoulement.</p>
+        </div>
+        <div class="card">
+          <h3>Une réparation suffit ou il faut refaire au complet ?</h3>
+          <p>Si le problème est localisé, une réparation peut être la meilleure option. Si la base est instable partout, on recommande une reconstruction.</p>
+        </div>
+        <div class="card">
+          <h3>Faites-vous aussi l’entretien (scellant) ?</h3>
+          <p>Oui selon le projet. L’entretien et la protection peuvent prolonger la durée de vie, surtout si la base et le drainage sont déjà bons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission" aria-label="Soumission">
+    <div class="container">
+      <div class="section-head">
+        <h2>Soumission pour asphaltage à Longueuil</h2>
+        <p class="sub">Appelez-nous ou envoyez votre demande via le formulaire.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="longueuil-bottom-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832
+        </a>
+
+        <a class="btn btn-ghost"
+           href="/#soumission"
+           data-track="cta"
+           data-label="longueuil-bottom-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+
+        <a class="btn btn-ghost"
+           href="sms:+15149797832"
+           data-track="sms"
+           data-label="longueuil-bottom-sms">
+          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte – Asphaltage à Longueuil</p>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
