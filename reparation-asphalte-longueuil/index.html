@@ -2,33 +2,47 @@
 <html lang="fr-CA">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <!-- Indexing / UX -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- SEO -->
   <title>Réparation d’asphalte à Longueuil | Fissures, nids-de-poule, affaissement | Pirates de l’Asphalte</title>
   <meta name="description" content="Réparation d’asphalte à Longueuil : fissures, nids-de-poule, affaissements, vallons et zones abîmées. Patch solide, nivellement, drainage et finition propre. Soumission rapide." />
-
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Réparation d’asphalte à Longueuil | Fissures & nids-de-poule" />
-  <meta property="og:description" content="Réparation d’asphalte à Longueuil : patch, fissures, affaissements, nivellement et finition durable. Résidentiel et commercial. Soumission rapide." />
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/" />
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:title" content="Réparation d’asphalte à Longueuil | Fissures & nids-de-poule" />
+  <meta property="og:description" content="Réparation d’asphalte à Longueuil : patch, fissures, affaissements, nivellement et finition durable. Résidentiel et commercial. Soumission rapide." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="twitter:title" content="Réparation d’asphalte à Longueuil | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Patch, fissures, nids-de-poule, affaissements et vallons. Réparation durable, nivellement et drainage. Soumission rapide à Longueuil." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -39,59 +53,75 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-ZS180NNJS4');
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema: LocalBusiness -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Pirates de l’Asphalte",
-    "url": "https://piratesdelasphalte.github.io/",
-    "telephone": "+1-514-979-7832",
-    "areaServed": ["Longueuil", "Québec"],
-    "sameAs": ["https://www.facebook.com/piratesdelsphalte/"]
-  }
-  </script>
-
-  <!-- Schema: Service -->
+  <!-- Schema (Business + WebPage + Service + FAQ) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Service",
-    "serviceType":"Réparation d’asphalte",
-    "name":"Réparation d’asphalte à Longueuil",
-    "areaServed":{"@type":"City","name":"Longueuil"},
-    "provider":{
-      "@type":"LocalBusiness",
-      "name":"Pirates de l’Asphalte",
-      "url":"https://piratesdelasphalte.github.io/",
-      "telephone":"+1-514-979-7832"
-    }
-  }
-  </script>
-
-  <!-- Schema: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@graph":[
       {
-        "@type":"Question",
-        "name":"Faites-vous des réparations d’asphalte à Longueuil (patch, fissures, nids-de-poule) ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons fissures, nids-de-poule, affaissements et zones abîmées à Longueuil. On vise une réparation solide, stable et durable."}
+        "@type":"WebSite",
+        "@id":"https://piratesdelasphalte.github.io/#website",
+        "url":"https://piratesdelasphalte.github.io/",
+        "name":"Pirates de l’Asphalte",
+        "inLanguage":"fr-CA"
       },
       {
-        "@type":"Question",
-        "name":"Quand faut-il réparer vs refaire l’asphalte au complet ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Si le problème est localisé (quelques zones), une réparation est souvent idéale. Si la base est instable sur une grande surface (vallons partout, affaissements répétés), une reconstruction peut être préférable."}
+        "@type":"LocalBusiness",
+        "@id":"https://piratesdelasphalte.github.io/#business",
+        "name":"Pirates de l’Asphalte",
+        "url":"https://piratesdelasphalte.github.io/",
+        "telephone":"+1-514-979-7832",
+        "sameAs":["https://www.facebook.com/piratesdelsphalte/"],
+        "address":{
+          "@type":"PostalAddress",
+          "addressRegion":"QC",
+          "addressCountry":"CA"
+        },
+        "areaServed":[
+          { "@type":"City", "name":"Longueuil" },
+          { "@type":"AdministrativeArea", "name":"Québec" }
+        ]
       },
       {
-        "@type":"Question",
-        "name":"Est-ce que vous corrigez le drainage et l’eau stagnante ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Beaucoup de problèmes viennent des pentes et du drainage. On peut corriger des vallons, re-niveler au besoin et améliorer l’écoulement selon la situation."}
+        "@type":"WebPage",
+        "@id":"https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/#webpage",
+        "url":"https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/",
+        "name":"Réparation d’asphalte à Longueuil | Fissures, nids-de-poule, affaissement | Pirates de l’Asphalte",
+        "inLanguage":"fr-CA",
+        "isPartOf":{ "@id":"https://piratesdelasphalte.github.io/#website" },
+        "about":{ "@id":"https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type":"Service",
+        "@id":"https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/#service",
+        "name":"Réparation d’asphalte à Longueuil",
+        "serviceType":"Réparation d’asphalte",
+        "provider":{ "@id":"https://piratesdelasphalte.github.io/#business" },
+        "areaServed":{ "@type":"City", "name":"Longueuil" }
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"https://piratesdelasphalte.github.io/reparation-asphalte-longueuil/#faq",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Faites-vous des réparations d’asphalte à Longueuil (patch, fissures, nids-de-poule) ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons fissures, nids-de-poule, affaissements et zones abîmées à Longueuil. On vise une réparation solide, stable et durable."}
+          },
+          {
+            "@type":"Question",
+            "name":"Quand faut-il réparer vs refaire l’asphalte au complet ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Si le problème est localisé (quelques zones), une réparation est souvent idéale. Si la base est instable sur une grande surface (vallons partout, affaissements répétés), une reconstruction peut être préférable."}
+          },
+          {
+            "@type":"Question",
+            "name":"Est-ce que vous corrigez le drainage et l’eau stagnante ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Oui. Beaucoup de problèmes viennent des pentes et du drainage. On peut corriger des vallons, re-niveler au besoin et améliorer l’écoulement selon la situation."}
+          }
+        ]
       }
     ]
   }
@@ -99,245 +129,335 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-<header>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand-wrap">
-        <div class="brand">
-          <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte" class="logo" width="92" height="64" />
-          <span class="brand-text">Pirates de l’Asphalte</span>
-        </div>
-        <span class="badge"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparation d’asphalte à Longueuil</span>
-      </div>
-
-      <nav>
-        <a href="/">Accueil</a>
-        <a href="/asphaltage-longueuil/">Asphaltage</a>
-        <a href="/#soumission">Soumission</a>
-        <a href="tel:15149797832">Appeler</a>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<main class="hero" id="top">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-card">
-        <h1>Réparation d’asphalte à Longueuil</h1>
-
-        <p>
-          Fissures, <strong>nids-de-poule</strong>, affaissements ou vallons ?
-          On fait de la <strong>réparation d’asphalte à Longueuil</strong> pour remettre votre entrée de cour
-          ou stationnement stable, sécuritaire et propre.
-          L’objectif : <strong>corriger le problème</strong>, pas juste le maquiller.
-        </p>
-
-        <div class="hero-points" aria-label="Problèmes d’asphalte à Longueuil">
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch / nids-de-poule</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Fissures & joints</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Affaissements & vallons</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler pour réparation asphalte Longueuil">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <a class="brand" href="/" aria-label="Retour à l’accueil">
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
           </a>
-          <a class="btn btn-ghost" href="/#soumission" aria-label="Soumission réparation asphalte Longueuil">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
-          </a>
+          <span class="badge"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Réparation d’asphalte à Longueuil</span>
         </div>
 
-        <p class="sub" style="margin-top:12px;">
-          Besoin d’une surface complète ? Voir aussi : <a href="/asphaltage-longueuil/">asphaltage à Longueuil</a>.
-        </p>
+        <nav aria-label="Navigation">
+          <a href="/">Accueil</a>
+          <a href="/asphaltage-longueuil/">Asphaltage</a>
+          <a href="/fissures-asphalte-longueuil/">Fissures</a>
+          <a href="/nids-de-poule-longueuil/">Nids-de-poule</a>
+          <a href="/#soumission" data-track="cta" data-label="reparation-longueuil-nav-quote">Soumission</a>
+          <a href="tel:15149797832" data-track="phone" data-label="reparation-longueuil-nav-call">Appeler</a>
+        </nav>
       </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<section id="problems">
-  <div class="container">
-    <div class="section-head">
-      <h2>Problèmes d’asphalte qu’on répare à Longueuil</h2>
-      <p class="sub">On intervient vite quand c’est urgent, et on explique clairement la meilleure option.</p>
-    </div>
+  <main class="hero" id="main">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Réparation d’asphalte à Longueuil</h1>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Nids-de-poule & patchs</h3>
-        <p>
-          Réparation solide pour limiter l’aggravation et retrouver une surface stable.
-          On coupe propre, on stabilise la base au besoin, puis on refait la zone.
-        </p>
-      </div>
+          <p>
+            Fissures, <strong>nids-de-poule</strong>, affaissements ou vallons ?
+            On fait de la <strong>réparation d’asphalte à Longueuil</strong> pour remettre votre entrée de cour
+            ou stationnement stable, sécuritaire et propre.
+            L’objectif : <strong>corriger le problème</strong>, pas juste le maquiller.
+          </p>
 
-      <div class="card">
-        <h3>Fissures & joints</h3>
-        <p>
-          Les fissures laissent entrer l’eau. On évalue si c’est un problème de surface ou de base,
-          puis on propose la solution la plus durable.
-        </p>
-      </div>
+          <div class="hero-points" aria-label="Problèmes d’asphalte à Longueuil">
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch / nids-de-poule</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Fissures & joints</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Affaissements & vallons</span>
+          </div>
 
-      <div class="card">
-        <h3>Affaissements & vallons</h3>
-        <p>
-          Souvent lié à une fondation instable ou un drainage faible.
-          On corrige le nivellement et l’écoulement pour éviter que ça revienne.
-        </p>
-      </div>
-    </div>
+          <div class="cta-row">
+            <a class="btn btn-primary"
+               href="tel:15149797832"
+               data-track="phone"
+               data-label="reparation-longueuil-hero-call"
+               aria-label="Appeler pour réparation asphalte Longueuil">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+            </a>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
-    </div>
-  </div>
-</section>
+            <a class="btn btn-ghost"
+               href="/#soumission"
+               data-track="cta"
+               data-label="reparation-longueuil-hero-quote"
+               aria-label="Soumission réparation asphalte Longueuil">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
+            </a>
 
-<section id="methode">
-  <div class="container">
-    <div class="section-head">
-      <h2>Notre méthode de réparation</h2>
-      <p class="sub">Le but : réparer la zone et traiter la cause quand c’est nécessaire.</p>
-    </div>
+            <a class="btn btn-ghost"
+               href="sms:+15149797832"
+               data-track="sms"
+               data-label="reparation-longueuil-hero-sms"
+               aria-label="Envoyer un texto pour réparation d’asphalte à Longueuil">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+            </a>
+          </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>1) Diagnostic rapide</h3>
-        <p>On regarde l’état de la surface, la base, les pentes et les signes d’eau stagnante.</p>
-      </div>
-      <div class="card">
-        <h3>2) Découpe propre & préparation</h3>
-        <p>On enlève la section abîmée, on stabilise et on prépare une base solide.</p>
-      </div>
-      <div class="card">
-        <h3>3) Nivellement & compaction</h3>
-        <p>Compaction mécanique pour limiter les futures déformations.</p>
-      </div>
-      <div class="card">
-        <h3>4) Pose & finition</h3>
-        <p>Asphalte chaud selon le contexte, joints soignés, surface uniforme.</p>
-      </div>
-      <div class="card">
-        <h3>5) Conseils anti-retour</h3>
-        <p>Quand utile : recommandations simples pour protéger la surface et l’écoulement.</p>
-      </div>
-      <div class="card">
-        <h3>6) Option : entretien/scellant</h3>
-        <p>Selon le projet, l’entretien peut prolonger la durée de vie si la base est correcte.</p>
+          <p class="sub" style="margin-top:12px;">
+            Besoin d’une surface complète ?
+            Voir aussi : <a href="/asphaltage-longueuil/">asphaltage à Longueuil</a>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<section id="reparer-ou-refaire">
-  <div class="container">
-    <div class="section-head">
-      <h2>Réparer ou refaire l’asphalte ?</h2>
-      <p class="sub">La bonne décision dépend surtout de la base.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Réparation (souvent idéale si…)</h3>
-        <p>
-          Le problème est localisé : quelques fissures, un coin affaissé, un ou deux nids-de-poule.
-          On corrige la zone sans refaire toute la surface.
-        </p>
+  <section id="problems" aria-label="Problèmes réparés">
+    <div class="container">
+      <div class="section-head">
+        <h2>Problèmes d’asphalte qu’on répare à Longueuil</h2>
+        <p class="sub">On intervient vite quand c’est urgent, et on explique clairement la meilleure option.</p>
       </div>
-      <div class="card">
-        <h3>Reconstruction (souvent préférable si…)</h3>
-        <p>
-          Plusieurs affaissements reviennent, surface ondulée, eau stagnante partout,
-          base instable sur une grande portion. Dans ce cas, voir : <a href="/asphaltage-longueuil/">asphaltage à Longueuil</a>.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Drainage = longévité</h3>
-        <p>
-          Une bonne pente et un bon écoulement réduisent les dommages. Si l’eau reste,
-          l’asphalte vieillit plus vite.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="secteurs">
-  <div class="container">
-    <div class="section-head">
-      <h2>Secteurs desservis à Longueuil</h2>
-      <p class="sub">On couvre Longueuil et les environs immédiats.</p>
-    </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Nids-de-poule & patchs</h3>
+          <p>
+            Réparation solide pour limiter l’aggravation et retrouver une surface stable.
+            On coupe propre, on stabilise la base au besoin, puis on refait la zone.
+          </p>
+        </div>
 
-    <p>
-      Vieux-Longueuil, Saint-Hubert, Greenfield Park et secteurs voisins sur la Rive-Sud.
-      Appelez-nous et on confirme rapidement.
-    </p>
-  </div>
-</section>
+        <div class="card">
+          <h3>Fissures & joints</h3>
+          <p>
+            Les fissures laissent entrer l’eau. On évalue si c’est un problème de surface ou de base,
+            puis on propose la solution la plus durable.
+          </p>
+        </div>
 
-<section id="faq">
-  <div class="container">
-    <div class="section-head">
-      <h2>FAQ – Réparation d’asphalte à Longueuil</h2>
-      <p class="sub">Questions fréquentes avant une réparation.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Ça peut être réparé même en hiver ?</h3>
-        <p>
-          Ça dépend de la température, des conditions et du type de réparation.
-          Le plus simple : appelez et on vous dit ce qui est possible maintenant.
-        </p>
+        <div class="card">
+          <h3>Affaissements & vallons</h3>
+          <p>
+            Souvent lié à une fondation instable ou un drainage faible.
+            On corrige le nivellement et l’écoulement pour éviter que ça revienne.
+          </p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Pourquoi mon asphalte s’affaisse ?</h3>
-        <p>
-          Souvent : base mal compactée, sol instable, drainage faible ou eau qui s’infiltre.
-          On vérifie la cause pour éviter que ça revienne.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Est-ce qu’une réparation va “paraître” ?</h3>
-        <p>
-          Une réparation propre est nette, mais la teinte peut différer au début.
-          Avec le temps, ça s’harmonise. Le plus important : stabilité et durabilité.
-        </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="reparation-longueuil-problems-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="reparation-longueuil-problems-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="soumission">
-  <div class="container">
-    <div class="section-head">
-      <h2>Soumission pour réparation d’asphalte à Longueuil</h2>
-      <p class="sub">Appelez-nous ou envoyez votre demande via le formulaire.</p>
+  <section id="methode" aria-label="Méthode">
+    <div class="container">
+      <div class="section-head">
+        <h2>Notre méthode de réparation</h2>
+        <p class="sub">Le but : réparer la zone et traiter la cause quand c’est nécessaire.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>1) Diagnostic rapide</h3>
+          <p>On regarde l’état de la surface, la base, les pentes et les signes d’eau stagnante.</p>
+        </div>
+        <div class="card">
+          <h3>2) Découpe propre & préparation</h3>
+          <p>On enlève la section abîmée, on stabilise et on prépare une base solide.</p>
+        </div>
+        <div class="card">
+          <h3>3) Nivellement & compaction</h3>
+          <p>Compaction mécanique pour limiter les futures déformations.</p>
+        </div>
+        <div class="card">
+          <h3>4) Pose & finition</h3>
+          <p>Asphalte chaud selon le contexte, joints soignés, surface uniforme.</p>
+        </div>
+        <div class="card">
+          <h3>5) Conseils anti-retour</h3>
+          <p>Quand utile : recommandations simples pour protéger la surface et l’écoulement.</p>
+        </div>
+        <div class="card">
+          <h3>6) Option : entretien/scellant</h3>
+          <p>Selon le projet, l’entretien peut prolonger la durée de vie si la base est correcte.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="reparation-longueuil-methode-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="reparation-longueuil-methode-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
     </div>
+  </section>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832</a>
-      <a class="btn btn-ghost" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+  <section id="reparer-ou-refaire" aria-label="Réparer ou refaire">
+    <div class="container">
+      <div class="section-head">
+        <h2>Réparer ou refaire l’asphalte ?</h2>
+        <p class="sub">La bonne décision dépend surtout de la base.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Réparation (souvent idéale si…)</h3>
+          <p>
+            Le problème est localisé : quelques fissures, un coin affaissé, un ou deux nids-de-poule.
+            On corrige la zone sans refaire toute la surface.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Reconstruction (souvent préférable si…)</h3>
+          <p>
+            Plusieurs affaissements reviennent, surface ondulée, eau stagnante partout,
+            base instable sur une grande portion.
+            Dans ce cas, voir : <a href="/asphaltage-longueuil/">asphaltage à Longueuil</a>.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Drainage = longévité</h3>
+          <p>
+            Une bonne pente et un bon écoulement réduisent les dommages. Si l’eau reste,
+            l’asphalte vieillit plus vite.
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="container">
-    <p>© <span id="year"></span> Pirates de l’Asphalte – Réparation d’asphalte à Longueuil</p>
-  </div>
-</footer>
+  <section id="secteurs" aria-label="Secteurs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Secteurs desservis à Longueuil</h2>
+        <p class="sub">On couvre Longueuil et les environs immédiats.</p>
+      </div>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+      <p>
+        Vieux-Longueuil, Saint-Hubert, Greenfield Park et secteurs voisins sur la Rive-Sud.
+        Appelez-nous et on confirme rapidement.
+      </p>
+    </div>
+  </section>
 
-<!-- JS global -->
-<script src="/assets/js/main.js" defer></script>
+  <section id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ – Réparation d’asphalte à Longueuil</h2>
+        <p class="sub">Questions fréquentes avant une réparation.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Ça peut être réparé même en hiver ?</h3>
+          <p>
+            Ça dépend de la température, des conditions et du type de réparation.
+            Le plus simple : appelez et on vous dit ce qui est possible maintenant.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Pourquoi mon asphalte s’affaisse ?</h3>
+          <p>
+            Souvent : base mal compactée, sol instable, drainage faible ou eau qui s’infiltre.
+            On vérifie la cause pour éviter que ça revienne.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Est-ce qu’une réparation va “paraître” ?</h3>
+          <p>
+            Une réparation propre est nette, mais la teinte peut différer au début.
+            Avec le temps, ça s’harmonise. Le plus important : stabilité et durabilité.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="/#soumission"
+           data-track="cta"
+           data-label="reparation-longueuil-faq-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="reparation-longueuil-faq-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission" aria-label="Soumission">
+    <div class="container">
+      <div class="section-head">
+        <h2>Soumission pour réparation d’asphalte à Longueuil</h2>
+        <p class="sub">Appelez-nous, texto ou formulaire : on vous répond vite.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="tel:15149797832"
+           data-track="phone"
+           data-label="reparation-longueuil-bottom-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832
+        </a>
+
+        <a class="btn btn-ghost"
+           href="/#soumission"
+           data-track="cta"
+           data-label="reparation-longueuil-bottom-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+
+        <a class="btn btn-ghost"
+           href="sms:+15149797832"
+           data-track="sms"
+           data-label="reparation-longueuil-bottom-sms">
+          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+        </a>
+      </div>
+
+      <p class="sub" style="margin-top:12px;">
+        Liens utiles :
+        <a href="/fissures-asphalte-longueuil/">fissures à Longueuil</a> ·
+        <a href="/nids-de-poule-longueuil/">nids-de-poule à Longueuil</a> ·
+        <a href="/asphaltage-longueuil/">asphaltage à Longueuil</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte – Réparation d’asphalte à Longueuil</p>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
