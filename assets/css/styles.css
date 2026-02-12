@@ -1034,3 +1034,16 @@ body[data-menu="open"]{
 
 /* (Optionnel) si tu veux éviter un flash noir pendant le load */
 .hero-slide video{ background: #000; }
+
+/* Slider video support (for slides with <video>) */
+.hero-slide video,
+.hero-video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* (Optionnel) si tu veux éviter un flash noir pendant le load */
+.hero-slide video{ background: #000; }
+
