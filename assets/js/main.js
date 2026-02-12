@@ -785,3 +785,29 @@
 
   initHeroSliders();
 })();
+
+  /* =========================================================
+     5b) Auto click tracking (no data-track needed)
+     - Tracks tel:, sms:, mailto:, and #soumission links anywhere
+     ========================================================= */
+  on(document, "click", (e) => {
+    const a = e.target instanceof Element ? e.target.closest("a") : null;
+    if (!a) return;
+
+    const href = (a.getAttribute("href") || "").trim();
+    if (!href) return;
+
+    const label =
+      a.getAttribute("aria-label") ||
+      (a.textContent || "").trim().slice(0, 70) ||
+      href;
+
+    // Don't double count if you already use [data-track]
+    if (a.hasAttribute("data-track")) return;
+
+    if (href.startsWith("tel:"))    track("phone_click", { label, href });
+    else if (href.startsWith("sms:"))     track("sms_click", { label, href });
+    else if (href.startsWith("mailto:"))  track("email_click", { label, href });
+    else if (href.includes("#soumission")) track("cta_click", { label, href });
+  });
+
