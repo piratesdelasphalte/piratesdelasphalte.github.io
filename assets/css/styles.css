@@ -1034,11 +1034,3 @@ body[data-menu="open"]{
 
 /* (Optionnel) si tu veux éviter un flash noir pendant le load */
 .hero-slide video{ background: #000; }
-
-.hero-media,
-.hero-slider,
-.hero-slides{
-  border-radius: 0 !important;
-  -webkit-mask-image: none !important;
-  mask-image: none !important;
-}
