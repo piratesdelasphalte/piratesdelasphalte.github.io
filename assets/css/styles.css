@@ -1056,3 +1056,43 @@ body[data-menu="open"]{
   .hero-caption{ display:none !important; }
 }
 
+/* =========================================================
+   HERO IMAGE ONLY — patch (sans slider)
+   Colle à la FIN de styles.css
+   ========================================================= */
+
+/* Quand .hero-media est dans .hero-grid, on veut zéro marge en haut */
+.hero-grid .hero-media{
+  margin-top: 0; /* override ton ancien margin-top:18px */
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Si tu utilises <picture> direct (pas de .hero-slider) */
+.hero-grid .hero-media picture,
+.hero-grid .hero-media img{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Image bien cadrée dans la carte */
+.hero-grid .hero-media img{
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Bonus: si tu veux une vibe encore plus "premium card" */
+.hero-grid .hero-media{
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow2);
+}
+
+/* Mobile: assure une belle hauteur sans écraser */
+@media (max-width: 979px){
+  .hero-grid .hero-media{
+    min-height: 240px;
+  }
+}
+
