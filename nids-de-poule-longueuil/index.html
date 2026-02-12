@@ -2,33 +2,47 @@
 <html lang="fr-CA">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <!-- Indexing / UX -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=yes" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- SEO -->
   <title>Nids-de-poule à Longueuil | Réparation rapide & patch d’asphalte | Pirates de l’Asphalte</title>
   <meta name="description" content="Nids-de-poule à Longueuil : réparation rapide, patch d’asphalte, correction de la base au besoin et finition durable. Entrées & stationnements. Soumission rapide." />
-
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/nids-de-poule-longueuil/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Nids-de-poule à Longueuil | Réparation & patch d’asphalte" />
-  <meta property="og:description" content="Réparation de nids-de-poule à Longueuil : patch solide, base stabilisée si nécessaire, finition propre. Résidentiel et commercial." />
+  <meta property="og:site_name" content="Pirates de l’Asphalte" />
+  <meta property="og:locale" content="fr_CA" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/nids-de-poule-longueuil/" />
-  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/og-pirates-asphalte-1200x630.png" />
+  <meta property="og:title" content="Nids-de-poule à Longueuil | Réparation & patch d’asphalte" />
+  <meta property="og:description" content="Réparation de nids-de-poule à Longueuil : patch solide, base stabilisée si nécessaire, finition propre. Résidentiel et commercial." />
+  <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Pirates de l’Asphalte — asphaltage et réparation d’asphalte au Québec" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="twitter:title" content="Nids-de-poule à Longueuil | Pirates de l’Asphalte" />
+  <meta name="twitter:description" content="Patch d’asphalte durable, base stabilisée si nécessaire, finition propre. Réparation rapide à Longueuil." />
+  <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
@@ -39,59 +53,75 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-ZS180NNJS4');
+    gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema: LocalBusiness -->
+  <!-- Schema (Business + WebPage + Service + FAQ) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Pirates de l’Asphalte",
-    "url":"https://piratesdelasphalte.github.io/",
-    "telephone":"+1-514-979-7832",
-    "areaServed":["Longueuil","Québec"],
-    "sameAs":["https://www.facebook.com/piratesdelsphalte/"]
-  }
-  </script>
-
-  <!-- Schema: Service -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "serviceType":"Réparation de nids-de-poule",
-    "name":"Réparation de nids-de-poule à Longueuil",
-    "areaServed":{"@type":"City","name":"Longueuil"},
-    "provider":{
-      "@type":"LocalBusiness",
-      "name":"Pirates de l’Asphalte",
-      "url":"https://piratesdelasphalte.github.io/",
-      "telephone":"+1-514-979-7832"
-    }
-  }
-  </script>
-
-  <!-- Schema: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@graph":[
       {
-        "@type":"Question",
-        "name":"Faites-vous la réparation de nids-de-poule à Longueuil ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons les nids-de-poule à Longueuil avec une découpe propre, préparation de la base si nécessaire, compaction et patch d’asphalte durable."}
+        "@type":"WebSite",
+        "@id":"https://piratesdelasphalte.github.io/#website",
+        "url":"https://piratesdelasphalte.github.io/",
+        "name":"Pirates de l’Asphalte",
+        "inLanguage":"fr-CA"
       },
       {
-        "@type":"Question",
-        "name":"Pourquoi les nids-de-poule reviennent-ils au même endroit ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Souvent à cause de l’eau qui s’infiltre, d’une base affaiblie ou d’un drainage insuffisant. On évalue la cause et on stabilise la zone pour réduire les retours."}
+        "@type":"LocalBusiness",
+        "@id":"https://piratesdelasphalte.github.io/#business",
+        "name":"Pirates de l’Asphalte",
+        "url":"https://piratesdelasphalte.github.io/",
+        "telephone":"+1-514-979-7832",
+        "sameAs":["https://www.facebook.com/piratesdelsphalte/"],
+        "address":{
+          "@type":"PostalAddress",
+          "addressRegion":"QC",
+          "addressCountry":"CA"
+        },
+        "areaServed":[
+          { "@type":"City", "name":"Longueuil" },
+          { "@type":"AdministrativeArea", "name":"Québec" }
+        ]
       },
       {
-        "@type":"Question",
-        "name":"Est-ce dangereux de laisser un nid-de-poule ?",
-        "acceptedAnswer":{"@type":"Answer","text":"Oui. Un nid-de-poule peut s’agrandir rapidement, abîmer les véhicules, créer un risque de chute et accélérer la dégradation de l’asphalte autour."}
+        "@type":"WebPage",
+        "@id":"https://piratesdelasphalte.github.io/nids-de-poule-longueuil/#webpage",
+        "url":"https://piratesdelasphalte.github.io/nids-de-poule-longueuil/",
+        "name":"Nids-de-poule à Longueuil | Réparation rapide & patch d’asphalte | Pirates de l’Asphalte",
+        "inLanguage":"fr-CA",
+        "isPartOf":{ "@id":"https://piratesdelasphalte.github.io/#website" },
+        "about":{ "@id":"https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type":"Service",
+        "@id":"https://piratesdelasphalte.github.io/nids-de-poule-longueuil/#service",
+        "name":"Réparation de nids-de-poule à Longueuil",
+        "serviceType":"Réparation de nids-de-poule",
+        "provider":{ "@id":"https://piratesdelasphalte.github.io/#business" },
+        "areaServed":{ "@type":"City", "name":"Longueuil" }
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"https://piratesdelasphalte.github.io/nids-de-poule-longueuil/#faq",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Faites-vous la réparation de nids-de-poule à Longueuil ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous réparons les nids-de-poule à Longueuil avec une découpe propre, préparation de la base si nécessaire, compaction et patch d’asphalte durable."}
+          },
+          {
+            "@type":"Question",
+            "name":"Pourquoi les nids-de-poule reviennent-ils au même endroit ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Souvent à cause de l’eau qui s’infiltre, d’une base affaiblie ou d’un drainage insuffisant. On évalue la cause et on stabilise la zone pour réduire les retours."}
+          },
+          {
+            "@type":"Question",
+            "name":"Est-ce dangereux de laisser un nid-de-poule ?",
+            "acceptedAnswer":{"@type":"Answer","text":"Oui. Un nid-de-poule peut s’agrandir rapidement, abîmer les véhicules, créer un risque de chute et accélérer la dégradation de l’asphalte autour."}
+          }
+        ]
       }
     ]
   }
@@ -99,211 +129,262 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-<header>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand-wrap">
-        <div class="brand">
-          <img src="/pirates-de-l-asphalte-logo.png" alt="Pirates de l’Asphalte" class="logo" width="92" height="64" />
-          <span class="brand-text">Pirates de l’Asphalte</span>
-        </div>
-        <span class="badge"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Nids-de-poule à Longueuil</span>
-      </div>
-
-      <nav>
-        <a href="/">Accueil</a>
-        <a href="/reparation-asphalte-longueuil/">Réparation asphalte</a>
-        <a href="/asphaltage-longueuil/">Asphaltage</a>
-        <a href="/#soumission">Soumission</a>
-        <a href="tel:15149797832">Appeler</a>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<main class="hero" id="top">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-card">
-        <h1>Nids-de-poule à Longueuil</h1>
-
-        <p>
-          Un <strong>nid-de-poule</strong> s’agrandit vite, surtout avec l’eau et le gel.
-          Si vous avez un <strong>nid-de-poule à Longueuil</strong> dans une entrée de cour,
-          un stationnement ou une zone de circulation, on peut faire une
-          <strong>réparation rapide</strong> avec un <strong>patch d’asphalte solide</strong>
-          et une préparation propre.
-        </p>
-
-        <div class="hero-points" aria-label="Avantages">
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch durable</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Base stabilisée si nécessaire</span>
-          <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Finition propre</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:15149797832" aria-label="Appeler pour nid-de-poule Longueuil">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <a class="brand" href="/" aria-label="Retour à l’accueil">
+            <img src="/pirates-de-l-asphalte-logo.png"
+                 alt="Pirates de l’Asphalte"
+                 class="logo"
+                 width="92" height="64"
+                 loading="eager"
+                 decoding="async" />
+            <span class="brand-text">Pirates de l’Asphalte</span>
           </a>
-          <a class="btn btn-ghost" href="/#soumission" aria-label="Soumission nid-de-poule Longueuil">
-            <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
-          </a>
+          <span class="badge"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Nids-de-poule à Longueuil</span>
         </div>
 
-        <p class="sub" style="margin-top:12px;">
-          Pour d’autres problèmes (fissures, affaissements) : <a href="/reparation-asphalte-longueuil/">réparation d’asphalte à Longueuil</a>.
-        </p>
+        <nav aria-label="Navigation">
+          <a href="/">Accueil</a>
+          <a href="/reparation-asphalte-longueuil/">Réparation asphalte</a>
+          <a href="/fissures-asphalte-longueuil/">Fissures</a>
+          <a href="/asphaltage-longueuil/">Asphaltage</a>
+          <a href="/#soumission" data-track="cta" data-label="nids-longueuil-nav-quote">Soumission</a>
+          <a href="tel:15149797832" data-track="phone" data-label="nids-longueuil-nav-call">Appeler</a>
+        </nav>
       </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<section id="urgence">
-  <div class="container">
-    <div class="section-head">
-      <h2>Pourquoi réparer un nid-de-poule rapidement</h2>
-      <p class="sub">Plus on attend, plus ça s’élargit et plus la réparation devient lourde.</p>
-    </div>
+  <main class="hero" id="main">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Nids-de-poule à Longueuil</h1>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Évite l’aggravation</h3>
-        <p>Le trou s’élargit, l’eau infiltre, et la zone autour s’effrite plus vite.</p>
-      </div>
-      <div class="card">
-        <h3>Réduit les risques</h3>
-        <p>Moins de chances d’abîmer pneus/jantes et moins de risque de chute sur la surface.</p>
-      </div>
-      <div class="card">
-        <h3>Protège la base</h3>
-        <p>Une base affaiblie cause des retours. Stabiliser maintenant prolonge la durée de vie.</p>
-      </div>
-    </div>
-  </div>
-</section>
+          <p>
+            Un <strong>nid-de-poule</strong> s’agrandit vite, surtout avec l’eau et le gel.
+            Si vous avez un <strong>nid-de-poule à Longueuil</strong> dans une entrée de cour,
+            un stationnement ou une zone de circulation, on peut faire une
+            <strong>réparation rapide</strong> avec un <strong>patch d’asphalte solide</strong>
+            et une préparation propre.
+          </p>
 
-<section id="service">
-  <div class="container">
-    <div class="section-head">
-      <h2>Réparation de nids-de-poule à Longueuil : ce qu’on fait</h2>
-      <p class="sub">On vise une réparation solide, stable et propre.</p>
-    </div>
+          <div class="hero-points" aria-label="Avantages">
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Patch durable</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Base stabilisée si nécessaire</span>
+            <span class="pill"><i class="fa-solid fa-check" aria-hidden="true"></i> Finition propre</span>
+          </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Patch / découpe propre</h3>
-        <p>On enlève la section brisée proprement pour éviter les bords qui s’effritent.</p>
-      </div>
-      <div class="card">
-        <h3>Préparation & compaction</h3>
-        <p>On corrige la base au besoin et on compacte pour limiter les futures déformations.</p>
-      </div>
-      <div class="card">
-        <h3>Finition durable</h3>
-        <p>On travaille les joints pour une surface plus uniforme et résistante.</p>
-      </div>
-    </div>
+          <div class="cta-row">
+            <a class="btn btn-primary"
+               href="tel:15149797832"
+               data-track="phone"
+               data-label="nids-longueuil-hero-call"
+               aria-label="Appeler pour nid-de-poule Longueuil">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler 514-979-7832
+            </a>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
-      <a class="btn btn-ghost" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler</a>
-    </div>
-  </div>
-</section>
+            <a class="btn btn-ghost"
+               href="/#soumission"
+               data-track="cta"
+               data-label="nids-longueuil-hero-quote"
+               aria-label="Soumission nid-de-poule Longueuil">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Soumission rapide
+            </a>
 
-<section id="causes">
-  <div class="container">
-    <div class="section-head">
-      <h2>Causes fréquentes des nids-de-poule</h2>
-      <p class="sub">Comprendre la cause aide à éviter que ça revienne.</p>
-    </div>
+            <a class="btn btn-ghost"
+               href="sms:+15149797832"
+               data-track="sms"
+               data-label="nids-longueuil-hero-sms"
+               aria-label="Envoyer un texto pour réparation de nid-de-poule à Longueuil">
+              <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+            </a>
+          </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Eau + gel/dégel</h3>
-        <p>L’eau s’infiltre, gèle, gonfle et casse la surface. Ça ouvre la porte à plus d’infiltration.</p>
-      </div>
-      <div class="card">
-        <h3>Base affaiblie</h3>
-        <p>Si la fondation est instable ou mal compactée, la surface se casse sous la charge.</p>
-      </div>
-      <div class="card">
-        <h3>Drainage insuffisant</h3>
-        <p>Quand l’eau stagne (vallons), la dégradation accélère. Une pente correcte change tout.</p>
+          <p class="sub" style="margin-top:12px;">
+            Pour d’autres problèmes (fissures, affaissements) :
+            <a href="/reparation-asphalte-longueuil/">réparation d’asphalte à Longueuil</a>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<section id="secteurs">
-  <div class="container">
-    <div class="section-head">
-      <h2>Secteurs desservis à Longueuil</h2>
-      <p class="sub">On couvre Longueuil et secteurs voisins sur la Rive-Sud.</p>
-    </div>
-
-    <p>
-      Vieux-Longueuil, Saint-Hubert, Greenfield Park et environs.
-      Pour une réparation urgente, appelez et on confirme rapidement.
-    </p>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="container">
-    <div class="section-head">
-      <h2>FAQ – Nids-de-poule Longueuil</h2>
-      <p class="sub">Réponses rapides aux questions qu’on reçoit le plus.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Est-ce que le patch va tenir ?</h3>
-        <p>Oui si la base est stable. Quand il faut, on stabilise/compacte pour éviter les retours.</p>
+  <section id="urgence" aria-label="Pourquoi réparer vite">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pourquoi réparer un nid-de-poule rapidement</h2>
+        <p class="sub">Plus on attend, plus ça s’élargit et plus la réparation devient lourde.</p>
       </div>
-      <div class="card">
-        <h3>Combien ça coûte ?</h3>
-        <p>Ça dépend de la taille, profondeur et état de la base. Le plus simple : soumission rapide.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Évite l’aggravation</h3>
+          <p>Le trou s’élargit, l’eau infiltre, et la zone autour s’effrite plus vite.</p>
+        </div>
+        <div class="card">
+          <h3>Réduit les risques</h3>
+          <p>Moins de chances d’abîmer pneus/jantes et moins de risque de chute sur la surface.</p>
+        </div>
+        <div class="card">
+          <h3>Protège la base</h3>
+          <p>Une base affaiblie cause des retours. Stabiliser maintenant prolonge la durée de vie.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Vous réparez aussi les fissures autour ?</h3>
-        <p>Oui. Souvent, on traite la zone autour pour limiter l’infiltration et stabiliser la réparation.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/#soumission" data-track="cta" data-label="nids-longueuil-urgence-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost" href="tel:15149797832" data-track="phone" data-label="nids-longueuil-urgence-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="soumission">
-  <div class="container">
-    <div class="section-head">
-      <h2>Soumission pour nid-de-poule à Longueuil</h2>
-      <p class="sub">Appel rapide ou formulaire : on vous répond vite.</p>
+  <section id="service" aria-label="Ce qu’on fait">
+    <div class="container">
+      <div class="section-head">
+        <h2>Réparation de nids-de-poule à Longueuil : ce qu’on fait</h2>
+        <p class="sub">On vise une réparation solide, stable et propre.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Patch / découpe propre</h3>
+          <p>On enlève la section brisée proprement pour éviter les bords qui s’effritent.</p>
+        </div>
+        <div class="card">
+          <h3>Préparation & compaction</h3>
+          <p>On corrige la base au besoin et on compacte pour limiter les futures déformations.</p>
+        </div>
+        <div class="card">
+          <h3>Finition durable</h3>
+          <p>On travaille les joints pour une surface plus uniforme et résistante.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/#soumission" data-track="cta" data-label="nids-longueuil-service-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost" href="tel:15149797832" data-track="phone" data-label="nids-longueuil-service-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
     </div>
+  </section>
 
-    <div class="cta-row">
-      <a class="btn btn-primary" href="tel:15149797832"><i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832</a>
-      <a class="btn btn-ghost" href="/#soumission"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission</a>
+  <section id="causes" aria-label="Causes">
+    <div class="container">
+      <div class="section-head">
+        <h2>Causes fréquentes des nids-de-poule</h2>
+        <p class="sub">Comprendre la cause aide à éviter que ça revienne.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Eau + gel/dégel</h3>
+          <p>L’eau s’infiltre, gèle, gonfle et casse la surface. Ça ouvre la porte à plus d’infiltration.</p>
+        </div>
+        <div class="card">
+          <h3>Base affaiblie</h3>
+          <p>Si la fondation est instable ou mal compactée, la surface se casse sous la charge.</p>
+        </div>
+        <div class="card">
+          <h3>Drainage insuffisant</h3>
+          <p>Quand l’eau stagne (vallons), la dégradation accélère. Une pente correcte change tout.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <p class="sub" style="margin-top:12px;">
-      Liens utiles : <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a> ·
-      <a href="/asphaltage-longueuil/">asphaltage Longueuil</a>
-    </p>
-  </div>
-</section>
+  <section id="secteurs" aria-label="Secteurs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Secteurs desservis à Longueuil</h2>
+        <p class="sub">On couvre Longueuil et secteurs voisins sur la Rive-Sud.</p>
+      </div>
 
-<footer>
-  <div class="container">
-    <p>© <span id="year"></span> Pirates de l’Asphalte – Nids-de-poule à Longueuil</p>
-  </div>
-</footer>
+      <p>
+        Vieux-Longueuil, Saint-Hubert, Greenfield Park et environs.
+        Pour une réparation urgente, appelez et on confirme rapidement.
+      </p>
+    </div>
+  </section>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <section id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ – Nids-de-poule Longueuil</h2>
+        <p class="sub">Réponses rapides aux questions qu’on reçoit le plus.</p>
+      </div>
 
-<!-- JS global -->
-<script src="/assets/js/main.js" defer></script>
+      <div class="grid">
+        <div class="card">
+          <h3>Est-ce que le patch va tenir ?</h3>
+          <p>Oui si la base est stable. Quand il faut, on stabilise/compacte pour éviter les retours.</p>
+        </div>
+        <div class="card">
+          <h3>Combien ça coûte ?</h3>
+          <p>Ça dépend de la taille, profondeur et état de la base. Le plus simple : soumission rapide.</p>
+        </div>
+        <div class="card">
+          <h3>Vous réparez aussi les fissures autour ?</h3>
+          <p>Oui. Souvent, on traite la zone autour pour limiter l’infiltration et stabiliser la réparation.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/#soumission" data-track="cta" data-label="nids-longueuil-faq-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost" href="tel:15149797832" data-track="phone" data-label="nids-longueuil-faq-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="soumission" aria-label="Soumission">
+    <div class="container">
+      <div class="section-head">
+        <h2>Soumission pour nid-de-poule à Longueuil</h2>
+        <p class="sub">Appel, texto ou formulaire : on vous répond vite.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:15149797832" data-track="phone" data-label="nids-longueuil-bottom-call">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> 514-979-7832
+        </a>
+        <a class="btn btn-ghost" href="/#soumission" data-track="cta" data-label="nids-longueuil-bottom-quote">
+          <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
+        </a>
+        <a class="btn btn-ghost" href="sms:+15149797832" data-track="sms" data-label="nids-longueuil-bottom-sms">
+          <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Texto
+        </a>
+      </div>
+
+      <p class="sub" style="margin-top:12px;">
+        Liens utiles :
+        <a href="/reparation-asphalte-longueuil/">réparation asphalte Longueuil</a> ·
+        <a href="/asphaltage-longueuil/">asphaltage Longueuil</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Pirates de l’Asphalte – Nids-de-poule à Longueuil</p>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
