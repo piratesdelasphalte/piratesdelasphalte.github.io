@@ -1047,3 +1047,12 @@ body[data-menu="open"]{
 /* (Optionnel) si tu veux éviter un flash noir pendant le load */
 .hero-slide video{ background: #000; }
 
+/* Hide slider caption on mobile */
+@media (max-width: 520px){
+  .hero-caption{ display:none !important; }
+}
+
+@media (max-width: 860px){
+  .hero-caption{ display:none !important; }
+}
+
