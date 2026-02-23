@@ -7,13 +7,13 @@
   <!-- Indexing / UX -->
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="format-detection" content="telephone=yes" />
+  <meta name="format-detection" content="telephone=no" />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#111111" />
 
   <!-- SEO -->
-  <title>Scellant d’asphalte à Terrebonne | Protection & finition propre | Pirates de l’Asphalte</title>
-  <meta name="description" content="Scellant d’asphalte à Terrebonne : protection de la surface, finition uniforme, réduction de l’usure. Entrées de cour & stationnements. Soumission rapide." />
+  <title>Scellant d’asphalte à Terrebonne | Entrées & stationnements | Pirates de l’Asphalte</title>
+  <meta name="description" content="Scellant d’asphalte à Terrebonne: protection contre l’eau et le sel, finition uniforme, réduction de l’usure. Entrées de cour & stationnements. Soumission rapide." />
   <link rel="canonical" href="https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/" />
 
   <!-- Open Graph -->
@@ -22,41 +22,47 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/" />
   <meta property="og:title" content="Scellant d’asphalte à Terrebonne | Pirates de l’Asphalte" />
-  <meta property="og:description" content="Application de scellant d’asphalte à Terrebonne : protection, finition propre, réduction de l’usure. Entrées & stationnements. Soumission rapide." />
+  <meta property="og:description" content="Application de scellant d’asphalte à Terrebonne: protection, finition propre, réduction de l’usure. Entrées & stationnements. Soumission rapide." />
   <meta property="og:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Pirates de l’Asphalte — services d’asphaltage et réparation au Québec" />
+  <meta property="og:image:alt" content="Service de scellant d’asphalte à Terrebonne — Pirates de l’Asphalte" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Scellant d’asphalte à Terrebonne | Pirates de l’Asphalte" />
-  <meta name="twitter:description" content="Protection de l’asphalte à Terrebonne : scellant pour entrée de cour et stationnement. Soumission rapide." />
+  <meta name="twitter:description" content="Protection de l’asphalte à Terrebonne: scellant pour entrée de cour et stationnement. Soumission rapide." />
   <meta name="twitter:image" content="https://piratesdelasphalte.github.io/assets/images/og/og-pirates-asphalte-1200x630.png" />
 
   <!-- Perf -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
 
-  <!-- GA4 -->
+  <!-- GA4 (simple). Idéalement: consent mode dans ton main.js si tu l’as déjà -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS180NNJS4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
     gtag('js', new Date());
     gtag('config', 'G-ZS180NNJS4', { send_page_view: true });
   </script>
 
-  <!-- Schema (Business + WebPage + Service + FAQ) -->
+  <!-- Schema (Business + WebPage + Service + Breadcrumbs + FAQ) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -73,26 +79,46 @@
         "@id":"https://piratesdelasphalte.github.io/#business",
         "name":"Pirates de l’Asphalte",
         "url":"https://piratesdelasphalte.github.io/",
-        "telephone":"+1-514-979-7832",
-        "sameAs":["https://www.facebook.com/piratesdelsphalte/"],
+        "telephone":"+15149797832",
+        "areaServed":[
+          { "@type":"City", "name":"Terrebonne" },
+          { "@type":"AdministrativeArea", "name":"Québec" }
+        ],
         "address":{
           "@type":"PostalAddress",
           "addressRegion":"QC",
           "addressCountry":"CA"
         },
-        "areaServed":[
-          { "@type":"City", "name":"Terrebonne" },
-          { "@type":"AdministrativeArea", "name":"Québec" }
+        "sameAs":[
+          "https://www.facebook.com/piratesdelsphalte/"
         ]
       },
       {
         "@type":"WebPage",
         "@id":"https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/#webpage",
         "url":"https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/",
-        "name":"Scellant d’asphalte à Terrebonne | Protection & finition propre | Pirates de l’Asphalte",
+        "name":"Scellant d’asphalte à Terrebonne | Entrées & stationnements | Pirates de l’Asphalte",
         "inLanguage":"fr-CA",
         "isPartOf":{ "@id":"https://piratesdelasphalte.github.io/#website" },
         "about":{ "@id":"https://piratesdelasphalte.github.io/#business" }
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/#breadcrumbs",
+        "itemListElement":[
+          {
+            "@type":"ListItem",
+            "position":1,
+            "name":"Accueil",
+            "item":"https://piratesdelasphalte.github.io/"
+          },
+          {
+            "@type":"ListItem",
+            "position":2,
+            "name":"Scellant d’asphalte à Terrebonne",
+            "item":"https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/"
+          }
+        ]
       },
       {
         "@type":"Service",
@@ -100,7 +126,8 @@
         "name":"Scellant d’asphalte à Terrebonne",
         "serviceType":"Scellant d’asphalte",
         "provider":{ "@id":"https://piratesdelasphalte.github.io/#business" },
-        "areaServed":{ "@type":"City", "name":"Terrebonne" }
+        "areaServed":{ "@type":"City", "name":"Terrebonne" },
+        "url":"https://piratesdelasphalte.github.io/scellant-asphalte-terrebonne/"
       },
       {
         "@type":"FAQPage",
@@ -109,17 +136,26 @@
           {
             "@type":"Question",
             "name":"À quoi sert un scellant d’asphalte ?",
-            "acceptedAnswer":{"@type":"Answer","text":"Le scellant aide à protéger la surface contre l’eau, le sel et l’usure normale. Il améliore aussi l’apparence et peut ralentir le vieillissement de l’asphalte."}
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Le scellant aide à protéger la surface contre l’eau, le sel et l’usure normale. Il améliore aussi l’apparence et peut ralentir le vieillissement de l’asphalte."
+            }
           },
           {
             "@type":"Question",
             "name":"Est-ce que le scellant répare les fissures ?",
-            "acceptedAnswer":{"@type":"Answer","text":"Le scellant protège, mais ne corrige pas une fissure profonde ou un problème de base. Selon le cas, on recommande d’abord une réparation (fissures/patch) avant d’appliquer le scellant."}
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Le scellant protège, mais ne corrige pas une fissure profonde ou un problème de base. Selon le cas, on recommande d’abord une réparation (fissures/patch) avant d’appliquer le scellant."
+            }
           },
           {
             "@type":"Question",
             "name":"Faites-vous le scellant pour entrée de cour et stationnement à Terrebonne ?",
-            "acceptedAnswer":{"@type":"Answer","text":"Oui. Nous appliquons le scellant sur entrées de cour et stationnements à Terrebonne, résidentiels et commerciaux, selon l’état de la surface."}
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Oui. Nous appliquons le scellant sur entrées de cour et stationnements à Terrebonne, résidentiels et commerciaux, selon l’état de la surface."
+            }
           }
         ]
       }
@@ -136,23 +172,28 @@
       <div class="topbar">
         <div class="brand-wrap">
           <a class="brand" href="/" aria-label="Retour à l’accueil">
-            <img src="/pirates-de-l-asphalte-logo.png"
-                 alt="Pirates de l’Asphalte"
-                 class="logo"
-                 width="92" height="64"
-                 loading="eager"
-                 decoding="async" />
+            <img
+              src="/pirates-de-l-asphalte-logo.png"
+              alt="Pirates de l’Asphalte"
+              class="logo"
+              width="92"
+              height="64"
+              loading="eager"
+              decoding="async" />
             <span class="brand-text">Pirates de l’Asphalte</span>
           </a>
-          <span class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Scellant d’asphalte à Terrebonne</span>
+          <span class="badge">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Scellant d’asphalte à Terrebonne
+          </span>
         </div>
 
-        <nav aria-label="Navigation">
+        <nav aria-label="Navigation principale">
           <a href="/">Accueil</a>
           <a href="/asphaltage-terrebonne/">Asphaltage</a>
           <a href="/reparation-asphalte-terrebonne/">Réparation</a>
           <a href="/#soumission" data-track="cta" data-label="scellant-terrebonne-nav-quote">Soumission</a>
-          <a href="tel:15149797832" data-track="phone" data-label="scellant-terrebonne-nav-call">Appeler</a>
+          <a href="tel:+15149797832" data-track="phone" data-label="scellant-terrebonne-nav-call">Appeler</a>
         </nav>
       </div>
     </div>
@@ -160,6 +201,13 @@
 
   <main class="hero" id="main">
     <div class="container">
+
+      <nav aria-label="Fil d’Ariane" class="breadcrumbs">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span>Scellant d’asphalte à Terrebonne</span>
+      </nav>
+
       <div class="hero-grid">
         <div class="hero-card">
           <h1>Scellant d’asphalte à Terrebonne</h1>
@@ -167,7 +215,7 @@
           <p>
             Un <strong>scellant d’asphalte</strong> bien appliqué aide à protéger votre entrée de cour
             ou stationnement contre l’eau, le sel et l’usure normale.
-            Chez <strong>Pirates de l’Asphalte</strong>, on fait une préparation propre et on vous dit
+            Chez <strong>Pirates de l’Asphalte</strong>, on prépare la surface proprement et on vous dit
             clairement si la surface est prête, ou si une réparation est préférable avant.
           </p>
 
@@ -179,7 +227,7 @@
 
           <div class="cta-row">
             <a class="btn btn-primary"
-               href="tel:15149797832"
+               href="tel:+15149797832"
                data-track="phone"
                data-label="scellant-terrebonne-hero-call"
                aria-label="Appeler pour scellant d’asphalte à Terrebonne">
@@ -204,8 +252,8 @@
           </div>
 
           <p class="sub" style="margin-top:12px;">
-            Si vous avez déjà des fissures ou des zones brisées :
-            <a href="/reparation-asphalte-terrebonne/">réparation d’asphalte à Terrebonne</a>.
+            Déjà des fissures ou des zones brisées ?
+            <a href="/reparation-asphalte-terrebonne/">Réparation d’asphalte à Terrebonne</a>.
           </p>
         </div>
       </div>
@@ -244,7 +292,7 @@
           <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
         </a>
         <a class="btn btn-ghost"
-           href="tel:15149797832"
+           href="tel:+15149797832"
            data-track="phone"
            data-label="scellant-terrebonne-benefices-call">
           <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
@@ -281,8 +329,8 @@
         <div class="card">
           <h3>Affaissements / vallons</h3>
           <p>
-            Si l’asphalte s’affaisse ou “fait des vagues”, un scellant ne va pas régler ça.
-            On doit stabiliser la zone (réparation/patch) avant.
+            Si l’asphalte s’affaisse, un scellant ne règle pas ça.
+            Il faut stabiliser la zone (réparation/patch) avant.
             Voir : <a href="/reparation-asphalte-terrebonne/">réparation d’asphalte à Terrebonne</a>.
           </p>
         </div>
@@ -291,7 +339,7 @@
           <h3>Eau stagnante (mauvaise pente)</h3>
           <p>
             Si l’eau reste en flaques, ça accélère l’usure.
-            Le scellant aide à protéger, mais il ne corrige pas une pente.
+            Le scellant protège, mais ne corrige pas la pente.
             On peut recommander une correction selon la situation.
           </p>
         </div>
@@ -299,7 +347,7 @@
         <div class="card">
           <h3>Asphalte très craquelé</h3>
           <p>
-            Si la surface est rendue très craquée partout, le scellant seul ne suffit pas.
+            Si la surface est très craquée partout, le scellant seul ne suffit pas.
             On recommande une inspection pour choisir la bonne option (réparation ou réasphaltage).
           </p>
         </div>
@@ -317,6 +365,11 @@
       <p>
         Vieux-Terrebonne, Lachenaie, La Plaine, et secteurs voisins sur la Rive-Nord.
         Dites-nous votre secteur et on confirme rapidement.
+      </p>
+
+      <p class="sub" style="margin-top:10px;">
+        Aussi: <a href="/asphaltage-terrebonne/">asphaltage à Terrebonne</a> et
+        <a href="/reparation-asphalte-terrebonne/">réparation à Terrebonne</a>.
       </p>
     </div>
   </section>
@@ -353,7 +406,7 @@
           <i class="fa-solid fa-file-signature" aria-hidden="true"></i> Demander une soumission
         </a>
         <a class="btn btn-ghost"
-           href="tel:15149797832"
+           href="tel:+15149797832"
            data-track="phone"
            data-label="scellant-terrebonne-faq-call">
           <i class="fa-solid fa-phone" aria-hidden="true"></i> Appeler
@@ -364,7 +417,21 @@
 
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> Pirates de l’Asphalte – Scellant d’asphalte à Terrebonne</p>
+      <nav aria-label="Navigation de pied de page" class="footer-nav">
+        <a href="/">Accueil</a>
+        <a href="/asphaltage-terrebonne/">Asphaltage Terrebonne</a>
+        <a href="/reparation-asphalte-terrebonne/">Réparation Terrebonne</a>
+        <a href="/#soumission">Soumission</a>
+        <a href="tel:+15149797832">514-979-7832</a>
+      </nav>
+
+      <p style="margin-top:10px;">
+        © <span id="year"></span> Pirates de l’Asphalte. Scellant d’asphalte à Terrebonne (QC).
+      </p>
+
+      <p class="sub" style="margin-top:6px;">
+        Service sur la Rive-Nord: Terrebonne, Lachenaie, La Plaine et environs.
+      </p>
     </div>
   </footer>
 
